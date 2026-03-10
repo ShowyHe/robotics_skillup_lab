@@ -229,20 +229,14 @@
 
 ---
 
-## 6. 模块 01：`01_nav2_foundation_7d`
-
-## 6.1 模块重新定义
-
-虽然目录名仍为 `foundation_7d`，但本模块内容按高阶版本执行。  
-它不再是基础概念复习，而是：
-
+## 6. 模块 01：`01_nav2_foundation`
 **Nav2 架构抽象与执行链重建**
 
-## 6.2 总时长
+## 6.1 总时长
 - 30 学习日
 - 6 个 Sprint
 
-## 6.3 模块核心目标
+## 6.2 模块核心目标
 
 本模块要解决的不是“planner 是干什么的”，而是：
 
@@ -252,7 +246,7 @@
 - 配置、参数、插件装载、默认 BT、运行角色之间如何一一对应
 - Nav2 为什么是这种架构设计，而不是另一种
 
-## 6.4 重点资料范围
+## 6.3 重点资料范围
 
 - Nav2 官方文档
 - Nav2 配置文档
@@ -263,26 +257,30 @@
 - 运行系统输出
 - 必要时查阅规划/控制相关论文或设计说明
 
-## 6.5 模块成果
+## 6.4 模块成果
 
 - `Nav2 执行链总图`
 - `核心模块职责与交互图`
 - `server / plugin / BT / action / lifecycle 边界表`
 - `概念 → 包 → 节点 → 配置 → 运行时角色` 映射表
+- `costmap / footprint / TF / map / localization` 支撑层耦合图
 - `module_summary.md`
 - `module_final_exam.md`
 - `evidence_index.md`
+- `module_handoff_to_02.md`
 
-## 6.6 模块验收条件
+## 6.5 模块验收条件
 
-- 能从 `NavigateToPose` 一路讲到控制输出
-- 能说清 `bt_navigator`、`planner_server`、`controller_server`、`behavior_server` 的协作逻辑
-- 能区分 server 与 plugin 的职责
-- 能说明 costmap、footprint、TF、map、localization 的运行角色
-- 能给出概念到源码包的清晰映射
-- 模块总闭卷通过
+- 能从 `NavigateToPose` 一路讲到控制输出，并说明关键执行节点、状态流转与中间协作关系
+- 能说清 `bt_navigator`、`planner_server`、`controller_server`、`behavior_server` 在运行时的协作逻辑，而不是只会分别解释它们“各自是干什么的”
+- 能区分 action、BT、lifecycle、server、plugin 各自所在层级与职责边界，并说明它们如何互相咬合
+- 能说明 costmap、footprint、TF、map、localization 的运行角色，以及它们为何会共同影响导航行为
+- 能把配置、参数、插件装载、默认 BT、运行角色建立清晰对应关系，而不是停留在“会改配置但不知道改到了哪一层”
+- 能给出概念到源码包的清晰映射，至少建立“概念 → 包 → 节点 → 配置 → 运行时角色”的第一层结构理解
+- 能回答“Nav2 为什么是这种架构设计，而不是另一种”，并给出基于执行链、模块协作和系统分层的解释
+- 模块总闭卷通过，且原始回答与修正回答完整保留
 
-## 6.7 Sprint 主题
+## 6.6 Sprint 主题
 
 ### Sprint 1：从 goal 到 motion 的总执行链
 ### Sprint 2：BT、Action、Lifecycle 的调度骨架

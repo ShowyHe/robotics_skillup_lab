@@ -50,7 +50,7 @@
 ## 3. 01–12 模块总览
 
 ### 第一阶段：把已有工程经验提升成系统理解
-- `01_nav2_foundation_7d`  
+- `01_nav2_foundation`  
   Nav2 架构抽象与执行链重建
 - `02_ros2_linux_fundamentals`  
   ROS2 运行机制与系统行为深潜
