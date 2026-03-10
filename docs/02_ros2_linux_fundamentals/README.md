@@ -1,68 +1,93 @@
-# 02_ros2_linux_fundamentals
+# 02｜ROS2 运行机制与系统行为深潜
 
 ## 定位
 
-本目录用于夯实 ROS2 与 Linux 基础，使后续 Nav2、自动化、源码阅读、插件开发不再建立在松软地基上。
+本目录虽然沿用了 `ros2_linux_fundamentals` 这个名字，但实际内容不再是基础命令复习，而是针对 ROS2 系统运行机制进行深潜。
 
-很多看起来像 Nav2 的问题，实际根源往往在 ROS2 机制理解不稳，或者 Linux 命令、路径、环境、进程、日志处理不熟。
+目标不是再练一遍 `ros2 topic list`、`grep` 或 `find` 这种命令，而是回答下面这些更深层的问题：
 
-## 核心目标
+- ROS2 graph 为什么是观察和调试系统的入口
+- topic / service / action 在运行时的差异到底是什么
+- QoS 为什么会直接影响系统行为与正确性
+- lifecycle、parameter、launch 在系统装配与运行控制中的作用是什么
+- executor、callback group、timer、spin 为什么会限制开发上限
+- TF、clock、sim_time、bag 在复杂系统中为什么会互相影响，甚至导致实验失真
 
-建立以下基础能力：
+## 为什么这个模块必须存在
 
-- 能稳定使用 ROS2 CLI
-- 能理解 node、topic、service、action、param、lifecycle、TF 等基本机制
-- 能理解 launch、workspace、colcon、环境变量等工作流
-- 能处理 Linux 文件、进程、权限、管道、重定向、日志与脚本
-- 能用 git 完成基本版本管理与提交
+当前已经完成过较系统的 ROS2 / Linux 命令训练，并且已经在工程实践中真实使用过：
 
-## 为什么这一层必须单独存在
+- topic / action / param / lifecycle
+- launch / bag / TF
+- shell / logs / scripts / results / docs
 
-如果这层不稳，后面会反复出现以下情况：
+说明表层工具已经不是当前短板。  
+真正的短板在于：**这些工具背后的系统机制尚未被系统化语言化**。
 
-- 命令会敲，但不知道为什么这样敲
-- 看到 topic、action、param 输出，不知道它在说明什么
-- 启动失败时，只会重跑，不会判断问题在哪
-- 看不懂终端输出、找不到日志、不会组织排查顺序
-- 学到后面一堆概念，最后全是半懂不懂
+如果这一步不补齐，后面会出现这些问题：
 
-所以这层不是“基础补课”，而是整个技术路径的底盘。
+- 现象会看，但不会解释行为背后的机制
+- 知道哪里报错，但不知道为什么这个机制会导致这种错误
+- 看到 QoS / sim_time / callback 这些词仍然容易停留在表面
+- 进入源码层时，只能看函数名，不能理解运行语义
 
-## 学习范围
+## 模块目标
 
-建议逐步覆盖：
+完成本模块后，应逐步具备以下能力：
 
-- ROS2 CLI
-- Node / Topic / Service / Action / Param
-- Lifecycle
-- TF
-- Launch
-- Bag
-- Colcon Workspace
-- Linux 命令行
-- Shell 基础
-- Git 基础工作流
+- 能从 graph 视角看系统，而不是只看单一命令输出
+- 能解释 topic、service、action 的运行时差异
+- 能解释 QoS 与系统功能异常之间的因果关系
+- 能初步理解 executor、callback group、timer、spin 的关系
+- 能解释 lifecycle、parameter、launch 在系统装配与运行控制中的意义
+- 能说明 use_sim_time、clock、TF、bag 之间的耦合关系与实验风险
 
-## 产出形式
+## 模块主要产物
 
-本目录后续应以“主题 + 命令 + 解释 + 证据 + 常见坑 + 修正理解”的方式组织内容，而不是只堆教程链接。
+本模块后续应重点沉淀：
 
-## 完成标准
+- ROS2 运行机制总图
+- topic / service / action / QoS / lifecycle 对照表
+- executor / callback / spin / timer 关系图
+- TF + time + bag + launch + param 系统关系图
+- runtime failure pattern 清单
+- 模块总结
+- 模块总验收
+- 证据索引
 
-完成本阶段时，应至少做到：
+## 学习与执行方式
 
-- 能解释最常用 ROS2 CLI 的目的和输出意义
-- 能独立排查一类基础启动或通信问题
-- 能把 Linux / ROS2 基础命令写成自己可复用的检查流程
-- 能在不查资料的情况下说清几个核心概念的区别
+本模块采用 Sprint 机制推进，每个 Sprint 按以下节奏执行：
 
-## 与后续衔接
+1. 问题定义与图谱建立  
+2. 运行时证据采集  
+3. 文档 / 源码 / 设计资料深读  
+4. 对照、trace、profiling 或实验动作  
+5. 总结、闭卷与复盘  
 
-本阶段支撑：
+每天必须保留：
 
-- `03_python_for_robotics`
-- `04_cpp_for_ros2`
-- `05_nav2_engineering_drills`
-- `06_tooling_and_automation`
+- 今天的核心机制问题
+- 今天抓到的系统证据
+- 今天读到的设计或实现要点
+- 今天最容易混淆的概念
+- 当天闭卷问答
+- 明日衔接点
 
-没有这层，后面脚本和工程能力都会虚。
+## 验收标准
+
+完成本模块时，至少应满足以下条件：
+
+- 能用运行机制而不是表面现象解释一类系统问题
+- 能说清 QoS、lifecycle、graph、sim_time、TF 等机制的作用与边界
+- 能初步解释 executor / callback group / spin 的开发意义
+- 能把系统错误从“经验问题”上升为“机制问题”
+- 能通过闭卷问答形成稳定表达
+
+## 与后续模块的关系
+
+本模块是很多后续模块的基础：
+
+- 为 `04｜C++ / rclcpp / pluginlib 语言门槛突破` 提供运行时语义背景
+- 为 `05｜Nav2 源码入口、改造与扩展点` 提供系统行为理解基础
+- 为 `06｜评测科学、性能分析与研究实验纪律` 提供 trace、timing、runtime analysis 的机制前提
