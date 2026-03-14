@@ -1,0 +1,439 @@
+# s01_d04_default_bt_runtime_validation
+
+## 1. 今日任务定位
+
+Day 4 的目标不是修改配置，也不是进入源码细节，而是基于默认行为树完成最小运行验证：  
+通过一个正常可达 goal 与一个更难的对照 goal，验证 Nav2 默认行为树并非线性死流程，而是由“主流程 + 条件恢复逻辑”共同构成。
+
+本日重点验证以下三个判断：
+
+1. 正常导航时，默认 BT 主流程确实在工作。
+2. 更难的导航场景下，恢复逻辑更容易介入。
+3. `behavior_server` 不是每次导航的固定主干步骤，而是在主流程受阻时按条件参与恢复动作执行。
+
+---
+
+## 2. 今日验证主链
+
+本日围绕如下主链进行运行验证：
+
+`/navigate_to_pose`  
+→ `bt_navigator`  
+→ `ComputePathToPose`  
+→ `planner_server`  
+→ `path` 写入 blackboard  
+→ `FollowPath`  
+→ `controller_server`  
+→ `/cmd_vel_nav`  
+→ `velocity_smoother`  
+→ `/cmd_vel`  
+→ `turtlebot3_diff_drive`  
+→ 机器人运动
+
+同时，验证以下恢复逻辑是否在对照 case 中更容易出现：
+
+`RecoveryNode / RecoveryFallback`  
+→ `Spin / BackUp / Wait / ClearEntireCostmap` 等恢复节点  
+→ 必要时调用 `behavior_server` 或 costmap 清理接口
+
+---
+
+## 3. 实验前状态确认
+
+首先确认核心生命周期节点均处于 active 状态，避免系统未完整激活导致实验结果失真。
+
+    ros2 lifecycle get /bt_navigator
+    ros2 lifecycle get /planner_server
+    ros2 lifecycle get /controller_server
+    ros2 lifecycle get /behavior_server
+
+现场结果如下：
+
+- `/bt_navigator`：`active [3]`
+- `/planner_server`：`active [3]`
+- `/controller_server`：`active [3]`
+- `/behavior_server`：`active [3]`
+
+结论：  
+本次实验开始前，默认导航主链与恢复相关核心节点均已激活，具备开展运行验证的前提条件。
+
+---
+
+## 4. 关键 topic 现场确认
+
+为避免对中间控制链做错误假设，先检查当前系统中与速度输出、路径规划相关的 topic。
+
+    ros2 topic list | grep -E "cmd_vel|plan|path"
+
+现场结果包括：
+
+- `/cmd_vel`
+- `/cmd_vel_nav`
+- `/local_plan`
+- `/plan`
+- `/plan_smoothed`
+- `/planner_server/transition_event`
+- `/received_global_plan`
+- `/transformed_global_plan`
+
+结论：
+
+1. 当前系统确实存在中间控制输出 `/cmd_vel_nav`。
+2. 当前系统同时存在最终控制输出 `/cmd_vel`。
+3. 当前系统存在全局路径、局部路径以及平滑后的路径 topic，说明规划与控制链路对象齐全。
+4. 因而本日可以直接对 `controller_server -> /cmd_vel_nav -> velocity_smoother -> /cmd_vel` 这一段进行观测。
+
+---
+
+## 5. 正常 case：默认 BT 主流程验证
+
+### 5.1 观测目标
+
+正常 case 的目的，是验证在目标可达、环境无明显受阻的条件下，默认行为树是否主要由主流程主导运行。
+
+重点观测对象：
+
+- `/cmd_vel_nav`
+- `/cmd_vel`
+- 导航反馈中的 `navigation_time / estimated_time_remaining / number_of_recoveries / distance_remaining`
+- 机器人实际运动状态
+
+### 5.2 现场观测
+
+对 `/cmd_vel_nav` 进行观测后，已看到控制速度持续输出。例如：
+
+- `linear.x ≈ 0.06947`
+- `angular.z ≈ 0.89744`
+
+随后对 `/cmd_vel` 进行观测，已看到最终控制输出持续刷新。例如：
+
+- `linear.x ≈ 0.06947`
+- `angular.z` 出现逐步变化，如 `0.16 -> 0.32 -> 0.48 -> 0.64`
+
+从导航反馈中可见：
+
+- `navigation_time: 19 sec`
+- `estimated_time_remaining: 3 sec`
+- `number_of_recoveries: 0`
+- `distance_remaining: 0.1414213478565216`
+
+### 5.3 归档口径
+
+当 `NavigateToPose` goal 发出后，`bt_navigator` 作为 `/navigate_to_pose` 的 action server 接收目标，并执行默认行为树 `navigate_to_pose_w_replanning_and_recovery.xml`。行为树先 tick 到 `ComputePathToPose` 这个 BT action node，由它作为 action client 向 `planner_server` 发起规划请求；`planner_server` 调用 planner plugin 生成路径，并将 `path` 写入 blackboard。随后行为树 tick 到 `FollowPath` 这个 BT action node，由它作为 action client 向 `controller_server` 发起路径跟踪请求；`controller_server` 调用 controller plugin，根据当前位姿与路径持续计算速度输出。若系统启用了 `velocity_smoother`，则控制速度会先经过平滑处理，再输出为 `/cmd_vel`，最终由底盘驱动插件接收并驱动机器人运动。因此在正常 case 中，可以观察到机器人较顺畅地朝目标推进，说明默认 BT 主流程在主导运行。
+
+### 5.4 本 case 的关键结论
+
+正常可达目标下，Nav2 默认行为树主要沿主流程运行：
+
+`ComputePathToPose -> planner_server -> FollowPath -> controller_server -> /cmd_vel_nav -> velocity_smoother -> /cmd_vel`
+
+该过程在运行现象、topic 输出与 feedback 指标上均能找到对应证据。
+
+---
+
+## 6. 对照 case：恢复逻辑介入验证
+
+### 6.1 观测目标
+
+对照 case 的目的，不是构造无意义输入，而是在更难的目标条件下，观察默认行为树中的恢复结构是否更容易介入。
+
+本次对照 case 的现场判断依据主要包括：
+
+- 机器人动作是否明显变得更曲折
+- 是否出现停顿、转向、后退、重试等恢复味道更强的行为
+- launch 终端中是否更容易出现 recovery / clear / spin / backup 等线索
+- 导航耗时是否明显增长
+
+### 6.2 现场观察摘要
+
+在更难的对照 case 中，现场已观察到以下差异：
+
+1. 机器人相较正常 case 更容易出现停顿、转向、后退、重试等动作。
+2. 导航过程明显比正常 case 更曲折，整体耗时更长。
+3. launch 终端中比正常 case 更容易看到 `recovery / clear / spin / backup` 一类线索。
+
+### 6.3 归档口径
+
+当目标更难到达、局部受阻或跟踪失败风险更高时，默认行为树中的恢复结构更容易介入。也就是说，不是简单“一失败就结束”，而是 `RecoveryNode / RecoveryFallback` 会让系统尝试恢复动作。恢复分支中的 `Spin`、`BackUp`、`Wait` 等 BT node 会通过对应接口触发行为动作，其中这类动作通常由 `behavior_server` 承接；而 `ClearEntireCostmap` 这类节点则会调用 costmap 清理相关服务。于是就会看到对照 case 相比正常 case 更容易出现停顿、旋转、后退、等待、清图、重新尝试等现象，同时导航耗时变长、终端日志中更容易出现 `recovery / clear / spin / backup` 等线索。这说明默认 BT 的运行机制确实是“主流程优先，失败时进入恢复逻辑”，而不是一条线性死流程。
+
+### 6.4 本 case 的关键结论
+
+对照 case 说明：  
+Nav2 默认行为树不是“规划一次、跟踪一次、失败即结束”的线性流程，而是在主流程受阻时，能够通过恢复结构进行重试、恢复和重新推进。
+
+---
+
+## 7. 今日最重要的概念澄清
+
+### 7.1 `ComputePathToPose` 与 `FollowPath` 不是同一个节点
+
+- `ComputePathToPose`：负责发起规划请求。
+- `FollowPath`：负责发起路径跟踪请求。
+
+前者解决“怎么走”，后者解决“按什么速度沿着这条路走”。
+
+### 7.2 `controller_server` 与 `FollowPath` 不是同一个层级
+
+- `FollowPath` 是行为树中的 BT action node。
+- `controller_server` 是其后端 action server。
+- 实际控制计算由 `controller_server` 内部加载的 controller plugin 完成。
+
+### 7.3 `behavior_server` 不是每次导航都固定参与主链
+
+`behavior_server` 并不是正常导航的必经主干。  
+它更常见于恢复动作被触发时，承接诸如 `Spin`、`BackUp`、`Wait` 这类恢复行为。
+
+因此：
+
+- 正常 case：主流程占主导
+- 更难 case：恢复逻辑更容易介入，`behavior_server` 更容易参与
+
+### 7.4 `ClearEntireCostmap` 不等同于 `behavior_server`
+
+恢复逻辑中并非所有节点都由 `behavior_server` 执行。  
+例如 `ClearEntireCostmap` 属于清图相关恢复动作，其调用路径与 `Spin / BackUp / Wait` 并不完全相同。
+
+---
+
+## 8. 证据链汇总
+
+### 8.1 系统状态证据
+
+- 四个核心 lifecycle 节点均为 `active [3]`
+- 说明系统已处于可运行状态
+
+### 8.2 主流程对象证据
+
+已确认以下关键对象存在：
+
+- `/cmd_vel_nav`
+- `/cmd_vel`
+- `/plan`
+- `/local_plan`
+- `/plan_smoothed`
+- `/received_global_plan`
+- `/transformed_global_plan`
+
+### 8.3 正常 case 运行证据
+
+- `/cmd_vel_nav` 已持续输出导航控制速度
+- `/cmd_vel` 已持续输出最终平滑速度
+- feedback 中 `number_of_recoveries = 0`
+- 机器人可较顺畅推进到目标附近
+
+### 8.4 对照 case 运行证据
+
+- 机器人更容易出现停顿、转向、后退、重试等现象
+- launch 终端更容易出现 `recovery / clear / spin / backup` 相关线索
+- 导航过程更长、更曲折
+
+---
+
+## 9. 今日结论
+
+### 结论 1：默认 BT 主流程已被运行现象验证
+
+正常 case 下，系统沿如下主链运行并可被 topic 与 feedback 共同验证：
+
+`/navigate_to_pose`
+→ `bt_navigator`
+→ `ComputePathToPose`
+→ `planner_server`
+→ `FollowPath`
+→ `controller_server`
+→ `/cmd_vel_nav`
+→ `velocity_smoother`
+→ `/cmd_vel`
+→ 底盘驱动
+→ 机器人运动
+
+### 结论 2：恢复逻辑不是摆设，而是条件介入机制
+
+更难的对照 case 下，恢复逻辑更容易出现，体现为：
+
+- 停顿
+- 转向
+- 后退
+- 重试
+- 清图相关线索
+- 导航耗时变长
+
+这与默认 BT 中的 `RecoveryNode / RecoveryFallback` 结构一致。
+
+### 结论 3：`behavior_server` 的角色边界已更清晰
+
+`behavior_server` 不是主流程的固定常驻环节，而是恢复动作执行体系的一部分。  
+因此，正常 case 与对照 case 的差异，不仅是“机器人走得顺不顺”，更是默认 BT 运行结构差异的外在体现。
+
+---
+
+## 10. 闭卷问答（用户初答 + 归档答案）
+
+### 10.1 `ComputePathToPose` 与 `FollowPath` 的职责分别是什么？
+
+**用户初答：**  
+都是 BT node，前者作为 action client 调用 `planner_server`，后者调用 `controller_server`。
+
+**归档答案：**  
+二者都是行为树中的 BT action node，但职责不同：  
+`ComputePathToPose` 负责向 `planner_server` 发起规划请求，生成 `path`；  
+`FollowPath` 负责向 `controller_server` 发起路径跟踪请求，根据当前位姿与路径持续计算控制速度。  
+前者对应“算路”，后者对应“沿路走”。
+
+---
+
+### 10.2 `bt_navigator` 在默认导航链中是什么角色？
+
+**用户初答：**  
+作为导航任务的总调度室，接受到 node 反馈的数据之后决定该调用哪个 BT node。
+
+**归档答案：**  
+`bt_navigator` 是 `/navigate_to_pose` 的 action server，也是默认行为树的执行主体。  
+它接收导航目标，加载默认 BT XML，并按照行为树 tick 机制调度各 BT node 执行。  
+更准确地说，它不是“随意挑选节点”，而是按照行为树结构与节点状态推进导航流程。
+
+---
+
+### 10.3 `controller_server` 为什么不是简单转发 `path`？
+
+**用户初答：**  
+它接受到 `path` 之后，会调用选择使用哪个 controller plugin，而不是直接简单转发。
+
+**归档答案：**  
+`controller_server` 不是简单传递路径，而是基于路径、机器人当前位姿、局部环境信息和控制约束，持续调用 controller plugin 计算导航速度输出。  
+因此它承担的是“控制求解”职责，而不是“消息转发”职责。
+
+---
+
+### 10.4 `/cmd_vel_nav` 与 `/cmd_vel` 的关系是什么？
+
+**用户初答：**  
+前者是 controller plugin 算出来的，后面需要经过 velocity 的平滑处理才得到后者。
+
+**归档答案：**  
+在当前系统中，`/cmd_vel_nav` 是导航控制链中的中间速度输出，反映 `controller_server` 侧生成的控制指令；  
+若系统启用了 `velocity_smoother`，则这些控制指令会进一步平滑处理后输出为 `/cmd_vel`，再由底盘驱动消费。  
+因此，`/cmd_vel_nav` 更接近“原始导航控制输出”，`/cmd_vel` 更接近“最终执行速度输出”。
+
+---
+
+### 10.5 为什么正常 case 中 `number_of_recoveries` 可以作为主流程占主导的证据？
+
+**用户初答：**  
+应该是对照 case 占主导，因为对照路线更加困难，恢复的次数更多，会执行 `behavior_server` 这条路线。
+
+**归档答案：**  
+正常 case 中，若 `number_of_recoveries = 0` 或保持较低，说明导航任务主要沿主流程推进，并未明显触发恢复逻辑。  
+因此它可以作为“主流程占主导”的辅助证据。  
+相对地，对照 case 更难、更容易受阻，通常更容易出现恢复次数增加或恢复迹象增强，这正是主流程与恢复流程差异化表现的证据。
+
+---
+
+### 10.6 为什么对照 case 更容易出现停顿、转向、后退等动作？
+
+**用户初答：**  
+因为路线更加困难，小车更容易受阻，然后行为树会调用 `behavior_server` 执行以上动作。
+
+**归档答案：**  
+对照 case 中，由于目标更难到达、局部环境更复杂或跟踪更容易失败，默认行为树中的恢复结构更容易被触发。  
+于是系统可能执行 `Spin`、`BackUp`、`Wait` 等恢复动作，因此更容易表现为停顿、旋转、后退、重试等行为。  
+其中部分动作通常由 `behavior_server` 承接，但并非所有恢复动作都由其负责。
+
+---
+
+### 10.7 `behavior_server` 为什么不是每次导航都固定在主干中？
+
+**用户初答：**  
+只有小车受阻才调用。
+
+**归档答案：**  
+`behavior_server` 不是正常导航主流程的固定必经环节。  
+在多数正常可达场景下，导航可以主要由规划与跟踪主链完成；只有当主流程受阻、需要执行恢复动作时，`behavior_server` 才更可能参与。  
+因此它属于“条件介入的恢复执行层”，而不是“主流程常驻层”。
+
+---
+
+### 10.8 `RecoveryNode / RecoveryFallback` 在默认 BT 中起什么作用？
+
+**用户初答：**  
+会让行为树调用 `behavior_server`。
+
+**归档答案：**  
+`RecoveryNode / RecoveryFallback` 的作用，是在主流程失败或接近失败时，为行为树提供恢复与重试机制。  
+它们的意义不是单纯“调用 `behavior_server`”，而是组织恢复逻辑：  
+一方面可触发如 `Spin / BackUp / Wait` 等恢复动作；另一方面也可触发清图、重规划等恢复相关操作。  
+因此它们本质上是默认 BT 中实现“失败后不立即终止，而尝试恢复”的关键控制结构。
+
+---
+
+### 10.9 为什么说 Nav2 默认 BT 不是线性死流程？
+
+**用户初答：**  
+因为环境多变，需要 BT 根据不同情况来调用不同的节点，以此来应对多变的环境。
+
+**归档答案：**  
+之所以说默认 BT 不是线性死流程，是因为它并非固定按“规划一次 → 跟踪一次 → 结束”单向推进。  
+在实际运行中，行为树会根据节点执行结果、路径状态、环境变化与恢复条件，在主流程与恢复流程之间切换。  
+这使系统具备重规划、恢复动作、局部重试等能力，从而适应动态和不确定环境。
+
+---
+
+### 10.10 如果 `/cmd_vel_nav` 有输出但机器人不动，优先应怀疑哪一段链路？
+
+**用户初答：**  
+首先怀疑 `velocity_smoother`。
+
+**归档答案：**  
+如果 `/cmd_vel_nav` 已有输出而机器人不动，应优先怀疑 `controller_server` 之后到实际执行层之间的链路，包括但不限于：
+
+1. `velocity_smoother` 是否正常输出 `/cmd_vel`
+2. `/cmd_vel` 是否真正被底盘驱动或仿真插件消费
+3. 底盘驱动插件、topic 接线或 remap 是否正确
+4. 仿真侧 `turtlebot3_diff_drive` 或对应执行接口是否正常
+
+因此，`velocity_smoother` 是第一可疑点之一，但不能只盯它，还要把“最终执行链”整体作为排查对象。
+
+### 10.11 补充
+默认恢复逻辑里，Spin、BackUp、Wait 这类动作通常由 behavior_server 承接执行；而 ClearEntireCostmap 不属于 behavior_server 的 behavior plugin，它是行为树中的 BT 节点，用来调用对应 costmap 的清图服务。planner 相关恢复通常清 global costmap，controller 相关恢复通常清 local costmap。
+
+当 `NavigateToPose` goal 发出后，`bt_navigator` 作为 `/navigate_to_pose` 的 action server 接收目标，并执行默认行为树 `navigate_to_pose_w_replanning_and_recovery.xml`。这里要先分清层级：`NavigateToPose` 是最上层的导航任务 action，`bt_navigator` 是这个 action server 的实现者；`ComputePathToPose` 和 `FollowPath` 不在 `NavigateToPose` 这个 action “里面”，它们是 `bt_navigator` 在执行行为树时会 tick 到的两个 BT action node。也就是说，外层是 `NavigateToPose` 负责“接总任务”，内层是行为树负责“把总任务拆成规划、跟踪、恢复等步骤”。在这套流程里，`bt_navigator` 本身首先是一个 ROS node；由于 Nav2 广泛采用 managed lifecycle，它同时也是 LifecycleNode；从系统职责上看，它又是负责导航任务编排的 server。类似地，`planner_server` 和 `controller_server` 也都是 ROS node，同时也是 LifecycleNode，只不过它们在 Nav2 里的职责名分别是 Planner Server 和 Controller Server。相对地，`ComputePathToPose` 与 `FollowPath` 不是 ROS node，而是行为树 XML 里的 BT action node；所谓“它们作为 action client”，意思是这些 BT 节点在被 tick 到时，会以 ROS 2 action client 的身份去调用下层独立的 action server，而不是说它们和 `NavigateToPose` 属于同一个 action。
+
+正常主流程中，行为树会先 tick 到 `ComputePathToPose`。该 BT 节点会向规划侧发起 `ComputePathToPose` 请求；真正接请求并执行的是 `planner_server`。`planner_server` 不会自己临时决定用哪个规划器，而是读取请求里带来的 `planner_id`，再到自己的参数映射表里查找对应的 planner plugin。这里的 `planner_id` 不是固定编号，而是插件映射名/别名，通常由行为树 XML 直接写入，或者由黑板变量传入，例如常见的 `GridBased`。因此它的逻辑不是“planner_server 看环境临时挑一个插件”，而是“上游先给出 `planner_id`，planner_server 再按这个名字在 `planner_plugins` 里找到对应插件类型并调用它”。planner plugin 才是真正执行规划算法的实现体，`planner_server` 更像统一接单和调度的服务器层。规划完成后得到的 `path` 不是文件路径，也不是 XML，而是 `nav_msgs/Path` 类型的路径消息，本质上是一串供机器人后续跟踪的位姿点；这个结果会被写入行为树 blackboard 变量，例如 `{path}`。blackboard 可以理解为行为树内部共享中间结果的变量区，用来在不同 BT 节点之间传递像 `{goal}`、`{path}` 这样的数据。
+
+随后行为树 tick 到 `FollowPath`。该 BT 节点会从 blackboard 读取 `{path}`，然后以 action client 的身份向控制侧发起 `FollowPath` 请求；真正接请求并执行的是 `controller_server`。`controller_server` 同样不会根据环境临时“猜”该用哪个控制器，而是读取请求里带来的 `controller_id`，再到自己的 `controller_plugins` 参数表里查找对应的 controller plugin。这里的 `controller_id` 也是插件映射名/别名，通常由行为树 XML 直接给出，或者由 selector 机制动态给出；它的作用是先确定“叫哪一个 controller plugin 上场”，而不是由 `path`、位姿、costmap 这些信息先决定插件是谁。被选中的 controller plugin 才会进一步结合 `path`、机器人当前位姿、当前速度、局部代价地图和控制约束，持续计算当前时刻应该输出什么 `Twist` 速度命令。这里还要特别区分同名问题：在你当前系统中，`controller_plugins = ['FollowPath']`，且 `FollowPath.plugin = dwb_core::DWBLocalPlanner`，所以这里的 `FollowPath` 一方面是行为树里的 BT 节点名，另一方面又是 controller plugin 的映射名，但真正被 `controller_server` 调用的插件类型其实是 `dwb_core::DWBLocalPlanner`。也就是说，控制阶段不是“根据环境选择 plugin”，而是“先由 `controller_id` 选中插件，再由该插件根据 `path`、位姿、costmap 等输入计算控制量”。
+
+在当前系统的运行链里，`controller_server` 输出的控制结果通常会先发布到 `/cmd_vel_nav`；如果系统启用了 `velocity_smoother`，则速度会先经过平滑处理，再输出为 `/cmd_vel`；最后由底盘驱动插件（例如 `turtlebot3_diff_drive`）订阅 `/cmd_vel`，接收 `Twist` 并驱动机器人运动。因此，在正常 case 中，可以观察到机器人较顺畅地朝目标推进，这说明默认 BT 的主流程——即 `NavigateToPose -> bt_navigator -> ComputePathToPose -> planner_server -> FollowPath -> controller_server -> velocity_smoother -> /cmd_vel -> 底盘执行`——在主导运行，而不是恢复分支在主导运行。
+---
+
+## 11. 明日衔接建议
+
+Day 5 建议从以下两个方向中选其一继续推进：
+
+### 方向 A：把 Day 1 到 Day 4 串成一条完整讲解链
+
+目标：  
+能够从任务入口到速度输出，完整讲清楚默认 BT 的运行链、主流程与恢复逻辑的关系。
+
+适合产出：
+
+- 一份完整链路复盘文档
+- 一版适合面试口述的说明稿
+- 一张“入口层 / 规划层 / 控制层 / 恢复层 / 执行层”的结构图
+
+### 方向 B：进入 `FollowPath / controller_server / velocity_smoother` 这一段的专项拆解
+
+目标：  
+继续向控制执行链深入，弄清楚：
+
+- `/cmd_vel_nav` 与 `/cmd_vel` 的角色差异
+- controller plugin 的定位
+- 为什么平滑前后的角速度表现不同
+- 速度输出与机器人实际动作之间的关系
+
+---
+
+## 12. 本日一句话总结
+
+Day 4 的核心收获不是“机器人成功到达目标”，而是已经能够用运行证据说明：  
+Nav2 默认行为树由主流程与恢复逻辑共同构成，正常 case 主要体现主流程主导，而更难 case 更容易暴露恢复结构的介入机制。
+

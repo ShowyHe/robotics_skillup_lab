@@ -1,12 +1,16 @@
 __pycache__/
 *.pyc
 *.pyo
-.venv/
-env/
+.env
 .vscode/
-*.log
-.DS_Store
+.idea/
 
 build/
 install/
 log/
+
+*.bag
+*.db3
+*.zip
+*.tar
+*.tar.gz
