@@ -35,11 +35,16 @@
 
 后续所有计划、模块和阶段切换，都必须围绕这条主线判断是否成立。
 
+补充说明：
+
+本仓库中，01–12 表示 12 个成长阶段；每个阶段在执行与归档时各自对应一个独立模块。  
+因此，阶段编号与模块编号保持一一对应，但“阶段”强调成长主线位置，“模块”强调该阶段对应的具体学习与产出体系。
+
 ---
 
 ## 3. 本目录里应该放什么
 
-本目录只放“总控型文档”。
+本目录只放“总控型文档”和“计划型文档”。
 
 建议长期保留的内容包括：
 
@@ -51,6 +56,20 @@
 - 命名与归档规范
 - 长期知识树总图
 - 阶段归纳总入口
+- 各 phase 的计划归档目录，例如：
+  - `01_phase_plan_and_sprint_overview/`
+  - `02_phase_plan_and_sprint_overview/`
+  - ...
+  - `12_phase_plan_and_sprint_overview/`
+
+其中，每个 `xx_phase_plan_and_sprint_overview/` 目录专门用于集中存放该 phase 的：
+
+- `XX_plan.md`
+- `sXX_overview.md`
+
+一句话说清：
+
+> `00_overview` 不只是总控台，也是所有“计划层文档”的集中归档区。
 
 本目录不建议放：
 
@@ -112,9 +131,10 @@
 - `12_plan.md`
 
 放置位置：
-- 各模块目录根部，例如：
-  - `docs/01_nav2_foundation_7d/01_plan.md`
-  - `docs/02_ros2_linux_fundamentals/02_plan.md`
+- `docs/00_overview/xx_phase_plan_and_sprint_overview/`
+- 例如：
+  - `docs/00_overview/01_phase_plan_and_sprint_overview/01_plan.md`
+  - `docs/00_overview/02_phase_plan_and_sprint_overview/02_plan.md`
 
 作用：
 - 把总计划中的“模块大纲”，变成模块级作战地图
@@ -128,7 +148,12 @@
 - ...
 
 放置位置：
-- 对应模块目录中
+- 对应 phase 的计划目录中，即：
+  - `docs/00_overview/xx_phase_plan_and_sprint_overview/`
+
+例如：
+- `docs/00_overview/01_phase_plan_and_sprint_overview/s01_overview.md`
+- `docs/00_overview/01_phase_plan_and_sprint_overview/s02_overview.md`
 
 作用：
 - 把模块计划中的某个阶段目标，变成一个 5 天 Sprint 的执行安排
@@ -144,7 +169,10 @@
 - `s01_d05_summary_and_exam.md`
 
 放置位置：
-- 对应模块目录中
+- 对应模块目录中，而不是 `00_overview`
+- 例如：
+  - `docs/01_nav2_foundation/`
+  - `docs/02_ros2_linux_fundamentals/`
 
 作用：
 - 真正执行当天任务
@@ -157,6 +185,9 @@
 - `module_summary.md`
 - `module_final_exam.md`
 - `evidence_index.md`
+
+放置位置：
+- 对应模块目录中
 
 作用：
 - 模块总结
@@ -178,11 +209,20 @@
 ### 第二步：写模块计划
 先产出 `XX_plan.md`，不允许直接进入 Sprint 和每天任务。
 
+模块计划统一存放到：
+- `docs/00_overview/xx_phase_plan_and_sprint_overview/`
+
 ### 第三步：拆 Sprint
 模块计划写完后，再拆成多个 `sXX_overview.md`。
 
+Sprint 计划统一存放到：
+- `docs/00_overview/xx_phase_plan_and_sprint_overview/`
+
 ### 第四步：拆每天任务
 Sprint 计划写完后，再拆成每天任务文档。
+
+每日任务统一存放到：
+- 对应模块目录中
 
 ### 第五步：Sprint 收口
 每个 Sprint 第 5 天必须做总结和闭卷。
@@ -192,7 +232,7 @@ Sprint 计划写完后，再拆成每天任务文档。
 
 一句话说清：
 
-> **总计划不直接生成每日任务，中间必须经过模块计划和 Sprint 计划。**
+> 总计划不直接生成每日任务，中间必须经过模块计划和 Sprint 计划；其中计划层文档统一归档到 `00_overview`，执行层文档保留在各模块目录。
 
 ---
 
@@ -397,7 +437,7 @@ Sprint 计划写完后，再拆成每天任务文档。
 模块目录统一采用：
 
 - `00_overview`
-- `01_nav2_foundation_7d`
+- `01_nav2_foundation`
 - `02_ros2_linux_fundamentals`
 - `03_python_for_robotics`
 - `04_cpp_for_ros2`
@@ -410,44 +450,56 @@ Sprint 计划写完后，再拆成每天任务文档。
 - `11_paper_writing_and_experiments`
 - `12_portfolio_and_interview`
 
-### 11.3 模块内固定文件命名
+### 11.3 phase 计划目录命名
+
+为了集中管理各模块的计划层文档，`docs/00_overview/` 下统一建立 phase 计划目录。
+
+命名统一采用：
+
+- `01_phase_plan_and_sprint_overview`
+- `02_phase_plan_and_sprint_overview`
+- `03_phase_plan_and_sprint_overview`
+- ...
+- `12_phase_plan_and_sprint_overview`
+
+说明：
+
+- `01`–`12` 对应模块编号
+- `phase_plan_and_sprint_overview` 表示该目录只存放该模块的计划层文档
+- 目录名统一使用小写字母、数字和下划线，不使用大写字母
+
+### 11.4 模块内固定文件命名
 
 每个模块根目录固定保留以下文件：
 
 - `README.md`
-- `01_plan.md` / `02_plan.md` / … / `12_plan.md`
 - `module_summary.md`
 - `module_final_exam.md`
 - `evidence_index.md`
 
-### 11.4 Sprint / Day 文档命名
+说明：
 
-统一推荐：
+- `XX_plan.md` 和 `sXX_overview.md` 不再放在模块目录
+- 这两类文件统一放在 `docs/00_overview/xx_phase_plan_and_sprint_overview/`
 
-- `s01_overview.md`
-- `s01_d01_problem_map.md`
-- `s01_d02_runtime_evidence.md`
-- `s01_d03_source_reading.md`
-- `s01_d04_experiment_or_modification.md`
-- `s01_d05_summary_and_exam.md`
+### 11.5 phase 计划目录内固定文件命名
 
-一般公式为：
+每个 `xx_phase_plan_and_sprint_overview/` 目录固定保留：
 
-- `sXX_dYY_<topic>.md`
+- 与目录编号一致的模块计划文件，例如：
+  - `01_phase_plan_and_sprint_overview/` 内固定为 `01_plan.md`
+  - `02_phase_plan_and_sprint_overview/` 内固定为 `02_plan.md`
+- 该模块下的 Sprint 计划文件：
+  - `s01_overview.md`
+  - `s02_overview.md`
+  - `s03_overview.md`
+  - ...
 
-### 11.5 主题文档命名
-
-如果某个模块内需要长期保留主题文档，而不是按 Sprint / Day 组织，统一采用：
-
-- `01_<topic>.md`
-- `02_<topic>.md`
-- `03_<topic>.md`
-
-例如：
-
-- `01_execution_chain_map.md`
-- `02_qos_scenarios.md`
-- `03_plugin_loading_path.md`
+不允许在 phase 计划目录内混放：
+- 每日任务文档
+- 模块总结文档
+- 临时实验记录
+- 一次性草稿
 
 ### 11.6 实验文档命名
 
@@ -494,6 +546,20 @@ Sprint 计划写完后，再拆成每天任务文档。
 - `result_exp_01_rpp_map1.csv`
 - `result_exp_02_dwb_map2.csv`
 - `result_exp_03_plugin_variant_a.json`
+
+### 11.10 模块目录与计划目录的链接规则
+
+为了保证“计划层”和“执行层”分离后仍然可快速跳转，每个模块目录下的 `README.md` 必须提供对应计划入口。
+
+统一包含：
+
+- 对应模块计划 `XX_plan.md` 的相对路径
+- 对应 Sprint 计划目录的相对路径
+
+例如，在 `docs/01_nav2_foundation/README.md` 中应提供：
+
+- `../00_overview/01_phase_plan_and_sprint_overview/01_plan.md`
+- `../00_overview/01_phase_plan_and_sprint_overview/`
 
 ---
 

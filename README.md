@@ -87,7 +87,7 @@
 
 - `docs/00_overview/`  
   总览、总计划、长期主线、规则与归档规范
-- `docs/01_nav2_foundation_7d/` ～ `docs/12_portfolio_and_interview/`  
+- `docs/01_nav2_foundation/` ～ `docs/12_portfolio_and_interview/`  
   12 个长期模块目录
 - `scripts/`  
   可复用脚本、实验编排、自动化工具

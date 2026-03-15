@@ -73,7 +73,7 @@
 
 ## 4.1 学习日总量
 
-- `01_nav2_foundation_7d`：30 学习日
+- `01_nav2_foundation`：30 学习日
 - `02_ros2_linux_fundamentals`：30 学习日
 - `03_python_for_robotics`：25 学习日
 - `04_cpp_for_ros2`：50 学习日
