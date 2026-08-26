@@ -48,105 +48,101 @@ M22不是固定新知识模块，而是根据M00–M21 Quiz/Graduation Exam/Sour
 
 状态统一：`OPEN → LEARNING → RETEST → CLOSED`。
 
-不允许以“看过了”作为完成状态。
-
 ---
 
 # 4. Dynamic Day Generation Rule
-每天只选 **1个主要foundation chain + 最多1个次要debt**。禁止一天同时补线代、概率、EKF、Transformer、PID等多个大主题。
+每天只选 **1个主要foundation chain + 最多1个次要debt**。
 
-每个动态Day必须使用以下Teaching Contract：
-1. 今日修复目标：写成可验证能力，不写“学习协方差”这类模糊目标。
-2. Debt来源：记录具体Module/Day/Exam/Source Reading。
-3. 当前错误模型：先写当前错误理解。
-4. 最小前置知识：只追最短dependency path，不无限回退。
-5. 必须教学内容：只围绕debt。
-6. 必须推导/计算：数学债务必须blank-paper hand calculation。
-7. Robot迁移题：立刻回原系统和至少一个新模块。
-8. Retest：必须换数值/场景/frame，不能原题背答案。
-9. Closure Criteria：Definition + Calculation + Transfer + Boundary 全部通过才CLOSED。
+每个动态Day必须使用：
+1. 今日修复目标：写成可验证能力；
+2. Debt来源：Module/Day/Exam/Source；
+3. 当前错误模型；
+4. 最小前置知识；
+5. 必须教学内容；
+6. 必须推导/计算；
+7. Robot迁移题；
+8. Retest：换数值/场景/frame；
+9. Closure Criteria：Definition + Calculation + Transfer + Boundary。
 
 ---
 
 # 5. Candidate Foundation Pools
-这些是候选池，不是Day130–135固定安排。
+以下仅是候选池，不提前绑定Day130–135。
 
-## A. Mathematics
-Vector/Matrix/Basis/Transform/Rank/Eigen/SVD/Condition/Quadratic Form/Derivative/Partial/Chain Rule/Gradient/Jacobian/Hessian/Taylor/Linearization/Numerical Integration/Residual/LS/WLS/Newton/GN/LM。
+## A. Mathematics / Numerical Optimization
+Vector/Matrix/Basis/Transform/Rank/Eigen/SVD/Condition/Quadratic Form；Derivative/Partial/Gradient/Chain Rule/Jacobian/Hessian/Taylor/Linearization/Numerical Integration；Residual/LS/WLS/Newton/GN/LM；**Convexity**；**Constrained Optimization**；**Lagrange multiplier / KKT intuition**；conditioning、scaling、numerical stability。
 
 ## B. Probability / Statistics
-Random Variable/Conditional Probability/Bayes/Expectation/Variance/Covariance/Gaussian/Likelihood/MLE/MAP/Information/Mahalanobis。
+Random Variable/Conditional Probability/Bayes/Expectation/Variance/Covariance/Gaussian/Likelihood/MLE/MAP/Information/Mahalanobis；sampling uncertainty、confidence interval和tail risk按真实Debt补。
 
 硬边界：`σ=sqrt(variance)` 不等于“当前真实误差”；covariance是uncertainty model，需要consistency/assumption验证。
 
 ## C. Robot Geometry / Estimation
-Rotation/Quaternion/SO(3)/SE(3)/Exp-Log/Perturbation/Transform Direction；Filter的prediction→innovation→gain→correction；Optimization的state→residual→Jacobian→H/g→Δx→update。
+Rotation/Quaternion/SO(3)/SE(3)/Exp-Log/Perturbation/Transform Direction；Filter prediction→innovation→gain→correction；Optimization state→residual→Jacobian→H/g→Δx→update。
 
 ## D. Dynamics / Control
 ODE/State-space/Equilibrium/Eigenvalue/Feedback/Controllability/Observability/Quadratic Cost/LQR/MPC/MPPI。
 
 ## E. Deep Learning / Robot Learning
-Tensor Shape/Computation Graph/Chain Rule/Backprop/Cross Entropy/Attention QKV/Autoregressive/Bellman/Actor-Critic/BC/Distribution Shift。
+Tensor Shape/Computational Graph/Chain Rule/Backprop/Cross Entropy/Attention QKV/Autoregressive/Bellman/Actor-Critic/BC/Distribution Shift；ACT latent/chunk与Diffusion公式只在实际薄弱时补。
 
 ## F. Robot System Semantics
 Frame/Timestamp/Freshness/Command/Feedback/State/Observation/Goal/Path/Trajectory/Action/Physical Motion。
 
 硬边界：`Planner Path ≠ Predicted Trajectory ≠ cmd_vel ≠ Chassis Feedback ≠ Physical Motion`。
 
-## G. C++ / ROS2 / Runtime
-Lifetime/Ownership/Pointer/Reference/Lambda/Thread/Mutex/Executor/Callback Group/Future/QoS/TF/Linux Scheduling/Latency，只补真正阻塞源码理解的部分。
+## G. C++ / ROS2 / Build / Runtime
+Lifetime/Ownership/Pointer/Reference/Lambda/Thread/Mutex/Executor/Callback Group/Future/QoS/TF/Linux Scheduling/Latency；**CMake / package dependency / target-link concepts / colcon build-workspace-overlay basics**；只补真正阻塞源码构建与阅读的部分。
+
+## H. Algorithms / CS Foundations
+Complexity `O(.)`；BFS/DFS；priority queue；recursion/iteration；dynamic programming basics；graph relaxation；heuristic guarantees；sampling planner probabilistic completeness/asymptotic optimality；algorithm invariants与correctness reasoning。只在M11/源码阅读暴露Debt时进入。
+
+## I. Python / NumPy for Robotics & AI
+Python object/reference基础、list/dict、function/class、NumPy array/shape/broadcast/indexing/matrix operation、PyTorch↔NumPy data boundary。默认入口诊断，不单独占固定Day；仅在AI/数据处理实践真正受阻时补。
 
 ---
 
 # 6. M22 Training Methods
-1. **Blank-paper Derivation**：无资料写核心公式和每个变量dimension/meaning。
-2. **Dimension Check**：用shape发现错误，如 `J∈R^(6×n), q_dot∈R^n`。
-3. **Physical Meaning**：每个公式必须回答机器人世界里代表什么。
+1. **Blank-paper Derivation**：无资料写核心公式和变量dimension/meaning。
+2. **Dimension Check**：用shape发现错误。
+3. **Physical Meaning**：每个公式回答机器人世界里代表什么。
 4. **Source Mapping**：理论符号映射到变量/function/data flow。
-5. **Counterexample**：主动构造“covariance小但estimate错”等反例理解边界。
-6. **Cross-module Transfer**：同一基础同时迁移到LIO/VLA/Manipulation/Control等不同模块。
+5. **Counterexample**：主动构造“covariance小但estimate错”等边界反例。
+6. **Cross-module Transfer**：同一基础迁移到LIO/VLA/Manipulation/Control等不同模块。
 
 ---
 
 # 7. Prohibited Patterns
-- 禁止因一个Module考差就整模块重学，除非大面积基础崩溃。
-- 禁止只看讲义；必须推导/计算/解释/迁移。
-- 禁止原题重考造成背答案。
-- 禁止用工程经验绕过数学，例如“知道参数大了会提前绕”但解释不了cost→weight→behavior。
-- 禁止把课程范围外的高级细节（如SO(3) left Jacobian closed form）强行列为P0债务。
+- 禁止因一个Module考差就整模块重学，除非大面积基础崩溃；
+- 禁止只看讲义，必须推导/计算/解释/迁移；
+- 禁止原题重考造成背答案；
+- 禁止用工程经验绕过数学；
+- 禁止把课程范围外高级细节强行列为P0；
+- 禁止为了补“能力表”而把未暴露问题机械塞进M22。
 
 ---
 
 # 8. Daily Quiz / Retest
-M22每日Quiz建议：
-- Foundation 2–4题：definition/formula/calculation；
-- Transfer 2–3题：同一理论换Robot场景；
-- Adversarial 1–2题：故意诱导常见错误。
+M22每日Quiz建议：Foundation 2–4题 + Transfer 2–3题 + Adversarial 1–2题。
 
 Debt CLOSED必须同时满足：
 1. Definition准确；
-2. Calculation无提示完成；
+2. Calculation/Derivation无提示完成；
 3. Transfer到新Robot模块；
 4. Boundary：知道该概念不能证明什么。
 
 ---
 
 # 9. M22 Graduation Exam — Foundation Debt Defense
-权重继续遵循统一结构，但形式针对Debt：
-
-## 30% Debt Closure Audit
-随机抽已关闭债务，回答“原错误→正确理解→为什么→如何验证已修复”。
-
-## 50% Cross-module Transfer
-给3–5个未知新场景，例如视觉抓取稳定5cm偏差、planner正常但LIO stale导致控制摆动、VLA offline好但实机失败，要求跨Geometry/Time/Control/Data/Safety建立证据链。
-
-## 20% Blank-paper Fundamentals
-只从实际暴露过债务的核心公式抽题，例如 `f=g+h`、`x_dot=Jq_dot`、`r=z-h(x)`、`P^-=FPF^T+GQG^T`、Kalman Gain、GN、state-space、MPPI weight。
+权重继续遵循统一结构：
+- **30% Debt Closure Audit**：原错误→正确理解→为什么→如何验证；
+- **50% Cross-module Transfer**：3–5个未知场景跨Geometry/Time/Control/Data/Safety建立证据链；
+- **20% Blank-paper Fundamentals**：只抽实际暴露过Debt的核心公式。
 
 ## 通过标准
 - 所有P0 debt必须CLOSED；
 - P1不得残留会阻断Owner能力的基础错误；
-- 至少完成3次 `Math/Theory → New Robot Scenario` 迁移；
+- 至少3次 `Math/Theory → New Robot Scenario` 迁移；
 - 不得再出现“公式记得但变量/物理意义不知道”；
 - 不得再出现“会调参数但解释不了为什么”；
 - 核心链达到 `Definition → Math → Physical Meaning → Source → Robot Behavior`。
@@ -154,7 +150,7 @@ Debt CLOSED必须同时满足：
 ---
 
 # Day130–Day135
-现在只锁定动态槽位，不锁定学科：
+只锁定动态槽位，不锁定学科：
 ```text
 Day130 Dynamic Foundation Debt #1
 Day131 Dynamic Foundation Debt #2
@@ -164,4 +160,4 @@ Day134 Dynamic Foundation Debt #5
 Day135 Dynamic Foundation Debt #6
 ```
 
-实际内容必须由 `PROGRESS.md` 中累计的Foundation Debt和前面Module Graduation Exam结果动态生成。
+实际内容必须由 `PROGRESS.md` 中累计Foundation Debt和前面Module Graduation Exam结果动态生成。

@@ -4,10 +4,11 @@
 
 最终目标：
 
-> **研究生级机器人理论基础 + 真实机器人全栈工程能力 + VLA / Mobile Manipulation 具身智能能力 + 系统 Owner 能力。**
+> **研究生级机器人理论基础 + 真实机器人全栈工程能力 + VLA / Mobile Manipulation具身智能能力 + 系统 Owner 能力。**
+
+当前课程大纲已完成二次审计并进入 **Curriculum v1.0冻结**：后续优先正式学习、考试和真实Foundation Debt修复，不再因为“还能再加知识”持续扩Module或Day。
 
 ## 1. 总体能力链
-
 ```text
 Sensors / Actuators
         ↓
@@ -36,7 +37,6 @@ Research / Capstone / Foundation Cleanup
 
 ## 2. 学习方式
 采用 **“专业模块反推基础”**：
-
 ```text
 真实问题 / 专业模块
 → 反推真正需要的数学 / CS / 物理基础
@@ -52,7 +52,6 @@ Research / Capstone / Foundation Cleanup
 
 ## 3. 源码学习原则
 已有真实工程对应模块（尤其 Navigation / Control）：
-
 ```text
 真实问题
 → 公司真实实现
@@ -66,8 +65,6 @@ Research / Capstone / Foundation Cleanup
 Robot Learning / VLM / VLA 等方向若没有公司实现，则以论文、官方项目、官方实现为主。源码数量不是目标。
 
 ## 4. 主课程与Day范围
-固定模块 M00–M22，当前课程索引已设计完成：
-
 ```text
 M00  Day1
 M01  Day2–7
@@ -94,12 +91,11 @@ M21  Day127–129
 M22  Day130–135（动态 Foundation Cleanup）
 ```
 
-固定主课程 Day1–Day129；M22 预留6个动态槽位，具体内容必须根据真实 Foundation Debt 生成，不能提前写死。
+固定主课程 Day1–Day129；M22预留动态槽位，具体内容必须根据真实Foundation Debt生成。
 
 详见 [`docs/03_MASTER_PLAN.md`](docs/03_MASTER_PLAN.md)。
 
 ## 5. 文档结构
-
 ```text
 docs/
 ├── 00_GOALS.md
@@ -133,21 +129,34 @@ docs/
 
 ## 7. 统一考试结构
 普通 Module Graduation Exam 默认：
-
 - **30% 核心基础**
 - **50% 综合系统场景**
 - **20% Source / Formula / Design**
 
-默认总分 **≥85%**；Hard Gate基础概念不能靠其他题得分抵消。单个关键概念失败时，定向补课后只复测该债务，不机械重考全模块。
+默认总分 **≥85%**；Hard Gate基础概念不能靠其他题得分抵消。M00为1-Day总纲，保留轻量Owner场景考试例外。
 
-## 8. LAB
-当前明确的正式LAB：
-- `docs/labs/LAB01_manipulation_pick_and_place.md`
-- `docs/labs/LAB02_mobile_manipulation_capstone.md`
+## 8. 正式LAB
+当前锁定3个：
+- `docs/labs/LAB01_manipulation_pick_and_place.md`：Manipulation全链；
+- `docs/labs/LAB02_mobile_manipulation_capstone.md`：Mobile Manipulation端到端，并可扩展为M21最终Research Capstone；
+- `docs/labs/LAB03_robot_policy_vla_action_interface.md`：Robot Learning/VLA的Dataset→Policy→Action→Safety→Controller闭环。
 
-LAB用于验证真实闭环、frame、collision、execution、contact、recovery和跨模块Owner能力，不为了课程形式凑数量。
+LAB用于验证真实闭环、frame、collision、execution、contact、learned action、recovery和跨模块Owner能力，不为了课程形式凑数量。
 
-## 9. 最终验收
+## 9. v1.0审计重点
+本轮收口已明确：
+- M04/M09/M10考试统一30/50/20；
+- 修复M11/M15前置倒挂；
+- M13稳定性语境与controllability/observability符号；
+- M14 force/impedance convention；
+- M15 ACT/CVAE、Diffusion最小数学链；
+- M07 point-cloud clustering；
+- M19 Orin power/thermal/memory bandwidth；
+- M21单日≤20核心点并与Capstone闭环；
+- M22增加Constrained Optimization、Algorithm Theory、CMake/colcon、Python/NumPy动态候选池；
+- 增加LAB03 learned policy/VLA action-interface实践。
+
+## 10. 最终验收
 课程完成不以“看完多少Day”为标准，而以是否能够：
 1. 从数学/物理解释核心机器人算法；
 2. 从sensor一路追到真实action/physical motion；
@@ -155,5 +164,6 @@ LAB用于验证真实闭环、frame、collision、execution、contact、recovery
 4. 读懂并修改关键真实/官方实现；
 5. 建立Perception→Estimation→Planning→Control→Manipulation→VLA完整联系；
 6. 完成Mobile Manipulation / Embodied AI Capstone；
-7. 建立数据、部署、评测、失败回流、Safety、Regression闭环；
-8. 对证据不足的问题明确说“当前不能确定”，并指出下一步需要的证据。
+7. 真正跑通至少一次learned policy/VLA action→Safety→Controller闭环；
+8. 建立数据、部署、评测、失败回流、Safety、Regression闭环；
+9. 对证据不足的问题明确说“当前不能确定”，并指出下一步需要的证据。

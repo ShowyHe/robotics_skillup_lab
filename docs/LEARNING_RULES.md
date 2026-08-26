@@ -55,23 +55,18 @@ Robot Learning / VLM / VLA 等没有公司现成实现时：
 7. 本日考核点；
 8. 进入Module Graduation Exam的核心考点。
 
-未来GPT：
-- 必须覆盖Teaching Contract中的全部required content；
-- 可以增加例子、图解、额外练习；
-- 不可删除核心内容；
-- 不可大规模提前拉入未来Module内容；
-- 不可擅自改变课程主线或Day职责。
+未来GPT必须覆盖全部required content，可以增加例子和练习，但不可删除核心内容、不可大规模提前拉入未来Module、不可擅自改变主线或Day职责。
 
 真正详细讲义只在学习到当天时写入 `docs/lessons/dayXXX.md`。
 
 ---
 
 ## 4. 普通理论Day要求
-每个普通Day：
 - 核心知识点 **不超过20个**；
-- 单个知识点可以详细推导；
+- 单个知识点可详细推导；
 - 数学必须说明variable dimension、physical/geometric meaning和robot mapping；
 - 关键公式不能只背结论；
+- 任何存在frame/error/sign/convention依赖的公式必须先声明约定；
 - 已有工程案例优先用于映射新理论；
 - 允许连续5–10个理论Day没有LAB；
 - 不为了“今天有产出”强行写代码。
@@ -79,14 +74,7 @@ Robot Learning / VLM / VLA 等没有公司现成实现时：
 ---
 
 ## 5. Daily Quiz
-Daily Quiz目标是逐个验证关键知识点，而不是追求固定题数。
-
-通常5–10题；知识点多时可以更多。可包含：
-- concept / judgment；
-- reasoning；
-- small calculation；
-- source-reading；
-- robot transfer。
+Daily Quiz逐个验证关键知识点，通常5–10题；知识点多时可以更多。可包含concept/judgment、reasoning、small calculation、source-reading、robot transfer。
 
 Hard Gate concept必须独立通过，不能靠其它题得分抵消。
 
@@ -98,13 +86,15 @@ Hard Gate concept必须独立通过，不能靠其它题得分抵消。
 - **50% 综合系统场景**
 - **20% Source / Formula / Design**
 
-默认通过条件：
+默认通过：
 - 总分 **≥85%**；
 - Hard Gate不得出现基础性错误；
-- 总分通过但单个critical concept失败：只做targeted remediation + targeted retest；
-- 不机械重考已经稳定掌握内容。
+- 总分通过但单个critical concept失败：targeted remediation + targeted retest；
+- 不机械重考已稳定掌握内容。
 
-Module Exam优先使用2–4个真实系统场景综合多个知识点，并通过Knowledge Coverage Matrix防止关键内容漏考。
+Module Exam优先使用2–4个真实系统场景，并用Knowledge Coverage Matrix防漏考。
+
+**M00例外**：M00只有1个总纲Day，可采用轻量Owner场景考试，不强制机械拆成30/50/20；M01之后的普通正式Module默认遵循统一结构，M22沿用30/50/20但题型按Foundation Debt Defense定义。
 
 ---
 
@@ -117,12 +107,7 @@ L4 能实现 / Debug
 L5 能迁移 / 修改 / 设计
 ```
 
-目标：
-- 基础数学关键知识至少L3；
-- 核心机器人理论L3→L4；
-- System / Navigation / Debug L4→L5；
-- Control关键部分L4→L5；
-- VLA长期主方向逐步L4→L5。
+目标：基础数学关键知识至少L3；核心机器人理论L3→L4；System/Navigation/Debug L4→L5；Control关键部分L4→L5；VLA长期主方向逐步L4→L5。
 
 ---
 
@@ -132,7 +117,7 @@ L5 能迁移 / 修改 / 设计
 - **70–85%**：只补薄弱知识；
 - **<70% 或核心概念错误**：完整学习相关部分。
 
-工程操作熟练不代表数学可跳；数学理论陌生也不降低毕业标准。
+工程操作熟练不代表数学可跳；理论陌生也不降低毕业标准。
 
 ---
 
@@ -146,30 +131,21 @@ L5 能迁移 / 修改 / 设计
 - 必须验证跨模块闭环；
 - Capstone需要。
 
-不应安排：
-- 已有真实经验足以建立联系；
-- 只是证明“今天学过”；
-- 环境准备成本远大于知识收益；
-- 仅运行Demo不增加理解。
+不应安排：已有真实经验足以建立联系、只是证明“今天学过”、环境准备成本远大于收益、仅运行Demo不增加理解。
 
-LAB独立放 `docs/labs/LABxx_*.md`，复杂LAB可占多个学习时段，不塞进普通理论Day。
+LAB独立放 `docs/labs/LABxx_*.md`，复杂LAB可占多个学习时段。
 
 当前正式LAB：
-- LAB01 Manipulation Pick-and-Place；
-- LAB02 Mobile Manipulation Capstone。
+- **LAB01 Manipulation Pick-and-Place**：M14；
+- **LAB02 Mobile Manipulation Capstone**：M18，并可扩展为M21最终Research Capstone；
+- **LAB03 Robot Policy / VLA Action Interface**：M15/M17，强制补齐learned action→Safety Filter→Controller→closed-loop evaluation。
 
 ---
 
 ## 10. 最小自实现规则
-建议在明显帮助理论理解时自实现：
-- A*；
-- simplified KF/EKF；
-- PID/LQR；
-- simplified MPC/MPPI；
-- Attention；
-- small BC/policy。
+建议在明显帮助理论理解时自实现：A*、simplified KF/EKF、PID/LQR、simplified MPC/MPPI、Attention、small BC/policy。
 
-已有源码阅读 + 推导足够时，不为了完成任务强行写实现。
+已有源码阅读+推导足够时，不为了完成任务强行实现。
 
 ---
 
@@ -190,10 +166,7 @@ LAB独立放 `docs/labs/LABxx_*.md`，复杂LAB可占多个学习时段，不塞
 ## 12. 源码边界
 Navigation / Control源码：公司实现 + 官方实现足够，不追求仓库广度。
 
-任何未实际读取的公司源码：
-- 不得臆测函数逻辑；
-- 不得把讨论中的假设写成源码事实；
-- 只能写成“工程概念/待源码验证”。
+任何未实际读取的公司源码：不得臆测函数逻辑、不得把讨论假设写成源码事实，只能写成“工程概念/待源码验证”。
 
 ---
 
@@ -214,23 +187,16 @@ Next
 
 `PROGRESS.md`是跨聊天、跨GPT教学连续性的当前状态源。
 
-Foundation Debt统一状态：
-```text
-OPEN → LEARNING → RETEST → CLOSED
-```
+Foundation Debt状态：`OPEN → LEARNING → RETEST → CLOSED`。
 
 优先级：P0 Hard Gate / P1 Core / P2 Module-specific / P3 Detail。
 
 ---
 
 ## 14. M22 Foundation Cleanup规则
-M22不是预先固定的数学复习周。
+M22不是预先固定的数学复习周。Day130–Day135只是动态槽位，具体内容由M00–M21实际考试/源码阅读暴露的Foundation Debt生成。
 
-Day130–Day135只是动态槽位，具体内容由M00–M21实际考试/源码阅读暴露的Foundation Debt生成。
-
-每个M22 Day只处理：
-- 1个主要foundation chain；
-- 最多1个次要debt。
+每个M22 Day只处理：1个主要foundation chain + 最多1个次要debt。
 
 Debt CLOSED必须同时满足：
 1. Definition；
@@ -245,8 +211,8 @@ Debt CLOSED必须同时满足：
 ## 15. Day / Module / Lesson / LAB职责
 - `03_MASTER_PLAN.md`：总课程与Day索引；
 - `04_MODULE_SPECS.md`：Module知识范围/毕业标准；
-- `modules/`：每个Day的Teaching Contract；
-- `lessons/`：真正当天使用的详细讲义；
+- `modules/`：每个Day Teaching Contract；
+- `lessons/`：真正当天详细讲义；
 - `labs/`：少量必要实验；
 - `PROGRESS.md`：当前学习状态与Foundation Debt。
 
@@ -261,4 +227,16 @@ Debt CLOSED必须同时满足：
 5. `PROGRESS.md`
 6. 当前 `docs/modules/Mxx_*.md`
 
-不得重新询问仓库中已经明确的目标/规则；不得擅自增加每日实验；不得因用户工程经验强就默认数学已掌握；不得因理论陌生降低毕业标准。
+不得重新询问仓库中已明确目标/规则；不得擅自增加每日实验；不得因工程经验强就默认数学已掌握；不得因理论陌生降低毕业标准。
+
+---
+
+## 17. Curriculum v1.0冻结规则
+M00–M22顺序、Day1–Day129固定主线、M22动态槽位和3个正式LAB在本轮审计后视为v1.0冻结。
+
+后续只有以下情况才修改大纲：
+- 正式学习/考试暴露P0/P1结构性缺口；
+- 真实项目/目标岗位发生重大变化；
+- Teaching Contract存在明确错误、循环依赖或安全风险。
+
+普通薄弱点进入Foundation Debt/M22，不因为“还可以再加知识”持续扩Module或Day。

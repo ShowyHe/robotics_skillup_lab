@@ -1,7 +1,7 @@
 # PROGRESS — 当前课程设计与学习状态
 
 ## 1. 当前阶段
-当前处于：**完整机器人全栈 / 具身智能课程设计已完成，准备进入正式学习/入口诊断阶段。**
+当前处于：**Curriculum v1.0设计与二次审计完成，准备进入正式学习/入口诊断阶段。**
 
 尚未正式从新课程 Day1 开始。
 
@@ -10,10 +10,10 @@
 ## 2. 最终目标
 > **研究生级机器人理论基础 + 真实机器人全栈工程能力 + VLA / Mobile Manipulation具身智能能力 + 系统Owner能力。**
 
-学习方式已锁定：
+学习方式：
 - 正常2–3h / Day；
 - 理论/数学/公式/算法/源码优先；
-- 已有ROS2/Nav2/LIO/MPPI/真实机器人经验作为理论映射；
+- 已有真实机器人经验作为理论映射；
 - 不要求每天实验或代码；
 - 必要LAB独立安排；
 - 专业模块反推基础；
@@ -48,47 +48,54 @@ M21  Research Methodology & Capstone                       Day127–129
 M22  Foundation Cleanup                                    Day130–135 dynamic
 ```
 
-固定主课程：Day1–Day129。
-M22：Day130–Day135为动态槽位，具体内容由真实Foundation Debt生成。
+固定主课程：Day1–Day129。M22为动态槽位，只根据真实Foundation Debt生成。
 
 ---
 
-## 4. 已完成课程设计层
+## 4. Curriculum v1.0审计结论
 已完成：
-- 最终角色/能力边界；
-- M00–M22完整能力树与依赖；
-- Module Specs；
-- Day1–Day129固定总索引；
-- M22动态Foundation Cleanup规则；
-- M00–M22详细Module Teaching Contracts；
-- 统一Daily Quiz和Module Graduation Exam规则；
-- 统一掌握等级L1–L5；
-- 跳级/补课/复测规则；
-- 源码学习边界；
-- 正式LAB第一版。
+- M00–M22能力树、依赖和Day索引；
+- M04/M09/M10毕业考试统一到默认30/50/20；
+- 修复M11前置倒挂：Hybrid A*/C-space在本日补最小直觉，M12后续正式化；
+- 修复M15 Day100循环前置；
+- M13明确 `𝒞/𝒪` 符号并限定eigenvalue稳定性适用语境；
+- M14补force/impedance frame/error/sign convention；
+- M15增强ACT/CVAE与Diffusion最小数学主链；
+- M07补PointCloud clustering；
+- M19补Orin power/thermal/memory-bandwidth engineering；
+- M21 Day127–129核心点压到≤20，并与最终Capstone闭环；
+- M22新增Constrained Optimization、Algorithm Theory、CMake/colcon、Python/NumPy候选Debt池；
+- 增加LAB03 learned policy/VLA action-interface闭环；
+- LAB02增加M21 Research Extension；
+- 主课程进入v1.0冻结，不再无理由扩Module/Day。
 
 ---
 
 ## 5. 已锁定评估规则
 普通Module Graduation Exam默认：
-- 30%核心基础；
-- 50%综合系统场景；
-- 20% Source / Formula / Design。
+- **30% 核心基础**；
+- **50% 综合系统场景**；
+- **20% Source / Formula / Design**。
 
 默认通过：
 - 总分≥85%；
 - Hard Gate不能有基础性错误；
-- 总分通过但单个critical concept失败：targeted remediation + targeted retest；
+- 单个critical concept失败：targeted remediation + targeted retest；
 - 已稳定掌握内容不机械重考。
+
+M00为1-Day总纲，保留轻量Owner场景考试例外；M22使用同一30/50/20权重但采用Foundation Debt Defense题型。
 
 ---
 
 ## 6. 当前正式LAB
 ### LAB01 — Manipulation Pick-and-Place
-验证：Object Pose/TF/IK/Collision/Planning/Timed Trajectory/Gripper/Attach/Contact/Recovery。
+验证 Object Pose / TF / IK / Collision / Planning / Timed Trajectory / Gripper / Attach / Contact / Recovery。
 
 ### LAB02 — Mobile Manipulation Capstone
-验证：Task→Navigation→Base Verification→Re-perception→Reachability→Pick→Carry→Place→Long-horizon State→Recovery。
+验证 Task→Navigation→Base Verification→Re-perception→Reachability→Pick→Carry→Place→Long-horizon State→Recovery；若作为M21最终Capstone，还必须完成Baseline/Hypothesis/Repeated Trials/Ablation/Reproducibility/Defense。
+
+### LAB03 — Robot Policy / VLA Action Interface
+验证 Dataset Alignment→BC/ACT或Diffusion-style Policy→Raw Action→Decode→Safety Filter→Controller→Closed-loop Evaluation，强制区分Offline Action Accuracy与Robot Success。
 
 其它A*/EKF/PID/LQR/Attention/MPPI等最小实现只在明显帮助理论理解时安排。
 
@@ -106,19 +113,13 @@ M22：Day130–Day135为动态槽位，具体内容由真实Foundation Debt生�
 - DQN/PPO/TD3等RL接触。
 
 ### 重点补强
-- 系统化数学；
-- Probability / Optimization / SE(3)；
-- Kinematics / Dynamics；
-- State-space / Control Theory；
-- Vision Geometry / 3D Perception；
-- Manipulation；
-- Deep Learning系统基础；
-- Robot Learning；
-- VLM / VLA；
-- Deployment / Sim2Real / Safety；
-- Research Methodology。
+- 系统化数学、Probability / Optimization / SE(3)；
+- Kinematics / Dynamics / State-space / Control；
+- Vision Geometry / 3D Perception / Manipulation；
+- Deep Learning / Robot Learning / VLM / VLA；
+- Deployment / Sim2Real / Safety / Research Methodology。
 
-已有经验只作为课程设计起点，各Module仍以入口测试校准。
+CMake/colcon、Python/NumPy等工具基础不预设熟练度：先入口诊断，若真实阻塞源码构建/AI数据处理，则进入M22 Candidate Debt Pool。
 
 ---
 
@@ -138,12 +139,11 @@ Retest:
 Status: OPEN / LEARNING / RETEST / CLOSED
 ```
 
-M22只基于这里的真实Debt动态生成，禁止提前把Day130–135写成固定数学课。
+M22只基于这里的真实Debt动态生成。
 
 ---
 
 ## 9. Daily Learning记录模板
-正式开始后每次更新：
 ```text
 Current Module / Day:
 Mastered:
@@ -160,15 +160,14 @@ Next:
 ---
 
 ## 10. 下一步
-课程设计阶段已经结束。下一步应当：
-
+课程设计阶段结束。下一步：
 ```text
 读取 M00 Teaching Contract
-→ 做 M00 / Day1 入口检查（如需要）
+→ M00 / Day1 入口检查（如需要）
 → 正式生成 lessons/day001.md 或直接进行Day1教学
 → Daily Quiz
 → 更新PROGRESS
 → 按Module Graduation Exam推进
 ```
 
-已有内容可以通过入口诊断跳过/压缩，Day编号是课程逻辑索引，不强制机械消耗135个自然日。
+已有内容可以通过入口诊断跳过/压缩；Day编号是课程逻辑索引，不强制机械消耗135个自然日。
