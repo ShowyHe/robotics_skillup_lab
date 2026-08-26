@@ -1,484 +1,560 @@
 # 01_COMPETENCY_MAP — 机器人全栈 / 具身智能能力树
 
-## 1. 使用方法
+## 1. 使用方式
 
-这份文件不是课程表，而是后续所有课程的“能力边界”。
-
-后续每个 Module、Day、项目都必须能映射到这里的一个或多个能力节点；无法映射的内容原则上不进入主学习路线。
+本文件定义后续课程的能力边界。所有 Module、Day、LAB、Project 都应映射到这里。
 
 等级统一采用：
 
-- L0：知道术语；
-- L1：会调用、会跑 Demo；
-- L2：会实现、会调试；
-- L3：会设计算法 / 系统；
-- L4：能作为 Owner 跨模块负责结果。
+- L1：见过；
+- L2：能解释；
+- L3：能计算 / 推导；
+- L4：能实现 / Debug；
+- L5：能迁移 / 修改 / 设计。
 
-最终目标不是所有节点都 L4，而是形成 **“系统/导航/调试部署为强项，感知/定位/控制/Manipulation/Robot Learning/VLA 达到可独立设计和落地”** 的 T 型全栈结构。
+最终结构不是“所有方向都一样深”，而是形成：
+
+> **机器人理论达到研究生核心课程可用深度；系统/导航/调试为强项；感知、估计、控制、Manipulation、Robot Learning、VLA 能独立理解和落地。**
 
 ---
 
-# 2. A — Robot System / Software Stack
+# A. Robot System / Software Stack
 
-**目标：L4**
+**目标：L4→L5**
 
-## A1. Linux
-
-- process / thread；
-- scheduling；
-- memory；
-- file / socket / IPC；
-- signal；
-- systemd；
-- realtime 基础；
-- performance profiling。
-
-## A2. C++
+## A1. C++ / Python Engineering
 
 - object lifetime / RAII；
-- pointer / smart pointer；
+- pointer / reference / smart pointer；
 - move / copy；
-- template；
 - STL；
 - lambda；
+- template 基础；
 - thread / mutex / condition variable；
-- shared library / ABI；
-- CMake；
-- debugging / sanitizer / profiler。
+- async / callback；
+- shared library / ABI 基础；
+- CMake / colcon；
+- Python 工程、NumPy、数据处理、训练脚本。
+
+## A2. Linux / OS / Runtime
+
+- process / thread；
+- virtual memory 基础；
+- file descriptor；
+- IPC / socket；
+- signal；
+- scheduling；
+- realtime 基础；
+- CPU / memory / IO profiling；
+- systemd / Docker；
+- concurrency / synchronization。
 
 ## A3. ROS2
 
 - Node / Topic / Service / Action；
-- TF2；
-- QoS；
+- DDS / QoS；
 - Executor / Callback Group；
-- DDS；
+- TF2；
 - Lifecycle；
 - Component / Composition；
 - pluginlib；
-- ros2_control；
-- launch / parameter；
-- bag / tracing / diagnostics。
+- parameter / launch；
+- rosbag / diagnostics / tracing；
+- ros2_control / hardware interface。
 
-## A4. 系统架构
+## A4. System Architecture
 
-- 模块责任边界；
-- synchronous / asynchronous pipeline；
-- freshness / watchdog；
-- fallback；
-- state machine / behavior tree；
+- module responsibility；
+- sync / async pipeline；
 - latency budget；
-- safety boundary；
-- degraded mode。
+- freshness / watchdog；
+- state machine / behavior tree；
+- fallback / degraded mode；
+- data contract；
+- system-level failure propagation。
 
 ---
 
-# 3. B — Math / Physics Foundation
+# B. Mathematical & Computational Foundations
 
-**目标：支撑 L3/L4 工程与算法设计，不追求纯数学研究。**
+**目标：核心内容 L3，支撑专业模块 L4/L5；不以纯数学研究为目标。**
 
-## B1. 微积分
+## B1. Linear Algebra
+
+- vector / matrix；
+- basis / coordinate；
+- linear transformation；
+- inverse / rank；
+- dot / cross / norm；
+- projection；
+- eigenvalue / eigenvector；
+- quadratic form；
+- SVD；
+- covariance matrix。
+
+## B2. Calculus
 
 - function / derivative；
 - partial derivative；
 - chain rule；
 - gradient；
 - Jacobian；
-- Hessian 基本概念；
+- Hessian 基础；
+- Taylor expansion；
 - integral；
 - differential equation 基础。
 
-## B2. 线性代数
-
-- vector / matrix；
-- dot product / norm / projection；
-- linear transformation；
-- rank；
-- eigenvalue / eigenvector；
-- quadratic form；
-- SVD；
-- covariance matrix。
-
-## B3. 概率统计
+## B3. Probability / Statistics
 
 - random variable；
-- distribution；
+- probability distribution；
+- joint / conditional probability；
+- Bayes；
 - Gaussian；
 - expectation / variance / covariance；
-- conditional probability；
-- Bayes；
 - MLE / MAP；
 - sampling；
-- uncertainty。
+- uncertainty / confidence。
 
-## B4. 数值与优化
+## B4. Numerical Methods / Optimization
 
 - numerical integration；
-- numerical error；
-- conditioning 基础；
-- least squares；
+- finite difference；
+- conditioning / numerical error；
+- least squares / weighted LS；
+- nonlinear least squares；
 - gradient descent；
-- Newton / Gauss-Newton；
+- Newton / Gauss-Newton / LM；
 - constrained optimization；
 - convexity 基础；
 - stochastic optimization。
 
-## B5. 机器人几何
+## B5. Robot Geometry
 
-- 2D/3D coordinate frames；
+- 2D / 3D coordinate frame；
 - rotation matrix；
 - quaternion；
-- homogeneous transformation；
+- homogeneous transform；
 - SO(2) / SO(3)；
 - SE(2) / SE(3)；
-- Lie group / Lie algebra 的工程级理解。
+- Lie group / Lie algebra 工程级理解。
 
-## B6. 力学与控制基础
+## B6. Graph / Algorithm Foundations
 
-- velocity / acceleration；
-- force / torque；
-- kinematics / dynamics；
-- state-space；
-- feedback / stability。
+- graph / tree；
+- queue / priority queue；
+- BFS / DFS；
+- complexity；
+- heuristic；
+- dynamic programming 基础；
+- sampling / search structures。
 
 ---
 
-# 4. C — Sensors / Hardware / Robot Interface
+# C. Mechanics / Kinematics / Dynamics
 
-**目标：L2~L3**
+**目标：L3→L4**
+
+- position / velocity / acceleration；
+- force / torque；
+- rigid-body motion；
+- mobile robot kinematics；
+- DH / POE 基础；
+- forward kinematics；
+- inverse kinematics；
+- Jacobian / velocity mapping；
+- singularity / manipulability；
+- inertia；
+- Newton-Euler；
+- Lagrange；
+- manipulator dynamics；
+- ODE / state-space；
+- linearization / discretization。
+
+---
+
+# D. Sensors / Actuators / Hardware Interface
+
+**目标：L2→L3**
+
+## D1. Sensors
 
 - Camera / RGB-D；
 - LiDAR；
 - IMU；
 - Encoder / Wheel Odom；
 - GNSS / RTK；
-- timestamp / synchronization；
-- extrinsic calibration；
-- CAN / Serial / Ethernet 基础；
-- motor / actuator 基础；
-- hardware interface；
-- sensor failure / stale data / dropout。
+- Force / Torque sensor。
 
-目标不是成为硬件电路专家，而是能判断机器人数据从物理世界进入软件系统时发生了什么。
+## D2. Measurement Quality
+
+- sampling rate；
+- resolution / accuracy / precision；
+- noise / bias / drift；
+- latency / jitter；
+- timestamp；
+- hardware / software synchronization；
+- intrinsic / extrinsic calibration。
+
+## D3. Communication / Actuation
+
+- UART / Serial；
+- CAN；
+- Ethernet / USB 基础；
+- motor / BLDC / servo 基础；
+- encoder feedback；
+- position / velocity / torque control；
+- gearbox / actuator limitations。
+
+目标不是硬件研发，而是能解释“数据为什么错、动作为什么偏”。
 
 ---
 
-# 5. D — Perception / World Model
+# E. Simulation
 
-**目标：L3**
+**目标：L2→L3**
 
-## D1. Vision Geometry
+- URDF / Xacro；
+- link / joint / inertial / collision；
+- Gazebo / Isaac Sim；
+- physics / sensor simulation；
+- ros2_control simulation；
+- ground truth；
+- repeatable scenario；
+- synthetic data；
+- domain randomization；
+- sim-to-real gap。
+
+---
+
+# F. Vision / 3D Perception / World Representation
+
+**目标：L3→L4**
+
+## F1. Vision Geometry
 
 - pinhole camera；
 - intrinsic / extrinsic；
 - distortion；
 - projection / back-projection；
 - calibration；
-- stereo geometry；
-- depth。
+- stereo / RGB-D；
+- PnP 基础。
 
-## D2. Classical Vision
-
-- filtering；
-- edge / corner；
-- feature；
-- matching；
-- optical flow；
-- OpenCV 工程。
-
-## D3. Deep Perception
+## F2. Deep Vision
 
 - CNN；
 - detection；
-- semantic segmentation；
-- instance segmentation；
+- YOLO；
+- semantic / instance segmentation；
 - depth estimation；
-- feature extraction。
+- feature representation；
+- tracking 基础。
 
-## D4. 3D Perception
+## F3. 3D Perception
 
-- PointCloud；
+- point cloud；
+- filtering / downsampling；
+- KD-tree 概念；
 - voxel；
 - clustering；
-- ICP 基础；
-- occupancy；
+- 3D detection；
 - BEV；
-- multi-sensor fusion 表示。
+- occupancy；
+- free-space。
 
-## D5. World Model
+## F4. Robot World Representation
 
-- metric world representation；
-- semantic world representation；
-- dynamic obstacle；
-- free-space；
-- occupancy / costmap；
-- short-term temporal context。
+- metric / semantic representation；
+- obstacle / dynamic obstacle；
+- costmap / occupancy；
+- short-term temporal context；
+- perception output → planning / manipulation interface。
 
 ---
 
-# 6. E — Localization / State Estimation / SLAM
+# G. State Estimation / SLAM
 
-**目标：L3**
+**目标：L3→L4**
 
-- odometry；
+- state / process / measurement model；
 - Bayesian filtering；
-- Kalman Filter；
-- EKF / error-state 基本思想；
-- IMU propagation；
-- scan matching；
-- ICP / point-to-plane；
-- LiDAR Odometry；
-- VIO；
-- LIO；
-- loop closure；
+- KF / EKF；
+- covariance propagation；
+- IMU / Wheel / GNSS fusion；
+- observability 基础；
+- outlier / dropout；
+- ICP / scan matching；
+- LiDAR odometry；
 - pose graph；
 - factor graph；
-- GNSS / RTK fusion；
-- covariance / observability 基本理解；
-- localization failure detection。
+- IMU preintegration 概念；
+- LiDAR SLAM / LIO；
+- VIO；
+- loop closure；
+- degeneracy；
+- localization failure detection / recovery。
 
-要求最终能回答“位置从哪里来、可信度多大、为什么会漂、怎样恢复”。
+要求能够回答：位置从哪里来、可信度多大、为什么会漂、为什么会跳。
 
 ---
 
-# 7. F — Planning / Navigation / Behavior
+# H. Planning / Navigation / Behavior
 
-**目标：L4**
+**目标：L4→L5**
 
-## F1. Graph Search
+## H1. Graph Search
 
 - BFS / Dijkstra；
 - A*；
 - heuristic；
-- graph abstraction；
-- hierarchical planning。
-
-## F2. Motion Planning
-
-- footprint / collision checking；
-- state lattice；
-- Hybrid A*；
-- Dubins / Reeds-Shepp 基本思想；
-- RRT / RRT*；
-- trajectory optimization。
-
-## F3. Navigation System
-
-- global / local costmap；
-- planner / controller / smoother；
-- BT / state machine；
-- route / corridor / HPA；
-- keep / switch；
-- dynamic obstacle；
-- social navigation；
-- recovery / fallback。
-
-目标不只是“会调 Nav2”，而是能设计整个导航决策层。
-
----
-
-# 8. G — Control
-
-**目标：L3**
-
-- feedback；
-- PID；
-- state-space；
-- controllability 基本概念；
-- stability 基本概念；
-- LQR；
-- MPC；
-- stochastic optimal control 基本思想；
-- MPPI；
-- trajectory tracking；
-- constraint / saturation；
-- actuator delay；
-- safety stop / recovery。
-
-要求能从“为什么产生这个控制量”解释到源码和实机行为。
-
----
-
-# 9. H — Manipulation / Mobile Manipulation
-
-**目标：L3**
-
-## H1. Arm Kinematics
-
-- joint / link；
-- FK；
-- IK；
-- Jacobian；
-- singularity；
-- workspace。
+- open / closed set；
+- hierarchical abstraction / HPA。
 
 ## H2. Motion Planning
 
-- configuration space；
-- collision checking；
-- RRT / PRM / OMPL；
-- MoveIt2 planning scene；
-- trajectory generation。
+- occupancy / costmap；
+- footprint / collision checking；
+- inflation / distance field；
+- state lattice；
+- Hybrid A*；
+- motion primitive；
+- RRT / RRT*；
+- OMPL 基础；
+- trajectory smoothing / optimization 基础。
 
-## H3. Grasp / Interaction
+## H3. Behavior
 
-- grasp pose；
-- object pose；
-- approach / retreat；
-- force / torque sensing 基础；
-- impedance / compliant control 基础。
+- Behavior Tree；
+- replanning；
+- path switching；
+- recovery；
+- dynamic obstacle handling；
+- global / local responsibility boundary。
 
-## H4. Mobile Manipulation
-
-把：
-
-```text
-Navigation + Perception + Arm Planning + Control
-```
-
-统一成一个任务系统，例如“找到杯子→走过去→抓取→送回”。
+源码主线：真实工程实现 + Nav2 官方实现 + 必要最小自实现。
 
 ---
 
-# 10. I — Deep Learning Engineering
+# I. Control / Optimal Control
 
-**目标：L3**
+**目标：L4，关键部分向 L5**
 
-- tensor；
-- computational graph；
-- autograd；
+- feedback；
+- PID；
+- error dynamics；
+- state-space；
+- equilibrium / linearization；
+- stability；
+- eigenvalue；
+- controllability / observability；
+- LQR；
+- Riccati 思想；
+- MPC；
+- prediction horizon；
+- constraint；
+- receding horizon；
+- MPPI；
+- sampling / rollout / noise / cost / weighting；
+- trajectory tracking；
+- saturation / rate limit；
+- collision / safety constraint。
+
+---
+
+# J. Manipulation
+
+**目标：L3→L4**
+
+- robot model / URDF / SRDF；
+- FK / IK；
+- Jacobian；
+- workspace / singularity；
+- Planning Scene；
+- MoveIt2；
+- OMPL；
+- collision checking；
+- grasp pose / pre-grasp / approach / retreat；
+- trajectory generation / execution；
+- joint / Cartesian control；
+- force control；
+- impedance control；
+- vision → object pose → base → EEF transform chain；
+- failure recovery。
+
+---
+
+# K. Deep Learning
+
+**目标：L3→L4**
+
+- tensor / computation graph；
+- PyTorch；
+- Autograd / backpropagation；
 - loss；
 - optimizer；
-- backpropagation；
-- Dataset / DataLoader；
+- batch / learning rate；
+- normalization / regularization；
 - CNN；
 - embedding；
-- Attention；
+- attention；
+- Q / K / V；
 - Transformer；
 - training / validation；
-- overfit / regularization；
+- overfit / underfit；
 - checkpoint；
-- export；
-- ONNX / TensorRT；
-- GPU memory / inference profiling。
-
-目标是能训练、修改、部署模型，而不是只调用模型接口。
+- inference / deployment。
 
 ---
 
-# 11. J — Robot Learning
+# L. Robot Learning
 
-**目标：L3**
+**目标：L3→L4**
 
 - MDP；
+- state / action / reward；
 - policy / value；
-- RL 基础体系；
-- imitation learning；
-- behavior cloning；
-- demonstrations；
-- sequence modeling for action；
+- PPO / TD3 等 RL 基础复盘；
+- Behavior Cloning；
+- Imitation Learning；
+- DAgger 概念；
+- covariate shift；
+- Offline RL 基础；
+- demonstrations / dataset distribution；
 - ACT；
+- action chunking；
 - Diffusion Policy；
-- offline RL 基础；
-- reward / dataset bias；
-- action representation；
-- policy evaluation；
-- sim2real / real2sim 基础。
-
-重点是“机器人如何从数据学习动作”。
+- policy rollout / evaluation；
+- sim2real / robustness。
 
 ---
 
-# 12. K — VLM / VLA / Embodied AI
+# M. VLM
 
-**目标：L3，长期向 L4 发展**
+**目标：L3→L4**
 
-## K1. VLM
-
-- vision encoder；
-- language model；
-- multimodal alignment；
+- token / embedding；
+- language Transformer；
+- Vision Encoder / ViT；
 - visual token；
+- multimodal projection / alignment；
+- multimodal fusion；
+- instruction tuning；
 - grounding；
-- reasoning；
-- task understanding。
-
-## K2. VLA
-
-- vision + language + robot state；
-- action token / continuous action；
-- action chunk；
-- policy head；
-- temporal context；
-- embodiment adaptation；
-- fine-tuning；
-- inference latency；
-- safety / fallback。
-
-## K3. System Integration
-
-重点研究两种架构：
-
-```text
-VLA → low-level action
-```
-
-和：
-
-```text
-VLM/VLA → high-level skill
-           ↓
-Navigation / Manipulation / Controller
-```
-
-要求能根据任务、安全性、数据和实时性选择架构，而不是默认“端到端最好”。
+- object / region / spatial relation；
+- scene / task understanding；
+- VLM 与传统 perception 的边界。
 
 ---
 
-# 13. L — Simulation / Data / Evaluation / Deployment
+# N. VLA
+
+**目标：L3→L4，长期向 L5**
+
+- Vision + Language + Robot State；
+- proprioception / history；
+- state representation；
+- action representation；
+- joint / EEF / base action；
+- continuous / discrete action；
+- action token；
+- action chunk；
+- temporal context；
+- demonstration normalization；
+- training / fine-tuning；
+- closed-loop inference；
+- VLA → trajectory / controller interface；
+- safety filter / fallback。
+
+---
+
+# O. Mobile Manipulation / Embodied System
 
 **目标：L4**
 
-- Gazebo / Isaac Sim；
-- dataset schema；
-- rosbag / trajectory dataset；
-- labeling；
-- benchmark；
-- regression test；
-- failure taxonomy；
-- automatic metrics；
-- experiment design；
-- ablation；
-- versioning；
-- Docker；
-- Orin / CUDA / TensorRT；
-- monitoring；
-- OTA / deployment 基础；
-- data flywheel。
+- language instruction；
+- task / skill decomposition；
+- object search；
+- navigation；
+- base positioning；
+- object relocalization；
+- manipulation；
+- VLA / classical skill hybrid architecture；
+- long-horizon state；
+- replanning；
+- recovery；
+- execution feedback。
 
-真正的全栈 Owner 必须能把“算法有效”变成“系统长期可验证地有效”。
+最终完成从自然语言任务到真实 action 的完整链路。
 
 ---
 
-# 14. 最终能力结构
+# P. Deployment / Data / Evaluation / Sim2Real
 
-最终不是平均分配精力，而是：
+**目标：L4→L5**
 
-```text
-                         VLA / Embodied AI   L3→L4
-                                  ▲
-                    Robot Learning / VLM     L3
-                                  ▲
-       Perception L3 ─── World Model ─── Manipulation L3
-              ▲                             ▲
-     Localization L3                Planning/Control L4/L3
-              \                         /
-               \                       /
-               Robot System / ROS2 / Linux L4
-                          ▲
-                Sensors / Hardware L2~L3
+- Orin；
+- GPU / CUDA execution model 基础；
+- TensorRT；
+- FP16 / INT8 概念；
+- profiling；
+- Docker / systemd；
+- rosbag → dataset / episode；
+- synchronization / cleaning / annotation；
+- dataset / model / config versioning；
+- benchmark；
+- success rate / latency / collision / task metrics；
+- regression；
+- failure mining；
+- sensor / action noise；
+- latency randomization；
+- sim2real validation。
 
-贯穿全部：Math Foundation + Data/Evaluation/Deployment
-```
+---
 
-导航仍然是强项，但最终价值来自 **跨层连接能力**。
+# Q. Safety / Reliability / Owner
+
+**目标：L4→L5**
+
+- watchdog / heartbeat；
+- timeout / freshness；
+- rate limit / saturation；
+- uncertainty；
+- safe stop；
+- fallback；
+- degraded mode；
+- collision safety；
+- braking / safety margin；
+- human takeover；
+- fault propagation；
+- single-point failure；
+- responsibility boundary；
+- architecture trade-off；
+- evidence chain；
+- regression test；
+- version risk。
+
+---
+
+# R. Research Methodology
+
+**目标：L3→L4**
+
+- literature search；
+- paper reading；
+- problem definition；
+- related work；
+- baseline；
+- hypothesis；
+- experiment design；
+- controlled variable；
+- metric；
+- dataset split；
+- ablation；
+- repeated experiment；
+- statistical comparison 基础；
+- reproducibility；
+- technical report；
+- limitation / failure analysis。
+
+最终通过 Capstone 将理论、算法、工程和研究方法统一起来。
