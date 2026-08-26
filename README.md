@@ -2,7 +2,7 @@
 
 面向 **机器人全栈工程 + 具身智能（Embodied AI）+ VLA** 的长期学习与能力升级仓库。
 
-最终目标不是单一 Nav2、单一视觉、单一控制或只会调用 VLA，而是形成：
+最终目标：
 
 > **研究生级机器人理论基础 + 真实机器人全栈工程能力 + VLA / Mobile Manipulation 具身智能能力 + 系统 Owner 能力。**
 
@@ -30,128 +30,130 @@ VLM / VLA
 Mobile Manipulation
         ↓
 Deployment / Data / Evaluation / Safety
+        ↓
+Research / Capstone / Foundation Cleanup
 ```
 
 ## 2. 学习方式
-
-本仓库采用 **“专业模块反推基础”**，而不是先把整套大学数学学完。
-
-统一流程：
+采用 **“专业模块反推基础”**：
 
 ```text
-确定专业模块
+真实问题 / 专业模块
 → 反推真正需要的数学 / CS / 物理基础
-→ 先补这些前置基础
+→ 先补前置
 → 学专业理论
-→ 联系真实系统 / 源码
-→ 必要时做最小实现或独立 LAB
-→ 理论考试 / 复测
+→ 连接真实源码 / 官方实现
+→ 必要时最小自实现或独立 LAB
+→ Quiz / Module Graduation Exam
+→ Foundation Debt 复测
 ```
 
-### 理论优先
-
-正常学习日按 **2–3 小时**设计，重点用于：
-
-- 概念与机制；
-- 数学与公式推导；
-- 算法原理；
-- 源码理解；
-- 真实工程案例映射；
-- 闭卷题与复测。
-
-**不要求每天写代码，不要求每天做实验。**
-
-已经具备的 ROS2、Nav2、测试、实机调试经验优先作为理论知识的真实案例，不机械重复基础实操。
-
-只有当实验对理解或能力闭环不可替代时，才单独安排 `LAB / PROJECT`，并预留完整时间，不塞进普通理论 Day。
+正常学习日按 **2–3小时**设计。理论、数学、公式、算法、源码理解和真实案例映射是主线；**不要求每天代码，不要求每天实验**。
 
 ## 3. 源码学习原则
-
-已有真实工程对应的模块（尤其 Navigation / Control）默认采用：
+已有真实工程对应模块（尤其 Navigation / Control）：
 
 ```text
 真实问题
 → 公司真实实现
-→ 反推算法与基础
+→ 反推基础
+→ 数学 / 算法本体
 → 官方标准实现
-→ 必要时最小自实现
-→ 回到真实系统验证
+→ 必要最小自实现
+→ 回真实系统验证
 ```
 
-默认不为了“看得多”横向刷第三、第四套仓库。
+Robot Learning / VLM / VLA 等方向若没有公司实现，则以论文、官方项目、官方实现为主。源码数量不是目标。
 
-Robot Learning / VLA 等没有现成公司实现的方向，则以论文、官方项目和官方实现为主。
+## 4. 主课程与Day范围
+固定模块 M00–M22，当前课程索引已设计完成：
 
-## 4. 主课程
+```text
+M00  Day1
+M01  Day2–7
+M02  Day8–15
+M03  Day16–19
+M04  Day20–21
+M05  Day22–26
+M06  Day27–33
+M07  Day34–39
+M08  Day40–48
+M09  Day49–54
+M10  Day55–62
+M11  Day63–70
+M12  Day71–79
+M13  Day80–89
+M14  Day90–96
+M15  Day97–104
+M16  Day105–109
+M17  Day110–115
+M18  Day116–118
+M19  Day119–122
+M20  Day123–126
+M21  Day127–129
+M22  Day130–135（动态 Foundation Cleanup）
+```
 
-课程当前固定为 **M00–M22**，详见 [`docs/03_MASTER_PLAN.md`](docs/03_MASTER_PLAN.md)。
+固定主课程 Day1–Day129；M22 预留6个动态槽位，具体内容必须根据真实 Foundation Debt 生成，不能提前写死。
 
-涵盖：
-
-- Robot Full-stack Architecture
-- C++ / Linux / ROS2 Systems
-- Mathematical Foundations I / II
-- Sensors & Actuators
-- Robot Simulation
-- Vision Geometry / Deep Vision / 3D Perception
-- State Estimation / SLAM / LIO / VIO
-- Planning / Navigation
-- Kinematics / Dynamics / Control
-- Manipulation
-- Deep Learning / Robot Learning
-- VLM / VLA
-- Mobile Manipulation
-- Deployment / Data / Evaluation / Sim2Real
-- Safety / Reliability / Owner
-- Research Capstone
-- Foundation Cleanup
+详见 [`docs/03_MASTER_PLAN.md`](docs/03_MASTER_PLAN.md)。
 
 ## 5. 文档结构
 
 ```text
 docs/
-├── 00_GOALS.md            # 最终目标、边界、毕业能力
-├── 01_COMPETENCY_MAP.md   # 完整能力树
-├── 02_DEPENDENCIES.md     # 专业模块与基础依赖图
-├── 03_MASTER_PLAN.md      # M00–M22、未来 Day 总索引
-├── 04_MODULE_SPECS.md     # 每个 Module 的知识范围与毕业标准
-├── LEARNING_RULES.md      # GPT 教学、考试、跳级、实验规则
-├── PROGRESS.md            # 当前进度、薄弱点、课程设计状态
-├── modules/               # 后续：每个 Module 的详细 Day 规划
-├── lessons/               # 后续：每天真正使用的详细讲义
-└── labs/                  # 后续：少量必要 LAB / PROJECT
+├── 00_GOALS.md
+├── 01_COMPETENCY_MAP.md
+├── 02_DEPENDENCIES.md
+├── 03_MASTER_PLAN.md
+├── 04_MODULE_SPECS.md
+├── LEARNING_RULES.md
+├── PROGRESS.md
+├── modules/               # M00–M22详细Day教学规格
+├── lessons/               # 真正学习时逐日生成详细讲义
+└── labs/                  # 少量必要LAB / Capstone
 ```
 
-### 后续文件职责
-
-- `03_MASTER_PLAN.md`：总 Day 数、每个 Module 的理论 Day 数、Day1–DayN 总索引。
-- `modules/`：每个 Module 怎么教，不存当天详细讲义。
-- `lessons/`：真正的 Day 级讲义、题目、复测要求。
-- `labs/`：只保存必要实验，不要求每天实验。
-- `PROGRESS.md`：保证未来任何 GPT 都能从当前学习节点直接继续。
+职责：
+- `03_MASTER_PLAN.md`：总Day数、Module范围、总索引；
+- `04_MODULE_SPECS.md`：Module知识边界和毕业能力；
+- `modules/`：每个Day的Teaching Contract，不是当天长篇讲义；
+- `lessons/`：真正学习到对应Day时生成；
+- `labs/`：只有不可被理论替代的实验；
+- `PROGRESS.md`：当前学习节点、薄弱点、复测与Foundation Debt。
 
 ## 6. 掌握等级
-
-统一采用：
-
 - **L1：见过**
 - **L2：能解释**
 - **L3：能计算 / 推导**
 - **L4：能实现 / Debug**
 - **L5：能迁移 / 修改 / 设计**
 
-核心专业课程至少达到 L3/L4；Navigation、Control、System Owner、未来 VLA 主方向的关键知识逐步向 L5 提升。
+核心数学至少L3；核心机器人专业理论L3→L4；Navigation / Control / System Owner / VLA关键能力逐步向L5。
 
-## 7. 最终验收
+## 7. 统一考试结构
+普通 Module Graduation Exam 默认：
 
-课程完成不以“看完多少 Day”为标准，而以是否能够：
+- **30% 核心基础**
+- **50% 综合系统场景**
+- **20% Source / Formula / Design**
 
-1. 从数学和物理层解释核心机器人算法；
-2. 从传感器一直追踪到机器人最终 action；
-3. 判断真实机器人故障究竟应该由哪一层解决；
-4. 读懂并修改关键官方/真实工程实现；
-5. 建立感知、估计、规划、控制、Manipulation、VLA 的完整系统联系；
-6. 完成一个达到机器人硕士 Capstone 强度的 Mobile Manipulation / Embodied AI 项目；
-7. 建立部署、评测、失败回流和持续改进的数据闭环。
+默认总分 **≥85%**；Hard Gate基础概念不能靠其他题得分抵消。单个关键概念失败时，定向补课后只复测该债务，不机械重考全模块。
 
-本仓库所有后续 Day 计划、讲义与项目都必须服从以上原则。
+## 8. LAB
+当前明确的正式LAB：
+- `docs/labs/LAB01_manipulation_pick_and_place.md`
+- `docs/labs/LAB02_mobile_manipulation_capstone.md`
+
+LAB用于验证真实闭环、frame、collision、execution、contact、recovery和跨模块Owner能力，不为了课程形式凑数量。
+
+## 9. 最终验收
+课程完成不以“看完多少Day”为标准，而以是否能够：
+1. 从数学/物理解释核心机器人算法；
+2. 从sensor一路追到真实action/physical motion；
+3. 判断跨模块故障责任；
+4. 读懂并修改关键真实/官方实现；
+5. 建立Perception→Estimation→Planning→Control→Manipulation→VLA完整联系；
+6. 完成Mobile Manipulation / Embodied AI Capstone；
+7. 建立数据、部署、评测、失败回流、Safety、Regression闭环；
+8. 对证据不足的问题明确说“当前不能确定”，并指出下一步需要的证据。
