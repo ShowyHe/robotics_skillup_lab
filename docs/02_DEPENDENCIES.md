@@ -1,672 +1,598 @@
-# 02_DEPENDENCIES — 专业目标反推基础依赖图
+# 02_DEPENDENCIES — 专业模块反推基础依赖图
 
-## 1. 这份文件解决什么问题
+## 1. 核心原则
 
-本仓库不采用：
-
-```text
-高数 → 线代 → 概率 → 优化 → 机器人
-```
-
-这种长串行路线。
+本课程不采用“先完整学完所有基础，再进入机器人”的长串行路线。
 
 采用：
 
-> **先明确要学的专业模块，再反推它真正需要的基础；先补够这些基础，再立即进入专业内容。**
+> **确定专业模块 → 反推其真正需要的数学 / CS / 物理基础 → 先补这些基础 → 立即进入专业理论 → 后续暴露缺口再定点补。**
 
-因此，后续课程顺序必须服从依赖关系，而不是服从传统大学课程顺序。
+但“按需学习”不代表降低深度：关键基础最终仍需达到机器人硕士核心课程可用水平。
 
 ---
 
-# 2. 总依赖图
+# 2. M00–M22 总依赖图
 
 ```text
-Robot System / ROS2 / Linux / C++
-              │
-              ├───────────────┐
-              │               │
-              ▼               ▼
-      Vision Geometry     Sensors / Timing
-              │               │
-              ▼               │
-      Deep Perception          │
-              │               │
-              ├───────┐       │
-              ▼       ▼       ▼
-        World Model   State Estimation / SLAM
-              │          │
-              └────┬─────┘
-                   ▼
-          Planning / Navigation
-                   │
-                   ▼
-                Control
-                   │
-        ┌──────────┴──────────┐
-        ▼                     ▼
- Manipulation          Real-Robot Skills
-        │                     │
-        └──────────┬──────────┘
-                   ▼
-            Robot Learning
-                   │
-                   ▼
-            VLM / VLA
-                   │
-                   ▼
-     Mobile Manipulation / Embodied AI
+M00 Robot Full-stack Architecture
+   ↓
+M01 C++ / Linux / ROS2 Systems
+   ↓
+M02 Mathematical Foundations I
+   ├──────────────→ M05 Vision Geometry
+   │                    ↓
+   │                M07 Deep Vision & 3D Perception
+   │                    ↑
+   ├──────────────→ M06 Deep Learning Foundations
+   │                    ↓
+   │                M15 Robot Learning
+   │                    ↓
+   │                M17 VLA
+   │
+   ├──────────────→ M08 Mathematical Foundations II
+   │                    ↓
+   │                M09 State Estimation
+   │                    ↓
+   │                M10 SLAM / LIO / VIO
+   │
+   └──────────────→ M12 Kinematics / Dynamics
+                        ↓
+                    M13 Control
+                        ↓
+                    M14 Manipulation
 
-贯穿全部：Math / Simulation / Data / Evaluation / Deployment
+M03 Sensors & Actuators
+   ├→ M05 Vision Geometry
+   ├→ M09 State Estimation
+   └→ M10 SLAM / LIO / VIO
+
+M04 Simulation Foundations
+   ├→ M07 Perception
+   ├→ M11 Planning
+   ├→ M13 Control
+   ├→ M14 Manipulation
+   └→ M15 Robot Learning
+
+M11 Planning & Navigation ─────────────┐
+M14 Manipulation ─────────────────────┤
+M16 VLM ───────────────→ M17 VLA ────┤
+M17 VLA ──────────────────────────────┤
+                                       ↓
+                             M18 Mobile Manipulation
+                                       ↓
+                    M19 Deployment / Data / Sim2Real
+                                       ↓
+                    M20 Safety / Reliability / Owner
+                                       ↓
+                    M21 Research Capstone
+                                       ↓
+                    M22 Foundation Cleanup
 ```
 
 ---
 
-# 3. Robot System / ROS2 前置依赖
+# 3. 共享基础链
 
-## 专业目标
+## 3.1 线代 / 微积分链
 
-达到能够设计和调试真实机器人软件架构的水平。
+```text
+Vector / Matrix
+→ Coordinate Transform
+→ Derivative / Partial Derivative
+→ Chain Rule
+→ Gradient / Jacobian
+→ Taylor Linearization
+```
 
-## 先补基础
+服务于：
 
-### CS / Linux
+- Camera Geometry；
+- Backpropagation；
+- EKF；
+- ICP / SLAM；
+- IK；
+- Dynamics；
+- LQR / MPC；
+- Optimization。
 
+**Jacobian 只正式学一次，后续在 EKF / IK / SLAM / Control 中不断复用和加深。**
+
+## 3.2 概率链
+
+```text
+Random Variable
+→ Distribution
+→ Gaussian
+→ Conditional Probability / Bayes
+→ Expectation / Variance / Covariance
+→ MLE / MAP
+```
+
+服务于：
+
+- KF / EKF；
+- Sensor Fusion；
+- SLAM；
+- Robot Learning；
+- uncertainty reasoning。
+
+## 3.3 几何链
+
+```text
+Rotation Matrix / Quaternion
+→ Homogeneous Transform
+→ SO(3) / SE(3)
+→ Lie perturbation intuition
+```
+
+共同服务：
+
+- LIO / VIO；
+- Manipulation；
+- Robot State Representation；
+- VLA action / pose interpretation。
+
+## 3.4 优化链
+
+```text
+Least Squares
+→ Weighted / Nonlinear Least Squares
+→ Gradient / Newton family
+→ Gauss-Newton / LM
+→ Constrained Optimization
+```
+
+共同服务：
+
+- ICP / SLAM；
+- IK；
+- trajectory optimization；
+- MPC；
+- Deep Learning；
+- Robot Learning。
+
+---
+
+# 4. M01 C++ / Linux / ROS2 Systems
+
+## 先补
+
+- object lifetime / RAII；
+- pointer / smart pointer；
+- STL / lambda / template 基础；
 - process / thread；
-- memory 基本模型；
-- file descriptor；
+- mutex / condition variable；
+- memory / file descriptor；
 - socket / IPC；
-- scheduler；
-- concurrency；
-- mutex / condition variable。
-
-### C++
-
-- object lifetime；
-- pointer / reference；
-- RAII；
-- smart pointer；
-- lambda；
-- template 基础；
-- STL；
-- thread / lock。
+- scheduler 基础。
 
 ## 然后进入
 
-- ROS2 Executor；
-- Callback Group；
 - DDS / QoS；
-- lifecycle；
-- composition；
+- Executor / Callback Group；
+- TF；
+- Lifecycle；
+- Component；
 - pluginlib；
 - ros2_control；
-- latency / watchdog / degraded mode。
+- tracing / diagnostics / latency。
 
-## 可后补
+## 后补
 
-- OS 内核细节；
+- OS kernel 深入；
 - lock-free 深入；
 - realtime scheduling 理论深化。
 
 ---
 
-# 4. Vision Geometry 前置依赖
+# 5. M05 Vision Geometry
 
-## 专业目标
+## 依赖
 
-理解“像素如何对应真实世界”。
+来自 M02：
 
-## 先补基础
-
-### 线代
-
-- vector；
+- vector / matrix；
 - matrix multiplication；
-- coordinate transformation；
 - inverse；
-- projection。
+- coordinate transformation；
+- projection；
+- basic calculus。
 
-### 数学
+来自 M03：
 
-- 三角函数；
-- 相似三角形；
-- 基础微积分概念。
+- Camera measurement；
+- intrinsic / extrinsic 概念；
+- timestamp / calibration。
 
 ## 然后进入
 
-- pinhole camera；
-- intrinsic / extrinsic；
+- pinhole；
+- projection / back-projection；
 - distortion；
 - calibration；
-- projection / back-projection；
-- stereo；
-- RGB-D；
-- Camera→base_link TF。
-
-## 可后补
-
-- projective geometry 深入；
-- epipolar geometry 严格推导。
+- Stereo / RGB-D；
+- pixel → camera → base/world。
 
 ---
 
-# 5. Deep Learning / Deep Perception 前置依赖
+# 6. M06 Deep Learning Foundations
 
-## 专业目标
+## 依赖
 
-能理解、训练、修改和部署视觉模型。
+来自 M02：
 
-## 先补基础
-
-### 微积分
-
-- derivative；
+- vector / matrix；
 - partial derivative；
 - chain rule；
 - gradient。
 
-### 线代
+额外补：
 
-- vector / matrix；
-- dot product；
-- matrix multiplication；
-- tensor 的线代直觉。
-
-### 概率
-
-- probability；
-- expectation；
-- distribution 基础；
-- likelihood 基本概念。
+- probability distribution 基础；
+- softmax / cross entropy；
+- optimization intuition。
 
 ## 然后进入
 
-```text
-PyTorch
-→ Autograd
-→ Training Loop
-→ CNN
-→ Detection
-→ Segmentation
-→ Depth
-→ Feature Representation
-→ BEV / Occupancy
-→ ONNX / TensorRT
-```
+- PyTorch；
+- Autograd；
+- Backpropagation；
+- CNN；
+- Attention；
+- Transformer foundations。
 
-## Transformer 前额外补
-
-- embedding；
-- softmax；
-- dot-product similarity；
-- probability distribution；
-- matrix batch operation。
-
-## 可后补
-
-- information theory；
-- optimization convergence 严格理论；
-- statistical learning theory。
+**M06 必须先于 M07 Deep Vision。**
 
 ---
 
-# 6. State Estimation / SLAM 前置依赖
+# 7. M07 Deep Vision & 3D Perception
 
-## 专业目标
+依赖：
 
-真正理解机器人“位置从哪里来、为什么可信、为什么会漂”。
+- M05 Vision Geometry；
+- M06 Deep Learning Foundations；
+- M03 Sensor basics。
 
-## 先补基础
+然后进入：
 
-### 概率
+- detection / YOLO；
+- segmentation；
+- depth；
+- point cloud；
+- voxel；
+- 3D detection；
+- BEV / occupancy；
+- robot-consumable world representation。
 
-- Gaussian；
-- expectation；
-- variance / covariance；
-- conditional probability；
-- Bayes；
-- MLE / MAP。
+---
 
-### 微积分
+# 8. M08 Mathematical Foundations II
 
-- derivative；
-- partial derivative；
-- Jacobian；
-- first-order approximation。
+M08 是进入高级估计、SLAM、控制、Manipulation 的第二个数学门槛。
 
-### 线代
+## 先掌握
 
-- matrix；
-- covariance matrix；
-- inverse；
-- eigenvalue 基本直觉。
-
-### 几何
-
-- rotation matrix；
-- quaternion；
-- homogeneous transform；
-- SO(3) / SE(3) 工程级理解。
-
-### 优化
-
+- Gaussian / Bayes；
+- covariance；
+- MLE / MAP；
 - least squares；
 - nonlinear least squares；
-- Gauss-Newton 基础。
+- GN / LM；
+- SO(3) / SE(3)；
+- numerical conditioning 基础。
 
-## 然后进入
+然后分流到：
 
-```text
-Kalman Filter
-→ EKF
-→ IMU propagation
-→ ICP / scan matching
-→ LiDAR Odometry
-→ VIO / LIO
-→ Pose Graph / Factor Graph
-→ GNSS / RTK Fusion
-```
-
-## 后续 Foundation Patch
-
-如果进入 FAST-LIO / VIO 源码时遇到：
-
-- Lie algebra；
-- error-state；
-- manifold update；
-- observability；
-
-再专项补，不在前期一次学完。
+- M09 State Estimation；
+- M10 SLAM；
+- M12 Kinematics / Dynamics；
+- M13 Control。
 
 ---
 
-# 7. Planning / Navigation 前置依赖
+# 9. M09 State Estimation
 
-## 专业目标
+依赖：
 
-从“会使用 Planner”提升到“能设计规划决策”。
+- M03 Sensors；
+- M08 Probability / Optimization；
+- M02 Jacobian / Taylor。
 
-## 先补基础
+核心链：
 
-### CS
+```text
+State / Motion Model
+→ Process Noise
+→ Prediction
+→ Measurement Model
+→ Measurement Noise
+→ Innovation
+→ Kalman Gain
+→ State / Covariance Update
+```
 
-- data structure；
-- graph；
+之后进入 M10 LIO / VIO。
+
+---
+
+# 10. M10 SLAM / LIO / VIO / Factor Graph
+
+依赖：
+
+- M05 Vision Geometry；
+- M08 SE(3) / Optimization；
+- M09 State Estimation；
+- M03 IMU / LiDAR / Camera / timing。
+
+基础对应：
+
+```text
+Least Squares / GN → ICP / Graph Optimization
+SE(3)              → Pose / Perturbation
+Jacobian            → Residual Linearization
+Probability         → Noise / Information
+State Estimation    → IMU Propagation / Fusion
+```
+
+---
+
+# 11. M11 Planning & Navigation
+
+依赖：
+
+- graph / tree；
 - queue / priority queue；
-- search；
-- time complexity 基础。
+- complexity；
+- geometry；
+- footprint / collision representation。
 
-### 数学 / 几何
-
-- Euclidean distance；
-- coordinate geometry；
-- angle；
-- collision geometry；
-- cost function。
-
-### 优化基础
-
-- objective；
-- constraint；
-- local/global optimum 基本概念。
-
-## 然后进入
+顺序：
 
 ```text
 Dijkstra
 → A*
-→ heuristic design
-→ footprint / collision checking
 → Hybrid A*
-→ State Lattice
-→ RRT / RRT*
-→ HPA / Hierarchical Planning
-→ Trajectory Optimization
-→ Behavior / BT
+→ Sampling / RRT
+→ HPA
+→ BT / Replanning
+→ Trajectory Optimization Concepts
 ```
 
-## 后补
+源码规则：
 
-- computational geometry 深入；
-- advanced motion planning theory；
-- optimization-based planner 深层数学。
+```text
+真实工程问题
+→ 公司实现
+→ 算法基础
+→ Nav2 官方实现
+→ 必要最小自实现
+→ 回真实系统验证
+```
+
+Planning 不要求先学完整 Dynamics，因此放在 M12 前是合理的。
 
 ---
 
-# 8. Control 前置依赖
+# 12. M12 Kinematics / Dynamics / System Dynamics
 
-## 专业目标
+依赖：
 
-从“调 controller 参数”提升到“能设计控制目标、状态和约束”。
+- M02 calculus / matrix；
+- M08 SE(3) / optimization；
+- basic mechanics。
 
-## 先补基础
-
-### 微积分
-
-- derivative / integral；
-- differential equation 基础。
-
-### 线代
-
-- matrix multiplication；
-- state vector；
-- quadratic form。
-
-### 系统基础
-
-- state；
-- input；
-- output；
-- feedback；
-- dynamic model。
-
-### 优化
-
-- cost function；
-- gradient；
-- constraint；
-- numerical optimization；
-- sampling 基础。
-
-## 然后进入
+核心链：
 
 ```text
-PID
-→ State Space
-→ Stability 基本概念
+Rigid Transform
+→ FK
+→ IK
+→ Jacobian
+→ Velocity / Singularity
+→ Newton-Euler / Lagrange
+→ Robot Dynamics
+→ State-space / Linearization
+```
+
+M12 必须先于 M13 Control 和 M14 Manipulation。
+
+---
+
+# 13. M13 Control & Optimal Control
+
+依赖：
+
+- M12 system dynamics；
+- M02 differential / matrix；
+- M08 optimization。
+
+```text
+Feedback / PID
+→ State-space
+→ Stability / Controllability
 → LQR
 → MPC
-→ Sampling-based Control
 → MPPI
 ```
 
-## MPPI 前专项补
+其中：
 
-- Gaussian sampling；
-- Monte Carlo；
-- importance weighting；
-- exponential weighting；
-- stochastic optimization 基本直觉。
+- Differential equation / state-space → PID / LQR / MPC；
+- quadratic form / eigenvalue → LQR；
+- constrained optimization → MPC；
+- probability / sampling / cost → MPPI。
 
-## 后补
-
-- Lyapunov 严格证明；
-- nonlinear control 深入；
-- robust control。
+源码主线同样以公司真实实现 + Nav2 官方实现为主。
 
 ---
 
-# 9. Manipulation 前置依赖
+# 14. M14 Manipulation
 
-## 专业目标
+依赖：
 
-让机器人不仅“会走”，还“会操作”。
+- M05 / M07 perception；
+- M12 FK / IK / Jacobian / dynamics；
+- M13 control。
 
-## 先补基础
+然后进入：
 
-### 几何
-
-- rotation / transformation；
-- SE(3)；
-- frame chain。
-
-### 微积分 / 线代
-
-- derivative；
-- Jacobian；
-- matrix rank；
-- inverse / pseudo-inverse 基本概念。
-
-### 力学
-
-- force；
-- torque；
-- velocity / acceleration；
-- kinematics / dynamics 区别。
-
-## 然后进入
-
-```text
-Joint / Link
-→ Forward Kinematics
-→ Inverse Kinematics
-→ Jacobian
-→ Singularity
-→ Configuration Space
-→ OMPL / MoveIt2
-→ Grasp Pose
-→ Trajectory Execution
-→ Force / Impedance Basics
-```
-
-## 再进入 Mobile Manipulation
-
-```text
-Navigation
-+ Perception
-+ Object Pose
-+ Arm Planning
-+ Grasp
-+ Task Recovery
-```
+- MoveIt2；
+- Planning Scene；
+- OMPL；
+- grasp planning；
+- trajectory execution；
+- force / impedance control；
+- visual manipulation transform chain。
 
 ---
 
-# 10. Robot Learning 前置依赖
+# 15. M15 Robot Learning
 
-## 专业目标
+依赖：
 
-理解机器人如何从 demonstrations / interaction 数据学习 action policy。
+- M06 Deep Learning；
+- M12 robot state / action；
+- M13 control；
+- M14 manipulation context。
 
-## 必须先完成
-
-- Deep Learning 基础；
-- Transformer 基础；
-- 概率；
-- optimization；
-- robot state / action；
-- kinematics / control 基础。
-
-## 再补
-
-### MDP
-
-- state；
-- action；
-- transition；
-- reward；
-- policy；
-- value。
-
-### Learning from Demonstrations
-
-- dataset distribution；
-- supervised policy learning；
-- covariate shift 基本概念。
-
-## 然后进入
+核心链：
 
 ```text
-Behavior Cloning
+MDP / Policy
+→ Behavior Cloning
 → Imitation Learning
-→ Sequence Action Prediction
-→ ACT
+→ Covariate Shift
+→ ACT / Action Chunking
 → Diffusion Policy
-→ Offline RL
-→ Policy Evaluation
+→ Offline / Real-world Learning
 ```
 
-RL 不是从零开始重学，而是在已有 DQN / PPO / TD3 经验上重新组织为机器人学习体系。
+重点是“动作如何从机器人数据中学出来”，不是重新刷完整 RL 算法全集。
 
 ---
 
-# 11. VLM / VLA 前置依赖
+# 16. M16 VLM
 
-## 专业目标
+依赖：
 
-最终能理解并落地：
+- M05 / M07 Vision；
+- M06 Transformer。
+
+核心解决：
+
+> **机器人怎样看懂场景、语言和语义关系。**
+
+暂不承担连续低层 action 输出。
+
+---
+
+# 17. M17 VLA
+
+依赖：
+
+- M15 Robot Learning；
+- M16 VLM；
+- M12 robot state/action；
+- M13 controller understanding；
+- M14 manipulation context。
+
+核心解决：
 
 ```text
-Vision + Language + Robot State → Action
+Vision + Language + Robot State
+→ Multimodal Representation
+→ Policy
+→ Action Representation / Chunk
+→ Controller / Skill Interface
 ```
 
-## VLM 前必须有
+VLA 必须追到真实 action 的物理和控制意义。
 
-- vision encoder 基础；
-- embedding；
-- Attention；
-- Transformer；
-- token / sequence；
-- multimodal representation 基础。
+---
 
-## VLA 前必须有
+# 18. M18 Mobile Manipulation
 
-- VLM 基础；
-- Robot Learning；
-- action representation；
-- robot state；
-- kinematics / control；
-- perception；
-- navigation / manipulation 至少一个真实执行链；
-- dataset / training / evaluation 基础。
+依赖：
 
-## 然后进入
+- M11 Navigation；
+- M14 Manipulation；
+- M17 VLA；
+- Recovery / Behavior concepts。
 
-- RT 系列思想；
-- OpenVLA 类架构；
-- action tokenization；
-- continuous action head；
-- action chunking；
-- temporal context；
-- embodiment adaptation；
-- fine-tuning；
-- inference / latency；
-- safety / fallback。
-
-## 最终系统问题
-
-必须能够比较：
-
-### 架构 A
+组合：
 
 ```text
-VLA → low-level action
+Instruction
+→ Task / Skill Decomposition
+→ Search / Navigation
+→ Re-observation / Base Alignment
+→ Grasp / Manipulation
+→ Execution Feedback
+→ Recovery
 ```
 
-### 架构 B
+---
+
+# 19. M19–M22 后段能力
+
+## M19 Deployment / Data / Evaluation / Sim2Real
+
+依赖前面主要算法模块，形成：
 
 ```text
-VLM / VLA
-   ↓
-Skill / Subgoal
-   ↓
-Navigation / MoveIt / Controller
+Data Collection
+→ Dataset
+→ Training
+→ Deployment
+→ Evaluation
+→ Failure Mining
+→ Data Reflow
+→ Retraining
 ```
 
-并根据任务、数据量、实时性和安全要求决定用哪一种，而不是把“端到端”当作默认答案。
+## M20 Safety / Reliability / Owner
 
----
+建立跨模块：
 
-# 12. Simulation / Data / Deployment 的依赖位置
+- watchdog；
+- freshness；
+- fallback；
+- degraded mode；
+- uncertainty；
+- collision safety；
+- human takeover；
+- responsibility boundary；
+- evidence chain；
+- regression。
 
-这些不是最后才学，而是随着模块插入。
+注意：基础安全和测试意识从 M00 起贯穿，M20 是综合提升，不是第一次接触。
 
-### 第一次视觉模型
+## M21 Research Capstone
 
-同时学习：
+需要主体课程能力基本形成后再做：
 
-- dataset；
-- label；
-- train / val；
-- inference metrics。
+- problem；
+- baseline；
+- hypothesis；
+- experiment；
+- metrics；
+- ablation；
+- failure analysis；
+- reproducibility；
+- report。
 
-### 第一次状态估计
+## M22 Foundation Cleanup
 
-同时学习：
+根据全过程 `PROGRESS.md` 的 Foundation Debt 定向补齐：
 
-- bag replay；
-- timestamp；
-- trajectory evaluation。
+- 数值分析；
+- 凸优化；
+- 概率深化；
+- OS / Network；
+- Dynamics；
+- Control；
+- Algorithm Theory；
+- 其它真实暴露的理论缺口。
 
-### 第一次规划控制
-
-同时学习：
-
-- benchmark scenario；
-- collision / success / latency metrics。
-
-### 第一次 Robot Learning
-
-同时学习：
-
-- trajectory dataset；
-- demonstration quality；
-- offline evaluation。
-
-### 第一次 VLA
-
-同时学习：
-
-- GPU deployment；
-- latency；
-- safety wrapper；
-- failure data collection。
-
----
-
-# 13. Foundation Patch 规则
-
-当专业学习遇到以下情况时，暂停当前小节并插入补课：
-
-1. 公式中的符号看得懂，但不知道为什么这样算；
-2. 源码出现 Jacobian / covariance / matrix update，却只能机械跟代码；
-3. 能调参数但解释不了参数为什么影响行为；
-4. 无法从数学模型预测参数变化趋势；
-5. 论文关键推导完全依赖记结论；
-6. 实验失败时无法建立变量之间的因果假设。
-
-Foundation Patch 一般控制在 1~3 Day；特别大的基础缺口再升级成独立 Mini-Module。
-
----
-
-# 14. 建议的主模块顺序
-
-根据上述依赖，后续 `03_MASTER_PLAN.md` 应按大致顺序展开：
-
-```text
-M00 全栈系统地图 / 基线测试
-M01 C++ + Linux + ROS2 系统基础补强
-M02 视觉几何前置基础 + Camera / OpenCV
-M03 DL 前置基础 + PyTorch / CNN / Detection / Segmentation
-M04 3D 感知 / Depth / PointCloud / BEV / World Model
-M05 状态估计前置基础 + KF / EKF / SLAM / LIO / Fusion
-M06 规划基础补强 + A* / Hybrid A* / HPA / Trajectory Planning
-M07 控制基础补强 + PID / LQR / MPC / MPPI
-M08 Manipulation 前置基础 + FK / IK / MoveIt2 / Grasp
-M09 Deep Learning 深化 + Transformer / Multimodal
-M10 Robot Learning + BC / ACT / Diffusion Policy
-M11 VLM / VLA
-M12 Mobile Manipulation / Embodied AI 全栈项目
-M13 基础扫尾 + 系统化补全
-```
-
-具体天数暂不在这里决定，避免在能力依赖尚未审核完时过早锁定 Day 数。
-
----
-
-# 15. 最后统一扫尾的基础
-
-以下内容如果前面没有自然触发，不应丢掉，但可以最后统一补：
-
-- 数值稳定性 / conditioning 深化；
-- convex optimization 更系统的理论；
-- probability statistics 更完整体系；
-- information theory 基础；
-- algorithm complexity 深化；
-- operating system 深层机制；
-- computer network 深层机制；
-- rigid-body dynamics 深化；
-- control stability 理论深化；
-- GPU architecture / CUDA 深化；
-- software architecture / distributed system 补充。
-
-原则：**先保证专业主链不被不必要的基础课阻塞，再补齐高级工程师长期应该掌握的基础。**
+不预先固定教材顺序。
