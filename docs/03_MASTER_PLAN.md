@@ -14,13 +14,13 @@
 | M05 | Vision Geometry | 22–26 | Camera Geometry、Calibration、Depth→3D |
 | M06 | Deep Learning Foundations | 27–33 | PyTorch、Backprop、CNN、Attention、Transformer |
 | M07 | Deep Vision & 3D Perception | 34–39 | Detection/Seg/Depth/PointCloud/Clustering/BEV |
-| M08 | Mathematical Foundations II | 40–48 | Probability/Bayes/LS/GN/SE(3) |
+| M08 | Mathematical Foundations II | 40–48 | Probability/Bayes/LS/GN/SO(3)/SE(3)，为SLAM与M12刚体运动打底 |
 | M09 | State Estimation | 49–54 | KF/EKF、Fusion、Observability、Health |
 | M10 | SLAM / LIO / VIO / Factor Graph | 55–62 | ICP、LIO/VIO、Graph、Loop、Degeneracy |
-| M11 | Planning & Navigation | 63–70 | A*/Hybrid A*/RRT/HPA/Nav2/Path Switch |
-| M12 | Robot Kinematics / Dynamics / System Dynamics | 71–79 | FK/IK/Jacobian/Dynamics/ODE/State-space |
-| M13 | Control & Optimal Control | 80–89 | PID/Stability/LQR/MPC/MPPI |
-| M14 | Manipulation | 90–96 | MoveIt2/Collision/Grasp/Trajectory/Impedance |
+| M11 | Planning & Navigation | 63–70 | A*/Hybrid A*/C-space/RRT/HPA/Nav2/Path Switch |
+| M12 | Robot Kinematics / Dynamics / System Dynamics | 71–79 | Screw/Twist/POE/Space-Body Jacobian/IK/Dynamics/Mobile Kinematics |
+| M13 | Control & Optimal Control | 80–89 | Trajectory/Time Scaling/PID/Stability/LQR/MPC/MPPI |
+| M14 | Manipulation | 90–96 | MoveIt2/Collision/Grasp Map/Closure/Trajectory/Impedance |
 | M15 | Robot Learning | 97–104 | RL复盘、BC/IL、ACT、Diffusion、Offline RL |
 | M16 | VLM | 105–109 | LM/Vision Tokens/Alignment/Fusion/Grounding |
 | M17 | VLA | 110–115 | Multimodal Policy、Action、Chunk、Fine-tuning |
@@ -38,15 +38,35 @@
 - **Phase A M00–M04**：系统、ROS2 Runtime、Math I、Sensors、Simulation；
 - **Phase B M05–M07**：Camera Geometry → Deep Vision / 3D World Representation；
 - **Phase C M08–M10**：Probability/Optimization/SE(3) → KF/EKF → LIO/VIO/Factor Graph；
-- **Phase D M11–M13**：Planning → Dynamics → Control；
-- **Phase E M14**：Manipulation；
+- **Phase D M11–M13**：Planning → Modern Robot Kinematics/Dynamics → Control；
+- **Phase E M14**：Manipulation / Contact / Grasp Mechanics；
 - **Phase F M15–M17**：Robot Learning → VLM → VLA；
 - **Phase G M18–M20**：Mobile Manipulation → Deployment/Sim2Real → Safety；
 - **Phase H M21–M22**：Research/Capstone → Dynamic Foundation Cleanup。
 
 ---
 
-## 3. 总Day索引
+## 3. Modern Robotics 教材集成
+
+《Modern Robotics: Mechanics, Planning, and Control》（Kevin M. Lynch / Frank C. Park）作为课程中“刚体运动—运动学—动力学—控制—操作”的主要理论骨架之一，但**不按整本书顺序机械学习，也不替代ROS2/Nav2/MoveIt/VLA工程主线**。
+
+| 课程模块 | 教材定位 | 章节 |
+|---|---|---|
+| M08 | 核心参考：Rigid-Body Motion / SE(3)基础 | Ch3 |
+| M11 | 辅助参考：Configuration Space / Motion Planning | Ch2、Ch10 |
+| M12 | **主要教材**：Configuration、POE、Jacobian、IK、Dynamics、Wheeled Robot | Ch2–8、Ch13 |
+| M13 | 核心参考：Trajectory Generation / Robot Control；课程另补LQR/MPC/MPPI | Ch9、Ch11 |
+| M14 | 核心理论参考：Trajectory + Grasping / Contact；工程仍以MoveIt2为主 | Ch9、Ch12 |
+
+教材取舍原则：
+1. 只纳入对机器人全栈 / Manipulation / VLA / System Owner有长期复用价值的基础；
+2. Screw/Twist/Wrench/Adjoint/POE/Space-Body Jacobian正式放M12，不提前硬塞进M08；
+3. Closed-chain深推、BCH、复杂Lie Jacobian、完整Grasp Wrench Space等暂不作为硬门槛；
+4. 教材公式必须回到frame、dimension、源码变量和真实robot行为，不接受只会书面推导。
+
+---
+
+## 4. 总Day索引
 ```text
 Day001  Robot Full-stack Architecture
 Day002  C++ Lifetime / Ownership / RAII
@@ -94,7 +114,7 @@ Day043  Residual / LS / WLS
 Day044  Nonlinear LS / Newton
 Day045  Gauss-Newton / LM / Robust
 Day046  Rotation / Euler / Quaternion
-Day047  SO(3) / SE(3) / Exp-Log / Perturbation
+Day047  SO(3) / SE(3) / Exp-Log / Perturbation / M12 Bridge
 Day048  Probability + Optimization + SE(3) Integration
 Day049  State / Motion / Measurement / Q-R-P / Bayesian Filter
 Day050  Kalman Prediction
@@ -114,20 +134,20 @@ Day063  Graph / BFS / Dijkstra
 Day064  A* / Heuristic
 Day065  Occupancy / Costmap / Footprint / Inflation
 Day066  Hybrid A* / Motion Primitive
-Day067  RRT / RRT* / OMPL
+Day067  Configuration Space / C-obstacle / RRT / RRT* / OMPL
 Day068  HPA / Hierarchical Planning / Dynamic Edge
 Day069  Nav2 / BT / Replanning / Path Switching
 Day070  Dynamic Navigation / Path Quality / Planning Owner
-Day071  Rigid Body / Joint / DOF / Kinematic Chain
-Day072  Forward Kinematics / DH / POE
-Day073  Jacobian / Velocity Kinematics
-Day074  Inverse Kinematics
-Day075  Singularity / SVD / Manipulability
-Day076  Mobile Robot Kinematics
-Day077  Force / Torque / Mass / Inertia / Newton-Euler
-Day078  Lagrangian / Manipulator Dynamics
+Day071  Configuration / Screw Axis / Twist / Wrench
+Day072  Forward Kinematics / POE Mainline / DH
+Day073  Space-Body Jacobian / Adjoint / Velocity Kinematics / Statics
+Day074  Inverse Kinematics / Newton / DLS
+Day075  Singularity / SVD / Manipulability / Redundancy
+Day076  Wheeled Mobile Kinematics / Nonholonomic Constraint
+Day077  Force / Wrench / Inertia / Newton-Euler
+Day078  Lagrangian / Manipulator Dynamics / Forward-Inverse Dynamics
 Day079  ODE / State-space / Linearization / Discretization / Action
-Day080  Feedback / PID
+Day080  Trajectory / Time Scaling / Feedback / PID
 Day081  Equilibrium / Stability / Eigenvalue
 Day082  Controllability / Observability
 Day083  Optimal Control / LQR
@@ -139,9 +159,9 @@ Day088  Tracking / Latency / Saturation / Model Mismatch
 Day089  Control Owner / MPPI Source
 Day090  Manipulation Architecture / RobotState / MoveIt2
 Day091  Planning Scene / Collision / Attached Object
-Day092  OMPL / Joint-Cartesian Motion / Time Parameterization
+Day092  OMPL / Joint-Cartesian Motion / Trajectory / Time Parameterization
 Day093  Object Pose / Grasp Pose / Pre-grasp
-Day094  Contact / Friction / Force Closure / Verification
+Day094  Contact / Friction Cone / Wrench / Grasp Map / Closure / Verification
 Day095  Cartesian / Force / Impedance Control
 Day096  Pick-and-Place / Recovery / Owner
 Day097  MDP / Return / V-Q-A / Bellman
@@ -187,13 +207,13 @@ Day135  Dynamic Foundation Debt #6
 
 ---
 
-## 4. Day / Lesson / LAB职责
+## 5. Day / Lesson / LAB职责
 - `docs/modules/Mxx_*.md`：Teaching Contract；
 - `docs/lessons/dayXXX.md`：真正学习时生成的详细讲义；
 - `docs/labs/`：少量理论不可替代的实践；
 - `docs/PROGRESS.md`：当前学习状态与Foundation Debt。
 
-## 5. 学习长度与跳级
+## 6. 学习长度与跳级
 1. 普通Day默认2–3h；
 2. 理论、公式、算法、源码、案例为主；
 3. 每日核心知识点≤20；
@@ -202,7 +222,7 @@ Day135  Dynamic Foundation Debt #6
 6. LAB独立安排；
 7. Day编号是逻辑位置，不等于必须消耗135个自然日。
 
-## 6. 正式LAB
+## 7. 正式LAB
 当前锁定3个：
 - `LAB01_manipulation_pick_and_place.md`：M14 Pick-and-Place全链；
 - `LAB02_mobile_manipulation_capstone.md`：M18 Mobile Manipulation端到端，并可扩展为M21最终Research Capstone；
@@ -210,27 +230,29 @@ Day135  Dynamic Foundation Debt #6
 
 其它A*/EKF/PID/LQR/Attention/MPPI等最小自实现只在明显提升理解时安排。
 
-## 7. 统一毕业考试
+## 8. 统一毕业考试
 默认Module Graduation Exam：
 - **30% 核心基础**
 - **50% 综合系统场景**
 - **20% Source / Formula / Design**
 
-默认总分≥85%，Hard Gate不能被总分补偿。**M00作为1-Day总纲模块保留轻量Owner场景考核例外，但不与后续正式Module的30/50/20结构冲突。**
+默认总分≥85%，Hard Gate不能被总分补偿。**M00作为1-Day总纲模块保留轻量Owner场景考核例外。**
 
-## 8. v1.0冻结规则
-本轮审计后，M00–M22顺序、Day1–Day129固定主课程、M22动态槽位和3个正式LAB视为 **Curriculum v1.0**。后续不再因为“还可以加知识”无限扩Module/Day；只有以下情况才改大纲：
+## 9. v1.0冻结规则
+M00–M22顺序、Day1–Day129固定主课程、M22动态槽位和3个正式LAB继续视为 **Curriculum v1.0结构冻结**。本次Modern Robotics集成属于既有P0/P1理论骨架补强，**不增加Module或Day**。
+
+后续只有以下情况才改大纲：
 - 正式学习/考试暴露P0/P1结构性缺口；
 - 真实项目或目标岗位发生重大变化；
-- 某Teaching Contract存在明确错误/循环依赖/安全风险。
+- Teaching Contract存在明确错误/循环依赖/安全风险。
 
 普通薄弱点进入 `PROGRESS.md` Foundation Debt 或M22，不重构主线。
 
-## 9. 当前状态
-- M00–M22：已锁定；
+## 10. 当前状态
+- M00–M22：结构锁定；
 - Day1–Day129：固定主课程已设计；
 - Day130–Day135：动态Foundation Cleanup；
-- Module Teaching Contracts：已完成v1.0审计；
+- Modern Robotics：已嵌入M08/M11/M12/M13/M14；
 - 正式LAB：3个；
 - Daily Lessons：按实际进度逐日生成；
 - 下一步：入口诊断 / Day1正式学习。

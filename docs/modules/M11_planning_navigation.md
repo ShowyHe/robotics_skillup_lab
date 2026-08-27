@@ -1,11 +1,16 @@
 # M11 — Planning & Navigation
 
 ## Module Goal
-建立从图搜索、碰撞表示、运动约束规划到 HPA / Nav2 / BT / Path Switching 的完整规划主线，并能从真实机器人现象反推 Planner / Costmap / BT / Controller 的责任边界。
+建立从图搜索、configuration-space碰撞表示、运动约束规划到 HPA / Nav2 / BT / Path Switching 的完整规划主线，并能从真实机器人现象反推 Planner / Costmap / BT / Controller 的责任边界。
 
 主线：`World/Map → Representation → Collision/Feasibility → Search → Global Path → Validate/Switch/Replan → Local Controller → Motion`。
 
 本模块共 8 个理论 Day（Day63–Day70）。源码顺序固定：`真实问题 → 公司实现 → 反推基础 → 数学/算法 → Nav2官方 → 必要最小实现 → 回真实系统`。
+
+## 主要教材
+- **Modern Robotics Chapter 2 / Chapter 10**：仅作为 Configuration Space 与 Motion Planning 的辅助理论参考。
+- M11主教材仍然是：真实Navigation问题、公司Planner/HPA、Nav2官方资料，以及A*/Hybrid A*/RRT等规划算法本体。
+- Modern Robotics不会替代Costmap、HPA、Nav2/BT、动态路径切换等本课程工程主线。
 
 ---
 
@@ -25,12 +30,12 @@
 3. 必须教学：g/h/f；admissible；consistency；Euclidean/Manhattan；h=0→Dijkstra；heuristic strength；Weighted A*概念；open/closed；grid connectivity；corner cutting；resolution；optimality vs efficiency。
 4. 深度：A* L4；admissibility/consistency L3-L4。
 5. 工程连接：Nav2 global planning、JPS/HPA local attach。
-6. 不展开：D*/D* Lite；未来出现动态增量重规划需求再补。
+6. 不展开：D*/D* Lite；真实动态增量重规划需求出现时再补。
 7. 考核：手推A*并比较heuristic。
 8. 毕业考点：A*、Heuristic、Optimality。
 
 # Day65 — Occupancy / Costmap / Footprint / Inflation
-1. 今日目标：理解“地图有空隙”与“机器人可安全通过”不是一回事。
+1. 今日目标：理解“地图有空隙”与“机器人configuration可安全通过”不是一回事。
 2. 前置：M03/M07 world representation。
 3. 必须教学：occupancy vs costmap；free/occupied/unknown且unknown≠free；robot≠point；footprint；inscribed/circumscribed radius；collision checking；inflation；distance field概念；static/obstacle/inflation/keepout；narrow passage；resolution误差；safety margin。
 4. 深度：Costmap/Footprint L4-L5。
@@ -49,15 +54,15 @@
 7. 考核：解释2D A*路径为什么可能物理不可执行。
 8. 毕业考点：Nonholonomic、Primitive、Collision。
 
-# Day67 — RRT / RRT* / Sampling / OMPL
-1. 今日目标：理解高维configuration space为什么常使用sampling-based planning。
-2. 前置：Day65 collision；本日内先建立 C-space = “robot configuration 的搜索空间”及state validity概念，M12/M14再深化机械臂configuration。
-3. 必须教学：C-space/state validity；sample→nearest→steer→collision→tree；goal bias；step size；probabilistic completeness；RRT vs RRT*；near/rewire；asymptotic optimality概念；narrow passage sampling难题；OMPL角色；与Manipulation高维规划桥接。
-4. 深度：RRT L4；RRT* L3。
-5. 工程连接：MoveIt/OMPL前置。
-6. 不展开：sampling planner全集。
-7. 考核：画一次RRT扩展并解释rewire。
-8. 毕业考点：C-space、RRT、RRT*、OMPL。
+# Day67 — Configuration Space / RRT / RRT* / Sampling / OMPL
+1. 今日目标：理解高维configuration space为什么常使用sampling-based planning，以及robot geometry怎样转化为configuration validity问题。
+2. 前置：Day65 collision；Modern Robotics Ch2/10可辅助阅读，M12/M14后续深化机械臂configuration。
+3. 必须教学：Configuration `q`与C-space `𝒞`；`𝒞_obs`表示导致robot与障碍碰撞的configurations；`𝒞_free=𝒞\𝒞_obs`；workspace obstacle不等于C-space obstacle；state validity / edge validity；sample→nearest→steer→collision→tree；goal bias；step size；probabilistic completeness；RRT vs RRT*；near/rewire；asymptotic optimality概念；narrow passage sampling难题；OMPL角色；与Manipulation高维规划桥接。
+4. 深度：C-space/Collision L4；RRT L4；RRT* L3。
+5. 工程连接：MoveIt/OMPL、robot footprint到state validity的统一理解。
+6. 不展开：C-obstacle解析几何推导、sampling planner全集。
+7. 考核：解释workspace中的障碍怎样变成C-space中的不可行configuration；画一次RRT扩展并解释rewire。
+8. 毕业考点：C-space、`C_free/C_obs`、RRT、RRT*、OMPL。
 
 # Day68 — HPA / Hierarchical Planning / Dynamic Edge
 1. 今日目标：理解大图抽象、local refinement与动态edge失效。
@@ -95,13 +100,13 @@
 统一权重：**30%核心基础 / 50%综合系统场景 / 20% Source·Formula·Design**。
 
 ## 30% 核心基础
-硬门槛：Dijkstra/A*、heuristic、costmap/footprint/collision、Hybrid A*约束、C-space、HPA/dynamic edge、Nav2责任边界、path switching。
+硬门槛：Dijkstra/A*、heuristic、costmap/footprint/collision、Hybrid A*约束、`C_free/C_obs`与configuration validity、HPA/dynamic edge、Nav2责任边界、path switching。
 
 ## 50% 综合系统场景
-至少覆盖：A*手算；窄通道可行性；行人动态阻塞keep/switch/replan；HPA edge失效/TTL/fallback；Planner path正常但robot异常时区分Planner/Controller。
+至少覆盖：A*手算；窄通道可行性；workspace obstacle→C-space validity；行人动态阻塞keep/switch/replan；HPA edge失效/TTL/fallback；Planner path正常但robot异常时区分Planner/Controller。
 
 ## 20% Source / Formula / Design
-在公司planner/HPA与Nav2官方实现中定位map/costmap输入、search、collision validity、path output、replan、BT、switch/guard调用链；公司源码内容以真实读取为准。
+在公司planner/HPA与Nav2官方实现中定位map/costmap输入、search、collision validity、path output、replan、BT、switch/guard调用链；能够用Modern Robotics Ch2/10的C-space语言解释MoveIt/OMPL前置思想，但不以教材替代真实Navigation源码。
 
 ## 通过标准
-总分≥85%；A*、collision/footprint、HPA dynamic edge、Nav2 boundary不得有基础错误；必须能判断“规划错”还是“控制执行错”。
+总分≥85%；A*、collision/footprint、C-space validity、HPA dynamic edge、Nav2 boundary不得有基础错误；必须能判断“规划错”还是“控制执行错”。

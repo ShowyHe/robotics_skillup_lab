@@ -6,7 +6,7 @@
 
 > **研究生级机器人理论基础 + 真实机器人全栈工程能力 + VLA / Mobile Manipulation具身智能能力 + 系统 Owner 能力。**
 
-当前课程大纲已完成二次审计并进入 **Curriculum v1.0冻结**：后续优先正式学习、考试和真实Foundation Debt修复，不再因为“还能再加知识”持续扩Module或Day。
+当前课程结构已完成审计并进入 **Curriculum v1.0结构冻结**：后续优先正式学习、考试和真实Foundation Debt修复，不再因为“还能再加知识”持续扩Module或Day。
 
 ## 1. 总体能力链
 ```text
@@ -64,7 +64,29 @@ Research / Capstone / Foundation Cleanup
 
 Robot Learning / VLM / VLA 等方向若没有公司实现，则以论文、官方项目、官方实现为主。源码数量不是目标。
 
-## 4. 主课程与Day范围
+## 4. Modern Robotics 教材集成
+
+《Modern Robotics: Mechanics, Planning, and Control》（Kevin M. Lynch / Frank C. Park）正式作为运动学—动力学—控制—Manipulation主线的重要教材，但**不按整本书顺序从头刷到尾**。
+
+```text
+Modern Robotics Ch3        → M08  SE(3) / Rigid-Body Motion
+Ch2 + Ch10                 → M11  C-space / Motion Planning（辅助）
+Ch2–8 + Ch13               → M12  Screw / Twist / POE / Jacobian / IK / Dynamics / Mobile Robot
+Ch9 + Ch11                 → M13  Trajectory / Robot Control
+Ch9 + Ch12                 → M14  Trajectory / Grasping / Contact
+```
+
+课程取舍：
+- **M12是本书最核心的落点**：Screw Axis、Twist、Wrench、POE、Adjoint、Space/Body Jacobian正式纳入；
+- M08只完成SE(3)/Lie/Exp-Log/Perturbation前置，不提前硬塞完整Screw/Adjoint；
+- M11仍以Nav2/HPA/Hybrid A*/Costmap等Navigation主线为核心；
+- M13继续包含LQR/MPC/MPPI；
+- M14继续以MoveIt2真实工程为核心，同时补Grasp Map / Force Closure理论；
+- Closed-chain深推、BCH、复杂Lie Jacobian、完整Grasp Wrench Space等暂不作为硬门槛。
+
+教材公式必须最终回到 **frame、dimension、源码变量、controller接口和真实robot behavior**。
+
+## 5. 主课程与Day范围
 ```text
 M00  Day1
 M01  Day2–7
@@ -95,7 +117,7 @@ M22  Day130–135（动态 Foundation Cleanup）
 
 详见 [`docs/03_MASTER_PLAN.md`](docs/03_MASTER_PLAN.md)。
 
-## 5. 文档结构
+## 6. 文档结构
 ```text
 docs/
 ├── 00_GOALS.md
@@ -111,14 +133,14 @@ docs/
 ```
 
 职责：
-- `03_MASTER_PLAN.md`：总Day数、Module范围、总索引；
+- `03_MASTER_PLAN.md`：总Day数、Module范围、总索引、教材映射；
 - `04_MODULE_SPECS.md`：Module知识边界和毕业能力；
 - `modules/`：每个Day的Teaching Contract，不是当天长篇讲义；
 - `lessons/`：真正学习到对应Day时生成；
 - `labs/`：只有不可被理论替代的实验；
 - `PROGRESS.md`：当前学习节点、薄弱点、复测与Foundation Debt。
 
-## 6. 掌握等级
+## 7. 掌握等级
 - **L1：见过**
 - **L2：能解释**
 - **L3：能计算 / 推导**
@@ -127,7 +149,7 @@ docs/
 
 核心数学至少L3；核心机器人专业理论L3→L4；Navigation / Control / System Owner / VLA关键能力逐步向L5。
 
-## 7. 统一考试结构
+## 8. 统一考试结构
 普通 Module Graduation Exam 默认：
 - **30% 核心基础**
 - **50% 综合系统场景**
@@ -135,7 +157,7 @@ docs/
 
 默认总分 **≥85%**；Hard Gate基础概念不能靠其他题得分抵消。M00为1-Day总纲，保留轻量Owner场景考试例外。
 
-## 8. 正式LAB
+## 9. 正式LAB
 当前锁定3个：
 - `docs/labs/LAB01_manipulation_pick_and_place.md`：Manipulation全链；
 - `docs/labs/LAB02_mobile_manipulation_capstone.md`：Mobile Manipulation端到端，并可扩展为M21最终Research Capstone；
@@ -143,27 +165,23 @@ docs/
 
 LAB用于验证真实闭环、frame、collision、execution、contact、learned action、recovery和跨模块Owner能力，不为了课程形式凑数量。
 
-## 9. v1.0审计重点
-本轮收口已明确：
-- M04/M09/M10考试统一30/50/20；
-- 修复M11/M15前置倒挂；
-- M13稳定性语境与controllability/observability符号；
-- M14 force/impedance convention；
-- M15 ACT/CVAE、Diffusion最小数学链；
-- M07 point-cloud clustering；
-- M19 Orin power/thermal/memory bandwidth；
-- M21单日≤20核心点并与Capstone闭环；
-- M22增加Constrained Optimization、Algorithm Theory、CMake/colcon、Python/NumPy动态候选池；
-- 增加LAB03 learned policy/VLA action-interface实践。
+## 10. 当前关键理论强化
+本轮教材集成不增加Day，只强化既有主线：
+- M08：明确SE(3)是M12 Screw/POE体系前置；
+- M11：补 `C_free / C_obs / configuration validity`；
+- M12：Screw / Twist / Wrench / POE / Adjoint / Space-Body Jacobian成为核心；
+- M13：补Path→Timed Trajectory→Reference→Controller桥梁；
+- M14：补Friction Cone / Wrench / Grasp Map / Form-Force Closure。
 
-## 10. 最终验收
+## 11. 最终验收
 课程完成不以“看完多少Day”为标准，而以是否能够：
 1. 从数学/物理解释核心机器人算法；
 2. 从sensor一路追到真实action/physical motion；
 3. 判断跨模块故障责任；
 4. 读懂并修改关键真实/官方实现；
 5. 建立Perception→Estimation→Planning→Control→Manipulation→VLA完整联系；
-6. 完成Mobile Manipulation / Embodied AI Capstone；
-7. 真正跑通至少一次learned policy/VLA action→Safety→Controller闭环；
-8. 建立数据、部署、评测、失败回流、Safety、Regression闭环；
-9. 对证据不足的问题明确说“当前不能确定”，并指出下一步需要的证据。
+6. 真正理解并使用SE(3)、Screw/Twist、POE、Jacobian、Dynamics、Trajectory、Grasp/Contact理论；
+7. 完成Mobile Manipulation / Embodied AI Capstone；
+8. 真正跑通至少一次learned policy/VLA action→Safety→Controller闭环；
+9. 建立数据、部署、评测、失败回流、Safety、Regression闭环；
+10. 对证据不足的问题明确说“当前不能确定”，并指出下一步需要的证据。
