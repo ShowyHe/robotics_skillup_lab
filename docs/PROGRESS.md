@@ -1,9 +1,34 @@
 # PROGRESS — 当前课程设计与学习状态
 
 ## 1. 当前阶段
-当前处于：**Curriculum v1.0设计与二次审计完成，准备进入正式学习/入口诊断阶段。**
 
-尚未正式从新课程 Day1 开始。
+当前处于：**定位 + 视觉理论专项学习（ACTIVE）**。
+
+专项导航文件：`docs/TEMP_POSITIONING_VISION_PLAN.md`。
+
+当前正式学习位置：
+
+```text
+M02 Mathematical Foundations I
+Day8 — Vector / Matrix / Dimension：COMPLETED / PASS
+Next：Day9 — Basis / Coordinate / Linear Transformation
+```
+
+本专项优先顺序：
+
+```text
+M02 Day8–15
+→ M03 Day16–19
+→ M05 Day22–26
+→ M06 Day27–33
+→ M07 Day34–39
+→ M08 Day40–48
+→ M09 Day49–54
+→ M10 Day55–62
+→ M11 Day65 + M07 Day38–39复盘
+```
+
+Curriculum v1.0 主结构不变；专项只调整当前学习优先级。
 
 ---
 
@@ -101,7 +126,7 @@ M00为1-Day总纲，保留轻量Owner场景考试例外；M22使用同一30/50/2
 
 ---
 
-## 7. 当前能力起点（正式学习时仍需入口诊断）
+## 7. 当前能力起点
 ### 已有工程优势
 - ROS2真实机器人开发/调试；
 - Nav2 / Navigation；
@@ -119,14 +144,24 @@ M00为1-Day总纲，保留轻量Owner场景考试例外；M22使用同一30/50/2
 - Deep Learning / Robot Learning / VLM / VLA；
 - Deployment / Sim2Real / Safety / Research Methodology。
 
-CMake/colcon、Python/NumPy等工具基础不预设熟练度：先入口诊断，若真实阻塞源码构建/AI数据处理，则进入M22 Candidate Debt Pool。
+CMake/colcon、Python/NumPy等工具基础不预设熟练度：若真实阻塞源码构建/AI数据处理，则进入M22 Candidate Debt Pool。
 
 ---
 
 ## 8. Foundation Debt
-正式学习尚未开始，因此当前没有具体Debt条目。
 
-未来统一记录：
+### 当前状态
+Day8 学习结束后，**无未关闭 P0/P1 Foundation Debt**。
+
+Day8 暴露但已当日纠正的内容：
+- Identity Matrix 与 Unit Vector 混淆；
+- Transpose 与 Inverse 区别遗忘；
+- `y=Ax` initially 偏向理解为坐标/维度转换，而非一般 linear mapping；
+- 构造 measurement matrix `H` 时，曾把 state variable 写进 H，而不是写线性系数。
+
+以上均已通过定向复测，不保留为 OPEN debt。
+
+未来 Foundation Debt 统一记录：
 ```text
 Knowledge:
 Exposed At (Module / Day / Exam / Source):
@@ -159,15 +194,69 @@ Next:
 
 ---
 
-## 10. 下一步
-课程设计阶段结束。下一步：
+## 10. 当前 Daily Learning Record
+
 ```text
-读取 M00 Teaching Contract
-→ M00 / Day1 入口检查（如需要）
-→ 正式生成 lessons/day001.md 或直接进行Day1教学
-→ Daily Quiz
-→ 更新PROGRESS
-→ 按Module Graduation Exam推进
+Current Module / Day:
+M02 / Day8 — Vector / Matrix / Dimension — COMPLETED / PASS
+
+Mastered:
+- scalar / vector / matrix 与 dimension reasoning
+- matrix multiplication legality 与结果维度
+- matrix × vector calculation
+- y=Ax 作为一般 linear mapping
+- transpose / identity / inverse 的区别
+- invertibility 的信息丢失直觉
+- 根据 state 语义构造简单 measurement matrix H
+
+Weak:
+- 入口阶段对 identity / inverse / transpose 有遗忘
+- 对 linear mapping 的一般性理解需要恢复
+- 初次构造 H 时把 coefficient 与 state variable 混淆
+
+Wrong Understanding:
+- 曾把 I 与 unit vector 混淆
+- 曾把 A^-1 误认为可能是 transpose
+- 曾写 H=[0,0,x,0] 选择 θ
+
+Corrected:
+- I 是 Identity Matrix，Ix=x；unit vector 满足 ||u||=1
+- A^T 是 transpose；A^-1 是 inverse
+- y=Ax 表示一般 linear mapping，可改变维度也可不改变
+- H 中写 linear coefficients；选择第3维应写 [0,0,1,0]
+
+Retest:
+- 对 state [p_x,p_y,v_x,v_y]^T，只观测 v_y，正确构造 H=[0,0,0,1]
+- Retest PASS
+
+Source Reading Progress:
+- M02 Day8 Teaching Contract 已读取
+
+LAB / Project Progress:
+- Day8 无 LAB
+
+Foundation Debt:
+- 无未关闭 P0/P1 debt
+
+Lesson:
+- docs/lessons/day008.md
+
+Next:
+- M02 / Day9 — Basis / Coordinate / Linear Transformation
 ```
 
-已有内容可以通过入口诊断跳过/压缩；Day编号是课程逻辑索引，不强制机械消耗135个自然日。
+---
+
+## 11. 下一步
+
+```text
+读取 M02 Day9 Teaching Contract
+→ 必要入口检查
+→ 生成 / 使用完整 Day9 讲义
+→ 正式教学
+→ Daily Quiz
+→ targeted remediation / retest（如需要）
+→ 更新 PROGRESS
+```
+
+Day编号是课程逻辑位置，不等于必须消耗固定自然日；核心前置未掌握时不机械推进。
