@@ -11,7 +11,8 @@
 ```text
 M02 Mathematical Foundations I
 Day8 — Vector / Matrix / Dimension：COMPLETED / PASS
-Next：Day9 — Basis / Coordinate / Linear Transformation
+Day9 — Basis / Coordinate / Linear Transformation：COMPLETED / PASS
+Next：Day10 — Dot / Cross / Norm / Projection / Geometry
 ```
 
 本专项优先顺序：
@@ -151,15 +152,22 @@ CMake/colcon、Python/NumPy等工具基础不预设熟练度：若真实阻塞�
 ## 8. Foundation Debt
 
 ### 当前状态
-Day8 学习结束后，**无未关闭 P0/P1 Foundation Debt**。
+Day8、Day9 学习结束后，**无未关闭 P0/P1 Foundation Debt**。
 
-Day8 暴露但已当日纠正的内容：
+Day8 暴露但已当日纠正：
 - Identity Matrix 与 Unit Vector 混淆；
 - Transpose 与 Inverse 区别遗忘；
-- `y=Ax` initially 偏向理解为坐标/维度转换，而非一般 linear mapping；
+- `y=Ax` 偏向理解为坐标/维度转换，而非一般线性映射；
 - 构造 measurement matrix `H` 时，曾把 state variable 写进 H，而不是写线性系数。
 
-以上均已通过定向复测，不保留为 OPEN debt。
+Day9 暴露但已纠正：
+- 将所有 `Ax` 过度理解为坐标变换；
+- 基/坐标与“绝对/相对坐标”概念混淆；
+- 对 rank 的独立方向含义不够明确；
+- 对零空间一度仅理解为“整体降维”，未明确具体被消掉的输入方向；
+- 行空间与列空间需要区分：一般情况下 `N(A)` 与行空间正交；本日对称矩阵示例中行空间与列空间重合，因此可直接用正交几何图像理解。
+
+以上均已通过对话中的定向纠正与复测，不保留为 OPEN debt。
 
 未来 Foundation Debt 统一记录：
 ```text
@@ -198,51 +206,57 @@ Next:
 
 ```text
 Current Module / Day:
-M02 / Day8 — Vector / Matrix / Dimension — COMPLETED / PASS
+M02 / Day9 — Basis / Coordinate / Linear Transformation — COMPLETED / PASS
 
 Mastered:
-- scalar / vector / matrix 与 dimension reasoning
-- matrix multiplication legality 与结果维度
-- matrix × vector calculation
-- y=Ax 作为一般 linear mapping
-- transpose / identity / inverse 的区别
-- invertibility 的信息丢失直觉
-- 根据 state 语义构造简单 measurement matrix H
+- 同一物理向量与不同基下坐标表示的区别
+- 基与坐标的线性组合关系
+- y=Ax 作为一般线性变换，而非仅坐标变换
+- 从矩阵列理解各标准基向量被送到哪里
+- 从矩阵行理解输出各分量由哪些输入组合得到
+- 选择 / 缩放 / 旋转 / 剪切 / 投影 / 降维 / 混合变量的统一线性变换视角
+- 线性无关的几何含义
+- rank 作为保留的独立输出方向数
+- null space 作为被完全消掉的输入方向集合
+- 行空间与零空间的正交关系
+- robot measurement 中 Hd=0 的不可见方向直觉
 
 Weak:
-- 入口阶段对 identity / inverse / transpose 有遗忘
-- 对 linear mapping 的一般性理解需要恢复
-- 初次构造 H 时把 coefficient 与 state variable 混淆
+- 初期对零空间与张成空间的关系需要更多几何解释
+- 对一般矩阵中行空间/列空间的区分需要保持警惕
 
 Wrong Understanding:
-- 曾把 I 与 unit vector 混淆
-- 曾把 A^-1 误认为可能是 transpose
-- 曾写 H=[0,0,x,0] 选择 θ
+- 曾把全部 Ax 近似理解成坐标系变换
+- 曾将换基理解为绝对坐标/相对坐标
+- 曾把零空间只描述为二维坍缩成一维，而未指出具体被消掉方向
 
 Corrected:
-- I 是 Identity Matrix，Ix=x；unit vector 满足 ||u||=1
-- A^T 是 transpose；A^-1 是 inverse
-- y=Ax 表示一般 linear mapping，可改变维度也可不改变
-- H 中写 linear coefficients；选择第3维应写 [0,0,1,0]
+- 坐标变换只是线性变换的一种用途
+- 换基时物理向量不变，基与坐标同时改变
+- 列空间描述输出能张成到哪里；零空间描述哪些输入方向被完全消掉
+- 严格地，N(A) 与 A 的行空间正交
+- 本日 A=[[1,2],[2,4]] 为对称矩阵，行空间与列空间重合，因此 d=[-2,1]^T 可用直接正交几何图像理解
 
 Retest:
-- 对 state [p_x,p_y,v_x,v_y]^T，只观测 v_y，正确构造 H=[0,0,0,1]
+- 能解释 rank=1 对应输出只张成一条线
+- 能解释线性相关/独立的几何意义
+- 能解释 d∈N(A) 表示系统沿 d 方向改变输入时输出不变
 - Retest PASS
 
 Source Reading Progress:
-- M02 Day8 Teaching Contract 已读取
+- M02 Day9 Teaching Contract 已读取
 
 LAB / Project Progress:
-- Day8 无 LAB
+- Day9 无 LAB
 
 Foundation Debt:
 - 无未关闭 P0/P1 debt
 
 Lesson:
-- docs/lessons/day008.md
+- docs/lessons/day009.md
 
 Next:
-- M02 / Day9 — Basis / Coordinate / Linear Transformation
+- M02 / Day10 — Dot / Cross / Norm / Projection 与几何关系
 ```
 
 ---
@@ -250,9 +264,8 @@ Next:
 ## 11. 下一步
 
 ```text
-读取 M02 Day9 Teaching Contract
-→ 必要入口检查
-→ 生成 / 使用完整 Day9 讲义
+读取 M02 Day10 Teaching Contract
+→ 使用完整 Day10 讲义
 → 正式教学
 → Daily Quiz
 → targeted remediation / retest（如需要）
