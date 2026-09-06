@@ -13,7 +13,8 @@ M02 Mathematical Foundations I
 Day8  — Vector / Matrix / Dimension：COMPLETED / PASS
 Day9  — Basis / Coordinate / Linear Transformation：COMPLETED / PASS
 Day10 — Dot / Cross / Norm / Projection / Geometry：COMPLETED / PASS
-Next：Day11 — Eigenvalue / Eigenvector / Quadratic Form
+Day11 — Eigenvalue / Eigenvector / Quadratic Form：COMPLETED / PASS
+Next：Day12 — SVD / Rank / Conditioning
 ```
 
 本专项优先顺序：
@@ -105,7 +106,9 @@ M22  Foundation Cleanup                                    Day130–135 dynamic
 ## 6. Foundation Debt
 
 ### 当前状态
-Day8–Day10 学习结束后，**无未关闭 P0/P1 Foundation Debt**。
+Day8–Day11 学习结束后，**无未关闭 P0/P1 Foundation Debt**。
+
+保留若干 **P2 Review Debt**，用于后续 M02 module exam / Foundation Cleanup 前复测；这些不会阻塞 Day12。
 
 ### Day8 暴露但已纠正
 - Identity Matrix 与 Unit Vector 混淆；
@@ -125,7 +128,65 @@ Day8–Day10 学习结束后，**无未关闭 P0/P1 Foundation Debt**。
 - 区分了标量投影与投影向量；
 - 初始未能解释 `R^-1=R^T`，后续通过“旋转后的基仍单位且正交，转置通过点积取回各基方向分量”完成复测。
 
-以上均已通过定向复测，不保留为 OPEN debt。
+### Day11 暴露并已纠正
+- `x=cv` 初始讲解未显式区分 scalar / vector / dimension，后续固定：`c,λ∈R`，`v,x∈R^n`；
+- 一度把 eigenvector 的价值理解成“用来拆任意向量”；已纠正：普通基也能拆，eigen basis 的关键是拆后各方向在 A 下不耦合；
+- 一度把“任意向量经过 A”说成整体缩放；已纠正：不同 eigen components 乘不同 λ 后，合成向量一般会改变方向；
+- 一度认为两个 eigenvectors 一般都正交；已纠正：一般矩阵不保证，实对称矩阵可选正交特征基；
+- 一度把对角矩阵的 off-diagonal 0 归因于“正交”；已纠正：真正原因是 eigen direction 经过 A 后不产生其他 eigen direction 分量；
+- 一度认为“最大 eigenvalue 就是 general matrix 最大拉伸”；已纠正：general matrix 最大/最小长度拉伸看 singular value；
+- 协方差 ellipse 中已区分：eigenvalue 是主方向方差，轴尺度与 `sqrt(λ)` 成正比；
+- 已区分 Gaussian elimination / row reduction 求 rank 与 eigen diagonalization 换 basis 的不同目的。
+
+### P2 Review Debt — Day11
+
+```text
+Knowledge: Eigen diagonalization / basis change
+Exposed At: M02 / Day11
+Wrong / Weak Understanding: 容易从 Av=λv 直接跳到 diagonal matrix，推导链条还需闭卷复述
+Debt Type: Derivation / Transfer
+Priority: P2
+Current Level: L2-L3
+Target Level: L3
+Retest: V=[v1...vn] → AV=VΛ → V^-1AV=Λ，并解释 off-diagonal 为 0 的原因
+Status: OPEN
+```
+
+```text
+Knowledge: Quadratic form applications
+Exposed At: M02 / Day11
+Wrong / Weak Understanding: covariance ellipse、LQR cost contour、Hessian curvature 的 λ 含义容易混；cost 等高线概念理解较晚
+Debt Type: Transfer / System Reasoning
+Priority: P2
+Current Level: L2
+Target Level: L3
+Retest: 分别解释 covariance / LQR / Hessian 的 eigenvector 与 eigenvalue
+Status: OPEN
+```
+
+```text
+Knowledge: Eigenvalue vs Singular Value
+Exposed At: M02 / Day11
+Wrong / Weak Understanding: 曾把 general matrix 最大 eigenvalue 当作最大拉伸
+Debt Type: Definition / Transfer
+Priority: P2
+Current Level: L2
+Target Level: L3
+Retest: 给非对称矩阵解释为何 max eigenvalue 不能代表 max stretch，并说明 singular value 的职责
+Status: LEARNING
+```
+
+```text
+Knowledge: Positive definite quadratic cost
+Exposed At: M02 / Day11
+Wrong / Weak Understanding: 定义与 cost 直觉已理解，但独立复测不足
+Debt Type: Definition / Transfer
+Priority: P2
+Current Level: L2
+Target Level: L2-L3
+Retest: 闭卷解释 x!=0 => x^TQx>0 与 quadratic cost 的关系
+Status: OPEN
+```
 
 未来 Foundation Debt 统一记录：
 ```text
@@ -146,50 +207,67 @@ Status: OPEN / LEARNING / RETEST / CLOSED
 
 ```text
 Current Module / Day:
-M02 / Day10 — Dot / Cross / Norm / Projection / Geometry — COMPLETED / PASS
+M02 / Day11 — Eigenvalue / Eigenvector / Quadratic Form — COMPLETED / PASS
 
 Mastered:
-- 2-norm 与速度大小 / 欧氏距离
-- 点积 a·b 的几何意义与夹角关系
-- 点积为 0 对应正交
-- 标量投影与投影向量的区别
-- 路径切向/法向投影的机器人意义
-- 叉积与右手定则
-- 法向量几何意义
-- point-to-plane ICP 中 n·(p-q) 作为法向距离误差
-- 旋转矩阵列向量保持单位与正交，因此 R^T R=I，R^-1=R^T
+- Av=λv：eigenvector 是 A 的特殊不变方向，eigenvalue 是该方向缩放系数
+- (v, λ) 是配对关系；c,λ 为 scalar，v,x 为 vector
+- 任意向量可由一组基分解；eigen basis 的特殊价值是 A 作用后各 eigen direction 不互相耦合
+- x=c1v1+c2v2 时，Ax=c1λ1v1+c2λ2v2
+- 一般输入向量并非整体缩放；不同 eigen components 比例改变后输出方向通常改变
+- 可对角化直觉：V=[v1...vn]，AV=VΛ，V^-1AV=Λ
+- diagonal matrix 的 off-diagonal 0 表示 eigen directions 不互相串扰，不是“因为正交”
+- 一般矩阵 eigenvectors 不一定正交；实对称矩阵可取 orthonormal eigenbasis，并有 Q^TAQ=Λ
+- 实对称矩阵是可对角化矩阵中的更特殊类型
+- 离散系统中 |λ|<1 衰减、|λ|>1 放大、λ<0 每步翻转方向
+- covariance：eigenvector 为主不确定方向，eigenvalue 为该方向方差，轴尺度 ∝ sqrt(λ)
+- general matrix 最大/最小拉伸不能直接看 eigenvalue，应看 singular value
 
 Weak:
-- 需继续保持“点积”和“矩阵线性变换”的记号区分
+- eigen diagonalization 从 AV=VΛ 到 V^-1AV=Λ 的推导需要后续闭卷复述
+- covariance ellipse / LQR cost contour / Hessian curvature 三种 quadratic-form 应用需后续再次对比
+- positive definite 已理解定义和基本 cost 直觉，但独立复测不足
+- eigenvalue 与 singular value 的职责边界将在 Day12 继续强化
 
 Wrong Understanding:
-- 曾因 a^T b 记法看不到“点”，把点积与矩阵变换混淆
-- 曾把标量投影 3 与投影向量 [3,0]^T 混为同一结果
+- 曾把 eigenvector 理解为“必须用它才能拆任意向量”
+- 曾把 general matrix 最大 eigenvalue 当作最大拉伸倍数
+- 曾认为 eigenvectors 一般正交
+- 曾把 diagonal matrix 的 0 归因于 orthogonality
+- 曾把 covariance eigenvalue 直接当椭圆轴长度
+- 曾把 Gaussian elimination 求 rank 与 eigen diagonalization 混在一起
 
 Corrected:
-- 后续优先使用 a·b 表示点积；必要时补 a·b=a^T b
-- 标量投影 = a·b_hat；投影向量 = (a·b_hat)b_hat
-- R^T 的每一行对应旋转后基向量的转置，用点积取回向量在该基方向的分量
+- 普通基也能表示任意向量；eigen basis 价值在于 A 下各方向独立缩放、不发生耦合
+- 对称矩阵的 orthogonality 是额外性质；diagonalization 的根本条件是有足够多线性无关 eigenvectors
+- covariance eigenvalue=variance，标准差/轴尺度与 sqrt(λ) 成正比
+- general matrix 最大/最小长度拉伸由 singular values 描述
+- row reduction 用于 rank / solve equations；eigen diagonalization 是换 basis 描述同一 linear transformation
 
 Retest:
-- a=[3,4]^T, b=[1,0]^T：标量投影=3，投影向量=[3,0]^T
-- 能解释旋转基仍保持单位与正交，从而 R^-1=R^T
+- 能解释 λ=-0.5：每步翻转、幅值减半、长期趋近0
+- x=3v1-2v2，Av1=5v1，Av2=2v2 → Ax=15v1-4v2
+- 能说明“特征向量不是为了能拆，而是为了拆完不耦合”
+- 能说明实对称矩阵的不同 eigen directions 正交
+- 能说明实对称矩阵 ⊂ 可对角化矩阵
 - Retest PASS
 
 Source Reading Progress:
-- M02 Day10 Teaching Contract 已读取
+- M02 Day11 Teaching Contract 已读取
+- M02 Day12 Teaching Contract 已读取
 
 LAB / Project Progress:
-- Day10 无 LAB
+- Day11 无 LAB
 
 Foundation Debt:
 - 无未关闭 P0/P1 debt
+- P2 Review：diagonalization、quadratic-form applications、eigen vs singular、positive definite
 
 Lesson:
-- docs/lessons/day010.md
+- docs/lessons/day011.md
 
 Next:
-- M02 / Day11 — Eigenvalue / Eigenvector / Quadratic Form
+- M02 / Day12 — SVD / Rank / Conditioning
 ```
 
 ---
@@ -197,8 +275,8 @@ Next:
 ## 8. 下一步
 
 ```text
-读取 M02 Day11 Teaching Contract
-→ 使用完整 Day11 讲义
+读取 M02 Day12 Teaching Contract
+→ 使用完整 Day12 讲义
 → 正式教学
 → Daily Quiz
 → targeted remediation / retest（如需要）
