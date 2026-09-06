@@ -121,7 +121,7 @@ M22  Day130–135（动态 Foundation Cleanup）
 
 状态：`⬜ 未开始`、`🟨 进行中`、`✅ 完成 / PASS`、`🔁 需要重学 / Retest`。
 
-当前正式位置：**M02 / Day012 — SVD / Rank / Conditioning**。Day008–Day011 已完成并有正式讲义；`docs/lessons/` 当前没有 Day001–Day007 的正式学习记录，因此这里不把它们标成已完成。
+当前正式位置：**定位 + 视觉理论专项 / Phase 1 / M02 / Day013 — Derivative / Differential / Numerical Integration**。Day008–Day012 已完成并有正式讲义。当前专项按 `M02 Day8–15 → M03 Day16–19 → M05 Day22–26 → ...` 推进，**不是按 Day1–Day135 机械顺序推进**；M04 Simulation 暂不作为当前专项前置主线。`docs/lessons/` 当前没有 Day001–Day007 的正式学习记录，因此这里不把它们标成已完成。
 
 ### M00–M02｜系统基础与数学基础 I
 
@@ -138,8 +138,8 @@ M22  Day130–135（动态 Foundation Cleanup）
 | Day009 | ✅ | Basis / Coordinate / Transform | [学习记录](docs/lessons/day009.md) |
 | Day010 | ✅ | Dot / Cross / Norm / Projection | [学习记录](docs/lessons/day010.md) |
 | Day011 | ✅ | Eigen / Quadratic Form | [学习记录](docs/lessons/day011.md) |
-| Day012 | 🟨 | SVD / Rank / Conditioning | — |
-| Day013 | ⬜ | Derivative / Differential / Numerical Integration | — |
+| Day012 | ✅ | SVD / Rank / Conditioning | [学习记录](docs/lessons/day012.md) |
+| Day013 | 🟨 | Derivative / Differential / Numerical Integration | — |
 | Day014 | ⬜ | Gradient / Chain Rule | — |
 | Day015 | ⬜ | Jacobian / Hessian / Taylor / Linearization | — |
 
