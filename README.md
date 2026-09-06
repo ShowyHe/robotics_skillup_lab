@@ -121,7 +121,7 @@ M22  Day130–135（动态 Foundation Cleanup）
 
 状态：`⬜ 未开始`、`🟨 进行中`、`✅ 完成 / PASS`、`🔁 需要重学 / Retest`。
 
-当前正式位置：**M02 / Day011 — Eigen / Quadratic Form**。Day008–Day010 已完成并有正式讲义；`docs/lessons/` 当前没有 Day001–Day007 的正式学习记录，因此这里不把它们标成已完成。
+当前正式位置：**M02 / Day012 — SVD / Rank / Conditioning**。Day008–Day011 已完成并有正式讲义；`docs/lessons/` 当前没有 Day001–Day007 的正式学习记录，因此这里不把它们标成已完成。
 
 ### M00–M02｜系统基础与数学基础 I
 
@@ -137,8 +137,8 @@ M22  Day130–135（动态 Foundation Cleanup）
 | Day008 | ✅ | Vector / Matrix / Dimension | [学习记录](docs/lessons/day008.md) |
 | Day009 | ✅ | Basis / Coordinate / Transform | [学习记录](docs/lessons/day009.md) |
 | Day010 | ✅ | Dot / Cross / Norm / Projection | [学习记录](docs/lessons/day010.md) |
-| Day011 | 🟨 | Eigen / Quadratic Form | — |
-| Day012 | ⬜ | SVD / Rank / Conditioning | — |
+| Day011 | ✅ | Eigen / Quadratic Form | [学习记录](docs/lessons/day011.md) |
+| Day012 | 🟨 | SVD / Rank / Conditioning | — |
 | Day013 | ⬜ | Derivative / Differential / Numerical Integration | — |
 | Day014 | ⬜ | Gradient / Chain Rule | — |
 | Day015 | ⬜ | Jacobian / Hessian / Taylor / Linearization | — |
