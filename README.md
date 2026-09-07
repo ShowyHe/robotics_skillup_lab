@@ -208,7 +208,7 @@ M22  Day130–135（动态 Foundation Cleanup）
 ### M11–M13｜规划、运动学 / 动力学、控制
 
 | Day | 状态 | 主题 |
-|---|---|---|---|
+|---|---|---|
 | Day063 | ⬜ | Graph / BFS / Dijkstra |
 | Day064 | ⬜ | A* / Heuristic |
 | Day065 | ⬜ | Occupancy / Costmap / Footprint / Inflation |
@@ -323,7 +323,7 @@ docs/
 职责：
 - `03_MASTER_PLAN.md`：总Day数、Module范围、总索引、教材映射；
 - `04_MODULE_SPECS.md`：Module知识边界和毕业能力；
-- `modules/`：真正学习到对应Day时生成详细讲义；
+- `modules/`：每个Day的Teaching Contract，不是当天长篇讲义；
 - `lessons/`：真正学习到对应Day时生成；
 - `labs/`：只有不可被理论替代的实验；
 - `PROGRESS.md`：当前学习节点、薄弱点、复测与Foundation Debt。
