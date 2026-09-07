@@ -13,7 +13,8 @@ M02 Day10 — Dot / Cross / Norm / Projection / Geometry：COMPLETED / PASS
 M02 Day11 — Eigenvalue / Eigenvector / Quadratic Form：COMPLETED / PASS
 M02 Day12 — SVD / Rank / Conditioning：COMPLETED / PASS
 M02 Day13 — Derivative / Differential / Numerical Integration：COMPLETED / PASS
-Next：M02 Day14 — Partial Derivative / Gradient / Chain Rule
+M02 Day14 — Partial Derivative / Gradient / Chain Rule：COMPLETED / PASS
+Next：M02 Day15 — Jacobian / Hessian / Taylor / Linearization
 ```
 
 本专项优先顺序：
@@ -30,7 +31,7 @@ M02 Day8–15
 → M11 Day65 + M07 Day38–39复盘
 ```
 
-**当前不是按 Day1–Day135 机械顺序推进。** Curriculum v1.0 主结构不变；专项只调整优先级。M02 完成后进入 M03，M03 后直接进入 M05；M04 Simulation 暂不作为本专项前置主线。
+**当前不是按 Day1–Day135 机械顺序推进。** Curriculum v1.0 主结构不变；专项只调整优先级。Day15 后先进行 M02 Module Graduation Exam，通过后进入 M03，M03 后直接进入 M05；M04 Simulation 暂不作为本专项前置主线。
 
 ---
 
@@ -90,7 +91,7 @@ LAB01 — Manipulation Pick-and-Place；LAB02 — Mobile Manipulation Capstone�
 
 ### 当前状态
 
-Day8–Day13 已完成，**无未关闭 P0/P1 Foundation Debt**。保留 P2 Review Debt，供 M02 Module Graduation Exam、M08/M09/M10 对应知识重现和 Foundation Cleanup 复测，不阻塞 Day14。以下保留历史错误、纠正和未关闭点，不因结项删除。
+Day8–Day14 已完成，**无未关闭 P0/P1 Foundation Debt**。保留 P2 Review Debt，供 M02 Module Graduation Exam、M08/M09/M10 对应知识重现和 Foundation Cleanup 复测，不阻塞 Day15。以下保留历史错误、纠正和未关闭点，不因结项删除。
 
 ### Day8 暴露但已纠正
 
@@ -137,6 +138,16 @@ Day8–Day13 已完成，**无未关闭 P0/P1 Foundation Debt**。保留 P2 Revi
 - 曾认为固定加速度 bias 使速度误差维持常数；已纠正为速度误差线性增长、位置误差平方增长。
 - 曾认为每 Hz 直接加一次 bias；已纠正为 `Σb_vΔt_k=b_vT`。
 - 固定速度 bias 的位置误差数值正确但单位误写 m/s；正确单位 m。
+
+### Day14 暴露并已纠正
+
+- 初次把 `4(y-1)^2` 的偏导算成 `8y-4`，导致梯度误写 `[2,20]^T`；已纠正为 `8y-8`、`[2,16]^T`。
+- 曾把方向导数写成 `J·d`；已纠正为 `∇J·d`，J 是标量。
+- 曾认为梯度下降应使用加号、负梯度必须是负数；已纠正为加号用于局部上升，最小化沿负梯度，变量增大不等于代价增大。
+- 对 α 的作用和梯度下降用途不清楚；通过一维目标 `J(p)=(p-2)^2` 理解导数给方向、α 控制更新幅度。
+- 原计算图箭头连写难以阅读；拆成完整变量定义和各层计算后完成理解，不将题目表达问题误记为不会求导。
+- 二维代价中曾漏乘 `p_y=2u_y` 的内层导数，误写 `4u_y-8`；最终独立复测得到 `8u_y-8`、更新值 1.2。
+- 最初将梯度的用途与 noise/bias 分析混同；已纠正为梯度提供优化变量对目标的局部敏感度。
 
 ### P2 Review Debt — Day11
 
@@ -222,10 +233,10 @@ Exposed At: M02 / Day13
 Wrong / Weak Understanding: 曾把 dθ 当作角速度
 Debt Type: Definition / Dimension
 Priority: P2
-Current Level: L2-L3
+Current Level: L3（Day14 定义复测通过）
 Target Level: L3
-Retest: 在 Day14/15 解释 dθ 与 dθ/dt，正确写 rad / rad/s
-Status: OPEN
+Retest: 在 M02 Module Exam 的局部变化或 Jacobian 场景中复测，正确写 rad / rad/s
+Status: RETEST
 ```
 
 ```text
@@ -237,6 +248,44 @@ Priority: P2
 Current Level: L2-L3
 Target Level: L3
 Retest: 计算 Σb_vΔt=b_vT，检查 m/s×s=m；解释同一 T 下高频不自动使固定 bias 误差增加
+Status: OPEN
+```
+
+### P2 Review Debt — Day14
+
+```text
+Knowledge: Multivariable chain rule / inner derivative
+Exposed At: M02 / Day14
+Wrong / Weak Understanding: 内层系数容易漏乘，参数与位置之间的偏导需强化单位和维度检查
+Debt Type: Calculation / Derivation / Transfer
+Priority: P2
+Current Level: L3（本日复测通过）
+Target Level: L3
+Retest: M02 Module Exam 使用不同的参数→状态→代价链独立求导，并检查单位
+Status: RETEST
+```
+
+```text
+Knowledge: Gradient descent sign / objective vs variable
+Exposed At: M02 / Day14
+Wrong / Weak Understanding: 曾认为加号才是梯度下降、负梯度必须为负数，混淆变量大小与代价下降
+Debt Type: Definition / Transfer
+Priority: P2
+Current Level: L3（本日复测通过）
+Target Level: L3
+Retest: 给定不同工作点和正负导数，独立判断更新方向及代价值变化
+Status: RETEST
+```
+
+```text
+Knowledge: Computational graph dependency / notation
+Exposed At: M02 / Day14
+Wrong / Weak Understanding: 箭头连写和未完整声明的中间变量造成阅读困难，拆开后已能解释
+Debt Type: Notation / Transfer
+Priority: P2
+Current Level: L2-L3
+Target Level: L3
+Retest: 给完整独立条件，写出正向中间值和各层局部导数，再组合总导数
 Status: OPEN
 ```
 
@@ -259,72 +308,60 @@ Status: OPEN / LEARNING / RETEST / CLOSED
 
 ```text
 Current Module / Day:
-M02 / Day13 — Derivative / Differential / Numerical Integration — COMPLETED / PASS
+M02 / Day14 — Partial Derivative / Gradient / Chain Rule — COMPLETED / PASS
 
 Specialty Context:
 - TEMP_POSITIONING_VISION_PLAN：ACTIVE
 - 当前 Phase：Phase 1 — Mathematical Foundations I
 - Phase 1 范围：M02 Day8–15
-- Day14 之后继续 Day15；完成 M02 后进入 M03 Day16–19
+- Day15 后进行 M02 Module Graduation Exam；通过后进入 M03 Day16–19
 - M03 完成后按专项进入 M05 Day22–26；M04 Day20–21 当前不作为专项前置主线
 
 Mastered:
-- 导数是连续函数的瞬时变化率；有限差分是用有限采样近似导数；积分是变化率累计
-- p(t)∈R² 时 dp/dt∈R²，是二维速度向量
-- 导数与切线斜率、局部敏感度的关系
-- dy≈f'(x)dx 的局部近似意义；dx 是自变量变化，不一定是时间
-- 位置、速度、加速度之间的导数与积分关系
-- 有限差分速度计算及小 dt 可能放大测量噪声
-- Forward Euler 用起点速度近似区间速度，属于数值近似
-- 按可靠 timestamp 计算实际 dt，不盲用名义频率
-- 高频不自动消除 bias/noise/model error
-- 固定速度 bias 的位置误差按 b_v T 累计
-- 固定加速度 bias 的速度误差线性增长、位置误差按时间平方增长
-- Wheel Odom / IMU 积分误差会累计；模型 dt 与传感器实际 dt 需区分
+- 偏导固定其他独立输入，梯度收集各输入偏导
+- 非零梯度与单位方向的点积给局部方向导数；负梯度用于最小化
+- α 控制更新幅度；更新优化变量不等于直接发送机器人速度命令
+- 两层及多层链式法则：局部导数逐层相乘
+- 参数→位置→误差→代价的依赖关系；区分 ∇_u J 与 ∇_p J
+- 能独立纠正内层导数漏乘并完成最终更新复测
 
 Weak:
-- dθ 与 dθ/dt 的定义和单位需后续闭卷复测
-- 积分结果单位检查需强化，尤其速度误差与位置误差
-- 固定 bias 与采样次数的关系需在 M03/M09 再次迁移复测
+- 多变量链式系数、符号和单位需后续迁移复测
+- 计算图先完整声明变量和所求量，再使用箭头简写
 
 Wrong Understanding:
-- 曾混淆导数、差分与积分
-- 曾把 dx 固定理解为时间，把 dθ 说成角速度
-- 曾把求导的小 dt 放大噪声套到积分
-- 曾认为固定加速度 bias 使速度保持常数
-- 曾把固定速度 bias 的位置误差写成 m/s
+- 曾混淆梯度下降的加减号、负梯度符号、变量大小和代价下降
+- 曾漏乘内层导数，并将梯度用途与 noise/bias 分析混同
 
 Corrected:
-- 连续导数、有限差分近似、积分累计分别定义
-- dθ 是角度变化；dθ/dt 才是角速度
-- 正确积分误差必须乘实际 dt；Σb_vΔt=b_vT
-- e_v=b_aT，e_p=0.5b_aT²（零初始误差、固定 bias）
+- 负梯度用于最小化，α 控制步长；链式法则乘全部依赖层的局部导数
+- 完整声明计算图各层后，先正向求值，再求局部导数并组合
 
 Retest:
-- dp/dt：导数、二维，PASS
-- b_v=0.1m/s,T=10s：数值1正确，单位误写，正确为1m
-- b_a=0.05m/s²,T=10s：0.5m/s、2.5m，线性与平方增长，PASS
-- dθ 的角速度混淆已纠正，保留 P2 Review
-- 核心 PASS；未独立复测的符号和单位细节不记为完全稳定掌握
+- z=3x-1,L=z²：18x-6，x=2 时 30，PASS
+- p=2u,J=(p-2)²：8u-8，u=0.5 时判断应增大 u，PASS
+- J=(x-2)²+4(y-1)²：在 (3,3) 判断 x、y 均应减小，PASS
+- J_y=(2u_y-2)²：8u_y-8，u_y=2、α=0.1 时更新为 1.2，PASS
+- Day13 dθ 与 dθ/dt：角度变化/角速度，rad/rad/s，PASS；保留迁移复测
+- 未独立复测的迁移细节不记为完全稳定掌握
 
 Source Reading Progress:
-- M02 Day13 Teaching Contract 已读取
 - M02 Day14 Teaching Contract 已读取
+- M02 Day15 Teaching Contract 已读取；仅用于下一天教学准备
 - TEMP_POSITIONING_VISION_PLAN 已复核，专项顺序保持不变
 
 LAB / Project Progress:
-- Day13 无 LAB，无源码修改
+- Day14 无 LAB，无公司源码修改
 
 Foundation Debt:
 - 无未关闭 P0/P1 debt
-- P2 Review：Day11 diagonalization / quadratic form / positive definite；Day12 weak singular direction / conditioning；Day13 differential / units / bias accumulation
+- P2 Review：Day11 diagonalization / quadratic form / positive definite；Day12 weak singular direction / conditioning；Day13 integration units / sampling；Day14 chain rule / gradient sign / computational graph
 
 Lesson:
-- docs/lessons/day013.md
+- docs/lessons/day014.md
 
 Next:
-- 定位 + 视觉理论专项 / Phase 1
-- M02 / Day14 — Partial Derivative / Gradient / Chain Rule
+- 定位 + 视觉理论专项 / Phase 1 / M02 Day15 — Jacobian / Hessian / Taylor / Linearization
 ```
 
 ---
@@ -333,12 +370,12 @@ Next:
 
 ```text
 定位 + 视觉理论专项 / Phase 1
-读取 M02 Day14 Teaching Contract
+M02 Day15 Teaching Contract
 → 正式教学与 Daily Quiz
 → targeted remediation / retest（如需要）
 → 更新 PROGRESS
+→ M02 Module Graduation Exam（30%基础 / 50%系统场景 / 20%公式设计；≥85%，Hard Gate独立通过）
 
-Phase 1 后续：Day14 → Day15
-Phase 1 完成后：M03 Day16–19
+Phase 1 毕业后：M03 Day16–19
 M03 完成后：按专项进入 M05 Day22–26（M04 Simulation 暂不作为当前专项前置）
 ```
