@@ -14,7 +14,8 @@ M02 Day11 — Eigenvalue / Eigenvector / Quadratic Form：COMPLETED / PASS
 M02 Day12 — SVD / Rank / Conditioning：COMPLETED / PASS
 M02 Day13 — Derivative / Differential / Numerical Integration：COMPLETED / PASS
 M02 Day14 — Partial Derivative / Gradient / Chain Rule：COMPLETED / PASS
-Next：M02 Day15 — Jacobian / Hessian / Taylor / Linearization
+M02 Day15 — Jacobian / Hessian / Taylor / Linearization：COMPLETED / PASS
+Next：M02 Module Graduation Exam — NOT STARTED
 ```
 
 本专项优先顺序：
@@ -31,7 +32,7 @@ M02 Day8–15
 → M11 Day65 + M07 Day38–39复盘
 ```
 
-**当前不是按 Day1–Day135 机械顺序推进。** Curriculum v1.0 主结构不变；专项只调整优先级。Day15 后先进行 M02 Module Graduation Exam，通过后进入 M03，M03 后直接进入 M05；M04 Simulation 暂不作为本专项前置主线。
+**当前不是按 Day1–Day135 机械顺序推进。** Curriculum v1.0 主结构不变；专项只调整优先级。Day15 已完成，先进行 M02 Module Graduation Exam，通过后进入 M03，M03 后直接进入 M05；M04 Simulation 暂不作为本专项前置主线。Day15 PASS 不等于 M02 模块毕业。
 
 ---
 
@@ -39,7 +40,7 @@ M02 Day8–15
 
 > 研究生级机器人理论基础 + 真实机器人全栈工程能力 + VLA / Mobile Manipulation 具身智能能力 + 系统 Owner 能力。
 
-正常 2–3h / Day；理论、数学、公式、算法、源码理解优先；已有真实机器人经验用于映射但不替代 Hard Gate。不要求每天代码或 LAB；必要 LAB 独立安排。专项不以交付日期压缩核心理论。
+正常 2–3h / Day；理论、数学、公式、算法、源码理解优先；已有真实机器人经验用于映射但不替代 Hard Gate。不要求每天代码或 LAB；必要 LAB 独立安排。专项不以交付日期压缩核心理论。数学与机器人讲解以中文术语为主，英文首次出现时括号注释；题目独立列全条件、变量维度、单位和所求量。
 
 ---
 
@@ -91,7 +92,7 @@ LAB01 — Manipulation Pick-and-Place；LAB02 — Mobile Manipulation Capstone�
 
 ### 当前状态
 
-Day8–Day14 已完成，**无未关闭 P0/P1 Foundation Debt**。保留 P2 Review Debt，供 M02 Module Graduation Exam、M08/M09/M10 对应知识重现和 Foundation Cleanup 复测，不阻塞 Day15。以下保留历史错误、纠正和未关闭点，不因结项删除。
+Day8–Day15 已完成，**无未关闭 P0/P1 Foundation Debt**。保留 P2 Review Debt，供 M02 Module Graduation Exam、M08/M09/M10 对应知识重现和 Foundation Cleanup 复测，不阻塞模块考试。以下保留历史错误、纠正和未关闭点，不因结项删除。M02 考试尚未完成，不能提前宣布模块毕业或关闭全部 Review Debt。
 
 ### Day8 暴露但已纠正
 
@@ -148,6 +149,16 @@ Day8–Day14 已完成，**无未关闭 P0/P1 Foundation Debt**。保留 P2 Revi
 - 原计算图箭头连写难以阅读；拆成完整变量定义和各层计算后完成理解，不将题目表达问题误记为不会求导。
 - 二维代价中曾漏乘 `p_y=2u_y` 的内层导数，误写 `4u_y-8`；最终独立复测得到 `8u_y-8`、更新值 1.2。
 - 最初将梯度的用途与 noise/bias 分析混同；已纠正为梯度提供优化变量对目标的局部敏感度。
+
+### Day15 暴露并已纠正
+
+- 曾把 `R³→R²` 的雅可比维度写成3×2；已纠正为输出决定行、输入决定列。
+- 曾把列梯度写成1×4、海森写成1×3，或把海森只写成对角元素向量；已纠正完整 n×n 二阶偏导矩阵。
+- 曾把4关节→3维末端位置的雅可比写成4×3；已纠正为3×4，须检查矩阵乘法维度。
+- 曾用梯度不为0判断非线性；自行纠正为梯度变化率，并进一步明确某点二阶导为0不证明全局线性。
+- 曾把雅可比泛称为梯度矩阵；已纠正为向量函数的一阶导数矩阵，海森是标量梯度的雅可比。
+- EKF、SLAM 的英文术语妨碍理解；已补中文名称、测量模型、残差模型及符号约定。
+- Day15 核心复测通过，但新的矩阵维度、完整海森及跨场景迁移仍需模块考试独立验证。
 
 ### P2 Review Debt — Day11
 
@@ -289,6 +300,44 @@ Retest: 给完整独立条件，写出正向中间值和各层局部导数，再
 Status: OPEN
 ```
 
+### P2 Review Debt — Day15
+
+```text
+Knowledge: Jacobian dimensions / output rows / input columns / gradient convention
+Exposed At: M02 / Day15
+Wrong / Weak Understanding: 多次将m×n写反，混淆列梯度与行雅可比；机械臂4→3维度初次写反
+Debt Type: Dimension / Definition / Transfer
+Priority: P2
+Current Level: L2-L3（本日概念纠正）
+Target Level: L3
+Retest: 在新向量模型中独立求雅可比、检查乘法维度，并区分列梯度和行雅可比
+Status: OPEN
+```
+
+```text
+Knowledge: Hessian matrix / second partial derivatives / curvature
+Exposed At: M02 / Day15
+Wrong / Weak Understanding: 曾只写对角元素向量，漏交叉偏导；海森维度曾误写1×3
+Debt Type: Calculation / Dimension / Definition
+Priority: P2
+Current Level: L2-L3（4×4结构复述通过）
+Target Level: L3
+Retest: 对含交叉项的不同标量函数独立求完整海森，解释行列和曲率意义
+Status: OPEN
+```
+
+```text
+Knowledge: Jacobian vs gradient vs Hessian / local linearization
+Exposed At: M02 / Day15
+Wrong / Weak Understanding: 曾把雅可比泛称为梯度矩阵，把梯度非零与非线性混同
+Debt Type: Definition / Transfer
+Priority: P2
+Current Level: L2-L3（概念复盘通过）
+Target Level: L3
+Retest: 区分非代价向量模型与标量代价的导数，并解释局部二阶导为0不能证明全局线性
+Status: RETEST
+```
+
 未来 Foundation Debt 统一记录：
 ```text
 Knowledge:
@@ -308,60 +357,77 @@ Status: OPEN / LEARNING / RETEST / CLOSED
 
 ```text
 Current Module / Day:
-M02 / Day14 — Partial Derivative / Gradient / Chain Rule — COMPLETED / PASS
+M02 / Day15 — Jacobian / Hessian / Taylor / Linearization — COMPLETED / PASS
+M02 Module Graduation Exam — NOT STARTED
 
 Specialty Context:
 - TEMP_POSITIONING_VISION_PLAN：ACTIVE
 - 当前 Phase：Phase 1 — Mathematical Foundations I
 - Phase 1 范围：M02 Day8–15
-- Day15 后进行 M02 Module Graduation Exam；通过后进入 M03 Day16–19
+- Day15 已完成；M02考试通过后进入 M03 Day16–19
 - M03 完成后按专项进入 M05 Day22–26；M04 Day20–21 当前不作为专项前置主线
 
 Mastered:
-- 偏导固定其他独立输入，梯度收集各输入偏导
-- 非零梯度与单位方向的点积给局部方向导数；负梯度用于最小化
-- α 控制更新幅度；更新优化变量不等于直接发送机器人速度命令
-- 两层及多层链式法则：局部导数逐层相乘
-- 参数→位置→误差→代价的依赖关系；区分 ∇_u J 与 ∇_p J
-- 能独立纠正内层导数漏乘并完成最终更新复测
+- 向量函数的雅可比收集每个输出对每个输入的一阶偏导
+- 独立求出 f(x,y)=[x²+y,xy]^T 的雅可比及两个工作点的数值
+- 独立使用 Δy≈J_fΔx 计算二维小变化
+- 一阶泰勒用当前函数值、当前导数和输入变化估算新值
+- 能解释工作点变化后雅可比可能变化，线性化不是永久线性化
+- 能求简单标量代价的梯度，理解海森是梯度的雅可比
+- 能解释4输入标量函数的海森为何为4×4
+- 能说明关节变化→末端变化、状态变化→预测测量/残差变化的局部敏感度意义
+- 已区分梯度不为0与非线性，理解某点二阶导为0不能证明全局线性
 
 Weak:
-- 多变量链式系数、符号和单位需后续迁移复测
-- 计算图先完整声明变量和所求量，再使用箭头简写
+- 雅可比输出行/输入列的维度顺序需在新模型中独立复测
+- 完整海森矩阵、交叉偏导及列梯度/行雅可比约定需强化
+- 雅可比、梯度、海森的区别及跨 EKF/SLAM/IK/Control 迁移需继续复盘
+- 延续 Day11–14 P2：特征分解、二次型、奇异值退化、积分单位、链式法则内层系数
 
 Wrong Understanding:
-- 曾混淆梯度下降的加减号、负梯度符号、变量大小和代价下降
-- 曾漏乘内层导数，并将梯度用途与 noise/bias 分析混同
+- 曾把3输入2输出的雅可比写成3×2，4关节到3维位置写成4×3
+- 曾把海森写成标量或对角元素向量，漏掉交叉偏导
+- 曾混淆 ∇C 与 ΔC、列梯度与行雅可比
+- 曾以梯度非零判断非线性，后自行纠正为梯度变化率并补充局部/全局边界
+- 曾把雅可比泛称为所有场景的梯度矩阵
 
 Corrected:
-- 负梯度用于最小化，α 控制步长；链式法则乘全部依赖层的局部导数
-- 完整声明计算图各层后，先正向求值，再求局部导数并组合
+- J_f∈R^(m×n)，输出决定行、输入决定列；列梯度∈R^n，行雅可比为其转置
+- H_C=J_(∇C)∈R^(n×n)，必须包含所有二阶偏导
+- 线性化只在工作点附近近似；模型误差不会被线性化自动消除
+- 非零二阶导说明局部非仿射，某点二阶导为0不能证明整体线性
+- 中文术语为主，英文首次出现时括号注释；题目完整给出条件
 
 Retest:
-- z=3x-1,L=z²：18x-6，x=2 时 30，PASS
-- p=2u,J=(p-2)²：8u-8，u=0.5 时判断应增大 u，PASS
-- J=(x-2)²+4(y-1)²：在 (3,3) 判断 x、y 均应减小，PASS
-- J_y=(2u_y-2)²：8u_y-8，u_y=2、α=0.1 时更新为 1.2，PASS
-- Day13 dθ 与 dθ/dt：角度变化/角速度，rad/rad/s，PASS；保留迁移复测
-- 未独立复测的迁移细节不记为完全稳定掌握
+- f=[x²+y,xy]^T：雅可比 [[2x,1],[y,x]]，PASS
+- 在(1,2)处 Δx=[0.01,0.02]^T：Δy≈[0.04,0.04]^T，PASS
+- f(x)=x²、x0=2、Δx=0.1：一阶估算4.4，PASS；真实值4.41已补全
+- J_f(1,2)=[[2,1],[2,1]]、J_f(3,4)=[[6,1],[4,3]]，PASS
+- f:R^4→R^3：雅可比3×4，PASS
+- C=x²+3y²：梯度[2x,6y]^T正确；完整海森经纠正为[[2,0],[0,6]]
+- 4输入标量函数海森4×4：能解释每个梯度分量再对4个输入求偏导，概念PASS
+- 线性化不会永久改变非线性函数，原函数梯度随工作点变化，PASS
+- 新模型的雅可比维度、含交叉项海森及跨场景迁移保留 P2，不提前记稳定掌握
 
 Source Reading Progress:
-- M02 Day14 Teaching Contract 已读取
-- M02 Day15 Teaching Contract 已读取；仅用于下一天教学准备
-- TEMP_POSITIONING_VISION_PLAN 已复核，专项顺序保持不变
+- M02 Day15 Teaching Contract 与 M02 Graduation Exam Specification 已读取
+- LEARNING_RULES、PROGRESS 与当前专项路线已复核
+- 无公司源码阅读；工程连接仅为概念映射，未声明具体源码实现事实
 
 LAB / Project Progress:
-- Day14 无 LAB，无公司源码修改
+- Day15 无 LAB，无公司源码修改
 
 Foundation Debt:
 - 无未关闭 P0/P1 debt
-- P2 Review：Day11 diagonalization / quadratic form / positive definite；Day12 weak singular direction / conditioning；Day13 integration units / sampling；Day14 chain rule / gradient sign / computational graph
+- P2 Review：Day11 diagonalization / quadratic form / positive definite；Day12 weak singular direction / conditioning；Day13 integration units / sampling；Day14 chain rule / gradient sign / computational graph；Day15 Jacobian dimensions / Hessian / derivative relations
 
 Lesson:
-- docs/lessons/day014.md
+- docs/lessons/day015.md
 
 Next:
-- 定位 + 视觉理论专项 / Phase 1 / M02 Day15 — Jacobian / Hessian / Taylor / Linearization
+- M02 Mathematical Foundations I — Module Graduation Exam（Day8–15，NOT STARTED）
+- 考试总分≥85%，Hard Gate独立通过；失败项定向补课和复测
+- 正式毕业后按专项进入 M03 Day16–19
 ```
 
 ---
@@ -370,11 +436,11 @@ Next:
 
 ```text
 定位 + 视觉理论专项 / Phase 1
-M02 Day15 Teaching Contract
-→ 正式教学与 Daily Quiz
-→ targeted remediation / retest（如需要）
-→ 更新 PROGRESS
-→ M02 Module Graduation Exam（30%基础 / 50%系统场景 / 20%公式设计；≥85%，Hard Gate独立通过）
+M02 Module Graduation Exam — Day8–15
+→ 30%核心基础 / 50%综合系统场景 / 20%公式与设计
+→ 总分≥85%，Hard Gate独立通过
+→ 定向处理未通过的 Foundation Debt
+→ 通过后更新 M02毕业状态与 PROGRESS
 
 Phase 1 毕业后：M03 Day16–19
 M03 完成后：按专项进入 M05 Day22–26（M04 Simulation 暂不作为当前专项前置）
