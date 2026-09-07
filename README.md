@@ -121,7 +121,7 @@ M22  Day130–135（动态 Foundation Cleanup）
 
 状态：`⬜ 未开始`、`🟨 进行中`、`✅ 完成 / PASS`、`🔁 需要重学 / Retest`。
 
-当前正式位置：**定位 + 视觉理论专项 / Phase 1 / M02 / Day015 — Jacobian / Hessian / Taylor / Linearization**。Day008–Day014 已完成并有正式讲义。当前专项按 `M02 Day8–15 → M03 Day16–19 → M05 Day22–26 → ...` 推进，**不是按 Day1–Day135 机械顺序推进**；M04 Simulation 暂不作为当前专项前置主线。Day15 后先进行 M02 Module Graduation Exam，通过后再进入 M03。`docs/lessons/` 当前没有 Day001–Day007 的正式学习记录，因此这里不把它们标成已完成。
+当前正式位置：**定位 + 视觉理论专项 / Phase 1 / M02 Module Graduation Exam（Day8–15）**。Day008–Day015 已完成并有正式讲义，**M02 模块考试尚未通过，不等于模块毕业**。当前专项按 `M02 Day8–15 → M03 Day16–19 → M05 Day22–26 → ...` 推进，**不是按 Day1–Day135 机械顺序推进**；M04 Simulation 暂不作为当前专项前置主线。M02 考试通过后再进入 M03。`docs/lessons/` 当前没有 Day001–Day007 的正式学习记录，因此这里不把它们标成已完成。
 
 ### M00–M02｜系统基础与数学基础 I
 
@@ -141,7 +141,7 @@ M22  Day130–135（动态 Foundation Cleanup）
 | Day012 | ✅ | SVD / Rank / Conditioning | [学习记录](docs/lessons/day012.md) |
 | Day013 | ✅ | Derivative / Differential / Numerical Integration | [学习记录](docs/lessons/day013.md) |
 | Day014 | ✅ | Gradient / Chain Rule | [学习记录](docs/lessons/day014.md) |
-| Day015 | 🟨 | Jacobian / Hessian / Taylor / Linearization | — |
+| Day015 | ✅ | Jacobian / Hessian / Taylor / Linearization | [学习记录](docs/lessons/day015.md) |
 
 ### M03–M05｜传感器、仿真与视觉几何
 
@@ -260,7 +260,7 @@ M22  Day130–135（动态 Foundation Cleanup）
 ### M16–M18｜VLM、VLA、Mobile Manipulation
 
 | Day | 状态 | 主题 |
-|---|---|---|---|
+|---|---|---|
 | Day105 | ⬜ | Token / Embedding / Autoregressive LM |
 | Day106 | ⬜ | Vision Encoder / Patch Token |
 | Day107 | ⬜ | CLIP / Contrastive Alignment |
@@ -359,7 +359,7 @@ LAB用于验证真实闭环、frame、collision、execution、contact、learned 
 - M11：补 `C_free / C_obs / configuration validity`；
 - M12：Screw / Twist / Wrench / POE / Adjoint / Space-Body Jacobian成为核心；
 - M13：补Path→Timed Trajectory→Reference→Controller桥梁；
-- M14：补Friction Cone / Wrench / Grasp Map / Form-Force Closure。
+- M14：补Friction Cone / Wrench / Grasp Map / Form-Force Closure理论。
 
 ## 12. 最终验收
 课程完成不以“看完多少Day”为标准，而以是否能够：
