@@ -121,7 +121,7 @@ M22  Day130–135（动态 Foundation Cleanup）
 
 状态：`⬜ 未开始`、`🟨 进行中`、`✅ 完成 / PASS`、`🔁 需要重学 / Retest`。
 
-当前正式位置：**定位 + 视觉理论专项 / Phase 1 / M02 / Day014 — Partial Derivative / Gradient / Chain Rule**。Day008–Day013 已完成并有正式讲义。当前专项按 `M02 Day8–15 → M03 Day16–19 → M05 Day22–26 → ...` 推进，**不是按 Day1–Day135 机械顺序推进**；M04 Simulation 暂不作为当前专项前置主线。`docs/lessons/` 当前没有 Day001–Day007 的正式学习记录，因此这里不把它们标成已完成。
+当前正式位置：**定位 + 视觉理论专项 / Phase 1 / M02 / Day015 — Jacobian / Hessian / Taylor / Linearization**。Day008–Day014 已完成并有正式讲义。当前专项按 `M02 Day8–15 → M03 Day16–19 → M05 Day22–26 → ...` 推进，**不是按 Day1–Day135 机械顺序推进**；M04 Simulation 暂不作为当前专项前置主线。Day15 后先进行 M02 Module Graduation Exam，通过后再进入 M03。`docs/lessons/` 当前没有 Day001–Day007 的正式学习记录，因此这里不把它们标成已完成。
 
 ### M00–M02｜系统基础与数学基础 I
 
@@ -140,8 +140,8 @@ M22  Day130–135（动态 Foundation Cleanup）
 | Day011 | ✅ | Eigen / Quadratic Form | [学习记录](docs/lessons/day011.md) |
 | Day012 | ✅ | SVD / Rank / Conditioning | [学习记录](docs/lessons/day012.md) |
 | Day013 | ✅ | Derivative / Differential / Numerical Integration | [学习记录](docs/lessons/day013.md) |
-| Day014 | 🟨 | Gradient / Chain Rule | — |
-| Day015 | ⬜ | Jacobian / Hessian / Taylor / Linearization | — |
+| Day014 | ✅ | Gradient / Chain Rule | [学习记录](docs/lessons/day014.md) |
+| Day015 | 🟨 | Jacobian / Hessian / Taylor / Linearization | — |
 
 ### M03–M05｜传感器、仿真与视觉几何
 
@@ -260,7 +260,7 @@ M22  Day130–135（动态 Foundation Cleanup）
 ### M16–M18｜VLM、VLA、Mobile Manipulation
 
 | Day | 状态 | 主题 |
-|---|---|---|
+|---|---|---|---|
 | Day105 | ⬜ | Token / Embedding / Autoregressive LM |
 | Day106 | ⬜ | Vision Encoder / Patch Token |
 | Day107 | ⬜ | CLIP / Contrastive Alignment |
@@ -326,7 +326,7 @@ docs/
 - `modules/`：每个Day的Teaching Contract，不是当天长篇讲义；
 - `lessons/`：真正学习到对应Day时生成；
 - `labs/`：只有不可被理论替代的实验；
-- `PROGRESS.md`：当前学习节点、薄弱点、复测与Foundation Debt。
+- `PROGRESS.md`：当前学习状态与Foundation Debt。
 
 ## 8. 掌握等级
 - **L1：见过**
@@ -339,9 +339,9 @@ docs/
 
 ## 9. 统一考试结构
 普通 Module Graduation Exam 默认：
-- **30% 核心基础**
-- **50% 综合系统场景**
-- **20% Source / Formula / Design**
+- **30% 核心基础**；
+- **50% 综合系统场景**；
+- **20% Source / Formula / Design**。
 
 默认总分 **≥85%**；Hard Gate基础概念不能靠其他题得分抵消。M00为1-Day总纲，保留轻量Owner场景考核例外。
 
