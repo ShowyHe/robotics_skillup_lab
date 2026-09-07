@@ -121,7 +121,7 @@ M22  Day130–135（动态 Foundation Cleanup）
 
 状态：`⬜ 未开始`、`🟨 进行中`、`✅ 完成 / PASS`、`🔁 需要重学 / Retest`。
 
-当前正式位置：**定位 + 视觉理论专项 / Phase 1 / M02 / Day013 — Derivative / Differential / Numerical Integration**。Day008–Day012 已完成并有正式讲义。当前专项按 `M02 Day8–15 → M03 Day16–19 → M05 Day22–26 → ...` 推进，**不是按 Day1–Day135 机械顺序推进**；M04 Simulation 暂不作为当前专项前置主线。`docs/lessons/` 当前没有 Day001–Day007 的正式学习记录，因此这里不把它们标成已完成。
+当前正式位置：**定位 + 视觉理论专项 / Phase 1 / M02 / Day014 — Partial Derivative / Gradient / Chain Rule**。Day008–Day013 已完成并有正式讲义。当前专项按 `M02 Day8–15 → M03 Day16–19 → M05 Day22–26 → ...` 推进，**不是按 Day1–Day135 机械顺序推进**；M04 Simulation 暂不作为当前专项前置主线。`docs/lessons/` 当前没有 Day001–Day007 的正式学习记录，因此这里不把它们标成已完成。
 
 ### M00–M02｜系统基础与数学基础 I
 
@@ -139,8 +139,8 @@ M22  Day130–135（动态 Foundation Cleanup）
 | Day010 | ✅ | Dot / Cross / Norm / Projection | [学习记录](docs/lessons/day010.md) |
 | Day011 | ✅ | Eigen / Quadratic Form | [学习记录](docs/lessons/day011.md) |
 | Day012 | ✅ | SVD / Rank / Conditioning | [学习记录](docs/lessons/day012.md) |
-| Day013 | 🟨 | Derivative / Differential / Numerical Integration | — |
-| Day014 | ⬜ | Gradient / Chain Rule | — |
+| Day013 | ✅ | Derivative / Differential / Numerical Integration | [学习记录](docs/lessons/day013.md) |
+| Day014 | 🟨 | Gradient / Chain Rule | — |
 | Day015 | ⬜ | Jacobian / Hessian / Taylor / Linearization | — |
 
 ### M03–M05｜传感器、仿真与视觉几何
@@ -208,7 +208,7 @@ M22  Day130–135（动态 Foundation Cleanup）
 ### M11–M13｜规划、运动学 / 动力学、控制
 
 | Day | 状态 | 主题 |
-|---|---|---|
+|---|---|---|---|
 | Day063 | ⬜ | Graph / BFS / Dijkstra |
 | Day064 | ⬜ | A* / Heuristic |
 | Day065 | ⬜ | Occupancy / Costmap / Footprint / Inflation |
@@ -323,7 +323,7 @@ docs/
 职责：
 - `03_MASTER_PLAN.md`：总Day数、Module范围、总索引、教材映射；
 - `04_MODULE_SPECS.md`：Module知识边界和毕业能力；
-- `modules/`：每个Day的Teaching Contract，不是当天长篇讲义；
+- `modules/`：真正学习到对应Day时生成详细讲义；
 - `lessons/`：真正学习到对应Day时生成；
 - `labs/`：只有不可被理论替代的实验；
 - `PROGRESS.md`：当前学习节点、薄弱点、复测与Foundation Debt。
