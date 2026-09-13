@@ -121,7 +121,7 @@ M22  Day130–135（动态 Foundation Cleanup）
 
 状态：`⬜ 未开始`、`🟨 进行中`、`✅ 完成 / PASS`、`🔁 需要重学 / Retest`。
 
-当前正式位置：**定位 + 视觉理论专项 / Phase 1 / M02 Module Graduation Exam（Day8–15）**。Day008–Day015 已完成并有正式讲义，**M02 模块考试尚未通过，不等于模块毕业**。当前专项按 `M02 Day8–15 → M03 Day16–19 → M05 Day22–26 → ...` 推进，**不是按 Day1–Day135 机械顺序推进**；M04 Simulation 暂不作为当前专项前置主线。M02 考试通过后再进入 M03。`docs/lessons/` 当前没有 Day001–Day007 的正式学习记录，因此这里不把它们标成已完成。
+当前正式位置：**定位 + 视觉理论专项 / M03 / Day017 — IMU / Encoder / LiDAR / Camera**。Day008–Day016 已完成并有正式讲义。**M02 Module Graduation Exam 尚未完成，保留为待回补，不宣告 M02 模块毕业。** 用户已开始 M03 Day16–19，完成后仍按专项进入 M05 Day22–26；M04 Simulation 暂不作为当前专项前置主线。`docs/lessons/` 当前没有 Day001–Day007 的正式学习记录，因此这里不把它们标成已完成。
 
 ### M00–M02｜系统基础与数学基础 I
 
@@ -147,8 +147,8 @@ M22  Day130–135（动态 Foundation Cleanup）
 
 | Day | 状态 | 主题 |
 |---|---|---|
-| Day016 | ⬜ | Sensor Model / Noise / Bias / Measurement Quality |
-| Day017 | ⬜ | IMU / Encoder / LiDAR / Camera |
+| Day016 | ✅ | Sensor Model / Noise / Bias / Measurement Quality | [学习记录](docs/lessons/day016.md) |
+| Day017 | 🟨 | IMU / Encoder / LiDAR / Camera |
 | Day018 | ⬜ | GNSS / RTK / Time / Latency / Calibration |
 | Day019 | ⬜ | Actuator / Command → Physical Motion |
 | Day020 | ⬜ | URDF / Robot Simulation Architecture |
