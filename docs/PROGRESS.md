@@ -16,7 +16,8 @@ M02 Day14 — Partial Derivative / Gradient / Chain Rule：COMPLETED / PASS
 M02 Day15 — Jacobian / Hessian / Taylor / Linearization：COMPLETED / PASS
 M02 Module Graduation Exam：INCOMPLETE / DEFERRED（第8题与部分综合题待回补）
 M03 Day16 — Sensor Model / Noise / Bias / Measurement Quality：COMPLETED / PASS
-Next：M03 Day17 — IMU / Encoder / LiDAR / Camera
+M03 Day17 — IMU / Encoder / LiDAR / Camera：COMPLETED / PASS
+Next：M03 Day18 — GNSS / RTK / Timestamp / Latency / Synchronization / Calibration
 ```
 
 > 重要：M02 Day8–15 的每日课程已完成，但 **M02 模块毕业考试尚未完成，因此不宣告 M02 模块毕业**。用户选择先继续 M03，后续回补考试剩余题目与 Hard Gate 复测。
@@ -47,6 +48,7 @@ M04 Simulation 暂不作为当前专项前置主线。
 - 题目必须独立列全已知条件、变量维度、单位和所求量。
 - 物理意义优先用真实机器人、传感器、几何对象解释；若连续两次未懂必须更换讲解方式。
 - 已稳定掌握内容不机械重考；错误项做 targeted remediation / retest。
+- Daily Quiz 按 `LEARNING_RULES.md`：通常 5–10 题；知识点多时可以更多。核心知识点“不超过20个”不等于默认出20道题。
 
 ---
 
@@ -227,22 +229,70 @@ Retest:
 
 Lesson:
 - docs/lessons/day016.md
-
-Next:
-- M03 / Day17 — IMU / Encoder / LiDAR / Camera
 ```
 
 ---
 
-## 7. 下一步
+## 7. Day17 Learning Record
 
 ```text
-M03 Day17
-→ IMU：gyro / accelerometer 到底直接测什么
-→ Encoder / Wheel Odom：直接测量 vs 推导状态
-→ LiDAR：range / angle / intensity 与 XYZ point 的区别
-→ Camera：pixel intensity 与3D/semantic estimate的区别
-→ Daily Quiz + targeted retest
+Current Module / Day:
+M03 / Day17 — IMU / Encoder / LiDAR / Camera — COMPLETED / PASS
+
+Mastered:
+- gyro 直接测 angular velocity，不直接测 orientation
+- accelerometer 不是简单 world-frame acceleration；gravity / body frame / orientation 会参与解释
+- encoder tick → motor angle → gear ratio → wheel angle → displacement → kinematics → odom pose
+- wheel slip 可在 encoder 正常时使 wheel odom 错误
+- LiDAR range + beam direction → LiDAR-frame XYZ；XYZ 不自动是 base_link
+- ToF 的往返传播与 r=cΔt/2
+- intensity 是单次回波信号强度，不是点云密度
+- raw optical measurement / raw cloud / processed cloud 的层级
+- deskew = per-point time + motion estimate → 补偿到同一参考时刻
+- RGB Camera 直接提供 pixel / image measurement，不直接提供 semantic / 3D
+- YOLO / monocular depth / FAST-LIO pose 属于算法推导结果
+- Stereo disparity 是同一3D点在左右图的 pixel position difference
+- Structured Light = known projector pattern + Camera + triangulation；与 ToF 区分
+
+Weak / Corrected:
+- 曾将 motor / wheel 差异归因于“半径不同”；纠正为明确 gear ratio
+- 差速 yaw 示例将 0.2/0.5 算成4 rad；纠正为0.4 rad
+- 曾把 LiDAR XYZ 默认理解成 base_link；纠正为先在 LiDAR frame
+- 曾把 intensity 理解成点聚集程度；纠正为回波强度
+- 曾把 deskew 理解成按时间分类；纠正为运动补偿到同一参考时刻
+- 曾把 YOLO feature 与 descriptor / eigenvalue 混淆；纠正为 learned visual feature
+- 曾把 disparity 理解成左右图大小差；纠正为位置差
+- 曾把 Structured Light 与 ToF 混淆；纠正为 triangulation vs time/phase ranging
+- 曾把 LiDAR XYZ 与 Stereo 原理混淆；定向复测通过
+
+Deferred:
+- Camera intrinsic / pinhole / pixel+depth→Camera XYZ /完整Stereo推导属于 M05 Day22–25，本日不作为未掌握项
+
+Retest:
+- LiDAR 已有 r,θ,φ：不需要第二个 Camera；range + beam geometry 可直接得到 LiDAR-frame XYZ，PASS
+- Stereo：已知 baseline + disparity，通过三角测量求 depth，PASS
+
+Lesson:
+- docs/lessons/day017.md
+
+Next:
+- M03 / Day18 — GNSS / RTK / Timestamp / Latency / Synchronization / Calibration
+```
+
+---
+
+## 8. 下一步
+
+```text
+M03 Day18
+→ GNSS：satellite signal → range-like measurement → receiver position
+→ RTK：Single / Float / Fixed、NTRIP/RTCM在系统中的位置
+→ 单天线 RTK position ≠ 静止 heading
+→ measurement time / arrival time / processing / publish time
+→ latency vs jitter
+→ hardware sync vs software sync
+→ intrinsic vs extrinsic（只讲概念边界，不提前展开 M05 camera math）
+→ 结合狗子 LIO约400ms延迟、GNSS/RTK 实测做工程映射
 
 保留事项：
 - M02 Module Graduation Exam 尚未完成，后续回补第8题及剩余纠错，不宣告 M02 模块毕业。
