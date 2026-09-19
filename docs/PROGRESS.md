@@ -17,7 +17,8 @@ M02 Day15 — Jacobian / Hessian / Taylor / Linearization：COMPLETED / PASS
 M02 Module Graduation Exam：INCOMPLETE / DEFERRED（第8题与部分综合题待回补）
 M03 Day16 — Sensor Model / Noise / Bias / Measurement Quality：COMPLETED / PASS
 M03 Day17 — IMU / Encoder / LiDAR / Camera：COMPLETED / PASS
-Next：M03 Day18 — GNSS / RTK / Timestamp / Latency / Synchronization / Calibration
+M03 Day18 — GNSS / RTK / Timestamp / Latency / Synchronization / Calibration：COMPLETED / PASS
+Next：M03 Day19 — Actuator / Motor Loop / Communication / Command→Motion
 ```
 
 > 重要：M02 Day8–15 的每日课程已完成，但 **M02 模块毕业考试尚未完成，因此不宣告 M02 模块毕业**。用户选择先继续 M03，后续回补考试剩余题目与 Hard Gate 复测。
@@ -281,18 +282,56 @@ Next:
 
 ---
 
-## 8. 下一步
+## 8. Day18 Learning Record
 
 ```text
-M03 Day18
-→ GNSS：satellite signal → range-like measurement → receiver position
-→ RTK：Single / Float / Fixed、NTRIP/RTCM在系统中的位置
-→ 单天线 RTK position ≠ 静止 heading
-→ measurement time / arrival time / processing / publish time
-→ latency vs jitter
-→ hardware sync vs software sync
-→ intrinsic vs extrinsic（只讲概念边界，不提前展开 M05 camera math）
-→ 结合狗子 LIO约400ms延迟、GNSS/RTK 实测做工程映射
+Current Module / Day:
+M03 / Day18 — GNSS / RTK / Timestamp / Latency / Synchronization / Calibration — COMPLETED / PASS
+
+Mastered:
+- GNSS 伪距包含 receiver clock error 与环境误差，不是纯几何距离
+- RTK Single / Float / Fixed 的工程意义；Fixed 不等于真实绝对误差被硬保证
+- 单天线 RTK position ≠ 静止 absolute heading；双天线 baseline 可提供静止方向
+- measurement time / arrival time / processing time / publish time 的区别
+- latency（延迟）与 jitter（延迟抖动）的区别
+- frequency（频率）与 latency（延迟）相互独立
+- same frequency ≠ synchronization
+- hardware synchronization vs software synchronization
+- intrinsic / extrinsic 概念边界
+- LIO latency → old pose → error calculation wrong → command wrong → overshoot / oscillation
+
+Weak / Corrected:
+- 曾把 covariance 小简单表述成“不抖”；纠正为估计不确定性尺度/结构，不等于真实误差
+- 曾认为 10Hz 与 400ms latency 矛盾；纠正为 frequency 描述帧间隔，latency 描述数据落后真实物理时刻多少
+- LIO latency 到 MPPI 异常的错误链初次不完整；已补齐
+
+Retest:
+- 0.05s 发布周期 → 20Hz；同时每帧可落后 0.3s，二者无矛盾，核心概念 PASS
+- old yaw → 路径/航向误差计算错误 → vx/wz 不合适 → 纠偏滞后/过冲，PASS
+
+Lesson:
+- docs/lessons/day018.md
+
+Next:
+- M03 / Day19 — Actuator / Motor Loop / Communication / Command→Motion
+```
+
+---
+
+## 9. 下一步
+
+```text
+M03 Day19
+→ motor / actuator / transmission / mechanism
+→ position / velocity / torque command
+→ cascaded control loop
+→ encoder feedback 与 closed loop
+→ saturation / velocity limit / acceleration limit
+→ commanded state ≠ actual state
+→ gearbox speed / torque trade-off 与 backlash
+→ UART / CAN / Ethernet 工程差异
+→ communication delay / drop 如何表现成 controller 问题
+→ Daily Quiz（通常5–10题）+ targeted retest
 
 保留事项：
 - M02 Module Graduation Exam 尚未完成，后续回补第8题及剩余纠错，不宣告 M02 模块毕业。
