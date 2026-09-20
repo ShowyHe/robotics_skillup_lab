@@ -18,7 +18,9 @@ M02 Module Graduation Exam：INCOMPLETE / DEFERRED（第8题与部分综合题�
 M03 Day16 — Sensor Model / Noise / Bias / Measurement Quality：COMPLETED / PASS
 M03 Day17 — IMU / Encoder / LiDAR / Camera：COMPLETED / PASS
 M03 Day18 — GNSS / RTK / Timestamp / Latency / Synchronization / Calibration：COMPLETED / PASS
-Next：M03 Day19 — Actuator / Motor Loop / Communication / Command→Motion
+M03 Day19 — Actuator / Motor Loop / Communication / Command→Motion：COMPLETED / PASS
+M03 Module Graduation Exam：NEXT
+Next：M03 Module Graduation Exam
 ```
 
 > 重要：M02 Day8–15 的每日课程已完成，但 **M02 模块毕业考试尚未完成，因此不宣告 M02 模块毕业**。用户选择先继续 M03，后续回补考试剩余题目与 Hard Gate 复测。
@@ -318,20 +320,56 @@ Next:
 
 ---
 
-## 9. 下一步
+## 9. Day19 Learning Record
 
 ```text
-M03 Day19
-→ motor / actuator / transmission / mechanism
-→ position / velocity / torque command
-→ cascaded control loop
-→ encoder feedback 与 closed loop
-→ saturation / velocity limit / acceleration limit
-→ commanded state ≠ actual state
-→ gearbox speed / torque trade-off 与 backlash
-→ UART / CAN / Ethernet 工程差异
-→ communication delay / drop 如何表现成 controller 问题
-→ Daily Quiz（通常5–10题）+ targeted retest
+Current Module / Day:
+M03 / Day19 — Actuator / Motor Loop / Communication / Command→Motion — COMPLETED / PASS
+
+Mastered:
+- Motor / Actuator / Transmission / Mechanism 边界
+- BLDC（无刷直流电机）与 Servo（三环伺服控制）边界
+- Position / Velocity / Current-Torque 三环
+- current → torque → acceleration → velocity → position 物理链
+- commanded state ≠ actual state
+- saturation / velocity limit / acceleration limit
+- gearbox：speed ÷ ratio、torque × ratio
+- backlash
+- UART / CAN / Ethernet 基本工程差异
+- CAN Frame 与上层 Protocol 的职责边界
+- LIO latency → old pose；communication latency → old command
+
+Weak / Corrected:
+- 曾把 BLDC 与三环控制混同；已纠正
+- Gearbox 转矩计算首次出错；定向复测通过
+- 曾把 communication latency 写成三环依次延迟；已纠正为消息传输链旧 command
+
+Retest:
+- G=50, ωm=500rad/s, τm=0.2N·m → 10rad/s, 10N·m，PASS
+- MPPI command 0.5m/s 但 actual 0.3m/s：能构造多种合理执行链原因，PASS
+- 定位延迟与通信延迟责任边界，PASS
+
+Lesson:
+- docs/lessons/day019.md
+
+Next:
+- M03 Module Graduation Exam
+```
+
+---
+
+## 10. 下一步
+
+```text
+M03 Module Graduation Exam
+→ 30% 核心基础
+→ 50% 综合系统场景
+→ 20% 数据 / 规格 / 设计
+→ Hard Gate 不允许基础概念错误
+
+考试通过后：
+→ 按定位 + 视觉专项直接进入 M05 Day22
+→ M04 Day20–21 暂缓
 
 保留事项：
 - M02 Module Graduation Exam 尚未完成，后续回补第8题及剩余纠错，不宣告 M02 模块毕业。
