@@ -19,8 +19,9 @@ M03 Day16 — Sensor Model / Noise / Bias / Measurement Quality：COMPLETED / PA
 M03 Day17 — IMU / Encoder / LiDAR / Camera：COMPLETED / PASS
 M03 Day18 — GNSS / RTK / Timestamp / Latency / Synchronization / Calibration：COMPLETED / PASS
 M03 Day19 — Actuator / Motor Loop / Communication / Command→Motion：COMPLETED / PASS
-M03 Module Graduation Exam：NEXT
-Next：M03 Module Graduation Exam
+M03 Module Graduation Exam：DEFERRED（后续遗忘后回测）
+M05 Day22 — Pinhole Camera Model：COMPLETED / PASS
+Next：M05 Day23 — Intrinsic / Extrinsic / Full 3D→Pixel Projection
 ```
 
 > 重要：M02 Day8–15 的每日课程已完成，但 **M02 模块毕业考试尚未完成，因此不宣告 M02 模块毕业**。用户选择先继续 M03，后续回补考试剩余题目与 Hard Gate 复测。
@@ -358,19 +359,57 @@ Next:
 
 ---
 
-## 10. 下一步
+## 10. Day22 Learning Record
 
 ```text
-M03 Module Graduation Exam
-→ 30% 核心基础
-→ 50% 综合系统场景
-→ 20% 数据 / 规格 / 设计
-→ Hard Gate 不允许基础概念错误
+Current Module / Day:
+M05 / Day22 — Pinhole Camera Model — COMPLETED / PASS
 
-考试通过后：
-→ 按定位 + 视觉专项直接进入 M05 Day22
-→ M04 Day20–21 暂缓
+Mastered:
+- x=fX/Z, y=fY/Z 与相似三角形
+- perspective：projection scale ∝ 1/Z
+- normalized coordinate：X/Z, Y/Z
+- one pixel → one camera ray，单像素不能唯一确定3D点
+- principal point 概念
+- focal length ↑ → FOV ↓；远处目标占更多像素
+- Camera 3D → Normalized → Image Plane → Pixel 四层坐标
+- YOLO pixel ≠ 3D position
+
+Weak / Corrected:
+- 曾把 image-plane x 当成 pixel u；已纠正
+- 曾把 Camera-frame XYZ 说成相对 base_link；已纠正
+- xn / x / u 层级混淆；定向复测通过
+- “焦距大→看得更近”措辞已纠正
+
+Retest:
+- X/Z = Normalized Coordinate，PASS
+- fX/Z = Image Plane Coordinate，PASS
+
+Lesson:
+- docs/lessons/day022.md
+
+Next:
+- M05 / Day23 — Intrinsic / Extrinsic / Full 3D→Pixel Projection
+```
+
+---
+
+## 11. 下一步
+
+```text
+M05 Day23
+→ world / base_link / camera / normalized / pixel 多坐标系
+→ rigid transform：p_c = R_cw p_w + t_cw
+→ homogeneous coordinate 初步
+→ extrinsic
+→ intrinsic matrix K
+→ full projection
+→ transform direction
+→ source / target frame
+→ matrix dimension reasoning
 
 保留事项：
-- M02 Module Graduation Exam 尚未完成，后续回补第8题及剩余纠错，不宣告 M02 模块毕业。
+- M02 Module Graduation Exam：INCOMPLETE / DEFERRED
+- M03 Module Graduation Exam：DEFERRED
+- M04 Day20–21：按专项路线暂缓
 ```
