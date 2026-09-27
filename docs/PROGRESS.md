@@ -21,7 +21,8 @@ M03 Day18 — GNSS / RTK / Timestamp / Latency / Synchronization / Calibration�
 M03 Day19 — Actuator / Motor Loop / Communication / Command→Motion：COMPLETED / PASS
 M03 Module Graduation Exam：DEFERRED（后续遗忘后回测）
 M05 Day22 — Pinhole Camera Model：COMPLETED / PASS
-Next：M05 Day23 — Intrinsic / Extrinsic / Full 3D→Pixel Projection
+M05 Day23 — Intrinsic / Extrinsic / Full 3D→Pixel Projection：COMPLETED / PASS
+Next：M05 Day24 — Lens Distortion / Camera Calibration
 ```
 
 > 重要：M02 Day8–15 的每日课程已完成，但 **M02 模块毕业考试尚未完成，因此不宣告 M02 模块毕业**。用户选择先继续 M03，后续回补考试剩余题目与 Hard Gate 复测。
@@ -394,19 +395,54 @@ Next:
 
 ---
 
-## 11. 下一步
+## 11. Day23 Learning Record
 
 ```text
-M05 Day23
-→ world / base_link / camera / normalized / pixel 多坐标系
-→ rigid transform：p_c = R_cw p_w + t_cw
-→ homogeneous coordinate 初步
-→ extrinsic
-→ intrinsic matrix K
-→ full projection
-→ transform direction
-→ source / target frame
-→ matrix dimension reasoning
+Current Module / Day:
+M05 / Day23 — Intrinsic / Extrinsic / Full 3D→Pixel Projection — COMPLETED / PASS
+
+Mastered:
+- intrinsic / extrinsic 职责边界
+- Rigid Transform = Rotation + Translation
+- homogeneous coordinate 与4×4 transform
+- intrinsic matrix K：fx/fy/cx/cy
+- World → Camera → Normalized → Pixel
+- full projection 与矩阵维度
+- transform direction 与 inverse transform
+- K 只处理 Camera Frame 中的点
+
+Weak / Corrected:
+- 反方向 transform 首次未写 inverse；已纠正
+- 曾写错 Pb / Pc 左右关系；定向复测通过
+- 曾把 World 不能直接乘 K 的原因理解成主点偏移；已纠正为坐标系错误
+
+Retest:
+- Pb = T(c←b)^-1 Pc = T(b←c)Pc，PASS
+- World 不能直接乘 K，因为坐标系不对，PASS
+
+Lesson:
+- docs/lessons/day023.md
+
+Next:
+- M05 / Day24 — Lens Distortion / Camera Calibration
+```
+
+---
+
+## 12. 下一步
+
+```text
+M05 Day24
+→ ideal pinhole vs real camera
+→ radial distortion
+→ tangential distortion
+→ k1/k2/k3/p1/p2
+→ undistortion
+→ intrinsic calibration
+→ calibration board
+→ reprojection error
+→ calibration quality
+→ extrinsic calibration conceptual boundary
 
 保留事项：
 - M02 Module Graduation Exam：INCOMPLETE / DEFERRED
