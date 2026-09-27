@@ -22,7 +22,8 @@ M03 Day19 — Actuator / Motor Loop / Communication / Command→Motion：COMPLET
 M03 Module Graduation Exam：DEFERRED（后续遗忘后回测）
 M05 Day22 — Pinhole Camera Model：COMPLETED / PASS
 M05 Day23 — Intrinsic / Extrinsic / Full 3D→Pixel Projection：COMPLETED / PASS
-Next：M05 Day24 — Lens Distortion / Camera Calibration
+M05 Day24 — Lens Distortion / Camera Calibration：COMPLETED / PASS
+Next：M05 Day25 — Stereo / RGB-D / Depth Geometry
 ```
 
 > 重要：M02 Day8–15 的每日课程已完成，但 **M02 模块毕业考试尚未完成，因此不宣告 M02 模块毕业**。用户选择先继续 M03，后续回补考试剩余题目与 Hard Gate 复测。
@@ -429,20 +430,57 @@ Next:
 
 ---
 
-## 12. 下一步
+## 12. Day24 Learning Record
 
 ```text
-M05 Day24
-→ ideal pinhole vs real camera
-→ radial distortion
-→ tangential distortion
-→ k1/k2/k3/p1/p2
-→ undistortion
-→ intrinsic calibration
-→ calibration board
-→ reprojection error
-→ calibration quality
-→ extrinsic calibration conceptual boundary
+Current Module / Day:
+M05 / Day24 — Lens Distortion / Camera Calibration — COMPLETED / PASS
+
+Mastered:
+- ideal pinhole vs real camera
+- radial / tangential distortion
+- k1/k2/k3 与 p1/p2
+- intrinsic calibration 参数
+- calibration board 几何约束
+- reprojection error
+- calibration success ≠ calibration quality
+- multi-pose calibration coverage
+- undistortion
+- intrinsic / extrinsic calibration boundary
+- angular extrinsic error grows with distance in position space
+
+Weak / Corrected:
+- radial distortion 初次解释成“不平行光”；已纠正
+- reprojection error 初次未明确是 pixel-vs-pixel；已纠正
+- yaw 外参误差初次按图像占比解释；已纠正为 Δy≈LΔθ
+
+Retest:
+- Reprojection Error = predicted pixel vs observed pixel，PASS
+- 8m × 0.035rad = 0.28m，PASS
+
+Lesson:
+- docs/lessons/day024.md
+
+Next:
+- M05 / Day25 — Stereo / RGB-D / Depth Geometry
+```
+
+---
+
+## 13. 下一步
+
+```text
+M05 Day25
+→ monocular ambiguity
+→ camera ray
+→ stereo cameras / baseline
+→ disparity
+→ Z = fB/d
+→ baseline trade-off
+→ RGB-D ranging principles
+→ pixel + depth → Camera 3D
+→ depth vs range
+→ missing / invalid depth
 
 保留事项：
 - M02 Module Graduation Exam：INCOMPLETE / DEFERRED
