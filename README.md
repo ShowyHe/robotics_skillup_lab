@@ -121,7 +121,7 @@ M22  Day130–135（动态 Foundation Cleanup）
 
 状态：`⬜ 未开始`、`🟨 进行中`、`✅ 完成 / PASS`、`🔁 需要重学 / Retest`。
 
-当前正式位置：**定位 + 视觉理论专项 / M05 / Day026 — Pixel → Camera → Base → World（像素→相机→机器人→世界）**。Day008–Day019、Day022–Day025 已完成并有正式讲义。**M02 Module Graduation Exam 与 M03 Module Graduation Exam 均暂缓，后续用于遗忘后的回测；当前不宣告对应模块毕业。** M04 Simulation 暂不作为当前专项前置主线。`docs/lessons/` 当前没有 Day001–Day007 的正式学习记录，因此这里不把它们标成已完成。
+当前正式位置：**定位 + 视觉理论专项 / M06 / Day027 — Tensor / Dataset / DataLoader（张量 / 数据集 / 数据加载器）**。Day008–Day019、Day022–Day026 已完成并有正式讲义。**M02 Module Graduation Exam 与 M03 Module Graduation Exam 均暂缓，后续用于遗忘后的回测；当前不宣告对应模块毕业。** M04 Simulation 暂不作为当前专项前置主线。`docs/lessons/` 当前没有 Day001–Day007 的正式学习记录，因此这里不把它们标成已完成。
 
 ### M00–M02｜系统基础与数学基础 I
 
@@ -157,13 +157,13 @@ M22  Day130–135（动态 Foundation Cleanup）
 | Day023 | ✅ | Intrinsic / Extrinsic | [学习记录](docs/lessons/day023.md) |
 | Day024 | ✅ | Distortion / Calibration | [学习记录](docs/lessons/day024.md) |
 | Day025 | ✅ | Stereo / RGB-D / Depth | [学习记录](docs/lessons/day025.md) |
-| Day026 | 🟨 | Pixel → Camera → Base → World |
+| Day026 | ✅ | Pixel → Camera → Base → World | [学习记录](docs/lessons/day026.md) |
 
 ### M06–M07｜深度学习与视觉 / 3D 感知
 
 | Day | 状态 | 主题 |
 |---|---|---|
-| Day027 | ⬜ | Tensor / Dataset / DataLoader |
+| Day027 | 🟨 | Tensor / Dataset / DataLoader |
 | Day028 | ⬜ | Backprop / Autograd |
 | Day029 | ⬜ | Training Loop / SGD / Adam |
 | Day030 | ⬜ | Softmax / Cross Entropy |
