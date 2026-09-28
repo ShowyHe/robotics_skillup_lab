@@ -25,7 +25,8 @@ M05 Day23 — Intrinsic / Extrinsic / Full 3D→Pixel Projection：COMPLETED / P
 M05 Day24 — Lens Distortion / Camera Calibration：COMPLETED / PASS
 M05 Day25 — Stereo / RGB-D / Depth Geometry：COMPLETED / PASS
 M05 Day26 — Pixel→Camera→Base→World：COMPLETED / PASS
-Next：M06 Day27 — Tensor / Dataset / DataLoader
+M06 Day27 — Neural Network / Tensor / Dataset / DataLoader / Loss：COMPLETED / PASS
+Next：M06 Day28 — Backpropagation / Computational Graph / Autograd
 ```
 
 > 重要：M02 Day8–15 的每日课程已完成，但 **M02 模块毕业考试尚未完成，因此不宣告 M02 模块毕业**。用户选择先继续 M03，后续回补考试剩余题目与 Hard Gate 复测。
@@ -540,16 +541,55 @@ Next:
 
 ---
 
-## 15. 下一步
+## 15. Day27 Learning Record
 
 ```text
-M06 Day27
-→ Tensor
-→ Shape / Dimension
-→ Dataset
-→ DataLoader
-→ Batch
-→ Deep Learning data pipeline
+Current Module / Day:
+M06 / Day27 — Neural Network / Tensor / Dataset / DataLoader / Loss — COMPLETED / PASS
+
+Mastered:
+- x / θ / ŷ / y 的职责
+- parameter vs hyperparameter
+- Tensor 的 shape / dtype / device
+- N×C×H×W
+- y=Wx+b 的维度推理
+- activation 的必要性
+- loss 与 dataset objective
+- Dataset / DataLoader / Sample / Batch
+- forward pass
+- training vs inference
+- Robot Policy 的 input / prediction / target / parameter
+
+Weak / Corrected:
+- 首次混淆 x / ŷ / y
+- 首次误把 Channel 说成 feature vector
+- Dataset / DataLoader 职责初次不够准确
+- Robot Policy 首次答成 Detection 任务
+
+Retest:
+- 四项定向复测全部 PASS
+
+Lesson:
+- docs/lessons/day027.md
+
+Next:
+- M06 / Day28 — Backpropagation / Computational Graph / Autograd
+```
+
+---
+
+## 16. 下一步
+
+```text
+M06 Day28
+→ Computational Graph
+→ Local Derivative
+→ Chain Rule
+→ Backward Pass
+→ Gradient
+→ Gradient Accumulation
+→ Reverse-mode Automatic Differentiation
+→ PyTorch Autograd
 
 保留事项：
 - M02 Module Graduation Exam：INCOMPLETE / DEFERRED
