@@ -23,7 +23,8 @@ M03 Module Graduation Exam：DEFERRED（后续遗忘后回测）
 M05 Day22 — Pinhole Camera Model：COMPLETED / PASS
 M05 Day23 — Intrinsic / Extrinsic / Full 3D→Pixel Projection：COMPLETED / PASS
 M05 Day24 — Lens Distortion / Camera Calibration：COMPLETED / PASS
-Next：M05 Day25 — Stereo / RGB-D / Depth Geometry
+M05 Day25 — Stereo / RGB-D / Depth Geometry：COMPLETED / PASS
+Next：M05 Day26 — Pixel→Camera→Base→World
 ```
 
 > 重要：M02 Day8–15 的每日课程已完成，但 **M02 模块毕业考试尚未完成，因此不宣告 M02 模块毕业**。用户选择先继续 M03，后续回补考试剩余题目与 Hard Gate 复测。
@@ -467,20 +468,56 @@ Next:
 
 ---
 
-## 13. 下一步
+## 13. Day25 Learning Record
 
 ```text
-M05 Day25
-→ monocular ambiguity
-→ camera ray
-→ stereo cameras / baseline
-→ disparity
-→ Z = fB/d
-→ baseline trade-off
-→ RGB-D ranging principles
-→ pixel + depth → Camera 3D
-→ depth vs range
-→ missing / invalid depth
+Current Module / Day:
+M05 / Day25 — Stereo / RGB-D / Depth Geometry — COMPLETED / PASS
+
+Mastered:
+- monocular ambiguity
+- camera ray
+- baseline / disparity
+- Z=fB/d
+- far-range disparity sensitivity
+- baseline trade-off
+- pixel + depth → Camera 3D
+- depth vs range
+- RGB-D ranging principles
+- missing / invalid depth
+
+Weak / Corrected:
+- 远距离误差初次按“像素偏得更多”解释；已纠正
+- 曾误解 B 增大对 Z 的关系；已纠正
+- 远处 disparity 更小的几何直觉已补齐
+
+Retest:
+- d=3px 相比 d=30px 对同样1px误差更敏感，PASS
+- 解释 Z↑ → d↓，PASS
+
+Lesson:
+- docs/lessons/day025.md
+
+Next:
+- M05 / Day26 — Pixel→Camera→Base→World
+```
+
+---
+
+## 14. 下一步
+
+```text
+M05 Day26
+→ undistortion
+→ back projection
+→ Camera → Base
+→ Base → World
+→ transform chain
+→ timestamp alignment
+→ error propagation intuition
+→ PnP concept
+→ hand-eye calibration concept
+→ Navigation / Manipulation / VLA integration
 
 保留事项：
 - M02 Module Graduation Exam：INCOMPLETE / DEFERRED
