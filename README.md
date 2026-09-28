@@ -121,7 +121,7 @@ M22  Day130–135（动态 Foundation Cleanup）
 
 状态：`⬜ 未开始`、`🟨 进行中`、`✅ 完成 / PASS`、`🔁 需要重学 / Retest`。
 
-当前正式位置：**定位 + 视觉理论专项 / M05 / Day025 — Stereo / RGB-D / Depth Geometry（双目 / RGB-D / 深度几何）**。Day008–Day019、Day022–Day024 已完成并有正式讲义。**M02 Module Graduation Exam 与 M03 Module Graduation Exam 均暂缓，后续用于遗忘后的回测；当前不宣告对应模块毕业。** M04 Simulation 暂不作为当前专项前置主线。`docs/lessons/` 当前没有 Day001–Day007 的正式学习记录，因此这里不把它们标成已完成。
+当前正式位置：**定位 + 视觉理论专项 / M05 / Day026 — Pixel → Camera → Base → World（像素→相机→机器人→世界）**。Day008–Day019、Day022–Day025 已完成并有正式讲义。**M02 Module Graduation Exam 与 M03 Module Graduation Exam 均暂缓，后续用于遗忘后的回测；当前不宣告对应模块毕业。** M04 Simulation 暂不作为当前专项前置主线。`docs/lessons/` 当前没有 Day001–Day007 的正式学习记录，因此这里不把它们标成已完成。
 
 ### M00–M02｜系统基础与数学基础 I
 
@@ -156,8 +156,8 @@ M22  Day130–135（动态 Foundation Cleanup）
 | Day022 | ✅ | Pinhole Camera | [学习记录](docs/lessons/day022.md) |
 | Day023 | ✅ | Intrinsic / Extrinsic | [学习记录](docs/lessons/day023.md) |
 | Day024 | ✅ | Distortion / Calibration | [学习记录](docs/lessons/day024.md) |
-| Day025 | 🟨 | Stereo / RGB-D / Depth |
-| Day026 | ⬜ | Pixel → Camera → Base → World |
+| Day025 | ✅ | Stereo / RGB-D / Depth | [学习记录](docs/lessons/day025.md) |
+| Day026 | 🟨 | Pixel → Camera → Base → World |
 
 ### M06–M07｜深度学习与视觉 / 3D 感知
 
