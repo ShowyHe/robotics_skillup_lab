@@ -24,7 +24,8 @@ M05 Day22 — Pinhole Camera Model：COMPLETED / PASS
 M05 Day23 — Intrinsic / Extrinsic / Full 3D→Pixel Projection：COMPLETED / PASS
 M05 Day24 — Lens Distortion / Camera Calibration：COMPLETED / PASS
 M05 Day25 — Stereo / RGB-D / Depth Geometry：COMPLETED / PASS
-Next：M05 Day26 — Pixel→Camera→Base→World
+M05 Day26 — Pixel→Camera→Base→World：COMPLETED / PASS
+Next：M06 Day27 — Tensor / Dataset / DataLoader
 ```
 
 > 重要：M02 Day8–15 的每日课程已完成，但 **M02 模块毕业考试尚未完成，因此不宣告 M02 模块毕业**。用户选择先继续 M03，后续回补考试剩余题目与 Hard Gate 复测。
@@ -504,20 +505,51 @@ Next:
 
 ---
 
-## 14. 下一步
+## 14. Day26 Learning Record
 
 ```text
-M05 Day26
-→ undistortion
-→ back projection
-→ Camera → Base
-→ Base → World
-→ transform chain
-→ timestamp alignment
-→ error propagation intuition
-→ PnP concept
-→ hand-eye calibration concept
-→ Navigation / Manipulation / VLA integration
+Current Module / Day:
+M05 / Day26 — Pixel→Camera→Base→World — COMPLETED / PASS
+
+Mastered:
+- undistortion
+- pixel + depth → Camera 3D
+- Camera → Base
+- Base → World
+- transform chain 与右侧先执行
+- timestamp alignment
+- time offset → spatial error
+- pixel/depth/intrinsic/extrinsic/pose/time error chain
+- PnP 基本作用
+- hand-eye calibration 基本作用
+- Navigation / Manipulation / VLM / VLA geometry interface
+
+Weak / Corrected:
+- 曾把3D Position写成完整Pose；已纠正
+- 最终四层链复述曾过于概括；已补齐
+
+Retest:
+- Pixel + Depth → Camera → base_link → map/world 全链独立复述，PASS
+
+Lesson:
+- docs/lessons/day026.md
+
+Next:
+- M06 / Day27 — Tensor / Dataset / DataLoader
+```
+
+---
+
+## 15. 下一步
+
+```text
+M06 Day27
+→ Tensor
+→ Shape / Dimension
+→ Dataset
+→ DataLoader
+→ Batch
+→ Deep Learning data pipeline
 
 保留事项：
 - M02 Module Graduation Exam：INCOMPLETE / DEFERRED
