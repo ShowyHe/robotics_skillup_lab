@@ -26,7 +26,8 @@ M05 Day24 — Lens Distortion / Camera Calibration：COMPLETED / PASS
 M05 Day25 — Stereo / RGB-D / Depth Geometry：COMPLETED / PASS
 M05 Day26 — Pixel→Camera→Base→World：COMPLETED / PASS
 M06 Day27 — Neural Network / Tensor / Dataset / DataLoader / Loss：COMPLETED / PASS
-Next：M06 Day28 — Backpropagation / Computational Graph / Autograd
+M06 Day28 — Backpropagation / Computational Graph / Autograd：COMPLETED / PASS
+Next：M06 Day29 — Training Loop / Gradient Descent / SGD / Adam
 ```
 
 > 重要：M02 Day8–15 的每日课程已完成，但 **M02 模块毕业考试尚未完成，因此不宣告 M02 模块毕业**。用户选择先继续 M03，后续回补考试剩余题目与 Hard Gate 复测。
@@ -578,18 +579,59 @@ Next:
 
 ---
 
-## 16. 下一步
+## 16. Day28 Learning Record
 
 ```text
-M06 Day28
-→ Computational Graph
-→ Local Derivative
-→ Chain Rule
-→ Backward Pass
-→ Gradient
-→ Gradient Accumulation
-→ Reverse-mode Automatic Differentiation
-→ PyTorch Autograd
+Current Module / Day:
+M06 / Day28 — Backpropagation / Computational Graph / Autograd — COMPLETED / PASS
+
+Mastered:
+- computational graph
+- local derivative
+- chain rule through network
+- backward pass
+- gradient as local sensitivity
+- parameter tensor / gradient tensor shape
+- gradient accumulation
+- reverse-mode automatic differentiation
+- loss.backward() vs parameter update
+- requires_grad / .grad / no_grad / detach concept
+- robot policy early-layer gradient propagation
+
+Weak / Corrected:
+- 曾把 gradient 说成 parameter 对 loss 的“贡献”；已纠正为 loss 对 parameter 的局部敏感度
+- 曾把 reverse-mode 说成每个参数单独一条链；已纠正为复用同一计算图及中间结果
+- 早期视觉层 gradient 解释曾缺完整路径；已补齐
+
+Retest:
+- gradient sensitivity：PASS
+- reverse-mode reasoning：PASS
+- multi-path gradient accumulation：PASS
+
+Lesson:
+- docs/lessons/day028.md
+
+Next:
+- M06 / Day29 — Training Loop / Gradient Descent / SGD / Momentum / Adam
+```
+
+---
+
+## 17. 下一步
+
+```text
+M06 Day29
+→ Gradient Descent
+→ Learning Rate
+→ Full Batch vs Mini-batch
+→ Epoch / Iteration / Batch
+→ Training Loop
+→ train / eval mode
+→ Momentum
+→ Adam
+→ LR Schedule
+→ Local Minimum / Saddle Point
+→ Gradient Clipping
 
 保留事项：
 - M02 Module Graduation Exam：INCOMPLETE / DEFERRED
