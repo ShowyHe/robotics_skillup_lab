@@ -28,10 +28,10 @@ M05 Day26 — Pixel→Camera→Base→World：COMPLETED / PASS
 M06 Day27 — Neural Network / Tensor / Dataset / DataLoader / Loss：COMPLETED / PASS
 M06 Day28 — Backpropagation / Computational Graph / Autograd：COMPLETED / PASS
 M06 Day29 — Training Loop / Gradient Descent / SGD / Momentum / Adam：COMPLETED / PASS
-M06 Day30 — Classification / Logit / Softmax / Cross Entropy：PENDING
+M06 Day30 — Classification / Logit / Softmax / Cross Entropy：COMPLETED / PASS
 M06 Day31 — CNN Foundations：PENDING
 M06 Day32 — Generalization / Normalization / Distribution Shift：COMPLETED / PASS
-Next（按当前学习顺序）：M06 Day33 — Attention / Transformer Foundations
+Next：M06 Day31 — CNN Foundations
 ```
 
 > 重要：M02 Day8–15 的每日课程已完成，但 **M02 模块毕业考试尚未完成，因此不宣告 M02 模块毕业**。用户选择先继续 M03，后续回补考试剩余题目与 Hard Gate 复测。
@@ -656,7 +656,34 @@ Lesson:
 
 ---
 
-## 18. Day32 Learning Record
+## 18. Day30 Learning Record
+
+Current Module / Day:
+M06 / Day30 — Classification / Logit / Softmax / Cross Entropy — COMPLETED / PASS
+
+Mastered:
+- Regression vs Classification
+- Logit 不是 Probability
+- Softmax 归一化与类别概率分布
+- Cross Entropy：L = -log p_y
+- One-hot Target
+- Sigmoid + BCE 二分类
+- Class Imbalance 基本问题
+- Threshold 与训练 Loss 的边界
+- Softmax Confidence != Robot Safety Confidence
+
+Weak / Corrected:
+- 曾把多分类 One-hot 写成“car / not car”，与二分类混淆
+
+Retest:
+- person / car / dog / bicycle，真实类别 dog → [0,0,1,0]：PASS
+
+Lesson:
+- docs/lessons/day030.md
+
+---
+
+## 19. Day32 Learning Record
 
 Current Module / Day:
 M06 / Day32 — Generalization / Normalization / Regularization / Distribution Shift — COMPLETED / PASS
@@ -699,23 +726,27 @@ Next（按当前学习顺序）:
 
 ---
 
-## 19. 下一步
+## 20. 下一步
 
-M06 Day33：
-Token / Embedding
-→ Q / K / V
-→ Scaled Dot-product Attention
-→ Attention Matrix Dimension
-→ Self-Attention / Cross-Attention
-→ Multi-head Attention
-→ Positional Information
-→ Transformer Block
-→ Causal Mask
-→ Robotics Connection
+M06 Day31：
+Image Tensor
+→ Convolution
+→ Kernel / Filter
+→ Parameter Sharing
+→ Receptive Field
+→ Stride
+→ Padding
+→ Channel
+→ Pooling / Downsampling
+→ Hierarchical Features
+→ Translation Equivariance
+→ Backbone / Task Head
 
-待回补：
-- M06 Day30
-- M06 Day31
+已提前完成：
+- M06 Day32
+
+后续：
+- M06 Day33
 
 保留事项：
 - M02 Module Graduation Exam：INCOMPLETE / DEFERRED
