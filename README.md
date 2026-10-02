@@ -121,7 +121,7 @@ M22  Day130–135（动态 Foundation Cleanup）
 
 状态：`⬜ 未开始`、`🟨 进行中`、`✅ 完成 / PASS`、`🔁 需要重学 / Retest`。
 
-当前正式位置：**定位 + 视觉理论专项 / M06 / Day029 — Training Loop / Gradient Descent / SGD / Adam（训练循环 / 梯度下降 / 随机梯度下降 / Adam）**。Day008–Day019、Day022–Day028 已完成并有正式讲义。**M02 Module Graduation Exam 与 M03 Module Graduation Exam 均暂缓，后续用于遗忘后的回测；当前不宣告对应模块毕业。** M04 Simulation 暂不作为当前专项前置主线。`docs/lessons/` 当前没有 Day001–Day007 的正式学习记录，因此这里不把它们标成已完成。
+当前学习位置：**定位 + 视觉理论专项 / M06 / Day033 — Attention / Transformer（注意力 / 变换器）**。Day029 与 Day032 已完成并补写正式讲义；**Day030–Day031 仍待回补**。Day008–Day019、Day022–Day029、Day032 已完成并有正式讲义。**M02 Module Graduation Exam 与 M03 Module Graduation Exam 均暂缓，后续用于遗忘后的回测；当前不宣告对应模块毕业。** M04 Simulation 暂不作为当前专项前置主线。`docs/lessons/` 当前没有 Day001–Day007 的正式学习记录，因此这里不把它们标成已完成。
 
 ### M00–M02｜系统基础与数学基础 I
 
@@ -165,11 +165,11 @@ M22  Day130–135（动态 Foundation Cleanup）
 |---|---|---|
 | Day027 | ✅ | Tensor / Dataset / DataLoader | [学习记录](docs/lessons/day027.md) |
 | Day028 | ✅ | Backprop / Autograd | [学习记录](docs/lessons/day028.md) |
-| Day029 | 🟨 | Training Loop / SGD / Adam |
+| Day029 | ✅ | Training Loop / SGD / Adam | [学习记录](docs/lessons/day029.md) |
 | Day030 | ⬜ | Softmax / Cross Entropy |
 | Day031 | ⬜ | CNN |
-| Day032 | ⬜ | Generalization / Normalization / Distribution Shift |
-| Day033 | ⬜ | Attention / Transformer |
+| Day032 | ✅ | Generalization / Normalization / Distribution Shift | [学习记录](docs/lessons/day032.md) |
+| Day033 | 🟨 | Attention / Transformer |
 | Day034 | ⬜ | Classification / Detection / YOLO / IoU / NMS |
 | Day035 | ⬜ | Semantic / Instance Segmentation / Traversability |
 | Day036 | ⬜ | Monocular Depth / Stereo / RGB-D / Learned Depth |
