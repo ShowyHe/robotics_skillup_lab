@@ -27,7 +27,11 @@ M05 Day25 — Stereo / RGB-D / Depth Geometry：COMPLETED / PASS
 M05 Day26 — Pixel→Camera→Base→World：COMPLETED / PASS
 M06 Day27 — Neural Network / Tensor / Dataset / DataLoader / Loss：COMPLETED / PASS
 M06 Day28 — Backpropagation / Computational Graph / Autograd：COMPLETED / PASS
-Next：M06 Day29 — Training Loop / Gradient Descent / SGD / Adam
+M06 Day29 — Training Loop / Gradient Descent / SGD / Momentum / Adam：COMPLETED / PASS
+M06 Day30 — Classification / Logit / Softmax / Cross Entropy：PENDING
+M06 Day31 — CNN Foundations：PENDING
+M06 Day32 — Generalization / Normalization / Distribution Shift：COMPLETED / PASS
+Next（按当前学习顺序）：M06 Day33 — Attention / Transformer Foundations
 ```
 
 > 重要：M02 Day8–15 的每日课程已完成，但 **M02 模块毕业考试尚未完成，因此不宣告 M02 模块毕业**。用户选择先继续 M03，后续回补考试剩余题目与 Hard Gate 复测。
@@ -617,24 +621,103 @@ Next:
 
 ---
 
-## 17. 下一步
+## 17. Day29 Learning Record
 
-```text
-M06 Day29
-→ Gradient Descent
-→ Learning Rate
-→ Full Batch vs Mini-batch
-→ Epoch / Iteration / Batch
-→ Training Loop
-→ train / eval mode
-→ Momentum
-→ Adam
-→ LR Schedule
-→ Local Minimum / Saddle Point
-→ Gradient Clipping
+Current Module / Day:
+M06 / Day29 — Training Loop / Gradient Descent / SGD / Momentum / Adam — COMPLETED / PASS
+
+Mastered:
+- Loss / Objective 才是训练目标
+- Gradient 是局部敏感度和方向信息，不是训练目标
+- Gradient Descent / Learning Rate
+- 新 Parameter 必须重新 Forward 才能判断新 Loss
+- Full Batch / Mini-batch / Gradient Noise
+- Batch / Iteration / Epoch
+- zero_grad → forward → loss → backward → optimizer.step
+- backward 计算 Gradient；optimizer.step 更新 Parameter
+- Momentum / Adam 基本作用
+- Gradient Explosion / Vanishing
+- Gradient Clipping 限制幅值，不是异常点剔除
+
+Weak / Corrected:
+- 曾混淆“降低 Loss”和“降低 Gradient”
+- 曾把 zero_grad 顺序写错
+- 曾把 optimizer 说成优化 Learning Rate
+- 曾把 Gradient Clipping 类比成 RTK 异常点删除
+
+Retest:
+- Loss vs Gradient：PASS
+- Training Loop 顺序：PASS
+- backward vs optimizer.step：PASS
+- Gradient Clipping：PASS
+
+Lesson:
+- docs/lessons/day029.md
+
+---
+
+## 18. Day32 Learning Record
+
+Current Module / Day:
+M06 / Day32 — Generalization / Normalization / Regularization / Distribution Shift — COMPLETED / PASS
+
+Mastered:
+- Train / Validation / Test 职责
+- Generalization
+- Overfitting / Underfitting
+- Overfitting vs Distribution Shift
+- Data Leakage
+- Input Normalization
+- BatchNorm / LayerNorm
+- Weight Decay / Dropout / Data Augmentation
+- Robot augmentation 的物理一致性
+- Model Metric != Robot Task Success
+
+Weak / Corrected:
+- 曾把 Distribution Shift 误答成 Overfitting
+- Validation / Test 边界初次不严谨
+- Input Normalization 曾理解成“数据更小”
+- BatchNorm 曾误说成参数归一化，并曾答反 Batch 依赖
+- Dropout 曾误认为推理阶段继续开启
+- 镜像增强后 Target 变化未写清
+
+Retest:
+- Input Normalization：PASS
+- BN / LN：PASS
+- Dropout train/eval：PASS
+- Robot Policy 镜像 Target：PASS
+
+Lesson:
+- docs/lessons/day032.md
+
+Pending:
+- M06 Day30
+- M06 Day31
+
+Next（按当前学习顺序）:
+- M06 Day33 — Attention / Transformer Foundations
+
+---
+
+## 19. 下一步
+
+M06 Day33：
+Token / Embedding
+→ Q / K / V
+→ Scaled Dot-product Attention
+→ Attention Matrix Dimension
+→ Self-Attention / Cross-Attention
+→ Multi-head Attention
+→ Positional Information
+→ Transformer Block
+→ Causal Mask
+→ Robotics Connection
+
+待回补：
+- M06 Day30
+- M06 Day31
 
 保留事项：
 - M02 Module Graduation Exam：INCOMPLETE / DEFERRED
 - M03 Module Graduation Exam：DEFERRED
 - M04 Day20–21：按专项路线暂缓
-```
