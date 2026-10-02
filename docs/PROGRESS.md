@@ -29,9 +29,9 @@ M06 Day27 — Neural Network / Tensor / Dataset / DataLoader / Loss：COMPLETED 
 M06 Day28 — Backpropagation / Computational Graph / Autograd：COMPLETED / PASS
 M06 Day29 — Training Loop / Gradient Descent / SGD / Momentum / Adam：COMPLETED / PASS
 M06 Day30 — Classification / Logit / Softmax / Cross Entropy：COMPLETED / PASS
-M06 Day31 — CNN Foundations：PENDING
+M06 Day31 — CNN Foundations：COMPLETED / PASS
 M06 Day32 — Generalization / Normalization / Distribution Shift：COMPLETED / PASS
-Next：M06 Day31 — CNN Foundations
+Next：M06 Day33 — Attention / Transformer Foundations
 ```
 
 > 重要：M02 Day8–15 的每日课程已完成，但 **M02 模块毕业考试尚未完成，因此不宣告 M02 模块毕业**。用户选择先继续 M03，后续回补考试剩余题目与 Hard Gate 复测。
@@ -683,7 +683,41 @@ Lesson:
 
 ---
 
-## 19. Day32 Learning Record
+## 19. Day31 Learning Record
+
+Current Module / Day:
+M06 / Day31 — CNN Foundations — COMPLETED / PASS
+
+Mastered:
+- N / C / H / W
+- Locality / Parameter Sharing
+- Convolution / Kernel / Filter
+- Weight Tensor Shape
+- Feature Map / Feature Channel
+- Stride / Padding
+- Output Shape Calculation
+- Receptive Field
+- Pooling / Downsampling
+- Hierarchical Features
+- Translation Equivariance
+- Backbone / Task Head
+
+Weak / Corrected:
+- CNN 优势初次未明确 Locality
+- Output Channel 数量初次写错
+- 输出尺寸初次忘记 Floor
+
+Retest:
+- Locality + Parameter Sharing：PASS
+- Weight Tensor Shape：PASS
+- Output Shape Calculation：PASS
+
+Lesson:
+- docs/lessons/day031.md
+
+---
+
+## 20. Day32 Learning Record
 
 Current Module / Day:
 M06 / Day32 — Generalization / Normalization / Regularization / Distribution Shift — COMPLETED / PASS
@@ -726,27 +760,19 @@ Next（按当前学习顺序）:
 
 ---
 
-## 20. 下一步
+## 21. 下一步
 
-M06 Day31：
-Image Tensor
-→ Convolution
-→ Kernel / Filter
-→ Parameter Sharing
-→ Receptive Field
-→ Stride
-→ Padding
-→ Channel
-→ Pooling / Downsampling
-→ Hierarchical Features
-→ Translation Equivariance
-→ Backbone / Task Head
-
-已提前完成：
-- M06 Day32
-
-后续：
-- M06 Day33
+M06 Day33：
+Token / Embedding
+→ Q / K / V
+→ Scaled Dot-product Attention
+→ Attention Matrix Dimension
+→ Self-Attention / Cross-Attention
+→ Multi-head Attention
+→ Positional Information
+→ Transformer Block
+→ Causal Mask
+→ Robotics Connection
 
 保留事项：
 - M02 Module Graduation Exam：INCOMPLETE / DEFERRED
