@@ -31,7 +31,9 @@ M06 Day29 — Training Loop / Gradient Descent / SGD / Momentum / Adam：COMPLET
 M06 Day30 — Classification / Logit / Softmax / Cross Entropy：COMPLETED / PASS
 M06 Day31 — CNN Foundations：COMPLETED / PASS
 M06 Day32 — Generalization / Normalization / Distribution Shift：COMPLETED / PASS
-Next：M06 Day33 — Attention / Transformer Foundations
+M06 Day33 — Attention / Transformer Foundations：COMPLETED / PASS
+M06 Module Graduation Exam：DEFERRED（用户选择留空，后续回测）
+Next：M07 Day34 — Classification / Detection / YOLO / IoU / NMS
 ```
 
 > 重要：M02 Day8–15 的每日课程已完成，但 **M02 模块毕业考试尚未完成，因此不宣告 M02 模块毕业**。用户选择先继续 M03，后续回补考试剩余题目与 Hard Gate 复测。
@@ -760,21 +762,65 @@ Next（按当前学习顺序）:
 
 ---
 
-## 21. 下一步
+## 21. Day33 Learning Record
 
-M06 Day33：
-Token / Embedding
-→ Q / K / V
-→ Scaled Dot-product Attention
-→ Attention Matrix Dimension
-→ Self-Attention / Cross-Attention
-→ Multi-head Attention
-→ Positional Information
-→ Transformer Block
-→ Causal Mask
-→ Robotics Connection
+Current Module / Day:
+M06 / Day33 — Attention / Transformer Foundations — COMPLETED / PASS
+
+Mastered:
+- Token / Embedding
+- Q / K / V
+- Scaled Dot-Product Attention
+- Attention Matrix Dimension
+- Attention Weight 与 Weighted V
+- Self-Attention / Cross-Attention
+- Multi-Head Attention 基本概念
+- Positional Information
+- Transformer Block
+- Attention vs FFN
+- Causal Mask
+- Robotics / VLA interface
+
+Weak / Corrected:
+- Robot State Token 与 Action Token 曾混淆
+- K 的匹配职责与 V 的内容职责初次混淆
+- Attention Weight 曾泛称为概率
+- Self/Cross Attention 初次按“怎么乘”定义
+- Attention 与 FFN 的职责初次表述不准
+
+Retest:
+- Q/K/V：PASS
+- Self/Cross Attention：PASS
+- Attention Matrix (i,j)：PASS
+- Attention vs FFN：PASS
+
+Lesson:
+- docs/lessons/day033.md
+
+M06 Graduation Exam:
+- DEFERRED / 留空
+- 当前不宣告 M06 模块毕业
+
+---
+
+## 22. 下一步
+
+M07 Day34：
+Classification vs Detection
+→ Bounding Box
+→ Class / Score
+→ IoU
+→ TP / FP / FN
+→ Confidence Threshold
+→ NMS
+→ YOLO Backbone / Neck / Head
+→ Anchor / Anchor-Free 概念
+→ Multi-scale Detection
+→ Small Object
+→ 2D Detection Geometry Boundary
 
 保留事项：
 - M02 Module Graduation Exam：INCOMPLETE / DEFERRED
 - M03 Module Graduation Exam：DEFERRED
+- M06 Module Graduation Exam：DEFERRED
 - M04 Day20–21：按专项路线暂缓
