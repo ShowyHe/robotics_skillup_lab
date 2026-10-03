@@ -58,7 +58,9 @@ Mathematical Foundations I
 7. 每个 Module 可做入口诊断，但核心数学掌握不足时不得跳过；
 8. Daily Quiz 与 Module Graduation Exam 仍按原课程规则执行；
 9. 学习结果与薄弱点继续记录到 `PROGRESS.md`；
-10. 本文件只改变当前学习优先顺序，不改变原 Module Teaching Contract。
+10. 本文件只改变当前学习优先顺序，不改变 Module / Day 主线与依赖关系；
+11. 执行 Knowledge Reuse Rule（知识复用规则）：只有当某个 Day 实际复用了已通过知识时，才将该部分作为简短 Review（回顾）；当天真正新增内容正常教学，并重点解释新旧知识的连接。主要为新内容的 Day 不强制安排回顾；
+12. 已稳定掌握的复用内容不机械重复 Quiz；只有掌握等级提升、Foundation Debt、新场景迁移或暴露遗忘时才复测。
 
 ---
 
@@ -322,7 +324,7 @@ State / Motion Model / Measurement Model
 | 9 | M11局部 | 1–2 |
 | **总计** |  | **54–55** |
 
-这里的 Day 是课程逻辑索引，不等于必须连续 54–55 个自然日；若入口诊断证明某项已达到原 Module Hard Gate，可按 `LEARNING_RULES.md` 规则跳过已稳定掌握部分。
+这里的 Day 是课程逻辑索引，不等于必须连续 54–55 个自然日，也不要求每个 Day 消耗相同学习时长；若某 Day 大量复用此前已通过知识，可按 `LEARNING_RULES.md` 先回顾再直接进入新增内容。只有核心前置不足时才重新展开。
 
 ---
 
@@ -350,11 +352,13 @@ M04 Simulation 暂不作为本专项前置主线；若后续视觉/定位实验�
 
 ```text
 读取对应 Module Teaching Contract
-→ 必要入口检查
-→ 正式教学（核心点≤20）
+→ 判断本 Day 是否实际复用已通过知识
+→ 若有复用：简短 Review；若无复用：不强制回顾
+→ 正式教学当天新增内容（核心点≤20）
+→ 明确“新知识如何连接旧知识”
 → 数学 / 公式 / frame / dimension 推理
 → 机器人实际场景映射
-→ Daily Quiz
+→ Daily Quiz（优先新增内容 + 新旧连接 + Hard Gate）
 → 纠错 / targeted remediation
 → 更新 PROGRESS
 ```
