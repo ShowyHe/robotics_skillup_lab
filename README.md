@@ -121,7 +121,7 @@ M22  Day130–135（动态 Foundation Cleanup）
 
 状态：`⬜ 未开始`、`🟨 进行中`、`✅ 完成 / PASS`、`🔁 需要重学 / Retest`。
 
-当前学习位置：**定位 + 视觉理论专项 / M07 / Day034 — Classification / Detection / YOLO / IoU / NMS（分类 / 检测 / YOLO / 交并比 / 非极大值抑制）**。M06 Day027–Day033 每日课程均已完成；**M06 Module Graduation Exam 按用户要求暂缓并留空，因此当前不宣告 M06 模块毕业。** Day034 为当前下一节。**M02 Module Graduation Exam 与 M03 Module Graduation Exam 也仍暂缓。** M04 Simulation 暂不作为当前专项前置主线。`docs/lessons/` 当前没有 Day001–Day007 的正式学习记录，因此这里不把它们标成已完成。
+当前学习位置：**定位 + 视觉理论专项 / M07 / Day035 — Semantic / Instance Segmentation / Traversability（语义分割 / 实例分割 / 可通行性）**。Day034 已完成并通过，Day035 为当前下一节。M06 Day027–Day033 每日课程均已完成；**M06 Module Graduation Exam 按用户要求暂缓并留空，因此当前不宣告 M06 模块毕业。** M02 Module Graduation Exam 与 M03 Module Graduation Exam 也仍暂缓。M04 Simulation 暂不作为当前专项前置主线。`docs/lessons/` 当前没有 Day001–Day007 的正式学习记录，因此这里不把它们标成已完成。
 
 ### M00–M02｜系统基础与数学基础 I
 
@@ -170,8 +170,8 @@ M22  Day130–135（动态 Foundation Cleanup）
 | Day031 | ✅ | CNN | [学习记录](docs/lessons/day031.md) |
 | Day032 | ✅ | Generalization / Normalization / Distribution Shift | [学习记录](docs/lessons/day032.md) |
 | Day033 | ✅ | Attention / Transformer | [学习记录](docs/lessons/day033.md) |
-| Day034 | 🟨 | Classification / Detection / YOLO / IoU / NMS |
-| Day035 | ⬜ | Semantic / Instance Segmentation / Traversability |
+| Day034 | ✅ | Classification / Detection / YOLO / IoU / NMS | [学习记录](docs/lessons/day034.md) |
+| Day035 | 🟨 | Semantic / Instance Segmentation / Traversability |
 | Day036 | ⬜ | Monocular Depth / Stereo / RGB-D / Learned Depth |
 | Day037 | ⬜ | PointCloud / Filter / KD-tree / Clustering / 3D Detection |
 | Day038 | ⬜ | BEV / Occupancy / 3D Representation |
