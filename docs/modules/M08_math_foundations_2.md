@@ -59,31 +59,30 @@ Probability、conditional probability、Bayes。
 
 # Day41 — Expectation、Variance、Covariance 与 Gaussian
 ## 1. 今日目标
-理解“估计值 + 不确定性”与单纯一个数值的根本区别。
+从 Day16 的传感器不确定性基础，推进到多维 state uncertainty 与 Gaussian geometry。
 ## 2. 前置知识
-Day40。
-## 3. 必须教学内容
+Day40 + M03 Day16；M02 eigen geometry。
+## 3. 复用回顾
+Variance、Standard Deviation、Covariance 基本含义与单位；**Covariance ≠ Actual Error**。已稳定通过则不重新从头教学。
+## 4. 新增教学内容
 1. Expectation `E[X]`。
-2. Variance `Var(X)=E[(X-μ)^2]`。
-3. Standard Deviation `σ=sqrt(Var)`及单位关系。
-4. Covariance `Cov(X,Y)`。
-5. Covariance Matrix：variance / cross-covariance。
-6. **Covariance ≠ Actual Error**；systematic bias可在covariance很小时仍造成严重错误。
-7. Gaussian `N(μ,σ²)`与Multivariate Gaussian `N(μ,Σ)`。
-8. Covariance ellipse：eigenvector方向、eigenvalue spread。
-9. Correlation概念。
-## 4. 深度要求
-Expectation/variance L3；covariance L4；Gaussian geometry L3-L4。
-## 5. 工程连接
+2. Covariance Matrix：diagonal variance / cross-covariance。
+3. Gaussian `N(μ,σ²)` 与 Multivariate Gaussian `N(μ,Σ)`。
+4. Covariance ellipse：eigenvector方向、eigenvalue spread。
+5. Correlation 与 covariance 的区别。
+6. systematic bias 与 covariance 的边界继续用于多维场景。
+## 5. 知识连接
+把 Day16 的“单个 sensor measurement uncertainty”连接到 `state vector + covariance matrix`：后续 KF / EKF 不只维护一个估计值，还维护各 state dimension 及其相关性的 uncertainty structure。
+## 6. 深度要求
+Expectation L3；Covariance Matrix L4；Gaussian geometry L3-L4。
+## 7. 工程连接
 GNSS covariance、EKF covariance、localization uncertainty。
-## 6. 明确不展开
+## 8. 明确不展开
 Chi-square、严格confidence interval、Gaussian mixture。
-## 7. 本日考核点
-Variance/std；covariance matrix；covariance小是否一定真实准确；position covariance不能机械等同实际误差。
+## 9. 本日考核点
+重点考 expectation、covariance matrix/cross-covariance、Gaussian geometry、correlation；variance/std 只做必要迁移检查，不机械重复 Day16 基础题。
 ### M08毕业考试核心考点
-Variance、Covariance、Gaussian。
-
----
+Variance、Covariance Matrix、Gaussian。
 
 # Day42 — Likelihood、MLE、MAP
 ## 1. 今日目标
@@ -142,30 +141,32 @@ Residual、LS、WLS、Information。
 
 # Day44 — Nonlinear Least Squares、Gradient 与 Newton
 ## 1. 今日目标
-理解SLAM/Calibration/Pose Estimation为何需要iterative optimization。
+在复用 M02 / M06 已掌握微分与 Gradient Descent 的基础上，理解 nonlinear residual 为什么需要 iterative optimization，以及 Newton update 如何产生。
 ## 2. 前置知识
-M02 Taylor/Jacobian/Hessian + Day43。
-## 3. 必须教学内容
+M02 Day14–15 + M06 Day29 + Day43。
+## 3. 复用回顾
+Gradient、First/Second-order Taylor、Hessian、Gradient Descent；已稳定掌握则只恢复公式和角色，不重新完整教学。
+## 4. 新增教学内容
 1. `r(x)=z-h(x)`；`min ||r(x)||²`。
-2. Iteration：initial guess→residual→derivative→Δx→update。
-3. Gradient Descent回顾。
-4. First/Second-order Taylor。
-5. Newton：`Δx=-H^-1g`。
-6. GD vs Newton。
-7. Initial guess / local minimum / divergence。
-8. Convergence indicators。
-## 4. 深度要求
-Nonlinear LS L3；Newton L3；Taylor→optimization L4。
-## 5. 工程连接
+2. Nonlinear Least Squares（非线性最小二乘）。
+3. Iteration：initial guess→residual→derivative→Δx→update。
+4. Newton：`Δx=-H^-1g`。
+5. GD vs Newton 在 update information 上的区别。
+6. Initial guess / local minimum / divergence。
+7. Convergence indicators。
+## 5. 知识连接
+把以前“导数 / Taylor / Hessian 是什么”连接成真正 estimator update：
+`Residual → Derivative → Local Model → Δx → State Update → Recompute`。
+## 6. 深度要求
+Nonlinear LS L3-L4；Newton L3；Taylor→optimization transfer L4。
+## 7. 工程连接
 SLAM、ICP、calibration。
-## 6. 明确不展开
-完整convex optimization、line search、trust region。
-## 7. 本日考核点
-为何迭代；Hessian；initial guess；local/global；convergence。
+## 8. 明确不展开
+完整convex optimization、line search、trust region；不重新机械训练 Gradient Descent 基础。
+## 9. 本日考核点
+为何迭代；Newton step；initial guess；local/global；convergence；重点考旧数学如何进入 nonlinear estimator。
 ### M08毕业考试核心考点
 Nonlinear Optimization、Newton、Initialization。
-
----
 
 # Day45 — Gauss-Newton、LM 与 Robust Optimization
 ## 1. 今日目标
@@ -252,10 +253,12 @@ SO(3)、SE(3)、Exp/Log、Pose Perturbation。
 
 # Day48 — Probability + Optimization + SE(3) 综合：SLAM数学主链
 ## 1. 今日目标
-把M08串成：`Sensor→Probability/Covariance→Residual→Likelihood→WLS→Jacobian→GN/LM→SE(3) Update→New Pose`。
+**Integration Day（综合连接日）**：不重新逐项教学 Day40–47，而是把已学数学串成完整 estimator / SLAM update chain。
 ## 2. 前置知识
 Day40–47。
-## 3. 必须教学内容
+## 3. 复用方式
+Probability、Covariance、Likelihood、Residual/WLS、Jacobian、GN/LM、SO(3)/SE(3) 均视为已学组件；若无暴露遗忘，不重新讲定义与单独基础题。
+## 4. 综合主链
 1. State / Measurement / Prediction / Residual。
 2. Measurement covariance `Σ`。
 3. Weighted residual `r^TΣ^-1r`。
@@ -267,15 +270,17 @@ Day40–47。
 9. Unobservable/degenerate direction。
 10. Outlier：gating/robust/rejection。
 11. Estimation是推断目标，optimization是实现手段之一。
-12. M09/M10/M12接口：filter/SLAM/robot kinematics分别复用本模块数学。
-## 4. 深度要求
+## 5. 知识连接
+强制解释为什么一条真实 SLAM 数学链会同时出现：
+`Sensor → Probability/Covariance → Residual → Weight → Jacobian → GN/LM → SE(3) Update → New Pose`。
+## 6. 深度要求
 完整数学链 L4；weighted residual/Jacobian→GN L4；SE(3) update L3-L4。
-## 5. 工程连接
+## 7. 工程连接
 GPS/LIO、FAST-LIO、ICP、factor graph、manipulation transforms。
-## 6. 明确不展开
-KF完整推导、factor graph完整理论、IMU preintegration、Screw Theory。
-## 7. 本日考核点
-完整SLAM数学链；为什么乘`Σ^-1`；pose update；degeneracy；M12为何还能继续复用SE(3)。
+## 8. 明确不展开
+KF完整推导、factor graph完整理论、IMU preintegration、Screw Theory；不把 Day40–47 重讲一遍。
+## 9. 本日考核点
+以综合题为主：完整 SLAM 数学链；为什么乘 `Σ^-1`；pose update；degeneracy；组件之间的因果关系。
 
 ---
 
