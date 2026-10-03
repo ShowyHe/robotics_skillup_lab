@@ -28,14 +28,16 @@
 8. 毕业考点：Semantic/Instance、Traversability、semantic-vs-geometry。
 
 # Day36 — Monocular Depth / Stereo / RGB-D / Learned Depth
-1. 今日目标：把 image-space output 连接到 metric 3D。
-2. 前置：M05 camera geometry。
-3. 必须教学：metric vs relative depth；monocular scale ambiguity；stereo disparity-depth关系复用；RGB-D；depth invalid/noise；depth edge；learned depth distribution shift；scale calibration；pixel+depth→camera 3D；depth uncertainty随距离变化；2D box center depth的风险；mask/point sampling；timestamp alignment。
-4. 深度：Depth→3D L4；learned-depth limits L3-L4。
-5. 工程连接：object 3D、obstacle projection、manipulation target。
-6. 不展开：depth network训练细节。
-7. 考核：给pixel/depth写back-projection；判断relative depth能否直接给Nav2米制障碍。
-8. 毕业考点：Metric/Relative Depth、Depth→3D、scale/time。
+1. 今日目标：在复用 M05 深度几何的基础上，重点理解 learned depth 的尺度、可靠性与机器人 3D 接口。
+2. 前置：M05 camera geometry + M03 timestamp/time。
+3. 复用回顾（已通过则简短恢复，不重新完整教学）：stereo disparity-depth；RGB-D；pixel+depth→camera 3D；depth invalid/noise 基础；timestamp alignment。
+4. 新增教学：metric vs relative depth；monocular scale ambiguity；learned monocular depth；learned-depth distribution shift；scale calibration；depth edge；depth uncertainty随距离变化；2D box center depth风险；mask/point sampling。
+5. 知识连接：Stereo / RGB-D / Learned Depth 是不同 **Depth Source（深度来源）**，后端统一进入 `Pixel + Depth → Camera 3D → TF → base/world`；重点理解“换了深度来源，几何链不变，但 scale / validity / uncertainty 语义会变”。
+6. 深度：learned-depth limits L3-L4；Depth Source→Metric 3D interface L4。
+7. 工程连接：object 3D、obstacle projection、manipulation target、纯视觉导航。
+8. 不展开：depth network训练细节；已稳定掌握的 Stereo / RGB-D 几何不重复长推导。
+9. 考核：重点考 Metric vs Relative、Scale Calibration、Learned Depth failure、BBox/Mask depth sampling；Depth→3D 只在迁移场景检查，不机械重复旧题。
+10. 毕业考点：Metric/Relative Depth、Depth→3D、scale/validity/time。
 
 # Day37 — PointCloud / Filtering / KD-tree / Clustering / 3D Detection
 1. 今日目标：理解3D点集合如何被过滤、组织、聚类并形成机器人可消费的几何对象。
@@ -58,14 +60,17 @@
 8. 毕业考点：Occupancy、Unknown/Free、BEV、World Representation。
 
 # Day39 — Tracking / Metrics / Perception→Robot Integration
-1. 今日目标：把单帧模型指标接到动态机器人闭环。
+1. 今日目标：从 Day34 的单帧检测指标推进到时间连续的 robot world model 与 closed-loop integration。
 2. 前置：Day34–38。
-3. 必须教学：Precision/Recall；IoU threshold；AP/mAP；segmentation/depth metrics；tracking必要性；data association；track ID/position/velocity/age/confidence；persistence/timeout；stale perception；Detection→Depth→TF→World/Track→Planner/Manipulation；model score vs robot decision threshold；component metric vs end-to-end metric；failure attribution：Detection/Depth/Calibration/TF/Tracking/World Model/Costmap/Planner。
-4. 深度：Metrics L3；tracking/integration/failure attribution L4。
-5. 工程连接：pedestrian avoidance、YOLO→costmap、VLA perception input。
-6. 不展开：Kalman tracking数学、MOT benchmark深入。
-7. 考核：mAP提升但robot更危险时如何查；box正确但world位置错有哪些层。
-8. 毕业考点：Metrics、Tracking、Freshness、System Integration。
+3. 复用回顾（已通过则简短恢复）：TP/FP/FN；IoU 基础；confidence threshold 与 FP/FN 的关系。
+4. 新增教学：Precision/Recall；IoU threshold在评估中的作用；AP/mAP；segmentation/depth metrics；tracking必要性；data association；track ID/position/velocity/age/confidence；persistence/timeout；stale perception；model score vs robot decision threshold；component metric vs end-to-end metric。
+5. 知识连接：`Single-frame Detection → Data Association / Tracking → World Model → Planner / Manipulation`；把“这一帧看到了什么”升级成“机器人在时间上相信世界里有什么、在哪里、是否仍然新鲜”。
+6. 系统归因：Detection→Depth→Calibration/TF→World/Track→Costmap→Planner/Manipulation，区分 component metric 与真实 robot behavior。
+7. 深度：Metrics L3；tracking/integration/failure attribution L4。
+8. 工程连接：pedestrian avoidance、YOLO→costmap、VLA perception input。
+9. 不展开：Kalman tracking数学、MOT benchmark深入；不重新机械考 Day34 已稳定的 TP/FP/FN 定义。
+10. 考核：mAP提升但robot更危险时如何查；box正确但world位置错有哪些层；stale track为何危险。
+11. 毕业考点：Metrics、Tracking、Freshness、System Integration。
 
 ---
 
