@@ -38,14 +38,16 @@
 8. 毕业考点：IMU propagation、bias/gravity、frame convention、initialization。
 
 # Day58 — LIO / Deskew / Scan-to-map / Error-State / Latency
-1. 今日目标：建立LIO完整chain。
-2. 前置：Day56–57 + M09。
-3. 必须教学：LiDAR/IMU complementarity；motion distortion；point timestamp；deskew；deskew对IMU/time/extrinsic依赖；IMU prediction；scan-to-map；point-plane residual；iterated update；nominal/error-state；local map；map↔state；measurement/arrival/process/publish time；10Hz≠fresh；output frame/stamp；message没有twist/covariance时不能凭空假设。
-4. 深度：LIO/Deskew/Latency L4。
-5. 工程连接：FAST-LIO2类pipeline。
-6. 不展开：ikd-tree内部、完整ESIKF矩阵。
-7. 考核：10Hz LIO但age=400ms为什么会影响controller；deskew错误如何出现。
-8. 毕业考点：Deskew、Scan-to-map、Error-State、Latency。
+1. 今日目标：**System Integration（系统集成）**：把此前分别学过的 IMU propagation、deskew、point-plane correspondence、error-state 与 latency 串成完整 LIO chain。
+2. 前置：Day56–57 + M09；复用 M03 Day17 Deskew、Day18 Latency、M09 Error-State。
+3. 复用回顾（已通过则简短恢复）：LiDAR/IMU complementarity；motion distortion / point timestamp / deskew定义；IMU prediction；point-to-plane residual；nominal/error-state；measurement/arrival/process/publish time。
+4. 新增教学与集成：deskew 对 IMU/time/extrinsic 的依赖关系；scan-to-map 如何消费 deskew 后点云与 predicted state；iterated update；local map；map↔state interaction；output frame/stamp/pose semantics；message没有twist/covariance时不能凭空假设。
+5. 知识连接：`IMU Prediction → Point-time Deskew → Scan-to-map Correspondence → Residual → Error-State Update → Local Map / Pose Publish`，并追踪任一上游 stale/time/extrinsic error 如何污染下游 controller 使用的 pose。
+6. 深度：LIO integration / Deskew dependency / Latency reasoning L4。
+7. 工程连接：FAST-LIO2类pipeline。
+8. 不展开：ikd-tree内部、完整ESIKF矩阵；不重新长讲 Deskew / ICP / Error-State 各自基础定义。
+9. 考核：解释完整 LIO chain；10Hz LIO但 age=400ms 为什么影响 controller；deskew/time/extrinsic 错误如何沿链传播。
+10. 毕业考点：Deskew、Scan-to-map、Error-State、Latency、LIO Integration。
 
 # Day59 — VIO / Feature / Reprojection Residual
 1. 今日目标：理解VIO与LIO共享的估计数学结构。
@@ -78,14 +80,16 @@
 8. 毕业考点：Loop Closure、Global Consistency、Relocalization Boundary。
 
 # Day62 — Degeneracy / Time / Initialization / TF / Bag Debug / Owner
-1. 今日目标：从bag/log建立SLAM Owner证据链。
-2. 前置：Day55–61。
-3. 必须教学：observability vs geometric degeneracy；eigen/SVD condition直觉；corridor/plane/low-texture examples；time synchronization；sensor timestamp/processing latency；extrinsic/calibration；initial gravity/bias/pose；TF direction和stamp；map/odom/base contract；sensor dropout；state jump；freshness watchdog；bag topic completeness；source mapping：preprocess→propagate→correspondence→residual/update→map→publish；下游控制使用state的age/semantics；failure taxonomy与minimal evidence set。
-4. 深度：Degeneracy/time/init/TF/debug L5。
-5. 工程连接：LIO stale、GPS/LIO融合、bag证据不足。
-6. 不展开：新增SLAM算法。
-7. 考核：给LIO摆动/跳变/漂移现象设计Sensor-Time-Frame-Estimator-Degeneracy排查树。
-8. 毕业考点：Degeneracy、Latency、Initialization、TF、Owner Debug。
+1. 今日目标：**Owner Debug Integration Day（Owner 调试综合日）**：不重新逐项教学 Time / TF / Calibration / Degeneracy，而是用这些知识建立 SLAM 故障证据链。
+2. 前置：Day55–61 + M03/M08/M09 的 time/frame/calibration/observability 基础。
+3. 复用回顾（按案例需要恢复，不机械重讲）：observability vs geometric degeneracy；eigen/SVD conditioning intuition；time synchronization / latency；extrinsic/calibration；initial gravity/bias/pose；TF direction/stamp；map/odom/base contract；sensor dropout；state freshness。
+4. 新增教学：failure taxonomy；minimal evidence set；bag topic completeness；source mapping：preprocess→propagate→correspondence→residual/update→map→publish；hypothesis→evidence→root cause；downstream consumer 如何使用 state age/semantics；证据不足时如何停止结论。
+5. 知识连接：把此前分散知识统一成 `Phenomenon → Sensor → Time → Frame/Calibration → Initialization → Estimator → Degeneracy → Publish → Downstream` 的排查树。
+6. 深度：Owner evidence chain / failure attribution L5。
+7. 工程连接：LIO stale、GPS/LIO融合、bag证据不足、pose跳变/摆动/漂移。
+8. 不展开：新增SLAM算法；不重新讲已稳定的单点定义。
+9. 考核：给 LIO 摆动/跳变/漂移现象设计最小证据集与排查树，并明确哪些日志不足以证明根因。
+10. 毕业考点：Degeneracy、Latency、Initialization、TF、Owner Debug。
 
 ---
 
