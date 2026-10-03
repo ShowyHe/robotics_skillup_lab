@@ -33,7 +33,8 @@ M06 Day31 — CNN Foundations：COMPLETED / PASS
 M06 Day32 — Generalization / Normalization / Distribution Shift：COMPLETED / PASS
 M06 Day33 — Attention / Transformer Foundations：COMPLETED / PASS
 M06 Module Graduation Exam：DEFERRED（用户选择留空，后续回测）
-Next：M07 Day34 — Classification / Detection / YOLO / IoU / NMS
+M07 Day34 — Classification / Detection / YOLO / IoU / NMS：COMPLETED / PASS
+Next：M07 Day35 — Semantic / Instance Segmentation / Traversability
 ```
 
 > 重要：M02 Day8–15 的每日课程已完成，但 **M02 模块毕业考试尚未完成，因此不宣告 M02 模块毕业**。用户选择先继续 M03，后续回补考试剩余题目与 Hard Gate 复测。
@@ -803,21 +804,58 @@ M06 Graduation Exam:
 
 ---
 
-## 22. 下一步
+## 22. Day34 Learning Record
 
-M07 Day34：
-Classification vs Detection
-→ Bounding Box
-→ Class / Score
-→ IoU
-→ TP / FP / FN
-→ Confidence Threshold
-→ NMS
-→ YOLO Backbone / Neck / Head
-→ Anchor / Anchor-Free 概念
-→ Multi-scale Detection
-→ Small Object
-→ 2D Detection Geometry Boundary
+Current Module / Day:
+M07 / Day34 — Classification / Detection / YOLO / IoU / NMS — COMPLETED / PASS
+
+Mastered:
+- Classification vs Detection
+- Bounding Box
+- Class / Score / Threshold 边界
+- IoU
+- TP / FP / FN
+- Confidence Threshold 对 FP/FN 的影响
+- NMS
+- YOLO Backbone / Neck / Head
+- Multi-scale Detection
+- Small Object 问题
+- Anchor / Anchor-Free 基本概念
+- 2D Detection Geometry Boundary
+- BBox → Depth → Camera 3D → TF → Costmap
+
+Weak / Corrected:
+- 曾把 Threshold 误认为 Detection 输出
+- IoU 并集计算初次错误
+- FP / FN 初次答反
+- BBox→Costmap 链路初次漏掉 Depth
+
+Retest:
+- Detection Output / Threshold：PASS
+- IoU：PASS
+- FP / FN：PASS
+- 2D BBox → 3D 需要 Depth：PASS
+
+Lesson:
+- docs/lessons/day034.md
+
+---
+
+## 23. 下一步
+
+M07 Day35：
+Semantic Segmentation
+→ Instance Segmentation
+→ Mask / Pixel Logit
+→ Pixel Class
+→ Class Imbalance
+→ Boundary Error
+→ Traversability
+→ Semantic != Geometry
+→ Unknown / Uncertain Region
+→ Mask + Depth → BEV / World
+→ Distribution Shift
+→ Temporal Consistency
 
 保留事项：
 - M02 Module Graduation Exam：INCOMPLETE / DEFERRED
