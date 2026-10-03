@@ -121,7 +121,7 @@ M22  Day130–135（动态 Foundation Cleanup）
 
 状态：`⬜ 未开始`、`🟨 进行中`、`✅ 完成 / PASS`、`🔁 需要重学 / Retest`。
 
-当前学习位置：**定位 + 视觉理论专项 / M07 / Day036 — Monocular Depth / Stereo / RGB-D / Learned Depth（单目深度 / 双目 / RGB-D / 学习式深度）**。Day035 已完成并通过，Day036 为当前下一节。M06 Day027–Day033 每日课程均已完成；**M06 Module Graduation Exam 按用户要求暂缓并留空，因此当前不宣告 M06 模块毕业。** M02 Module Graduation Exam 与 M03 Module Graduation Exam 也仍暂缓。M04 Simulation 暂不作为当前专项前置主线。`docs/lessons/` 当前没有 Day001–Day007 的正式学习记录，因此这里不把它们标成已完成。
+当前学习位置：**定位 + 视觉理论专项 / M07 / Day037 — PointCloud / Filtering / KD-tree / Clustering / 3D Detection（点云 / 滤波 / KD树 / 聚类 / 3D检测）**。Day036 已完成并通过，Day037 为当前下一节。M06 Day027–Day033 每日课程均已完成；**M06 Module Graduation Exam 按用户要求暂缓并留空，因此当前不宣告 M06 模块毕业。** M02 Module Graduation Exam 与 M03 Module Graduation Exam 也仍暂缓。M04 Simulation 暂不作为当前专项前置主线。`docs/lessons/` 当前没有 Day001–Day007 的正式学习记录，因此这里不把它们标成已完成。
 
 ### M00–M02｜系统基础与数学基础 I
 
@@ -172,8 +172,8 @@ M22  Day130–135（动态 Foundation Cleanup）
 | Day033 | ✅ | Attention / Transformer | [学习记录](docs/lessons/day033.md) |
 | Day034 | ✅ | Classification / Detection / YOLO / IoU / NMS | [学习记录](docs/lessons/day034.md) |
 | Day035 | ✅ | Semantic / Instance Segmentation / Traversability | [学习记录](docs/lessons/day035.md) |
-| Day036 | 🟨 | Monocular Depth / Stereo / RGB-D / Learned Depth |
-| Day037 | ⬜ | PointCloud / Filter / KD-tree / Clustering / 3D Detection |
+| Day036 | ✅ | Monocular Depth / Stereo / RGB-D / Learned Depth | [学习记录](docs/lessons/day036.md) |
+| Day037 | 🟨 | PointCloud / Filter / KD-tree / Clustering / 3D Detection |
 | Day038 | ⬜ | BEV / Occupancy / 3D Representation |
 | Day039 | ⬜ | Tracking / Metrics / Perception→Robot Integration |
 
