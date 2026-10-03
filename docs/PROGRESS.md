@@ -35,7 +35,8 @@ M06 Day33 — Attention / Transformer Foundations：COMPLETED / PASS
 M06 Module Graduation Exam：DEFERRED（用户选择留空，后续回测）
 M07 Day34 — Classification / Detection / YOLO / IoU / NMS：COMPLETED / PASS
 M07 Day35 — Semantic / Instance Segmentation / Traversability：COMPLETED / PASS
-Next：M07 Day36 — Monocular Depth / Stereo / RGB-D / Learned Depth
+M07 Day36 — Monocular Depth / Stereo / RGB-D / Learned Depth：COMPLETED / PASS
+Next：M07 Day37 — PointCloud / Filtering / KD-tree / Clustering / 3D Detection
 ```
 
 > 重要：M02 Day8–15 的每日课程已完成，但 **M02 模块毕业考试尚未完成，因此不宣告 M02 模块毕业**。用户选择先继续 M03，后续回补考试剩余题目与 Hard Gate 复测。
@@ -871,22 +872,59 @@ Lesson:
 
 ---
 
-## 24. 下一步
+## 24. Day36 Learning Record
 
-M07 Day36：
-Metric vs Relative Depth
-→ Monocular Scale Ambiguity
-→ Stereo Disparity / Depth
-→ RGB-D
-→ Invalid / Noisy Depth
-→ Depth Edge
-→ Learned Depth Distribution Shift
-→ Scale Calibration
-→ Pixel + Depth → Camera 3D
-→ Depth Uncertainty vs Distance
-→ Box Center Depth Risk
-→ Mask / Point Sampling
-→ Timestamp Alignment
+Current Module / Day:
+M07 / Day36 — Monocular Depth / Stereo / RGB-D / Learned Depth — COMPLETED / PASS
+
+Reuse Review:
+- Stereo / RGB-D
+- Pixel + Depth → Camera 3D
+- Timestamp Alignment
+- Invalid / Noisy Depth
+
+Mastered New Knowledge:
+- Metric vs Relative Depth
+- Monocular Scale Ambiguity
+- Learned Monocular Depth
+- Visual Prior
+- Scale Calibration
+- Learned-depth Distribution Shift
+- Depth Edge
+- BBox Center Depth Risk
+- Mask / Multi-point Sampling
+- Depth Source → Metric 3D Interface
+
+Weak / Corrected:
+- Scale Ambiguity 初次表述不完整
+- Learned Visual Prior 与 Scale Calibration 初次混淆
+- Depth Source 链路第一空初次答错
+
+Retest:
+- Scale Ambiguity：PASS
+- Learned Visual Prior：PASS
+- Depth → Camera 3D → base_link → map/BEV：PASS
+
+Lesson:
+- docs/lessons/day036.md
+
+---
+
+## 25. 下一步
+
+M07 Day37：
+Point Fields / Frame
+→ Organized / Unorganized PointCloud
+→ Crop / Range / Outlier Filter
+→ Voxel Downsampling
+→ Nearest Neighbor
+→ KD-tree
+→ Local Normal
+→ Euclidean Clustering / DBSCAN
+→ Over-segmentation / Under-segmentation
+→ Semantic PointCloud
+→ 3D Box
+→ Frame / Timestamp Contract
 
 保留事项：
 - M02 Module Graduation Exam：INCOMPLETE / DEFERRED
