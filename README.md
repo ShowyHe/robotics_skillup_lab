@@ -305,28 +305,24 @@ M22  Day130–135（动态 Foundation Cleanup）
 
 > README 只用于快速看全局进度；详细掌握情况、错误理解、复测和 Foundation Debt 仍以 [`docs/PROGRESS.md`](docs/PROGRESS.md) 为准。当天完整讲义只在真正学习并结项后写入 `docs/lessons/dayXXX.md`。
 
-## 7. 文档结构
-```text
-docs/
-├── 00_GOALS.md
-├── 01_COMPETENCY_MAP.md
-├── 02_DEPENDENCIES.md
-├── 03_MASTER_PLAN.md
-├── 04_MODULE_SPECS.md
-├── LEARNING_RULES.md
-├── PROGRESS.md
-├── modules/               # M00–M22详细Day教学规格
-├── lessons/               # 真正学习时逐日生成详细讲义
-└── labs/                  # 少量必要LAB / Capstone
-```
+## 7. 文档导航与职责
 
-职责：
-- `03_MASTER_PLAN.md`：总Day数、Module范围、总索引、教材映射；
-- `04_MODULE_SPECS.md`：Module知识边界和毕业能力；
-- `modules/`：每个Day的Teaching Contract，不是当天长篇讲义；
-- `lessons/`：真正学习到对应Day时生成；
-- `labs/`：只有不可被理论替代的实验；
-- `PROGRESS.md`：当前学习状态与Foundation Debt。
+### 顶层文档
+- [`00_GOALS.md`](docs/00_GOALS.md)：最终学习目标、课程边界与验收方向；
+- [`01_COMPETENCY_MAP.md`](docs/01_COMPETENCY_MAP.md)：机器人全栈能力地图与能力层级；
+- [`02_DEPENDENCIES.md`](docs/02_DEPENDENCIES.md)：模块、知识点与前置能力依赖关系；
+- [`03_MASTER_PLAN.md`](docs/03_MASTER_PLAN.md)：总Day数、Module范围、总索引与教材映射；
+- [`04_MODULE_SPECS.md`](docs/04_MODULE_SPECS.md)：各Module知识边界、Teaching Contract与毕业能力；
+- [`LEARNING_RULES.md`](docs/LEARNING_RULES.md)：学习、讲义、考试、复测与记录规则；
+- [`PROGRESS.md`](docs/PROGRESS.md)：当前学习状态、错误理解、复测与Foundation Debt；
+- [`TEMP_POSITIONING_VISION_PLAN.md`](docs/TEMP_POSITIONING_VISION_PLAN.md)：当前“定位 + 视觉理论专项”的阶段执行计划。
+
+### 目录入口
+- [`docs/modules/`](docs/modules/)：M00–M22各Day的Teaching Contract，不是当天长篇讲义；
+- [`docs/lessons/`](docs/lessons/)：真正学习并结项后生成的逐日完整讲义；
+- [`docs/labs/`](docs/labs/)：不可被理论替代的正式LAB与Capstone。
+
+README只负责快速看全局和当前进度；长期规划看 `03_MASTER_PLAN.md`，真实掌握情况看 `PROGRESS.md`，当前专项执行看 `TEMP_POSITIONING_VISION_PLAN.md`。
 
 ## 8. 掌握等级
 - **L1：见过**
