@@ -36,7 +36,8 @@ M06 Module Graduation Exam：DEFERRED（用户选择留空，后续回测）
 M07 Day34 — Classification / Detection / YOLO / IoU / NMS：COMPLETED / PASS
 M07 Day35 — Semantic / Instance Segmentation / Traversability：COMPLETED / PASS
 M07 Day36 — Monocular Depth / Stereo / RGB-D / Learned Depth：COMPLETED / PASS
-Next：M07 Day37 — PointCloud / Filtering / KD-tree / Clustering / 3D Detection
+M07 Day37 — PointCloud / Filtering / KD-tree / Clustering / 3D Detection：COMPLETED / PASS
+Next：M07 Day38 — Voxel Representation / Occupancy / BEV / Costmap Boundary
 ```
 
 > 重要：M02 Day8–15 的每日课程已完成，但 **M02 模块毕业考试尚未完成，因此不宣告 M02 模块毕业**。用户选择先继续 M03，后续回补考试剩余题目与 Hard Gate 复测。
@@ -910,21 +911,64 @@ Lesson:
 
 ---
 
-## 25. 下一步
+## 25. Day37 Learning Record
 
-M07 Day37：
-Point Fields / Frame
-→ Organized / Unorganized PointCloud
-→ Crop / Range / Outlier Filter
-→ Voxel Downsampling
-→ Nearest Neighbor
-→ KD-tree
-→ Local Normal
-→ Euclidean Clustering / DBSCAN
-→ Over-segmentation / Under-segmentation
-→ Semantic PointCloud
-→ 3D Box
-→ Frame / Timestamp Contract
+Current Module / Day:
+M07 / Day37 — PointCloud / Filtering / KD-tree / Clustering / 3D Detection — COMPLETED / PASS
+
+Mastered:
+- Point Fields / Frame / Timestamp
+- Organized vs Unorganized PointCloud
+- Crop / Range / Outlier Filter
+- Voxel Downsampling
+- Voxel Size trade-off
+- Nearest Neighbor / KNN
+- KD-tree spatial indexing
+- Local Normal
+- Euclidean Clustering
+- DBSCAN concept
+- Over-segmentation / Under-segmentation
+- Semantic PointCloud
+- 3D Box position / size / yaw
+- 3D Result = Geometry + Frame + Timestamp
+
+Weak / Corrected:
+- Organized PointCloud 曾误解为按颜色或物体组织
+- Voxel Size 增大后的 Point Count 初次答反
+- Voxel / Clustering / Class 职责曾混淆
+- KD-tree 初次只描述空间切分，未说清核心职责是近邻搜索
+- 3D Box 与 3D Result 必需字段初次不完整
+
+Retest:
+- Organized PointCloud：PASS
+- Voxel Size：Point Count↓ / Computation↓ / Geometry Detail↓，PASS
+- Voxel = 体素网格降采样，PASS
+- KD-tree = 加速近邻搜索，PASS
+- Clustering = 空间几何分组，PASS
+- Tolerance 太小→Over-segmentation；太大→Under-segmentation，PASS
+- Frame + Timestamp：PASS
+
+Lesson:
+- docs/lessons/day037.md
+
+---
+
+## 26. 下一步
+
+M07 Day38：
+Voxel Representation vs Voxel Downsampling
+→ Occupied / Free / Unknown
+→ 2D Occupancy Grid
+→ BEV
+→ Image / LiDAR → BEV
+→ Semantic BEV
+→ Occupancy Prediction
+→ YOLO vs BEV
+→ BEV vs Costmap
+→ Semantic BEV → Rule/Fusion → Costmap
+→ Resolution / Range / Memory
+→ Temporal Fusion / Ego-motion
+→ Coordinate Alignment
 
 保留事项：
 - M02 Module Graduation Exam：INCOMPLETE / DEFERRED
