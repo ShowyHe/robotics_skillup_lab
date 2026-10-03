@@ -34,7 +34,8 @@ M06 Day32 — Generalization / Normalization / Distribution Shift：COMPLETED / 
 M06 Day33 — Attention / Transformer Foundations：COMPLETED / PASS
 M06 Module Graduation Exam：DEFERRED（用户选择留空，后续回测）
 M07 Day34 — Classification / Detection / YOLO / IoU / NMS：COMPLETED / PASS
-Next：M07 Day35 — Semantic / Instance Segmentation / Traversability
+M07 Day35 — Semantic / Instance Segmentation / Traversability：COMPLETED / PASS
+Next：M07 Day36 — Monocular Depth / Stereo / RGB-D / Learned Depth
 ```
 
 > 重要：M02 Day8–15 的每日课程已完成，但 **M02 模块毕业考试尚未完成，因此不宣告 M02 模块毕业**。用户选择先继续 M03，后续回补考试剩余题目与 Hard Gate 复测。
@@ -841,21 +842,51 @@ Lesson:
 
 ---
 
-## 23. 下一步
+## 23. Day35 Learning Record
 
-M07 Day35：
-Semantic Segmentation
-→ Instance Segmentation
-→ Mask / Pixel Logit
-→ Pixel Class
-→ Class Imbalance
-→ Boundary Error
-→ Traversability
-→ Semantic != Geometry
-→ Unknown / Uncertain Region
-→ Mask + Depth → BEV / World
-→ Distribution Shift
-→ Temporal Consistency
+Current Module / Day:
+M07 / Day35 — Semantic / Instance Segmentation / Traversability — COMPLETED / PASS
+
+Mastered:
+- Semantic vs Instance Segmentation
+- Mask / Pixel Logit / Pixel Class
+- Segmentation Tensor Shape
+- Class Imbalance
+- Boundary Error
+- Traversability
+- Semantic != Geometry
+- Semantic != Traversability
+- Blind Path Semantic != Safe Free Space
+- Unknown != Free
+- Mask + Depth → Camera 3D → base_link → map/world/BEV
+- Distribution Shift
+- Temporal Consistency
+
+Quiz:
+- 8/8 PASS
+- 无额外定向复测项
+
+Lesson:
+- docs/lessons/day035.md
+
+---
+
+## 24. 下一步
+
+M07 Day36：
+Metric vs Relative Depth
+→ Monocular Scale Ambiguity
+→ Stereo Disparity / Depth
+→ RGB-D
+→ Invalid / Noisy Depth
+→ Depth Edge
+→ Learned Depth Distribution Shift
+→ Scale Calibration
+→ Pixel + Depth → Camera 3D
+→ Depth Uncertainty vs Distance
+→ Box Center Depth Risk
+→ Mask / Point Sampling
+→ Timestamp Alignment
 
 保留事项：
 - M02 Module Graduation Exam：INCOMPLETE / DEFERRED
