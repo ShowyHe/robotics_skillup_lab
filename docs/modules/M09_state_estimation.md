@@ -48,14 +48,16 @@
 8. 毕业考点：EKF、F/H/G、Linearization、Error-State intuition。
 
 # Day53 — Wheel / IMU / GNSS / RTK Multi-sensor Fusion
-1. 今日目标：把Filter数学映射到真实多sensor机器人。
+1. 今日目标：把 M03 已理解的各 Sensor（传感器）特性连接到同一个 estimator state，重点学习 multi-rate / asynchronous fusion 与 dropout/recovery。
 2. 前置：Day49–52 + M03。
-3. 必须教学：relative vs absolute measurement；sensor complementarity；state含bias；GNSS position/wheel velocity等measurement model；multi-rate/asynchronous update；measurement timestamp；frame alignment；Q/R不是“平滑度旋钮”；RTK FIX/FLOAT quality；single-GNSS static heading限制；dual-antenna heading；wheel slip；dropout时predict+P增长；recovery consistency/gating/reset；stale measurement不能当current state。
-4. 深度：Fusion/timestamp/frame/covariance reasoning L4。
-5. 工程连接：`/wheel_odom`、`/gps/fix`、`/fastlio2/lio_odom`。
-6. 不展开：GNSS坐标转换细节、full IMU preintegration。
-7. 考核：设计IMU/Wheel/GNSS multi-rate fusion与dropout/recovery策略。
-8. 毕业考点：Multi-sensor Fusion、Timestamp/Frame、Covariance Tuning。
+3. 复用回顾（已通过则简短恢复）：Wheel/IMU/GNSS/RTK measurement特性；FIX/FLOAT；single-GNSS static heading限制；timestamp；frame；wheel slip；stale measurement。
+4. 新增教学：relative vs absolute measurement；sensor complementarity；state含bias；GNSS position / wheel velocity等measurement model；multi-rate/asynchronous update；不同measurement到达时如何更新同一state；dropout时predict+P增长；recovery consistency；gating/reset；Q/R不是“平滑度旋钮”。
+5. 知识连接：从 M03 的“每个 Sensor 单独测什么、会怎么错”推进到“这些 measurement 如何通过不同 H/R/time/frame 共同约束同一个 state”。
+6. 深度：Fusion/timestamp/frame/covariance reasoning L4。
+7. 工程连接：`/wheel_odom`、`/gps/fix`、`/fastlio2/lio_odom`。
+8. 不展开：GNSS坐标转换细节、full IMU preintegration；不重新完整教学 RTK / IMU / Wheel 原理。
+9. 考核：设计 IMU/Wheel/GNSS multi-rate fusion 与 dropout/recovery 策略；解释 measurement model / timestamp / frame / covariance 如何共同决定 update。
+10. 毕业考点：Multi-sensor Fusion、Timestamp/Frame、Covariance Tuning。
 
 # Day54 — Observability / Gating / Dropout / Reset / Debug
 1. 今日目标：判断什么时候“根本估不出来”、measurement何时应拒绝、何时需要降级/重置。
