@@ -35,14 +35,16 @@
 8. 毕业考点：A*、Heuristic、Optimality。
 
 # Day65 — Occupancy / Costmap / Footprint / Inflation
-1. 今日目标：理解“地图有空隙”与“机器人configuration可安全通过”不是一回事。
-2. 前置：M03/M07 world representation。
-3. 必须教学：occupancy vs costmap；free/occupied/unknown且unknown≠free；robot≠point；footprint；inscribed/circumscribed radius；collision checking；inflation；distance field概念；static/obstacle/inflation/keepout；narrow passage；resolution误差；safety margin。
-4. 深度：Costmap/Footprint L4-L5。
-5. 工程连接：Nav2 costmap、窄道、人行障碍。
-6. 不展开：Costmap2D内部源码。
-7. 考核：给通道宽度/footprint/inflation判断可行性。
-8. 毕业考点：Footprint、Collision、Inflation、Unknown语义。
+1. 今日目标：在复用 M07 world representation 的基础上，理解“环境哪里有障碍”如何进一步变成“考虑机器人几何后，哪些 configuration 可安全通过”。
+2. 前置：M07 Day38 world representation；M03 robot geometry基础。
+3. 复用回顾（已通过则简短恢复）：occupancy vs costmap；free/occupied/unknown；**unknown≠free**；world representation 到 costmap 的基本边界。
+4. 新增教学：robot≠point；footprint；inscribed/circumscribed radius；collision checking；inflation；distance field概念；static/obstacle/inflation/keepout layers；narrow passage；resolution误差；safety margin。
+5. 知识连接：从 Day38 的“环境单元是什么状态”推进到 `Occupancy / Cost → Robot Footprint → Collision / Inflation → Configuration Feasibility`；重点理解同一张地图对不同尺寸 robot 的可通行区域不同。
+6. 深度：Costmap/Footprint/Collision L4-L5。
+7. 工程连接：Nav2 costmap、窄道、人行障碍、近场 254 collision。
+8. 不展开：Costmap2D内部源码；不重新完整教学 Occupancy / Unknown 的基础语义。
+9. 考核：给通道宽度/footprint/inflation判断可行性；解释环境 free space 为什么不等于 robot configuration free space。
+10. 毕业考点：Footprint、Collision、Inflation、Unknown语义。
 
 # Day66 — Hybrid A* / Motion Primitive / Nonholonomic Planning
 1. 今日目标：理解只在 `(x,y)` 搜索为什么不足以保证底盘可执行。
