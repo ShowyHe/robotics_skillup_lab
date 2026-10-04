@@ -38,7 +38,9 @@ M07 Day35 — Semantic / Instance Segmentation / Traversability：COMPLETED / PA
 M07 Day36 — Monocular Depth / Stereo / RGB-D / Learned Depth：COMPLETED / PASS
 M07 Day37 — PointCloud / Filtering / KD-tree / Clustering / 3D Detection：COMPLETED / PASS
 M07 Day38 — Voxel Representation / Occupancy / BEV / Costmap Boundary：COMPLETED / PASS
-Next：M07 Day39 — Tracking / Metrics / Perception→Robot Integration
+M07 Day39 — Tracking / Metrics / Perception→Robot Integration：COMPLETED / PASS
+M07 Module Graduation Exam：DEFERRED（用户选择留空，后续回测；当前不宣告 M07 模块毕业）
+Next：M08 Day40 — Probability / Conditional Probability / Bayes
 ```
 
 > 重要：M02 Day8–15 的每日课程已完成，但 **M02 模块毕业考试尚未完成，因此不宣告 M02 模块毕业**。用户选择先继续 M03，后续回补考试剩余题目与 Hard Gate 复测。
@@ -994,24 +996,71 @@ Lesson:
 
 ---
 
-## 27. 下一步
+## 27. Day39 Learning Record
 
-M07 Day39：
-Precision / Recall
-→ IoU Threshold in Evaluation
-→ AP / mAP
-→ Segmentation / Depth Metrics
-→ Tracking
-→ Data Association
-→ Track State
-→ Persistence / Timeout
-→ Stale Perception
-→ Model Score vs Robot Decision Threshold
-→ Component Metric vs End-to-End Metric
-→ Perception → World Model → Planner / Manipulation
+Current Module / Day:
+M07 / Day39 — Tracking / Metrics / Perception→Robot Integration — COMPLETED / PASS
+
+Reuse Review:
+- TP / FP / FN
+- IoU
+- Confidence Threshold 与 FP/FN
+
+Mastered New Knowledge:
+- Precision / Recall
+- Confidence Threshold vs IoU Threshold
+- AP / mAP
+- Class IoU / mIoU
+- Depth Metric basics
+- Tracking
+- Data Association
+- Track ID / Position / Velocity / Age / Confidence / Freshness
+- Persistence / Timeout
+- Stale Perception
+- Model Score vs Robot Decision Threshold
+- Component Metric vs End-to-End Metric
+- Detection→Depth→Calibration/TF→Tracking→Freshness→World/BEV→Costmap→Planner
+
+Weak / Corrected:
+- Precision / Recall 初次计算错误
+- AP 与 mAP 初次混淆
+- Tracking 核心缺口初次答为 Motion Prediction，已纠正为 Data Association
+- Segmentation 指标初次未答 Class IoU / mIoU
+- 系统链路题初次混入 Detection 本身的泛化问题
+
+Retest:
+- Precision / Recall：PASS
+- AP vs mAP：PASS
+- Class IoU / mIoU：PASS
+- Data Association：PASS
+- Detection 后系统故障链：PASS
+
+Lesson:
+- docs/lessons/day039.md
+
+M07 Graduation Exam:
+- DEFERRED / 留空
+- 当前不宣告 M07 模块毕业
+
+---
+
+## 28. 下一步
+
+M08 Day40：
+Random Variable
+→ Probability Distribution
+→ Discrete / Continuous
+→ Joint / Marginal Probability
+→ Conditional Probability
+→ Independence
+→ Bayes
+→ Prior / Likelihood / Posterior / Evidence
+→ Sequential Update
+→ Robot Belief / Sensor Fusion
 
 保留事项：
 - M02 Module Graduation Exam：INCOMPLETE / DEFERRED
 - M03 Module Graduation Exam：DEFERRED
 - M06 Module Graduation Exam：DEFERRED
+- M07 Module Graduation Exam：DEFERRED
 - M04 Day20–21：按专项路线暂缓
