@@ -37,7 +37,8 @@ M07 Day34 — Classification / Detection / YOLO / IoU / NMS：COMPLETED / PASS
 M07 Day35 — Semantic / Instance Segmentation / Traversability：COMPLETED / PASS
 M07 Day36 — Monocular Depth / Stereo / RGB-D / Learned Depth：COMPLETED / PASS
 M07 Day37 — PointCloud / Filtering / KD-tree / Clustering / 3D Detection：COMPLETED / PASS
-Next：M07 Day38 — Voxel Representation / Occupancy / BEV / Costmap Boundary
+M07 Day38 — Voxel Representation / Occupancy / BEV / Costmap Boundary：COMPLETED / PASS
+Next：M07 Day39 — Tracking / Metrics / Perception→Robot Integration
 ```
 
 > 重要：M02 Day8–15 的每日课程已完成，但 **M02 模块毕业考试尚未完成，因此不宣告 M02 模块毕业**。用户选择先继续 M03，后续回补考试剩余题目与 Hard Gate 复测。
@@ -953,22 +954,61 @@ Lesson:
 
 ---
 
-## 26. 下一步
+## 26. Day38 Learning Record
 
-M07 Day38：
-Voxel Representation vs Voxel Downsampling
-→ Occupied / Free / Unknown
-→ 2D Occupancy Grid
-→ BEV
-→ Image / LiDAR → BEV
-→ Semantic BEV
-→ Occupancy Prediction
-→ YOLO vs BEV
-→ BEV vs Costmap
-→ Semantic BEV → Rule/Fusion → Costmap
-→ Resolution / Range / Memory
-→ Temporal Fusion / Ego-motion
-→ Coordinate Alignment
+Current Module / Day:
+M07 / Day38 — Voxel Representation / Occupancy / BEV / Costmap Boundary — COMPLETED / PASS
+
+Mastered:
+- Voxel Downsampling vs Voxel Representation
+- Occupied / Free / Unknown
+- Unknown != Free
+- No Point != Free
+- Ray Casting
+- 2D Occupancy Grid
+- BEV / Semantic BEV
+- LiDAR / Camera → BEV
+- Occupancy Prediction
+- YOLO vs BEV
+- BEV vs Costmap
+- Cost Mapping Rule
+- Resolution / Range / Memory trade-off
+- Temporal Fusion
+- Ego-motion Compensation
+- Coordinate Alignment
+
+Weak / Corrected:
+- Voxel Downsampling 初次混入 KD-tree 近邻搜索职责
+- BEV 初次描述越界到 Traversability / Costmap
+- Temporal Fusion 初次只说确认 t1/t2 位姿，已补自运动补偿
+- Semantic BEV → Costmap 的“每个物体代价”答案本质正确，统一术语为 Cost Mapping Rule
+
+Retest:
+- Voxel Downsampling vs Representation：PASS
+- Semantic BEV → Cost Mapping → Costmap：PASS
+- YOLO vs BEV：PASS
+- Ego-motion Compensation：PASS
+
+Lesson:
+- docs/lessons/day038.md
+
+---
+
+## 27. 下一步
+
+M07 Day39：
+Precision / Recall
+→ IoU Threshold in Evaluation
+→ AP / mAP
+→ Segmentation / Depth Metrics
+→ Tracking
+→ Data Association
+→ Track State
+→ Persistence / Timeout
+→ Stale Perception
+→ Model Score vs Robot Decision Threshold
+→ Component Metric vs End-to-End Metric
+→ Perception → World Model → Planner / Manipulation
 
 保留事项：
 - M02 Module Graduation Exam：INCOMPLETE / DEFERRED
