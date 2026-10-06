@@ -41,7 +41,8 @@ M07 Day38 — Voxel Representation / Occupancy / BEV / Costmap Boundary：COMPLE
 M07 Day39 — Tracking / Metrics / Perception→Robot Integration：COMPLETED / PASS
 M07 Module Graduation Exam：DEFERRED（用户选择留空，后续回测；当前不宣告 M07 模块毕业）
 M08 Day40 — Probability / Conditional Probability / Bayes：COMPLETED / PASS
-Next：M08 Day41 — Expectation / Variance / Covariance / Gaussian
+M08 Day41 — Expectation / Variance / Covariance / Gaussian：COMPLETED / PASS
+Next：M08 Day42 — Likelihood / MLE / MAP
 ```
 
 > 重要：M02 Day8–15 的每日课程已完成，但 **M02 模块毕业考试尚未完成，因此不宣告 M02 模块毕业**。用户选择先继续 M03，后续回补考试剩余题目与 Hard Gate 复测。
@@ -1078,20 +1079,60 @@ Lesson:
 
 ---
 
-## 29. 下一步
+## 29. Day41 Learning Record
 
-M08 Day41：
-Expectation
-→ Variance / Standard Deviation 复用
-→ Covariance Matrix
-→ Diagonal Variance / Cross-covariance
-→ Gaussian
-→ Multivariate Gaussian
-→ Covariance Ellipse
-→ Eigenvector / Eigenvalue Geometry
-→ Correlation vs Covariance
-→ Bias vs Covariance
-→ State Vector + Covariance Matrix
+Current Module / Day:
+M08 / Day41 — Expectation / Variance / Covariance / Gaussian — COMPLETED / PASS
+
+Reuse Review:
+- Variance
+- Standard Deviation
+- Covariance basics
+- Covariance != Actual Error
+
+Mastered New Knowledge:
+- Expectation
+- Covariance Matrix
+- Diagonal Variance
+- Cross-covariance
+- Gaussian
+- Multivariate Gaussian
+- Covariance Ellipse
+- Eigenvector / Eigenvalue uncertainty geometry
+- Correlation vs Covariance
+- Systematic Bias vs Covariance
+- State Vector + Covariance Matrix
+
+Weak / Corrected:
+- Cov(x,theta) 单位初次写错，已纠正为 m·rad
+- Sigma 初次只解释“集中程度”，已补状态间相关结构
+- Covariance Ellipse 中 Eigenvector / Eigenvalue 初次未一一对应
+- GNSS 小 covariance 场景初次未点名 Systematic Bias
+
+Retest:
+- Cov(x,theta) 单位：PASS
+- mu / Sigma 物理意义：PASS
+- Eigenvector / Eigenvalue / sqrt(lambda)：PASS
+- Systematic Bias：PASS
+
+Lesson:
+- docs/lessons/day041.md
+
+---
+
+## 30. 下一步
+
+M08 Day42：
+Probability vs Likelihood
+→ L(theta)=p(D|theta)
+→ Conditional Independent Measurements
+→ Product Likelihood
+→ MLE
+→ Log Likelihood
+→ Negative Log Likelihood
+→ MAP
+→ MLE vs MAP
+→ Gaussian Noise → Squared Residual / Least Squares
 
 保留事项：
 - M02 Module Graduation Exam：INCOMPLETE / DEFERRED
