@@ -40,7 +40,8 @@ M07 Day37 — PointCloud / Filtering / KD-tree / Clustering / 3D Detection：COM
 M07 Day38 — Voxel Representation / Occupancy / BEV / Costmap Boundary：COMPLETED / PASS
 M07 Day39 — Tracking / Metrics / Perception→Robot Integration：COMPLETED / PASS
 M07 Module Graduation Exam：DEFERRED（用户选择留空，后续回测；当前不宣告 M07 模块毕业）
-Next：M08 Day40 — Probability / Conditional Probability / Bayes
+M08 Day40 — Probability / Conditional Probability / Bayes：COMPLETED / PASS
+Next：M08 Day41 — Expectation / Variance / Covariance / Gaussian
 ```
 
 > 重要：M02 Day8–15 的每日课程已完成，但 **M02 模块毕业考试尚未完成，因此不宣告 M02 模块毕业**。用户选择先继续 M03，后续回补考试剩余题目与 Hard Gate 复测。
@@ -1044,19 +1045,53 @@ M07 Graduation Exam:
 
 ---
 
-## 28. 下一步
+## 28. Day40 Learning Record
 
-M08 Day40：
-Random Variable
-→ Probability Distribution
-→ Discrete / Continuous
-→ Joint / Marginal Probability
-→ Conditional Probability
-→ Independence
-→ Bayes
-→ Prior / Likelihood / Posterior / Evidence
-→ Sequential Update
-→ Robot Belief / Sensor Fusion
+Current Module / Day:
+M08 / Day40 — Probability / Conditional Probability / Bayes — COMPLETED / PASS
+
+Mastered:
+- Random Variable vs Observation
+- Probability Distribution
+- Discrete vs Continuous
+- Joint Probability
+- Marginal Probability
+- Conditional Probability
+- Independence
+- Bayes Theorem
+- Prior / Likelihood / Posterior / Evidence
+- Likelihood != Posterior
+- Sequential Bayes Update
+- Robot Belief / Sensor Fusion interpretation
+
+Weak / Corrected:
+- X 初次答为“预测值”，已纠正为描述未知真实状态的随机变量
+- 条件概率方向初次说成“绝不可能相等”，已纠正为一般不相等、不可直接交换
+- Posterior 在下一轮角色初次回答不完整，已补 Posterior_t → Next Prior
+
+Retest:
+- Random Variable vs Observation：PASS
+- Posterior_t → Next Prior：PASS
+
+Lesson:
+- docs/lessons/day040.md
+
+---
+
+## 29. 下一步
+
+M08 Day41：
+Expectation
+→ Variance / Standard Deviation 复用
+→ Covariance Matrix
+→ Diagonal Variance / Cross-covariance
+→ Gaussian
+→ Multivariate Gaussian
+→ Covariance Ellipse
+→ Eigenvector / Eigenvalue Geometry
+→ Correlation vs Covariance
+→ Bias vs Covariance
+→ State Vector + Covariance Matrix
 
 保留事项：
 - M02 Module Graduation Exam：INCOMPLETE / DEFERRED
