@@ -121,7 +121,7 @@ M22  Day130–135（动态 Foundation Cleanup）
 
 状态：`⬜ 未开始`、`🟨 进行中`、`✅ 完成 / PASS`、`🔁 需要重学 / Retest`。
 
-当前学习位置：**定位 + 视觉理论专项 / M08 / Day042 — Likelihood / MLE / MAP（似然 / 最大似然估计 / 最大后验估计）**。Day041 已完成并通过，Day042 为当前下一节。M07 Day034–Day039 每日课程已完成；**M07 Module Graduation Exam 按用户要求暂缓并留空，因此当前不宣告 M07 模块毕业。**M06 Day027–Day033 每日课程均已完成；**M06 Module Graduation Exam 按用户要求暂缓并留空，因此当前不宣告 M06 模块毕业。** M02 Module Graduation Exam 与 M03 Module Graduation Exam 也仍暂缓。M04 Simulation 暂不作为当前专项前置主线。`docs/lessons/` 当前没有 Day001–Day007 的正式学习记录，因此这里不把它们标成已完成。
+当前学习位置：**定位 + 视觉理论专项 / M08 / Day043 — Residual / Least Squares / Weighted Least Squares（残差 / 最小二乘 / 加权最小二乘）**。Day042 已完成并通过，Day043 为当前下一节。M07 Day034–Day039 每日课程已完成；**M07 Module Graduation Exam 按用户要求暂缓并留空，因此当前不宣告 M07 模块毕业。**M06 Day027–Day033 每日课程均已完成；**M06 Module Graduation Exam 按用户要求暂缓并留空，因此当前不宣告 M06 模块毕业。** M02 Module Graduation Exam 与 M03 Module Graduation Exam 也仍暂缓。M04 Simulation 暂不作为当前专项前置主线。`docs/lessons/` 当前没有 Day001–Day007 的正式学习记录，因此这里不把它们标成已完成。
 
 ### M00–M02｜系统基础与数学基础 I
 
@@ -185,8 +185,8 @@ M22  Day130–135（动态 Foundation Cleanup）
 |---|---|---|
 | Day040 | ✅ | Probability / Conditional / Bayes | [学习记录](docs/lessons/day040.md) |
 | Day041 | ✅ | Expectation / Variance / Covariance / Gaussian | [学习记录](docs/lessons/day041.md) |
-| Day042 | 🟨 | Likelihood / MLE / MAP |
-| Day043 | ⬜ | Residual / LS / WLS |
+| Day042 | ✅ | Likelihood / MLE / MAP | [学习记录](docs/lessons/day042.md) |
+| Day043 | 🟨 | Residual / LS / WLS |
 | Day044 | ⬜ | Nonlinear LS / Newton |
 | Day045 | ⬜ | Gauss-Newton / LM / Robust |
 | Day046 | ⬜ | Rotation / Euler / Quaternion |
