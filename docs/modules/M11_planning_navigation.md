@@ -12,16 +12,41 @@
 - M11主教材仍然是：真实Navigation问题、公司Planner/HPA、Nav2官方资料，以及A*/Hybrid A*/RRT等规划算法本体。
 - Modern Robotics不会替代Costmap、HPA、Nav2/BT、动态路径切换等本课程工程主线。
 
+## Foundation Coverage Contract（系统基础覆盖合同）
+
+M11 不因已有 Navigation 工程经验而跳过尚未系统学习过的基础。每个 Day 必须在同一天完成：
+
+```text
+Foundation
+→ Core Theory
+→ Advanced / Owner
+```
+
+知识点数量不设 20 个硬上限；以 Day Goal 完整性为准，20 个不够可扩展到 30、40 个或更多，但不拆 Day。
+
+各 Day 的 Foundation 最低覆盖：
+
+- **Day63**：Graph / Vertex / Edge；Directed / Undirected；Weighted / Unweighted；Neighbor / Degree；Walk / Path / Cycle；Reachability / Connectivity；Adjacency List / Matrix；Queue / FIFO；BFS；Visited / Parent。
+- **Day64**：Search State；Search Tree vs Graph Search；Frontier / Open；Closed；Goal Test；Path Cost；Uninformed vs Informed Search；Heuristic；Manhattan / Euclidean / Octile distance。
+- **Day65**：Occupancy Grid；resolution / origin；cell↔world coordinate；free / occupied / unknown；robot geometry；circle / polygon footprint；point robot vs finite-size robot；obstacle distance。
+- **Day66**：configuration / state；heading；continuous vs discrete state；holonomic / nonholonomic；curvature；turning radius；kinematic model；motion primitive。
+- **Day67**：Workspace vs Configuration Space；state validity；edge validity；deterministic vs sampling search；random sampling；nearest neighbor；steer / local connection；collision checking。
+- **Day68**：abstraction；hierarchy；cluster / region；portal / gateway；abstract graph；precomputation；graph reuse；dynamic edge。
+- **Day69**：ROS2 Action 最小语义；Planner Server；Controller Server；BT Navigator；Behavior Tree node；Sequence / Fallback；Recovery；Lifecycle；path / goal / feedback。
+- **Day70**：Path；Trajectory；Reference；velocity；acceleration；curvature；clearance；smoothing；global vs local response。
+
+已在本课程正式学习并 PASS 的知识才允许按 Knowledge Reuse Rule 简短恢复；“工作中用过”只能加快速度，不能删除基础覆盖。
+
 ---
 
 # Day63 — Graph / BFS / Dijkstra
-1. 今日目标：把地图规划抽象为graph shortest-path problem。
+1. 今日目标：从零建立 Graph Search（图搜索）基础，并把地图规划严格抽象为 shortest-path problem（最短路径问题）。
 2. 前置：queue、priority queue、基本复杂度。
-3. 必须教学：`G=(V,E)`；path/path cost；BFS；Dijkstra；`g(n)`；priority queue；relaxation；parent reconstruction；open/visited；nonnegative edge cost；grid graph；复杂度直觉。
+3. 必须教学：Graph `G=(V,E)`；vertex / edge；directed / undirected；weighted / unweighted；neighbor / degree；walk / path / cycle；reachability / connectivity；adjacency list / adjacency matrix；queue / FIFO；BFS；visited / parent；BFS shortest-path 的成立条件；path/path cost；weighted shortest path；Dijkstra；`g(n)`；priority queue / min-heap；relaxation；stale queue entry；parent reconstruction；open/visited；nonnegative edge cost；shortest-path optimality intuition；grid graph / road graph；复杂度直觉。
 4. 深度：Dijkstra L4。
 5. 工程连接：global planner、road graph、HPA abstract graph。
 6. 不展开：negative edge/Bellman-Ford。
-7. 考核：手推Dijkstra并解释relaxation。
+7. 考核：能判断 graph 类型与表示方式；手推 BFS / Dijkstra；解释 relaxation、priority queue、nonnegative edge 与 optimality。
 8. 毕业考点：Graph、Cost、Dijkstra。
 
 # Day64 — A* / Heuristic / Optimality / Anytime Search
