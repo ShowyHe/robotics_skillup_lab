@@ -293,21 +293,26 @@ IMU
 
 ## 10. 每日执行规则
 
-每个学习 Day：
+M11–M13 当前阶段严格执行：
 
 ~~~text
-读取 Module Teaching Contract
-→ 识别旧知识复用项
-→ 旧知识仅简短 Review
-→ 正式教学新增理论
-→ 数学 / dimension / frame / assumptions
-→ 真实机器人场景连接
+Day Goal
+→ Foundation（基础层）
+→ Core Theory（核心理论层）
+→ Advanced / Owner（进阶 / Owner层）
 → Daily Quiz
 → targeted remediation / retest
 → PASS 后再写 lesson / progress
 ~~~
 
-额外规则：
+具体规则：
+- **Day Goal 优先于知识点数量**：20个不够就扩展到30、40个或更多，不设固定硬上限；
+- 一个 Day 必须完成一个完整知识目标，**不拆成两个 Day、不新增 A/B Day、不把后半内容拖到下一 Day**；
+- 已在本课程正式学习并 PASS 的知识，才按 Knowledge Reuse Rule 简短 Review；
+- 工作中用过、调过、读过源码但未系统学过的基础，仍必须正式覆盖一次；
+- 已会的基础允许快速通过，但“快速通过 ≠ 跳过”；
+- 每个复杂 Day 都应保持一条主链，禁止为了增加数量引入与当天目标无关的主题；
+- 数学必须说明 dimension / frame / assumptions / physical meaning；
 - Navigation 强项不因“已经做过项目”跳过理论 Hard Gate；
 - 公司项目用于验证理论，不代替理论；
 - Localization 不允许只会调 covariance / 参数而解释不清 estimator 数学；
@@ -324,13 +329,41 @@ IMU
 M11 / Day63 — Graph / BFS / Dijkstra
 ~~~
 
-Day63 不按纯入门速度学习；BFS 只做必要恢复，重点进入：
-- graph cost；
-- relaxation；
-- priority queue；
-- shortest-path optimality；
-- parent reconstruction；
-- Dijkstra → A* → HPA → global planner 的连接。
+Day63 重新按完整系统基础学习，刚才已经讲过的内容只算预热，不算 PASS。
+
+### Day63 Foundation
+- Graph / Vertex / Edge；
+- Directed / Undirected；
+- Weighted / Unweighted；
+- Neighbor / Degree；
+- Path / Walk / Cycle；
+- Reachability / Connectivity；
+- Adjacency List / Adjacency Matrix；
+- Queue / FIFO；
+- BFS；
+- Visited / Parent；
+- BFS shortest-path 的成立条件。
+
+### Day63 Core Theory
+- Weighted Shortest Path；
+- Dijkstra；
+- `g(n)`；
+- Relaxation；
+- Priority Queue / Min-Heap；
+- stale queue entry；
+- nonnegative edge condition；
+- shortest-path optimality intuition；
+- path reconstruction；
+- complexity。
+
+### Day63 Advanced / Owner
+- Grid Graph；
+- Road Graph；
+- Costmap → Edge Cost；
+- HPA Abstract Graph；
+- Dijkstra → A* → HPA → Global Planner 的统一关系。
+
+以上内容必须在同一个 Day63 内完成；知识点数量不设20个硬上限。
 
 当前专项最终完成标准：
 
