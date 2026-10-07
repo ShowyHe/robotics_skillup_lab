@@ -212,13 +212,13 @@ M22  Day130–135（动态 Foundation Cleanup）
 | Day | 状态 | 主题 |
 |---|---|---|
 | Day063 | 🟨 | Graph / BFS / Dijkstra |
-| Day064 | ⬜ | A* / Heuristic |
+| Day064 | ⬜ | A* / Heuristic / Anytime Search |
 | Day065 | ⬜ | Occupancy / Costmap / Footprint / Inflation |
-| Day066 | ⬜ | Hybrid A* / Motion Primitive |
+| Day066 | ⬜ | Hybrid A* / Motion Primitive / Kinodynamic Boundary |
 | Day067 | ⬜ | Configuration Space / C-obstacle / RRT / RRT* / OMPL |
-| Day068 | ⬜ | HPA / Hierarchical Planning / Dynamic Edge |
+| Day068 | ⬜ | HPA / Incremental Search / Dynamic Edge |
 | Day069 | ⬜ | Nav2 / BT / Replanning / Path Switching |
-| Day070 | ⬜ | Dynamic Navigation / Path Quality / Planning Owner |
+| Day070 | ⬜ | Dynamic Navigation / Path Quality / Trajectory Bridge / Planning Owner |
 | Day071 | ⬜ | Configuration / Screw Axis / Twist / Wrench |
 | Day072 | ⬜ | Forward Kinematics / POE Mainline / DH |
 | Day073 | ⬜ | Space-Body Jacobian / Adjoint / Velocity Kinematics / Statics |
@@ -228,7 +228,7 @@ M22  Day130–135（动态 Foundation Cleanup）
 | Day077 | ⬜ | Force / Wrench / Inertia / Newton-Euler |
 | Day078 | ⬜ | Lagrangian / Manipulator Dynamics / Forward-Inverse Dynamics |
 | Day079 | ⬜ | ODE / State-space / Linearization / Discretization / Action |
-| Day080 | ⬜ | Trajectory / Time Scaling / Feedback / PID |
+| Day080 | ⬜ | Trajectory / Trajectory Optimization / Time Scaling / Feedback / PID |
 | Day081 | ⬜ | Equilibrium / Stability / Eigenvalue |
 | Day082 | ⬜ | Controllability / Observability |
 | Day083 | ⬜ | Optimal Control / LQR |
