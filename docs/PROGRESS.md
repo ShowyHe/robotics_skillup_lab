@@ -1213,20 +1213,70 @@ M08 Day43 Status:
 
 ---
 
-## 32. 下一步
+## 32. Learning Strategy Update — Systematic Foundations + Day Goal First
+
+Decision:
+- 用户已有较强 Navigation / MPPI 工程经验，但没有系统完成 Navigation / Kinematics / Control 理论课程。
+- 工程熟练度不能被当作基础理论已经 PASS。
+- M11–M13 从现在开始严格执行：
+  `Foundation → Core Theory → Advanced / Owner`。
+
+Foundation Rule:
+- 工作中用过 / 调过 / 读过源码，但未在本课程系统学过：必须正式覆盖一次；
+- 已会内容允许快速推进，但 **快速通过 ≠ 跳过**；
+- 只有已经在本课程正式学习并 PASS 的知识才按 Knowledge Reuse Rule 简短 Review。
+
+Day Capacity Rule:
+- **Day Goal 优先于知识点数量**；
+- 不再使用“核心知识点 ≤20”硬上限；
+- 20 个不够就扩展到 30、40 个或更多，只要都服务于同一个 Day Goal；
+- 不为了控制数量删除 Foundation / Hard Gate / 推导 / Owner 连接；
+- **一个 Day 不拆成两个 Day，不新增 A/B Day，不把半个 Day 拖到下一 Day**；
+- 复杂 Day 可以增加当天讲义长度与学习时长。
+
+Day63 Current Status:
+- M11 Day63：IN PROGRESS；
+- 第一版讲授已覆盖 Graph / Cost / BFS / Dijkstra 主链，但系统基础覆盖不完整，因此只算预热；
+- 不判 PASS；
+- 不生成 `docs/lessons/day063.md`；
+- 下一次从完整 Foundation 重新开始，当天完成完整 Day63 Teaching Contract 后再 Quiz / PASS。
+
+---
+
+## 33. 下一步
 
 M11 Day63 — Graph / BFS / Dijkstra
 
-重点：
-Graph / Edge Cost
-→ BFS 必要恢复
+Foundation：
+Graph / Vertex / Edge
+→ Directed / Undirected
+→ Weighted / Unweighted
+→ Neighbor / Degree
+→ Walk / Path / Cycle
+→ Reachability / Connectivity
+→ Adjacency List / Matrix
+→ Queue / FIFO
+→ BFS
+→ Visited / Parent
+→ BFS shortest-path condition
+
+Core：
+Weighted Shortest Path
 → Dijkstra
-→ Priority Queue
+→ g(n)
 → Relaxation
-→ Open / Visited
-→ Parent Reconstruction
-→ Shortest-path Optimality
-→ Grid / Road / HPA Graph
+→ Priority Queue / Min-Heap
+→ stale queue entry
+→ nonnegative edge condition
+→ shortest-path optimality
+→ path reconstruction
+→ complexity
+
+Advanced / Owner：
+Grid Graph
+→ Road Graph
+→ Costmap → Edge Cost
+→ HPA Abstract Graph
 → Dijkstra → A* → HPA → Global Planner
 
 保留事项：
