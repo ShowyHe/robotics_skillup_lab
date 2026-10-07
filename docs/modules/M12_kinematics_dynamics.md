@@ -39,6 +39,32 @@ Configuration / Rigid Body
 - Quaternion、SO(3)/SE(3) Exp-Log、left/right perturbation 等仍在 M08 正式回补；
 - Day71–79 仍要求明确 frame、dimension、transform direction，不能把 6D twist 当普通 XYZ 向量。
 
+## Foundation Coverage Contract（系统基础覆盖合同）
+
+M12 不假定“见过公式 / 用过 MoveIt / 会调机器人”就等于系统学过。每个 Day 仍按：
+
+```text
+Foundation
+→ Core Theory
+→ Advanced / Owner
+```
+
+完整覆盖。知识点数量不设固定上限，以 Day Goal 为核心；复杂 Day 可超过 20、30、40 个细分知识点，但不拆成两个 Day。
+
+各 Day Foundation 最低覆盖：
+
+- **Day71**：rigid body；link；joint；DOF；configuration；pose；frame；rotation；translation；rigid transform；kinematic chain/tree；joint limit。
+- **Day72**：Forward Kinematics 是什么；joint configuration → end-effector pose；serial chain composition；home pose；transform order。
+- **Day73**：velocity / angular velocity；joint velocity；Cartesian velocity；local derivative mapping；Jacobian 的输入/输出维度与物理意义；frame dependence。
+- **Day74**：Inverse Kinematics 是什么；forward vs inverse problem；无解 / 多解；pose error；iterative update；pseudoinverse 最小语义。
+- **Day75**：rank；nullspace；singular value；condition number；redundancy；singularity 的几何/速度意义。
+- **Day76**：wheel / chassis geometry；body frame / world frame；linear velocity / angular velocity；differential drive；unicycle；rolling / no-slip；curvature / turning radius。
+- **Day77**：force；torque / moment；mass；center of mass；inertia；linear / angular acceleration；energy / power。
+- **Day78**：generalized coordinate；kinetic energy；potential energy；Lagrangian；forward dynamics；inverse dynamics；model parameter。
+- **Day79**：ODE；state；input；output；state-space；continuous vs discrete；equilibrium；linearization；sampling time；action / command / motion boundary。
+
+已在本课程正式学习并 PASS 的数学知识允许简短 Review；没有系统学过的机器人学基础必须正式覆盖一次。
+
 ---
 
 # Day71 — Configuration Space / Joint / Screw Axis / Twist / Wrench
