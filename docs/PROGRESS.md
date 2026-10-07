@@ -2,7 +2,7 @@
 
 ## 1. 当前阶段
 
-当前处于：**定位 + 视觉理论专项学习（ACTIVE）**。
+当前处于：**导航优先强化 + 定位突破专项学习（ACTIVE）**。
 专项导航文件：`docs/TEMP_POSITIONING_VISION_PLAN.md`。
 
 ```text
@@ -43,24 +43,34 @@ M07 Module Graduation Exam：DEFERRED（用户选择留空，后续回测；当�
 M08 Day40 — Probability / Conditional Probability / Bayes：COMPLETED / PASS
 M08 Day41 — Expectation / Variance / Covariance / Gaussian：COMPLETED / PASS
 M08 Day42 — Likelihood / MLE / MAP：COMPLETED / PASS
-Next：M08 Day43 — Residual / Least Squares / Weighted Least Squares
+M08 Day43 — Residual / Least Squares / Weighted Least Squares：PAUSED / NOT COMPLETED（已教学，Quiz 尚未完成；路线调整后回补）
+M08 Day44–48：DEFERRED BY ROUTE CHANGE
+Current / Next：M11 Day63 — Graph / BFS / Dijkstra
 ```
 
 > 重要：M02 Day8–15 的每日课程已完成，但 **M02 模块毕业考试尚未完成，因此不宣告 M02 模块毕业**。用户选择先继续 M03，后续回补考试剩余题目与 Hard Gate 复测。
 
-专项优先顺序保持：
+当前专项执行顺序已按能力收益调整：
 
 ```text
+已完成基础：
 M02 Day8–15
 → M03 Day16–19
 → M05 Day22–26
 → M06 Day27–33
 → M07 Day34–39
-→ M08 Day40–48
+→ M08 Day40–42
+
+当前主线：
+M11 Day63–70
+→ M12 Day71–79
+→ M13 Day80–89
+→ M08 Day43–48
 → M09 Day49–54
 → M10 Day55–62
-→ M11 Day65 + M07 Day38–39复盘
 ```
+
+说明：只改变当前执行顺序，不改变 Curriculum v1.0 的 Module / Day 编号。Navigation 作为主攻强项目标 L4→L5；Localization / State Estimation / SLAM 作为最大能力门槛，在 M11–M13 后集中突破。
 
 M04 Simulation 暂不作为当前专项前置主线。
 
@@ -1163,24 +1173,66 @@ Lesson:
 
 ---
 
-## 31. 下一步
+## 31. Route Change Record — Navigation First
 
-M08 Day43：
-Measurement Model
-→ Residual
-→ Linear Least Squares
-→ Overdetermined System
-→ Projection Intuition
-→ Normal Equation
-→ A^T A Dimensions
-→ Weighted Least Squares
-→ Covariance Weighting
-→ Information Matrix
-→ Correlated Measurements
+Decision:
+- 用户明确要求先学习 M11–M13｜规划、运动学 / 动力学、控制。
+- Navigation 是当前主攻强项，要从“工程很强”继续提升到 Graduate-level Theory + L5 Owner。
+- Localization / State Estimation / SLAM 是成为机器人全栈的最大能力门槛，放在 M11–M13 后集中突破。
+
+Execution Order:
+```text
+M11 Day63–70
+→ M12 Day71–79
+→ M13 Day80–89
+→ M08 Day43–48
+→ M09 Day49–54
+→ M10 Day55–62
+```
+
+M11 Strengthening:
+- Day64：Anytime Search / ARA* 思想
+- Day66：Kinodynamic Planning boundary
+- Day67：PRM / RRT-Connect concept only
+- Day68：Incremental Search / LPA* / D* Lite
+- Day70：Path→Trajectory / Trajectory Optimization bridge；Planning Under Uncertainty boundary
+
+M12 Route Adaptation:
+- Day71 前增加最小 SE(3) Entry Bridge，不新增 Day、不视为 M08 Day46–48 已完成。
+- Day76 Mobile Robot Kinematics 作为 Navigation→Control 关键桥梁。
+
+M13 Strengthening:
+- Day80 增加 Trajectory Optimization 基本数学形式。
+- Day82 Linear Observability 自包含教学，不依赖尚未学习的 M09。
+- MPPI Day85–89 目标 L4→L5。
+
+M08 Day43 Status:
+- 已完成讲授，尚未完成 Quiz / Retest。
+- PAUSED / NOT COMPLETED。
+- 不生成 docs/lessons/day043.md，待回补并 PASS 后再记录。
+
+---
+
+## 32. 下一步
+
+M11 Day63 — Graph / BFS / Dijkstra
+
+重点：
+Graph / Edge Cost
+→ BFS 必要恢复
+→ Dijkstra
+→ Priority Queue
+→ Relaxation
+→ Open / Visited
+→ Parent Reconstruction
+→ Shortest-path Optimality
+→ Grid / Road / HPA Graph
+→ Dijkstra → A* → HPA → Global Planner
 
 保留事项：
 - M02 Module Graduation Exam：INCOMPLETE / DEFERRED
 - M03 Module Graduation Exam：DEFERRED
 - M06 Module Graduation Exam：DEFERRED
 - M07 Module Graduation Exam：DEFERRED
+- M08 Day43–48：ROUTE-PAUSED，M11–M13 后继续
 - M04 Day20–21：按专项路线暂缓
