@@ -122,7 +122,7 @@
 
 **前置：** M01 + M02；图论/几何基础。
 
-**必须掌握：** BFS/Dijkstra/A*、heuristic、open/closed、occupancy/costmap、inflation、footprint/collision、distance field、Hybrid A*、motion primitive、RRT/RRT*、OMPL思想、HPA、BT、replanning/path switching、trajectory smoothing/optimization概念、dynamic/local navigation。
+**必须掌握：** BFS/Dijkstra/A*、heuristic、open/closed、Weighted/Anytime Search、occupancy/costmap、inflation、footprint/collision、distance field、Hybrid A*、motion primitive、kinodynamic planning边界、RRT/RRT*、OMPL思想、HPA、Incremental Search（LPA*/D* Lite思想）、BT、replanning/path switching、Path→Trajectory边界、trajectory optimization bridge、dynamic/local navigation。
 
 **源码原则：** 公司真实实现 + 算法本体 + Nav2官方 + 必要最小自实现。
 
@@ -132,7 +132,7 @@
 
 ## M12 — Robot Kinematics / Dynamics / System Dynamics
 
-**前置：** M02 + M08 + 基础力学。
+**前置：** M02 + M05 rigid transform 基础 + 基础力学；正常顺序可直接复用 M08 SO(3)/SE(3)。当前“Navigation First”专项允许先通过 M12 的 SE(3) Entry Bridge 满足 Screw/POE 必需前置，之后仍必须正式回补 M08 Day46–48。
 
 **必须掌握：** rigid transform、DH/POE概念、FK、IK、Jacobian、linear/angular velocity、singularity/manipulability、mobile robot kinematics、mass/inertia、Newton-Euler、Lagrange、`M(q)qdd + C(q,qd)qd + g(q) = tau`、ODE、state-space、linearization/discretization。
 
@@ -142,9 +142,9 @@
 
 ## M13 — Control & Optimal Control
 
-**前置：** M12 + M08。
+**前置：** M12 + M08 Day40–42 的 probability/Gaussian 基础；当前专项下 Day82 的 linear observability 在 M13 自包含教学，不要求先完成 M09。M08 Day43–48 的 estimation optimization / SE(3) 正式深化在 M11–M13 后回补。
 
-**必须掌握：** feedback、PID、error dynamics、state-space、equilibrium、eigenvalue/stability、controllability/observability、LQR、quadratic cost/Riccati思想、MPC、prediction horizon/objective/constraint/receding horizon、MPPI sampling/rollout/noise/cost/weighting/warm start、trajectory tracking、saturation/rate limit/collision constraint。
+**必须掌握：** path / timed trajectory / reference、trajectory optimization基本 formulation、feedback、PID、error dynamics、state-space、equilibrium、eigenvalue/stability、controllability/observability、LQR、quadratic cost/Riccati思想、MPC、prediction horizon/objective/constraint/receding horizon、MPPI sampling/rollout/noise/cost/weighting/warm start、trajectory tracking、saturation/rate limit/collision constraint、latency/model mismatch/feedback semantics。
 
 **源码原则：** 公司 MPPI + 数学本体 + Nav2 官方 MPPI + 必要最小自实现。
 
