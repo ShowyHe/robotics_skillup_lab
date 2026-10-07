@@ -42,7 +42,8 @@ M07 Day39 — Tracking / Metrics / Perception→Robot Integration：COMPLETED / 
 M07 Module Graduation Exam：DEFERRED（用户选择留空，后续回测；当前不宣告 M07 模块毕业）
 M08 Day40 — Probability / Conditional Probability / Bayes：COMPLETED / PASS
 M08 Day41 — Expectation / Variance / Covariance / Gaussian：COMPLETED / PASS
-Next：M08 Day42 — Likelihood / MLE / MAP
+M08 Day42 — Likelihood / MLE / MAP：COMPLETED / PASS
+Next：M08 Day43 — Residual / Least Squares / Weighted Least Squares
 ```
 
 > 重要：M02 Day8–15 的每日课程已完成，但 **M02 模块毕业考试尚未完成，因此不宣告 M02 模块毕业**。用户选择先继续 M03，后续回补考试剩余题目与 Hard Gate 复测。
@@ -1120,19 +1121,62 @@ Lesson:
 
 ---
 
-## 30. 下一步
+## 30. Day42 Learning Record
 
-M08 Day42：
-Probability vs Likelihood
-→ L(theta)=p(D|theta)
-→ Conditional Independent Measurements
-→ Product Likelihood
-→ MLE
-→ Log Likelihood
-→ Negative Log Likelihood
-→ MAP
-→ MLE vs MAP
-→ Gaussian Noise → Squared Residual / Least Squares
+Current Module / Day:
+M08 / Day42 — Likelihood / MLE / MAP — COMPLETED / PASS
+
+Reuse Review:
+- Bayes
+- Gaussian
+
+Mastered New Knowledge:
+- Probability vs Likelihood
+- L(theta)=p(D|theta)
+- Conditional Independent Measurements
+- Product Likelihood
+- MLE
+- Log Likelihood
+- Negative Log Likelihood
+- MAP
+- MLE vs MAP
+- Prior semantics
+- Gaussian Noise → Squared Residual
+- Gaussian + MLE → Least Squares
+- Measurement Uncertainty → Weight
+
+Weak / Corrected:
+- Probability vs Likelihood 初次边界表述不准，已纠正
+- log 与 argmax 的原因初次表述成 theta 单调增大，已纠正
+- Prior 初次说成“以前事件发生的概率”，已纠正为当前观测前对当前参数 / 状态的判断
+- Gaussian→LS 初次数学链不完整，已补 NLL → Squared Residual
+- residual weighting 初次判断反，已纠正为 weight 与 1/sigma^2 成正比
+
+Retest:
+- Probability vs Likelihood：PASS
+- log 单调性：PASS
+- Prior：PASS
+- uncertainty weighting：PASS
+
+Lesson:
+- docs/lessons/day042.md
+
+---
+
+## 31. 下一步
+
+M08 Day43：
+Measurement Model
+→ Residual
+→ Linear Least Squares
+→ Overdetermined System
+→ Projection Intuition
+→ Normal Equation
+→ A^T A Dimensions
+→ Weighted Least Squares
+→ Covariance Weighting
+→ Information Matrix
+→ Correlated Measurements
 
 保留事项：
 - M02 Module Graduation Exam：INCOMPLETE / DEFERRED
