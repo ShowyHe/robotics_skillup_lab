@@ -119,9 +119,9 @@ M22  Day130–135（动态 Foundation Cleanup）
 
 ## 6. 当前学习进度
 
-状态：`⬜ 未开始`、`🟨 进行中`、`✅ 完成 / PASS`、`🔁 需要重学 / Retest`。
+状态：`⬜ 未开始`、`🟨 进行中`、`✅ 完成 / PASS`、`⏸️ 路线调整暂缓`、`🔁 需要重学 / Retest`。
 
-当前学习位置：**定位 + 视觉理论专项 / M08 / Day043 — Residual / Least Squares / Weighted Least Squares（残差 / 最小二乘 / 加权最小二乘）**。Day042 已完成并通过，Day043 为当前下一节。M07 Day034–Day039 每日课程已完成；**M07 Module Graduation Exam 按用户要求暂缓并留空，因此当前不宣告 M07 模块毕业。**M06 Day027–Day033 每日课程均已完成；**M06 Module Graduation Exam 按用户要求暂缓并留空，因此当前不宣告 M06 模块毕业。** M02 Module Graduation Exam 与 M03 Module Graduation Exam 也仍暂缓。M04 Simulation 暂不作为当前专项前置主线。`docs/lessons/` 当前没有 Day001–Day007 的正式学习记录，因此这里不把它们标成已完成。
+当前学习位置：**导航优先强化 + 定位突破专项 / M11 / Day063 — Graph / BFS / Dijkstra（图 / 广度优先搜索 / Dijkstra 最短路）**。M08 Day040–Day042 已完成并通过；Day043 已讲授但 Quiz 尚未完成，因路线调整标记为 ⏸️，将在 M11–M13 完成后回补。当前先完整学习 M11–M13（规划 → 运动学/动力学 → 控制），随后回到 M08 Day043–Day048，再进入 M09 State Estimation 与 M10 SLAM/LIO/VIO。M07、M06、M02、M03 的 Module Graduation Exam 仍按原状态暂缓。M04 Simulation 暂不作为当前专项前置主线。课程 Day 编号与 `03_MASTER_PLAN.md` 总结构不变。
 
 ### M00–M02｜系统基础与数学基础 I
 
@@ -186,7 +186,7 @@ M22  Day130–135（动态 Foundation Cleanup）
 | Day040 | ✅ | Probability / Conditional / Bayes | [学习记录](docs/lessons/day040.md) |
 | Day041 | ✅ | Expectation / Variance / Covariance / Gaussian | [学习记录](docs/lessons/day041.md) |
 | Day042 | ✅ | Likelihood / MLE / MAP | [学习记录](docs/lessons/day042.md) |
-| Day043 | 🟨 | Residual / LS / WLS |
+| Day043 | ⏸️ | Residual / LS / WLS |
 | Day044 | ⬜ | Nonlinear LS / Newton |
 | Day045 | ⬜ | Gauss-Newton / LM / Robust |
 | Day046 | ⬜ | Rotation / Euler / Quaternion |
@@ -211,7 +211,7 @@ M22  Day130–135（动态 Foundation Cleanup）
 
 | Day | 状态 | 主题 |
 |---|---|---|
-| Day063 | ⬜ | Graph / BFS / Dijkstra |
+| Day063 | 🟨 | Graph / BFS / Dijkstra |
 | Day064 | ⬜ | A* / Heuristic |
 | Day065 | ⬜ | Occupancy / Costmap / Footprint / Inflation |
 | Day066 | ⬜ | Hybrid A* / Motion Primitive |
