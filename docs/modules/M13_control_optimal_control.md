@@ -23,7 +23,7 @@ Model + Horizon + Cost + Constraints
 → Re-observe
 ```
 
-本模块共 10 个理论 Day（Day80–Day89）。Navigation/Control源码主线坚持：公司真实实现 + 数学本体 + Nav2官方实现。
+本模块共 10 个理论 Day（Day80–Day89）。Navigation/Control源码主线坚持：公司真实实现 + 数学本体 + Nav2官方实现。当前专项把 M13 放在 M09 State Estimation 之前，因此本模块必须自包含完成 linear controllability / observability 基础；不能把尚未学习的 M09 当作前置。整体目标 Control L4，MPPI / Owner Debug 关键部分 L4→L5。
 
 ## 主要教材
 - **Modern Robotics Chapter 9 — Trajectory Generation**：作为reference/time-scaling与机械臂trajectory基础。
@@ -35,10 +35,10 @@ Model + Horizon + Cost + Constraints
 # Day80 — Trajectory / Time Scaling / Feedback / PID
 1. 今日目标：先回答“controller到底在跟踪什么”，再建立PID闭环。
 2. 前置：M12 state-space/dynamics/kinematics。
-3. 必须教学：Path vs Geometric Trajectory vs Time-parameterized Trajectory；path parameter `s` 与time scaling `s(t)`；reference `q_d(t), qdot_d(t), qddot_d(t)`；boundary condition；cubic/quintic time-scaling概念；velocity/acceleration limit对trajectory duration的约束；trajectory≠逐点立即command；open/closed loop；`e=r-y`；P/I/D；steady-state error；overshoot/oscillation；discrete PID/sample time；saturation/rate limit；integral windup/anti-windup；derivative noise；command vs actual actuator input。
-4. 深度：Trajectory/Time Scaling L3-L4；Feedback/PID L4。
+3. 必须教学：Path vs Geometric Trajectory vs Time-parameterized Trajectory；path parameter `s` 与time scaling `s(t)`；reference `q_d(t), qdot_d(t), qddot_d(t)`；boundary condition；cubic/quintic time-scaling概念；velocity/acceleration limit对trajectory duration的约束；**Trajectory Optimization 基本问题：`min Σ l(x_k,u_k)+l_f(x_N)`，subject to dynamics `x_(k+1)=f(x_k,u_k)`、boundary、state/input constraints；Path Optimization vs Trajectory Optimization vs Optimal Control 的边界**；trajectory≠逐点立即command；open/closed loop；`e=r-y`；P/I/D；steady-state error；overshoot/oscillation；discrete PID/sample time；saturation/rate limit；integral windup/anti-windup；derivative noise；command vs actual actuator input。
+4. 深度：Trajectory/Time Scaling L3-L4；Trajectory Optimization formulation L3；Feedback/PID L4。
 5. 工程连接：arm joint trajectory、yaw/velocity control、MoveIt trajectory execution。
-6. 不展开：jerk-optimal trajectory、full trajectory optimization、formal stability/LQR/MPC。
+6. 不展开：jerk-optimal trajectory、trajectory optimizer 数值求解器细节、formal stability/LQR/MPC（后续 Day 展开）。
 7. 考核：给path说明为何还缺time parameterization；解释P/I/D、windup、sample time、saturation。
 8. 毕业考点：Path→Timed Reference、Feedback、PID、Command vs Actual Behavior。
 
@@ -54,7 +54,7 @@ Model + Horizon + Cost + Constraints
 
 # Day82 — Controllability / Observability / State Feedback
 1. 今日目标：回答“输入能不能驱动需要的状态”和“measurement能不能恢复需要的state”。
-2. 前置：M09 observability + M12 state-space。
+2. 前置：M12 state-space + M02 matrix/rank；本日自包含教学 linear observability，M09 后续把它迁移到 State Estimation。
 3. 必须教学：`x_dot=Ax+Bu, y=Cx+Du`；controllability；`𝒞=[B,AB,...,A^(n-1)B]`；`rank(𝒞)=n`；physical coupling；uncontrollable unstable mode；observability；`𝒪=[C;CA;...;CA^(n-1)]`；`rank(𝒪)=n`；unobservable mode；actuator/sensor数量≠rank；state feedback/pole placement概念；LQR/MPC前提关系。
 4. 深度：Controllability/Observability L3-L4。
 5. 工程连接：mobile robot constraints、sensor feedback缺失。
@@ -84,7 +84,7 @@ Model + Horizon + Cost + Constraints
 
 # Day85 — MPPI / Sampling / Rollout / Weight / Update
 1. 今日目标：理解MPPI优化future control sequence而不是global path。
-2. 前置：M12 dynamics + Day84 + M08 probability。
+2. 前置：M12 dynamics + Day84 + 已通过的 M08 Day40–42 probability/Gaussian 基础。
 3. 必须教学：nominal sequence `Ū`；`ε~N(0,Σ)`；candidate control；rollout `x_(t+1)=f(x_t,u_t)`；K samples；horizon；trajectory cost `S_k`；weight `w_k∝exp(-(S_k-ρ)/λ)`；`ρ=min S`数值稳定；normalized weights；update `ū_t←ū_t+Σ_k w_k ε_(k,t)`；不是只选best sample；execute first；shift/warm start；compute trade-off。
 4. 深度：MPPI chain L4。
 5. 工程连接：samples/dt/horizon/vx-wz noise/critics。
@@ -138,7 +138,7 @@ Model + Horizon + Cost + Constraints
 统一权重：**30%核心基础 / 50%综合系统场景 / 20% Source·Formula·Design**。
 
 ## 30% 核心基础
-硬门槛：Path/Timed Trajectory/Reference区别；Time Scaling基本语义；feedback/PID；local linear stability/eigenvalue；controllability/observability；LQR；MPC receding horizon/constraints；MPPI rollout-cost-weight-update；warm start；latency/saturation。
+硬门槛：Path/Timed Trajectory/Reference区别；Trajectory Optimization 基本 formulation；Time Scaling基本语义；feedback/PID；local linear stability/eigenvalue；controllability/observability；LQR；MPC receding horizon/constraints；MPPI rollout-cost-weight-update；warm start；latency/saturation。
 
 ## 50% 综合系统场景
 至少覆盖：path→timed trajectory→controller；`A-BK` stability；MPC horizon/constraint；MPPI weight/update；急停command≠actual state；stale LIO导致S形摆动；窄路critic/std/warm-start/horizon综合分析。
