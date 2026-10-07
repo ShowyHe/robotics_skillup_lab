@@ -15,7 +15,7 @@ Configuration / Rigid Body
 → ODE / State-space / Linearization / Action
 ```
 
-本模块共 9 个理论 Day（Day71–Day79）。这是《Modern Robotics》在本课程中最核心的模块。
+本模块共 9 个理论 Day（Day71–Day79）。这是《Modern Robotics》在本课程中最核心的模块。当前专项将 M12 提前到 M08 Day43–48 之前学习，因此必须使用下面的 **SE(3) Entry Bridge** 保证依赖完整，不能因为路线调整降低理论要求。
 
 ## 主要教材
 - **Modern Robotics Chapter 2–8 + Chapter 13**：M12主要理论教材。
@@ -23,11 +23,27 @@ Configuration / Rigid Body
 - Chapter 7 Closed-chain Kinematics只做边界认识；当前主线不深入闭链机构求解。
 - 课程目标不是背教材公式，而是把 `frame / twist / Jacobian / wrench / dynamics` 映射到MoveIt、controller、mobile manipulation与VLA action interface。
 
+## 当前专项入口桥 — SE(3) Entry Bridge（不新增 Day）
+
+在 Day71 正式内容前，先补 M12 必需的最小刚体变换语言：
+- Rotation Matrix 与坐标轴 / basis 语义；
+- homogeneous transform `T=[R,t;0,1]`；
+- transform composition / inverse / direction；
+- `SO(3)` / `SE(3)` 分别表示什么；
+- skew / hat operator 最小语义；
+- `Exp` 把局部旋转 / 刚体运动增量映射成合法 rotation / pose 的直觉。
+
+边界：
+- Entry Bridge 只保证 M12 Screw / POE / Jacobian 能正常学习；
+- **不视为 M08 Day46–48 已完成**；
+- Quaternion、SO(3)/SE(3) Exp-Log、left/right perturbation 等仍在 M08 正式回补；
+- Day71–79 仍要求明确 frame、dimension、transform direction，不能把 6D twist 当普通 XYZ 向量。
+
 ---
 
 # Day71 — Configuration Space / Joint / Screw Axis / Twist / Wrench
 1. 今日目标：建立机械臂/移动机器人统一的configuration与刚体运动语言。
-2. 前置：M02 matrix/coordinate + M08 SE(3)/Exp-Log。
+2. 前置：M02 matrix/coordinate + M05 rigid transform 基础 + 本模块 SE(3) Entry Bridge。
 3. 必须教学：rigid body；link/joint/DOF；configuration `q`与configuration space；base/link/EEF frame；kinematic chain/tree；joint limit；pose vs configuration；URDF tree；screw motion intuition；screw axis `S=[ω;v]` 的几何含义；pure rotation/pure translation；Twist `V=[ω;v]` 表示刚体瞬时运动且必须带frame语义；Wrench `F=[m;f]` 表示moment/force并依赖frame/reference point；twist/wrench是对偶量的功率直觉 `Power=F^T V`。
 4. 深度：Configuration L4；Screw/Twist L3-L4；Wrench L3。
 5. 工程连接：MoveIt RobotModel、joint_states、Cartesian servo、force sensor。
@@ -37,7 +53,7 @@ Configuration / Rigid Body
 
 # Day72 — Forward Kinematics / POE 主线 / DH 辅助
 1. 今日目标：从joint configuration算EEF pose，并真正理解POE怎样把各joint screw motion组合成刚体变换。
-2. 前置：Day71 + M08 Exp/SE(3)。
+2. 前置：Day71 + SE(3) Entry Bridge；M08 后续会正式补全 Exp/Log 与 perturbation。
 3. 必须教学：`T_base^ee=FK(q)`；2-link planar FK手算；home configuration `M`；single joint motion `e^[S]θ`；**Space-form POE** `T(θ)=e^[S1]θ1 ... e^[Sn]θn M`；每个screw axis表达在哪个frame；transform order；Body-form POE概念；DH `a,α,d,θ`与standard/modified convention；DH vs POE：DH是经典parameterization，POE用screw/SE(3)统一表达；FK source implementation如何核对frame/convention。
 4. 深度：2-link FK L4；POE L4；DH L3。
 5. 工程连接：MoveIt FK、robot model、EEF pose、calibration chain。
@@ -78,7 +94,7 @@ Configuration / Rigid Body
 # Day76 — Wheeled Mobile Robot Kinematics / Nonholonomic Constraint
 1. 今日目标：正式建立移动机器人运动学与轮约束，为M11 Hybrid A*、M13 MPPI和Mobile Manipulation统一底盘模型。
 2. 前置：Day71 + M11 Day66。
-3. 必须教学：state `[x,y,θ]`；body/world velocity；unicycle `x_dot=v cosθ`,`y_dot=v sinθ`,`θ_dot=ω`；differential drive `v=(vr+vl)/2`,`ω=(vr-vl)/L`；rolling/no-slip constraints；holonomic vs nonholonomic；差速车侧向约束 `-sinθ x_dot + cosθ y_dot = 0`；Pfaffian constraint `A(q)q_dot=0` intuition；wheel constraint→allowed instantaneous velocity；Euler integration；quadruped `[vx,vy,wz]` abstraction及其与真实gait/slip差距；command≠feedback；odometry drift/model error。
+3. 必须教学：state `[x,y,θ]`；body/world velocity；unicycle `x_dot=v cosθ`,`y_dot=v sinθ`,`θ_dot=ω`；differential drive `v=(vr+vl)/2`,`ω=(vr-vl)/L`；rolling/no-slip constraints；holonomic vs nonholonomic；差速车侧向约束 `-sinθ x_dot + cosθ y_dot = 0`；Pfaffian constraint `A(q)q_dot=0` intuition；wheel constraint→allowed instantaneous velocity；**curvature `κ=ω/v` 与 turning radius `R=v/ω` 的边界、单位和零速情况**；Euler integration；quadruped `[vx,vy,wz]` abstraction及其与真实gait/slip差距；command≠feedback；odometry drift/model error；把 kinematic rollout 与 M11 Hybrid A* primitive、M13 MPPI rollout 对齐。
 4. 深度：Mobile kinematics L4；Nonholonomic constraint L3-L4。
 5. 工程连接：Nav2/Hybrid A*/MPPI rollout/chassis feedback。
 6. 不展开：详细轮胎动力学、quadruped gait dynamics。
