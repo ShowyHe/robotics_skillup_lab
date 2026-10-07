@@ -30,6 +30,36 @@ Model + Horizon + Cost + Constraints
 - **Modern Robotics Chapter 11 — Robot Control**：作为robot feedback、model-based control的主要理论参考之一。
 - 本课程在教材基础上继续系统学习 **Stability / Controllability / Observability / LQR / MPC / MPPI**，因此不会按教材章节顺序机械推进。
 
+## Foundation Coverage Contract（系统基础覆盖合同）
+
+M13 不因已有 MPPI / Nav2 Controller 工程经验而跳过控制基础。每个 Day 必须完成：
+
+```text
+Foundation
+→ Core Theory
+→ Advanced / Owner
+```
+
+知识点数量按 Day Goal 决定，不设 20 个硬上限；复杂 Day 可以扩展到 30、40 个或更多，但不拆成两个 Day。
+
+各 Day Foundation 最低覆盖：
+
+- **Day80**：system / plant；reference；measurement；error；controller；control input；disturbance；open-loop / closed-loop；feedback；path / trajectory / timed reference。
+- **Day81**：state；equilibrium；perturbation；natural response；stable / unstable；continuous vs discrete system；eigenvalue 与 mode 的最小联系。
+- **Day82**：state-space `A/B/C/D`；input / state / output；rank；actuator / sensor 与 mathematical controllability / observability 的区别。
+- **Day83**：objective / cost；state error；control effort；quadratic form；feedback gain；finite / infinite horizon 基本语义。
+- **Day84**：prediction model；horizon；stage cost；terminal cost；constraint；feasibility；online re-optimization；receding horizon。
+- **Day85**：sampling；Gaussian perturbation；candidate control sequence；rollout；trajectory cost；importance weight；weighted update；execute-first / shift。
+- **Day86**：mean / variance / standard deviation；sampling distribution；temperature；control clipping；warm start；nominal sequence；actual feedback。
+- **Day87**：cost term；weight；normalization；soft constraint；hard constraint；collision / safety margin；critic conflict。
+- **Day88**：tracking error；latency；state age；actuator dynamics；saturation；model mismatch；feedback freshness。
+- **Day89**：reference / state / model / optimizer / actuator / feedback 的完整责任链；源码中的数据流、time / frame / constraint / publish 边界。
+
+原则：
+- “已经改过 MPPI 源码”不能替代 Feedback / Stability / LQR / MPC 等基础；
+- 已会内容可以快速推进，但必须保留定义、机制、边界与最小考核；
+- 已在本课程正式 PASS 的数学/概率知识才允许按 Knowledge Reuse Rule 简短回顾。
+
 ---
 
 # Day80 — Trajectory / Time Scaling / Feedback / PID
