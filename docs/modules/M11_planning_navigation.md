@@ -41,7 +41,7 @@ Foundation
 
 # Day63 — Graph / BFS / Dijkstra
 1. 今日目标：从零建立 Graph Search（图搜索）基础，并把地图规划严格抽象为 shortest-path problem（最短路径问题）。
-2. 前置：queue、priority queue、基本复杂度。
+2. 前置：基本编程与数组/容器直觉；queue、priority queue、graph representation、复杂度直觉均在本 Day 内系统补齐，不作为默认已掌握前置。
 3. 必须教学：Graph `G=(V,E)`；vertex / edge；directed / undirected；weighted / unweighted；neighbor / degree；walk / path / cycle；reachability / connectivity；adjacency list / adjacency matrix；queue / FIFO；BFS；visited / parent；BFS shortest-path 的成立条件；path/path cost；weighted shortest path；Dijkstra；`g(n)`；priority queue / min-heap；relaxation；stale queue entry；parent reconstruction；open/visited；nonnegative edge cost；shortest-path optimality intuition；grid graph / road graph；复杂度直觉。
 4. 深度：Dijkstra L4。
 5. 工程连接：global planner、road graph、HPA abstract graph。
