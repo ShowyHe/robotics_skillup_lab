@@ -321,15 +321,21 @@ Day Goal
 
 ---
 
-## 11. 当前起点
+## 11. 当前学习位置
 
-当前正式切换到：
+当前已完成：
 
 ~~~text
-M11 / Day63 — Graph / BFS / Dijkstra
+M11 / Day63 — Graph / BFS / Dijkstra — COMPLETED / PASS
 ~~~
 
-Day63 重新按完整系统基础学习，刚才已经讲过的内容只算预热，不算 PASS。
+Day63 已按完整系统基础完成正式讲授、Quiz 与定向复测；完整记录见 `docs/lessons/day063.md`，早先预热版不计为正式通过。
+
+当前进入：
+
+~~~text
+M11 / Day64 — A* / Heuristic / Optimality / Anytime Search — IN PROGRESS
+~~~
 
 ### Day63 Foundation
 - Graph / Vertex / Edge；
@@ -363,7 +369,7 @@ Day63 重新按完整系统基础学习，刚才已经讲过的内容只算预�
 - HPA Abstract Graph；
 - Dijkstra → A* → HPA → Global Planner 的统一关系。
 
-以上内容必须在同一个 Day63 内完成；知识点数量不设20个硬上限。
+以上内容已在同一个 Day63 内完成并通过；知识点数量不设20个硬上限。
 
 当前专项最终完成标准：
 
