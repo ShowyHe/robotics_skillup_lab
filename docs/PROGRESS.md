@@ -45,7 +45,8 @@ M08 Day41 — Expectation / Variance / Covariance / Gaussian：COMPLETED / PASS
 M08 Day42 — Likelihood / MLE / MAP：COMPLETED / PASS
 M08 Day43 — Residual / Least Squares / Weighted Least Squares：PAUSED / NOT COMPLETED（已教学，Quiz 尚未完成；路线调整后回补）
 M08 Day44–48：DEFERRED BY ROUTE CHANGE
-Current / Next：M11 Day63 — Graph / BFS / Dijkstra
+M11 Day63 — Graph / BFS / Dijkstra：COMPLETED / PASS（见 docs/lessons/day063.md）
+Current / Next：M11 Day64 — A* / Heuristic / Optimality / Anytime Search
 ```
 
 > 重要：M02 Day8–15 的每日课程已完成，但 **M02 模块毕业考试尚未完成，因此不宣告 M02 模块毕业**。用户选择先继续 M03，后续回补考试剩余题目与 Hard Gate 复测。
@@ -1234,16 +1235,14 @@ Day Capacity Rule:
 - **一个 Day 不拆成两个 Day，不新增 A/B Day，不把半个 Day 拖到下一 Day**；
 - 复杂 Day 可以增加当天讲义长度与学习时长。
 
-Day63 Current Status:
-- M11 Day63：IN PROGRESS；
-- 第一版讲授已覆盖 Graph / Cost / BFS / Dijkstra 主链，但系统基础覆盖不完整，因此只算预热；
-- 不判 PASS；
-- 不生成 `docs/lessons/day063.md`；
-- 下一次从完整 Foundation 重新开始，当天完成完整 Day63 Teaching Contract 后再 Quiz / PASS。
+Day63 Initial Status（历史记录，已由第34节更新）:
+- 第一版讲授为预热，基础覆盖不完整，曾暂记 IN PROGRESS；
+- 后续已完整补齐基础并完成 Quiz / Retest；
+- 最终状态以第34节的 COMPLETED / PASS 为准。
 
 ---
 
-## 33. 下一步
+## 33. Day63 Knowledge Coverage Record（已完成；详细情况见第34节）
 
 M11 Day63 — Graph / BFS / Dijkstra
 
@@ -1286,3 +1285,36 @@ Grid Graph
 - M07 Module Graduation Exam：DEFERRED
 - M08 Day43–48：ROUTE-PAUSED，M11–M13 后继续
 - M04 Day20–21：按专项路线暂缓
+
+---
+
+## 34. Day63 Learning Record — COMPLETED / PASS
+
+Current Module / Day:
+- M11 / Day63 — Graph / BFS / Dijkstra：**COMPLETED / PASS**。
+- Lesson：`docs/lessons/day063.md`。
+
+Mastered:
+- Graph、Vertex/Edge、Directed/Undirected、Weighted/Unweighted、Neighbor/Degree、Walk/Path/Cycle、Reachability/Connectivity；
+- Adjacency List vs Matrix、Grid 4/8 邻接、Queue/FIFO、BFS、Visited、Parent、BFS 最短路成立条件；
+- Path Cost、Dijkstra、`g(n)`、Relaxation、Priority Queue/Min-Heap、Stale Entry、nonnegative edge condition、shortest-path optimality、Path Reconstruction；
+- Costmap → Edge Cost → Total Cost → Path Choice；Road Graph / Grid Graph / HPA Abstract Graph 的统一表示；Dijkstra → A* 前置。
+
+Weak / Corrected:
+- Relaxation 初次计算误把当前 `g(v)` 与新候选直接相加；已纠正为 `g(v)=min(g(v),g(u)+c(u,v))`；
+- Negative Edge 与 Negative Cycle 曾混淆；已纠正为单条负权边（即使无环）也能破坏 Dijkstra settle 的最优性保证；
+- 曾认为 Dijkstra 首次选定方向后会一直向该方向扩展；已纠正为**每次弹出 Open 中累计 `g` 最小节点**。
+
+Retest:
+- Relaxation：`g(P)=8,g(Q)=17,c(P,Q)=5` → `g(Q)=13,parent(Q)=P`：PASS；
+- 负权反例 `S→A:4,S→B:9,B→A:-10` → 后续可得到 `g(A)=-1`：PASS；
+- 最后确认 `S-B:2,S-A:5,B-C:10,A-C:1` → 下一步 B、再 A、最终 S→A→C Cost=6：PASS。
+
+Hard Gates:
+- Foundation：PASS；BFS：PASS；Dijkstra / Relaxation：PASS；Queue Selection / Nonlocking Frontier：PASS；Nonnegative Edge / Optimality：PASS；Navigation Mapping：PASS。
+
+Next:
+- **M11 / Day64 — A* / Heuristic / Optimality / Weighted A* / Anytime Search (ARA*)**，当日学习与考核尚未完成，不预记 PASS。
+
+Preserved:
+- M08 Day43–48：ROUTE-PAUSED；M02/M03/M06/M07 Graduation Exams 仍 DEFERRED。
