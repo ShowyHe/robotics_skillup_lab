@@ -49,7 +49,7 @@ Foundation
 → Advanced / Owner
 ```
 
-完整覆盖。知识点数量不设固定上限，以 Day Goal 为核心；复杂 Day 可超过 20、30、40 个细分知识点，但不拆成两个 Day。
+完整覆盖。单个 Day **最多35个编号教学知识单元**；相关基础概念和推导可以在同一知识单元内组合讲透，不能因压缩删去基础 / Core / Owner / Hard Gate，也不拆成两个 Day。
 
 各 Day Foundation 最低覆盖：
 
