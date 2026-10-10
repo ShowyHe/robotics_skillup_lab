@@ -46,7 +46,8 @@ M08 Day42 — Likelihood / MLE / MAP：COMPLETED / PASS
 M08 Day43 — Residual / Least Squares / Weighted Least Squares：PAUSED / NOT COMPLETED（已教学，Quiz 尚未完成；路线调整后回补）
 M08 Day44–48：DEFERRED BY ROUTE CHANGE
 M11 Day63 — Graph / BFS / Dijkstra：COMPLETED / PASS（见 docs/lessons/day063.md）
-Current / Next：M11 Day64 — A* / Heuristic / Optimality / Anytime Search
+M11 Day64 — A* / Heuristic / Optimality / Anytime Search：COMPLETED / PASS（见 docs/lessons/day064.md）
+Current / Next：M11 Day65 — Occupancy / Costmap / Footprint / Collision / Inflation
 ```
 
 > 重要：M02 Day8–15 的每日课程已完成，但 **M02 模块毕业考试尚未完成，因此不宣告 M02 模块毕业**。用户选择先继续 M03，后续回补考试剩余题目与 Hard Gate 复测。
@@ -85,7 +86,7 @@ M04 Simulation 暂不作为当前专项前置主线。
 - 题目必须独立列全已知条件、变量维度、单位和所求量。
 - 物理意义优先用真实机器人、传感器、几何对象解释；若连续两次未懂必须更换讲解方式。
 - 已稳定掌握内容不机械重考；错误项做 targeted remediation / retest。
-- Daily Quiz 按 `LEARNING_RULES.md`：通常 5–10 题；知识点多时可以更多。Day Goal 优先于知识点数量，不再设置“核心知识点≤20”的硬上限；复杂 Day 可按需要扩展，但不拆 Day。
+- Daily Quiz 按 `LEARNING_RULES.md`：通常 5–10 题；知识点多时可以更多。新讲义每 Day **最多35个编号教学知识单元**，通过整合相关概念保持内容齐全，不拆 Day。
 
 ---
 
@@ -1229,8 +1230,8 @@ Foundation Rule:
 
 Day Capacity Rule:
 - **Day Goal 优先于知识点数量**；
-- 不再使用“核心知识点 ≤20”硬上限；
-- 20 个不够就扩展到 30、40 个或更多，只要都服务于同一个 Day Goal；
+- 不再使用旧的“核心知识点≤20”硬上限；**当前新规则是最多35个编号教学知识单元**；
+- 紧密相关概念可合并至同一知识单元，理论基础、核心推导、Hard Gate、Owner 连接一项也不能漏；
 - 不为了控制数量删除 Foundation / Hard Gate / 推导 / Owner 连接；
 - **一个 Day 不拆成两个 Day，不新增 A/B Day，不把半个 Day 拖到下一 Day**；
 - 复杂 Day 可以增加当天讲义长度与学习时长。
@@ -1314,7 +1315,46 @@ Hard Gates:
 - Foundation：PASS；BFS：PASS；Dijkstra / Relaxation：PASS；Queue Selection / Nonlocking Frontier：PASS；Nonnegative Edge / Optimality：PASS；Navigation Mapping：PASS。
 
 Next:
-- **M11 / Day64 — A* / Heuristic / Optimality / Weighted A* / Anytime Search (ARA*)**，当日学习与考核尚未完成，不预记 PASS。
+- **M11 / Day64 — A* / Heuristic / Optimality / Weighted A* / Anytime Search (ARA*)** 已完成并 PASS，见第35节与 `docs/lessons/day064.md`。下一天为 Day65。
 
 Preserved:
 - M08 Day43–48：ROUTE-PAUSED；M02/M03/M06/M07 Graduation Exams 仍 DEFERRED。
+
+---
+
+## 35. Day64 Learning Record — COMPLETED / PASS；Day65 Next
+
+Current Module / Day:
+- **M11 / Day64 — A* / Heuristic / Optimality / Weighted A* / Anytime Search：COMPLETED / PASS**。
+- Lesson：`docs/lessons/day064.md`（25个编号教学知识单元，完整 Foundation/Core/Owner）。
+
+Mastered:
+- Search Problem / State / Node / Search Tree vs Graph Search / Frontier / OPEN / CLOSED / Goal Test；
+- g(n)、h(n)、f(n)=g+h；4邻接 Manhattan、Euclidean、8邻接 Octile；Corner Cutting 边界；
+- Admissible：`0≤h(n)≤h*(n)`；Consistent：`h(u)≤c(u,v)+h(v)`；Consistency ⇒ Admissibility；
+- A* 弹出Goal条件、最优性直觉、Inconsistent Heuristic 下可能的 Reopen；Stale Queue Entry；
+- Weighted A* `f_w=g+wh`、次优界的条件；Anytime Search、ARA* ε下降与 g/Parent/OPEN/INCONS 复用；
+- Heuristic / Cost 量纲匹配；A* / Dijkstra / HPA / JPS / Hybrid A* 责任差异；路径 Cost 优化≠碰撞安全≠马上 Path Switch。
+
+Weak / Corrected:
+- 初次将 CLOSED 理解成永久 Boolean false；已纠正为闭合节点在非一致性 h 情况下可能执行 Reopen；
+- 初次 Admissibility 不等号方向反；已纠正为低估或等于真实最小剩余代价；
+- 初次未说明 ARA* 复用搜索数据；已补 g/Parent/OPEN/INCONS；
+- 用户指出 Hybrid A* 尚未正式授课：Day64只做状态对比；运动学 / Primitive 完整教学留 Day66，不把跨天内容认作已经通过。
+
+Retest:
+- h*=20，h=8/20 均可采纳、h=25 不可采纳，并写出正确不等式：PASS；
+- c(A,B)=4、h(A)=7、h(B)=2 ⇒ Consistency不成立：PASS；
+- Consistent Heuristic 下 Closed 节点最优 g 已确定：PASS；
+- Reopen：用户最终回答 `CLOSED→OPEN`，结合前置 Relaxation 能补全状态更新：PASS；
+- ARA*复用 `g(n)`、Parent、OPEN、INCONS：PASS。
+
+Hard Gates:
+- Foundation PASS；g/h/f PASS；Admissibility / Consistency PASS；A* Optimality / Reopen PASS；Weighted A* PASS；ARA* Reuse PASS；Navigation Owner boundary PASS。
+
+New Teaching Constraint:
+- 用户进一步要求**课程精简但知识完整**：每 Day 最多35个**编号教学知识单元**，相关概念组合讲；删重复表达、不删基础/Hard Gate/推导/Owner连接、不拆 Day。Day64讲义采用25单元记录；后续 Day65 起执行。
+
+Next:
+- **M11 / Day65 — Occupancy / Costmap / Footprint / Collision / Inflation — IN PROGRESS**（尚未完成考核；不生成 Day65 PASS Lesson）。
+- M08 Day43 仍 ROUTE-PAUSED / NOT COMPLETED；既有 Module Graduation Exams 保持 DEFERRED。
