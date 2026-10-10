@@ -331,10 +331,18 @@ M11 / Day63 — Graph / BFS / Dijkstra — COMPLETED / PASS
 
 Day63 已按完整系统基础完成正式讲授、Quiz 与定向复测；完整记录见 `docs/lessons/day063.md`，早先预热版不计为正式通过。
 
+最近已完成：
+
+~~~text
+M11 / Day64 — A* / Heuristic / Optimality / Anytime Search — COMPLETED / PASS
+~~~
+
+已完成完整版讲授、Quiz 与定向复测；见 `docs/lessons/day064.md`。
+
 当前进入：
 
 ~~~text
-M11 / Day64 — A* / Heuristic / Optimality / Anytime Search — IN PROGRESS
+M11 / Day65 — Occupancy / Costmap / Footprint / Collision / Inflation — IN PROGRESS
 ~~~
 
 ### Day63 Foundation
