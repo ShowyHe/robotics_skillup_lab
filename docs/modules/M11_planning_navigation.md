@@ -22,7 +22,7 @@ Foundation
 → Advanced / Owner
 ```
 
-知识点数量不设 20 个硬上限；以 Day Goal 完整性为准，20 个不够可扩展到 30、40 个或更多，但不拆 Day。
+Day Goal 与完整覆盖优先：每个 Day 最多 **35 个编号教学知识单元**。允许在同一单元内整合相关定义、公式、最小例题与边界；不得删除 Foundation / Core / Owner 或 Hard Gate，不拆 Day。
 
 各 Day 的 Foundation 最低覆盖：
 
