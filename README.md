@@ -121,7 +121,7 @@ M22  Day130–135（动态 Foundation Cleanup）
 
 状态：`⬜ 未开始`、`🟨 进行中`、`✅ 完成 / PASS`、`⏸️ 路线调整暂缓`、`🔁 需要重学 / Retest`。
 
-当前学习位置：**导航优先强化 + 定位突破专项 / M11 / Day064 — A* / Heuristic / Optimality / Anytime Search（启发式搜索 / 最优性 / 任意时刻搜索）**。Day063 已完成并通过，完整讲义见 `docs/lessons/day063.md`。M08 Day040–Day042 已完成并通过；Day043 已讲授但 Quiz 尚未完成，因路线调整标记为 ⏸️，将在 M11–M13 完成后回补。当前先完整学习 M11–M13（规划 → 运动学/动力学 → 控制），随后回到 M08 Day043–Day048，再进入 M09 State Estimation 与 M10 SLAM/LIO/VIO。M07、M06、M02、M03 的 Module Graduation Exam 仍按原状态暂缓。M04 Simulation 暂不作为当前专项前置主线。课程 Day 编号与 `03_MASTER_PLAN.md` 总结构不变。
+当前学习位置：**导航优先强化 + 定位突破专项 / M11 / Day065 — Occupancy / Costmap / Footprint / Collision / Inflation（占据地图 / 代价地图 / 轮廓 / 碰撞 / 膨胀）**。Day063、Day064 已完成并通过，讲义分别见 `docs/lessons/day063.md` 与 `docs/lessons/day064.md`。M08 Day040–Day042 已完成并通过；Day043 已讲授但 Quiz 尚未完成，因路线调整标记为 ⏸️，将在 M11–M13 完成后回补。当前先完整学习 M11–M13（规划 → 运动学/动力学 → 控制），随后回到 M08 Day043–Day048，再进入 M09 State Estimation 与 M10 SLAM/LIO/VIO。M07、M06、M02、M03 的 Module Graduation Exam 仍按原状态暂缓。M04 Simulation 暂不作为当前专项前置主线。课程 Day 编号与 `03_MASTER_PLAN.md` 总结构不变。
 
 ### M00–M02｜系统基础与数学基础 I
 
@@ -212,8 +212,8 @@ M22  Day130–135（动态 Foundation Cleanup）
 | Day | 状态 | 主题 |
 |---|---|---|
 | Day063 | ✅ | Graph / BFS / Dijkstra |
-| Day064 | 🟨 | A* / Heuristic / Anytime Search |
-| Day065 | ⬜ | Occupancy / Costmap / Footprint / Inflation |
+| Day064 | ✅ | A* / Heuristic / Anytime Search |
+| Day065 | 🟨 | Occupancy / Costmap / Footprint / Inflation |
 | Day066 | ⬜ | Hybrid A* / Motion Primitive / Kinodynamic Boundary |
 | Day067 | ⬜ | Configuration Space / C-obstacle / RRT / RRT* / OMPL |
 | Day068 | ⬜ | HPA / Incremental Search / Dynamic Edge |
