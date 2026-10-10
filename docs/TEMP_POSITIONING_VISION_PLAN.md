@@ -306,7 +306,7 @@ Day Goal
 ~~~
 
 具体规则：
-- **Day Goal 优先于知识点数量**：20个不够就扩展到30、40个或更多，不设固定硬上限；
+- **Day Goal 与完整覆盖优先；单个 Day 最多 35 个编号教学知识单元**：整合紧密相关的概念，压缩重复叙述，但不删除基础、核心理论、Hard Gate、必要推导或 Owner 连接；
 - 一个 Day 必须完成一个完整知识目标，**不拆成两个 Day、不新增 A/B Day、不把后半内容拖到下一 Day**；
 - 已在本课程正式学习并 PASS 的知识，才按 Knowledge Reuse Rule 简短 Review；
 - 工作中用过、调过、读过源码但未系统学过的基础，仍必须正式覆盖一次；
@@ -369,7 +369,7 @@ M11 / Day64 — A* / Heuristic / Optimality / Anytime Search — IN PROGRESS
 - HPA Abstract Graph；
 - Dijkstra → A* → HPA → Global Planner 的统一关系。
 
-以上内容已在同一个 Day63 内完成并通过；知识点数量不设20个硬上限。
+以上内容已在同一个 Day63 内完成并通过；新讲义从 Day65 起按每个 Day 最多35个教学知识单元的结构编排，已经 PASS 的旧讲义不追溯修改。
 
 当前专项最终完成标准：
 
