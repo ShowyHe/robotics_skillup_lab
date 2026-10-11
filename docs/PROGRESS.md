@@ -47,7 +47,8 @@ M08 Day43 — Residual / Least Squares / Weighted Least Squares：PAUSED / NOT C
 M08 Day44–48：DEFERRED BY ROUTE CHANGE
 M11 Day63 — Graph / BFS / Dijkstra：COMPLETED / PASS（见 docs/lessons/day063.md）
 M11 Day64 — A* / Heuristic / Optimality / Anytime Search：COMPLETED / PASS（见 docs/lessons/day064.md）
-Current / Next：M11 Day65 — Occupancy / Costmap / Footprint / Collision / Inflation
+M11 Day65 — Occupancy / Costmap / Footprint / Collision / Inflation：COMPLETED / PASS（见 docs/lessons/day065.md）
+Current / Next：M11 Day66 — Hybrid A* / Motion Primitive / Nonholonomic Planning
 ```
 
 > 重要：M02 Day8–15 的每日课程已完成，但 **M02 模块毕业考试尚未完成，因此不宣告 M02 模块毕业**。用户选择先继续 M03，后续回补考试剩余题目与 Hard Gate 复测。
@@ -1322,7 +1323,7 @@ Preserved:
 
 ---
 
-## 35. Day64 Learning Record — COMPLETED / PASS；Day65 Next
+## 35. Day64 Learning Record — COMPLETED / PASS（历史记录；下一天状态见第36节）
 
 Current Module / Day:
 - **M11 / Day64 — A* / Heuristic / Optimality / Weighted A* / Anytime Search：COMPLETED / PASS**。
@@ -1356,5 +1357,42 @@ New Teaching Constraint:
 - 用户进一步要求**课程精简但知识完整**：每 Day 最多35个**编号教学知识单元**，相关概念组合讲；删重复表达、不删基础/Hard Gate/推导/Owner连接、不拆 Day。Day64讲义采用25单元记录；后续 Day65 起执行。
 
 Next:
-- **M11 / Day65 — Occupancy / Costmap / Footprint / Collision / Inflation — IN PROGRESS**（尚未完成考核；不生成 Day65 PASS Lesson）。
+- **M11 / Day65 — Occupancy / Costmap / Footprint / Collision / Inflation — COMPLETED / PASS**（已完成讲授、Quiz 与定向复测；见第36节与 `docs/lessons/day065.md`）。
 - M08 Day43 仍 ROUTE-PAUSED / NOT COMPLETED；既有 Module Graduation Exams 保持 DEFERRED。
+
+---
+
+## 36. Day65 Learning Record — COMPLETED / PASS；Day66 Next
+
+Current Module / Day:
+- **M11 / Day65 — Occupancy / Costmap / Footprint / Collision / Inflation：COMPLETED / PASS**。
+- Lesson：`docs/lessons/day065.md`（28个编号知识单元）。
+- Current / Next：**M11 / Day66 — Hybrid A* / Motion Primitive / Nonholonomic Planning — IN PROGRESS**；Day66 尚未参加考核，不提前判 PASS。
+
+Mastered:
+- Occupancy Free/Occupied/Unknown、resolution / origin / cell-world、frame/timestamp、costmap 0/253/254/255；
+- Circle/Polygon Footprint、body→map 姿态变换、inscribed/circumscribed radii、Footprint Collision；
+- Inflation Radius / Cost Field 与 Footprint 几何检查责任边界、254 Lethal、Unknown 策略、Layers/Filters；
+- Center Clearance/Body Clearance、Narrow Passage 安全余量、Path Pose vs Swept Motion Collision；
+- 真实机器人碰撞归因：尺寸、base_link、Yaw、路径轮廓校验、状态/时间戳、Planner 实现证据链。
+
+Weak / Corrected:
+- 初答窄通道每侧额外剩余2.5cm，但未区分每侧真实净空7.5cm；
+- 初答仅指出“中心路径点安全 ≠ Footprint安全”，未指出“各点 Footprint 安全 ≠ 段间 Swept Motion安全”；
+- 碰撞归因初答未充分利用“墙体254已正确”证据，对 Footprint/Planner 检查优先级有改进空间。
+
+Retest（全部PASS）:
+- `W=0.80m,B=0.62m,m=0.06m` → 单侧真实净空0.09m、超出最低安全余量0.03m：正确。
+- Motion Primitive 两端完整Footprint检查无碰撞 → 不能宣布整段安全，需要扫掠检查及真实机器人碰撞包络：正确。
+- 墙体254正确、中心轨迹贴合路径但擦墙 → 首先核 Footprint尺寸/形状与 base_link 参考点、Planner 是否检查 Footprint；实际尺寸与配置/轨迹作证据：正确。
+
+Hard Gates:
+- Foundation / Costmap：PASS。
+- Robot Geometry / Transform：PASS。
+- Collision / Inflation / Clearance：PASS。
+- Swept Collision：PASS。
+- Evidence-based Navigation Owner Attribution：PASS。
+
+Preserved:
+- M08 Day43：PAUSED / NOT COMPLETED；
+- 其他 Module Graduation Exams 仍按原状态 DEFERRED。
