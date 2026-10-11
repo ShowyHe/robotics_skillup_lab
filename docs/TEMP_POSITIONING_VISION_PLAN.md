@@ -339,10 +339,18 @@ M11 / Day64 — A* / Heuristic / Optimality / Anytime Search — COMPLETED / PAS
 
 已完成完整版讲授、Quiz 与定向复测；见 `docs/lessons/day064.md`。
 
+最近已完成：
+
+~~~text
+M11 / Day65 — Occupancy / Costmap / Footprint / Collision / Inflation — COMPLETED / PASS
+~~~
+
+Day65 已完成28个知识单元的完整课程及Quiz/定向复测；见 `docs/lessons/day065.md`。
+
 当前进入：
 
 ~~~text
-M11 / Day65 — Occupancy / Costmap / Footprint / Collision / Inflation — IN PROGRESS
+M11 / Day66 — Hybrid A* / Motion Primitive / Nonholonomic Planning — IN PROGRESS
 ~~~
 
 ### Day63 Foundation
