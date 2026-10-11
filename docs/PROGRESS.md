@@ -48,7 +48,8 @@ M08 Day44–48：DEFERRED BY ROUTE CHANGE
 M11 Day63 — Graph / BFS / Dijkstra：COMPLETED / PASS（见 docs/lessons/day063.md）
 M11 Day64 — A* / Heuristic / Optimality / Anytime Search：COMPLETED / PASS（见 docs/lessons/day064.md）
 M11 Day65 — Occupancy / Costmap / Footprint / Collision / Inflation：COMPLETED / PASS（见 docs/lessons/day065.md）
-Current / Next：M11 Day66 — Hybrid A* / Motion Primitive / Nonholonomic Planning
+M11 Day66 — Hybrid A* / Motion Primitive / Nonholonomic Planning：COMPLETED / PASS（见 docs/lessons/day066.md）
+Current / Next：M11 Day67 — Configuration Space / RRT / RRT* / Sampling / OMPL
 ```
 
 > 重要：M02 Day8–15 的每日课程已完成，但 **M02 模块毕业考试尚未完成，因此不宣告 M02 模块毕业**。用户选择先继续 M03，后续回补考试剩余题目与 Hard Gate 复测。
@@ -1362,12 +1363,12 @@ Next:
 
 ---
 
-## 36. Day65 Learning Record — COMPLETED / PASS；Day66 Next
+## 36. Day65 Learning Record — COMPLETED / PASS（历史记录；下一天状态以第37节为准）
 
 Current Module / Day:
 - **M11 / Day65 — Occupancy / Costmap / Footprint / Collision / Inflation：COMPLETED / PASS**。
 - Lesson：`docs/lessons/day065.md`（28个编号知识单元）。
-- Current / Next：**M11 / Day66 — Hybrid A* / Motion Primitive / Nonholonomic Planning — IN PROGRESS**；Day66 尚未参加考核，不提前判 PASS。
+- Current / Next：**M11 / Day66 — Hybrid A* / Motion Primitive / Nonholonomic Planning — COMPLETED / PASS**；详见第37节与 `docs/lessons/day066.md`。
 
 Mastered:
 - Occupancy Free/Occupied/Unknown、resolution / origin / cell-world、frame/timestamp、costmap 0/253/254/255；
@@ -1396,3 +1397,45 @@ Hard Gates:
 Preserved:
 - M08 Day43：PAUSED / NOT COMPLETED；
 - 其他 Module Graduation Exams 仍按原状态 DEFERRED。
+
+---
+
+## 37. Day66 Learning Record — COMPLETED / PASS；Day67 Next
+
+Current Module / Day:
+- **M11 / Day66 — Hybrid A* / Motion Primitive / Nonholonomic Planning：COMPLETED / PASS**。
+- Lesson：`docs/lessons/day066.md`（29个编号知识单元）。
+
+Mastered:
+- `q=(x,y,θ)`、heading、continuous pose vs discrete key、orientation bins、holonomic / nonholonomic（瞬时侧移限制 ≠ 无法经过转向到达侧方）；
+- Unicycle `x_dot=vcosθ,y_dot=vsinθ,θ_dot=ω`、前向积分、曲率 `κ=ω/v` 与转弯半径 `R=|v|/|ω|`；
+- Motion Primitive 的数量不等于 heading bins，6类后继展开与72个航向桶的区别；
+- Hybrid A* 连续运动学传播+离散图搜索、reverse、steering / gear-change penalty、heuristic、resolution误差；
+- Dubins / Reeds–Shepp、analytic expansion 与完整 Primitive Swept Collision；
+- state lattice 对比、kinodynamic boundary、制动距离 `d=v²/(2a_max)` 与 Path≠Timed Trajectory；
+- 模型与真实机器人可执行动作集一致性，原地旋转与 Goal Yaw 调整风险。
+
+Weak / Corrected:
+- 用户指出 Holonomic/Nonholonomic 英文语义教学不清，已重新解释其正式定义与瞬时侧向速度约束。
+- 误把朝向离散 Bin 数量理解为每节点 Primitive 数量（36 / 72）；
+- 初始运动学计算把 x/y 方向交换或把速度单位写成位置单位；
+- 初答未理解不同连续 Pose 即使映射到同一离散 Key，积分终点仍可能不同；
+- 初答制动题未计算具体数值，混淆了纯几何规划与动态制动。
+
+Retest:
+- 72 heading bins, 6 possible primitives → 用户最终答6，bins用于原语扩展后的状态归类/Key：PASS。
+- `q0=(2,3,0),v=0.5m/s,ω=0,T=2s` → `q1=(3,3,0)`：PASS。
+- 同 `(x,y,θ)` 速度0.2与0.6m/s → 用户指出0.6刹停更长、纯Pose无v/a：PASS。
+- 其他题：曲率2、半径0.5m；Dubins不支持倒车；解析路径穿254不接受；Owner关于Goal Yaw和原地旋转的风险：PASS。
+
+Hard Gates:
+- Foundation / Nonholonomic：PASS。
+- Heading Bin / Motion Primitive：PASS。
+- Kinematic Rollout：PASS。
+- Hybrid A* / Analytic Connection / Collision：PASS。
+- Kinodynamic Boundary / Braking：PASS。
+- Owner Model-Execution Compatibility：PASS。
+
+Next:
+- **M11 / Day67 — Configuration Space / RRT / RRT* / Sampling / OMPL — IN PROGRESS**，刚进入教学，不预记 PASS。
+- M08 Day43仍 PAUSED / NOT COMPLETED；其他Deferred Exams不变。
