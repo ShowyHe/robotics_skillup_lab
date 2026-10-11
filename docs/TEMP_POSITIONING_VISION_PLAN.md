@@ -347,10 +347,18 @@ M11 / Day65 — Occupancy / Costmap / Footprint / Collision / Inflation — COMP
 
 Day65 已完成28个知识单元的完整课程及Quiz/定向复测；见 `docs/lessons/day065.md`。
 
+最近已完成：
+
+~~~text
+M11 / Day66 — Hybrid A* / Motion Primitive / Nonholonomic Planning — COMPLETED / PASS
+~~~
+
+Day66 已完成29个知识单元的系统教学、Quiz及两轮定向复测；讲义和考核见 `docs/lessons/day066.md`。
+
 当前进入：
 
 ~~~text
-M11 / Day66 — Hybrid A* / Motion Primitive / Nonholonomic Planning — IN PROGRESS
+M11 / Day67 — Configuration Space / RRT / RRT* / Sampling / OMPL — IN PROGRESS
 ~~~
 
 ### Day63 Foundation
