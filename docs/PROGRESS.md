@@ -49,7 +49,9 @@ M11 Day63 — Graph / BFS / Dijkstra：COMPLETED / PASS（见 docs/lessons/day06
 M11 Day64 — A* / Heuristic / Optimality / Anytime Search：COMPLETED / PASS（见 docs/lessons/day064.md）
 M11 Day65 — Occupancy / Costmap / Footprint / Collision / Inflation：COMPLETED / PASS（见 docs/lessons/day065.md）
 M11 Day66 — Hybrid A* / Motion Primitive / Nonholonomic Planning：COMPLETED / PASS（见 docs/lessons/day066.md）
-Current / Next：M11 Day67 — Configuration Space / RRT / RRT* / Sampling / OMPL
+M11 Day67 — Configuration Space / RRT / RRT* / Sampling / OMPL：COMPLETED / PASS（见 docs/lessons/day067.md）
+M11 Day68 — HPA / Incremental Search / Dynamic Edge：COMPLETED / PASS（见 docs/lessons/day068.md）
+Current / Next：M11 Day69 — Trajectory Optimization / CHOMP / STOMP / TEB / MPPI
 ```
 
 > 重要：M02 Day8–15 的每日课程已完成，但 **M02 模块毕业考试尚未完成，因此不宣告 M02 模块毕业**。用户选择先继续 M03，后续回补考试剩余题目与 Hard Gate 复测。
@@ -1437,5 +1439,7 @@ Hard Gates:
 - Owner Model-Execution Compatibility：PASS。
 
 Next:
-- **M11 / Day67 — Configuration Space / RRT / RRT* / Sampling / OMPL — IN PROGRESS**，刚进入教学，不预记 PASS。
+- **M11 / Day67 — Configuration Space / RRT / RRT* / Sampling / OMPL — COMPLETED / PASS**（见 `docs/lessons/day067.md`）。
+- **M11 / Day68 — HPA / Incremental Search / Dynamic Edge — COMPLETED / PASS**（见 `docs/lessons/day068.md`）。
+- Current / Next：**M11 Day69 — Trajectory Optimization / CHOMP / STOMP / TEB / MPPI**。
 - M08 Day43仍 PAUSED / NOT COMPLETED；其他Deferred Exams不变。
