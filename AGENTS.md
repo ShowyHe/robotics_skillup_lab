@@ -1,163 +1,46 @@
 # AGENTS.md
-
-## 1. Repository Purpose
-
-This repository stores the robotics skillup learning system:
-- Daily lessons.
-- Quiz results.
-- Learning progress.
-- Module completion records.
-
-Preserve historical learning records.
-
----
-
-## 2. Skillup Workflow
-
-Learning
-↓
-Quiz
-↓
-Evaluation
-↓
-PASS confirmation
-↓
-Lesson record
-↓
-Progress update
-↓
-README synchronization if required
-
-Do not mark a Day complete before Quiz PASS.
-
----
-
-## 3. File Responsibility
-
-### Lesson files
-`docs/lessons/dayXXX.md`
-
-- One Day corresponds to one file.
-- Preserve completed history.
-- Do not rewrite completed lessons without reason.
-
-### Progress
-`docs/PROGRESS.md`
-
-- Historical index.
-- Modify only required sections.
-- Review diff before commit.
-
-### README
-
-- Synchronize status only.
-- Avoid unrelated changes.
-
----
-
-## 4. Curriculum Authority
-
-Source of truth:
-
-- `docs/03_MASTER_PLAN.md`
-- `docs/modules/Mxx_*.md`
-- `docs/PROGRESS.md`
-- README.md
-
-Before generating a lesson:
-
-1. Read current Day objective.
-2. Read module teaching contract.
-3. Check previous and next Day connection.
-
-The AI explains the curriculum but does not redesign it.
-
-The AI must not:
-- Change Day topics.
-- Reorder modules.
-- Replace curriculum goals with engineering needs.
-
----
-
-## 5. Lesson Generation Rules
-
-Do not generate a lesson only from the Day title.
-
-Understand:
-- Module capability goal.
-- Current Day objective.
-- Required scope.
-- Teaching boundary.
-- Previous dependency.
-- Future connection.
-
-Lesson structure is flexible. Choose based on topic:
-
-- Mathematics.
-- Algorithms.
-- Architecture.
-- Source code.
-- Engineering systems.
-- Robot applications.
-
-Do not force identical templates.
-
-Every lesson should clarify:
-- Why this topic appears here.
-- What problem it solves.
-- How it connects to the learning chain.
-
-Engineering projects are only examples and validation. They cannot decide the next lesson.
-
-Before sending:
-- Correct Day.
-- Correct topic.
-- Correct module position.
-- No future topic as main content.
-- Quiz only after complete lesson.
-
----
-
-## 6. Tool and Git Rules
-
-Direct editing:
-- New lesson files.
-- Small isolated markdown changes.
-
-Work/Codex:
-- Large files.
-- README.md.
-- docs/PROGRESS.md.
-- Multi-file changes.
-- Code changes requiring tests.
-
-Commit messages describe actual changes:
-
-Lesson:
-`docs: add <module/day> lesson`
-
-Progress:
-`docs: update <module/day> progress`
-
-README:
-`docs: sync README completion markers`
-
-Avoid unrelated changes in one commit.
-
----
-
-## 7. Verification and Forbidden Actions
-
-Complete only when:
-
-1. File exists.
-2. Commit exists.
-3. Commit is in target branch.
-4. Diff matches requested change.
-
-Forbidden:
-- Delete historical records.
-- Replace large files without checking diff.
-- Modify unrelated files.
-- Mark PASS without Quiz evidence.
-- Claim GitHub completion without verification.
+本规则适用于 robotics_skillup_lab 全仓库。保存机器人学习目标、教学契约、考核和进度；保留历史。
+## 1. 接手必读
+首次接手必须先读 docs/00_GOALS.md、docs/01_COMPETENCY_MAP.md、docs/02_DEPENDENCIES.md。
+再读 docs/03_MASTER_PLAN.md、docs/04_MODULE_SPECS.md、docs/LEARNING_RULES.md、docs/PROGRESS.md。
+读取状态为 ACTIVE 的专项计划（当前为 docs/TEMP_POSITIONING_VISION_PLAN.md）和当前 docs/modules/Mxx_*.md。
+后续开课前重新核对当前状态、执行路线与对应 Day 完整契约；任何必需文件不可访问时说明缺口。
+## 2. 依据职责
+总目标/排除方向：00_GOALS；能力范围/目标等级：01_COMPETENCY_MAP。
+前置：02_DEPENDENCIES + 04_MODULE_SPECS + 当前模块/Day；已明确专项入口桥仅在原范围内适用。
+编号/主题索引：03_MASTER_PLAN；模块范围/毕业标准：04_MODULE_SPECS + 对应模块。
+今日目标/必学/深度/工程连接/不展开/考核/毕业考点：当前模块中的完整 Day 契约及模块级覆盖要求。
+实际执行顺序：ACTIVE 专项计划；只覆盖执行顺序，不自动改变 Day 主题/编号/范围。
+已学/通过/暂缓/复测/债务：PROGRESS 当前摘要及对应历史、lesson 考核记录。
+教学方法/复用/考试：LEARNING_RULES；README 仅概览，lesson 是历史记录，都不能单独授权改课。
+## 3. 证据与冲突
+对学习目标、能力、状态、主题和 Next 的判断须指向实际读取的文件与章节/行号；不得自补事实。
+区分已知记录、推断、不确定与建议；目标 L 等级不等于当前能力，记录 PASS 不等于本次独立验证。
+工程经验、见过公式、读过源码不能证明课程基础已正式学过；仅对有正式学习/PASS 依据的旧知识简短复用。
+未读源码不得描述具体实现为事实；公式/算法论断按实际读取的教材、论文、官方文档或代码核实。
+字段缺失或来源冲突时说“无法判断”，列原文/来源/影响；暂停依赖该项的教学，继续无关核验。
+不得按文件新旧、最大 Day 编号、自然日期、README 勾选或一般学习常识静默裁决。
+有明确变更记录时仅识别其授权字段与适用范围；“调顺序”不等于“改主题”，学习记录不构成 GitHub 写入授权。
+## 4. 开课前核对
+先核对当前 Module/Day 与主题、总目标连接、目标深度、必学覆盖、前置证据/债务、不展开内容和考核点。
+核对全部有来源且无未解决冲突，才生成完整教学；不得只读 Day 标题。
+覆盖契约全部必学和模块级 Foundation/Core/Owner 要求；不得因工程强项省略未正式学过的基础。
+沿用 LEARNING_RULES 的容量/复用/表达要求：最多35个编号教学单元；不删必要内容、不擅拆 Day。
+数学声明维度、坐标系、单位、假设与物理意义；中文术语为主，首次英文附注。
+在既定范围内可调整表达、推导、例子；讲义结构灵活，不强制相同模板。
+公司/官方工程仅作映射与验证；不新增核心主题、重排课程或用项目需求代替学习目标。
+不每日强制代码/LAB；实际执行顺序调整仅按已明确的 ACTIVE 路线；M22 只从实际 Foundation Debt 生成。
+## 5. 考核与记录
+完整教学后再 Quiz；错项定向补讲与复测；考核结果、作答/纠正、Hard Gate 和达到深度只记录实际证据。
+Daily PASS、Module Graduation、Debt CLOSED 分别判断；不得从每日 PASS 推断毕业、升等级或自动关闭债务。
+保留 PAUSED/DEFERRED/未完成考试；无新证据不升为 PASS，不为补记录编造历史作答。
+未来记录按“契约项→题号/作答摘要→结果/复测”留依据；历史缺证据注明未知，不自动否定历史 PASS 或安排重考。
+获准写入后按学习→Quiz/复测→PASS→lesson→PROGRESS→必要摘要同步；当前状态由 PROGRESS 维护。
+## 6. 文件与写入边界
+一 Day 一 lesson；保留历史，更正用注明原因的勘误/后续记录，禁止删除历史以消除冲突。
+大文件、多文件改动先形成完整可审 diff；只改任务相关部分；提交说明必须对应实际改动。
+公司 Cyber_dog_mini 源码仓库及所有克隆永久只读；不得修改/提交/推送/建分支/建PR/删除或改设置。
+仅用户在单独一条消息明确写“我撤销公司 Cyber_dog_mini 仓库永久只读规则”可解除该限制。
+其它 GitHub 仓库写入须获当前任务授权；模糊“上传GitHub”不能自行选择目标仓库。
+任何 GitHub 写入前列出仓库全名、目标分支、全部文件路径和具体内容，等待用户明确确认；只读审查不需写入确认。
+完成保存须核实文件、提交、目标分支和 diff；课程 PASS 与 GitHub 保存成功是两个独立状态。

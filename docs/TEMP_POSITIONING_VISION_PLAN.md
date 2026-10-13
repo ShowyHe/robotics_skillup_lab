@@ -321,45 +321,13 @@ Day Goal
 
 ---
 
-## 11. 当前学习位置
+## 11. 当前学习位置与状态职责
 
-当前已完成：
+当前 Module / Day、最新 Next、已完成/暂缓状态和未完成考试统一见 [`PROGRESS.md` 第1节](PROGRESS.md)。本文件保留 ACTIVE 路线、执行顺序、专项目标与明确前置桥，不维护另一套每日最新状态。
 
-~~~text
-M11 / Day63 — Graph / BFS / Dijkstra — COMPLETED / PASS
-~~~
+每次开课须把 PROGRESS 的位置与 `03_MASTER_PLAN.md`、当前模块完整 Day 契约核对；执行顺序调整不自动改变课题。冲突处理按根 `AGENTS.md`，不能用本文件的路线覆盖课程主题。
 
-Day63 已按完整系统基础完成正式讲授、Quiz 与定向复测；完整记录见 `docs/lessons/day063.md`，早先预热版不计为正式通过。
-
-最近已完成：
-
-~~~text
-M11 / Day64 — A* / Heuristic / Optimality / Anytime Search — COMPLETED / PASS
-~~~
-
-已完成完整版讲授、Quiz 与定向复测；见 `docs/lessons/day064.md`。
-
-最近已完成：
-
-~~~text
-M11 / Day65 — Occupancy / Costmap / Footprint / Collision / Inflation — COMPLETED / PASS
-~~~
-
-Day65 已完成28个知识单元的完整课程及Quiz/定向复测；见 `docs/lessons/day065.md`。
-
-最近已完成：
-
-~~~text
-M11 / Day66 — Hybrid A* / Motion Primitive / Nonholonomic Planning — COMPLETED / PASS
-~~~
-
-Day66 已完成29个知识单元的系统教学、Quiz及两轮定向复测；讲义和考核见 `docs/lessons/day066.md`。
-
-当前进入：
-
-~~~text
-M11 / Day67 — Configuration Space / RRT / RRT* / Sampling / OMPL — IN PROGRESS
-~~~
+以下 Day63 覆盖清单保留为历史学习示例；详细考核及后续状态见 PROGRESS 和 `docs/lessons/day063.md`。
 
 ### Day63 Foundation
 - Graph / Vertex / Edge；

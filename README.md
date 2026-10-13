@@ -121,7 +121,8 @@ M22  Day130–135（动态 Foundation Cleanup）
 
 状态：`⬜ 未开始`、`🟨 进行中`、`✅ 完成 / PASS`、`⏸️ 路线调整暂缓`、`🔁 需要重学 / Retest`。
 
-当前学习位置：**导航优先强化 + 定位突破专项 / M11 / Day067 — Configuration Space / RRT / RRT* / Sampling / OMPL（构型空间 / 随机采样规划）**。Day063–Day066 已完成并通过，讲义见 `docs/lessons/day063.md` 至 `docs/lessons/day066.md`。M08 Day040–Day042 已完成并通过；Day043 已讲授但 Quiz 尚未完成，因路线调整标记为 ⏸️，将在 M11–M13 完成后回补。当前先完整学习 M11–M13（规划 → 运动学/动力学 → 控制），随后回到 M08 Day043–Day048，再进入 M09 State Estimation 与 M10 SLAM/LIO/VIO。M07、M06、M02、M03 的 Module Graduation Exam 仍按原状态暂缓。M04 Simulation 暂不作为当前专项前置主线。课程 Day 编号与 `03_MASTER_PLAN.md` 总结构不变。
+当前学习位置、最新 Next、完成/暂缓状态和未完成考试统一见 [`docs/PROGRESS.md` 第1节](docs/PROGRESS.md)。下表仅为进度概览，不代替考核记录或每日教学契约。
+当前专项执行顺序见 [`docs/TEMP_POSITIONING_VISION_PLAN.md`](docs/TEMP_POSITIONING_VISION_PLAN.md)。专项路线只调整执行顺序；课程 Day 编号与主题须与总纲及模块教学契约一致。
 
 ### M00–M02｜系统基础与数学基础 I
 

@@ -273,14 +273,20 @@ Debt CLOSED必须同时满足：
 ---
 
 ## 16. Future GPT接手规则
-未来GPT接手前必须先读：
-1. `00_GOALS.md`
-2. `03_MASTER_PLAN.md`
-3. `04_MODULE_SPECS.md`
-4. `LEARNING_RULES.md`
-5. `PROGRESS.md`
-6. 当前 `docs/modules/Mxx_*.md`
+未来GPT接手前必须先读根目录 [`AGENTS.md`](../AGENTS.md)，再按职责读取：
+1. `docs/00_GOALS.md`：最终目标、排除方向与目标深度；
+2. `docs/01_COMPETENCY_MAP.md`：能力范围与目标等级；
+3. `docs/02_DEPENDENCIES.md`：前置知识与依赖链；
+4. `docs/03_MASTER_PLAN.md`：固定 Module / Day 编号与主题索引；
+5. `docs/04_MODULE_SPECS.md`：模块范围与毕业标准；
+6. `docs/LEARNING_RULES.md`：教学、复用、考核与记录方法；
+7. `docs/PROGRESS.md`：唯一当前状态摘要、历史考核与 Foundation Debt；
+8. 状态为 ACTIVE 的专项计划，当前为 `docs/TEMP_POSITIONING_VISION_PLAN.md`：实际执行顺序及其明确前置桥；
+9. 当前 `docs/modules/Mxx_*.md`：Module Goal、覆盖要求、入口桥、当前 Day 完整契约与毕业考核。
 
+开课前核对 Module / Day / 主题、目标连接、目标深度、必学内容、前置证据与债务、不展开内容及考核点；每项须能对应到已读取的文件和章节/行号，不只读标题。
+能力目标不等于已验证能力；Daily PASS 不等于模块毕业或 Debt CLOSED。当前状态由 PROGRESS 维护，README 和专项计划只链接/摘要，不单独授权改课。
+专项执行顺序不自动修改 Day 主题。缺依据或文件冲突时按根 AGENTS 的证据与冲突规则处理，明确说“无法判断”并暂停依赖该项的教学，不按新旧时间或一般经验静默裁决。
 不得重新询问仓库中已明确目标/规则；不得擅自增加每日实验；不得因工程经验强就默认数学已掌握；不得因理论陌生降低毕业标准。
 
 ---

@@ -51,7 +51,7 @@ M11 Day65 — Occupancy / Costmap / Footprint / Collision / Inflation：COMPLETE
 M11 Day66 — Hybrid A* / Motion Primitive / Nonholonomic Planning：COMPLETED / PASS（见 docs/lessons/day066.md）
 M11 Day67 — Configuration Space / RRT / RRT* / Sampling / OMPL：COMPLETED / PASS（见 docs/lessons/day067.md）
 M11 Day68 — HPA / Incremental Search / Dynamic Edge：COMPLETED / PASS（见 docs/lessons/day068.md）
-Current / Next：M11 Day69 — Trajectory Optimization / CHOMP / STOMP / TEB / MPPI
+Current / Next：M11 Day69 — Nav2 / BT / Replanning / Path Switching（按教学契约；旧主题误记已更正，见第38节）
 ```
 
 > 重要：M02 Day8–15 的每日课程已完成，但 **M02 模块毕业考试尚未完成，因此不宣告 M02 模块毕业**。用户选择先继续 M03，后续回补考试剩余题目与 Hard Gate 复测。
@@ -1402,7 +1402,7 @@ Preserved:
 
 ---
 
-## 37. Day66 Learning Record — COMPLETED / PASS；Day67 Next
+## 37. Day66 Learning Record — COMPLETED / PASS；Day67 Next（历史记录；当前状态见第1节与第38节）
 
 Current Module / Day:
 - **M11 / Day66 — Hybrid A* / Motion Primitive / Nonholonomic Planning：COMPLETED / PASS**。
@@ -1441,5 +1441,19 @@ Hard Gates:
 Next:
 - **M11 / Day67 — Configuration Space / RRT / RRT* / Sampling / OMPL — COMPLETED / PASS**（见 `docs/lessons/day067.md`）。
 - **M11 / Day68 — HPA / Incremental Search / Dynamic Edge — COMPLETED / PASS**（见 `docs/lessons/day068.md`）。
-- Current / Next：**M11 Day69 — Trajectory Optimization / CHOMP / STOMP / TEB / MPPI**。
+- 历史错误 Next（原始误记，已撤回；更正见第38节）：**M11 Day69 — Trajectory Optimization / CHOMP / STOMP / TEB / MPPI**。
 - M08 Day43仍 PAUSED / NOT COMPLETED；其他Deferred Exams不变。
+
+---
+
+## 38. Day69 Next Correction — 进度主题更正（2026-10-14）
+
+用户明确确认“进度写错了”，Day69 按既有教学契约恢复；本次不修改课程主题、编号或执行顺序。
+
+- 正确 Current / Next：**M11 Day69 — Nav2 / BT / Replanning / Path Switching**。
+- 依据：[`03_MASTER_PLAN.md` 的 Day069](03_MASTER_PLAN.md)与 [`M11_planning_navigation.md` 的 Day69 完整契约](modules/M11_planning_navigation.md)。
+- 撤回旧 Next 中“Trajectory Optimization / CHOMP / STOMP / TEB / MPPI”作为 Day69 主题的表述；第37节及 day068 中原始误记留作历史，并明确标注已更正。
+- ACTIVE 专项计划调整的是执行顺序，不授权改 Day69 主题。轨迹桥接与 MPPI 按既有 M11 Day70 / M13 教学契约处理，不在本次新增内容。
+- Day67 / Day68 的既有 COMPLETED / PASS 保留；M08 Day43 的 PAUSED / NOT COMPLETED、其它 Deferred Exams 和 Foundation Debt 不因本次更正改变。
+
+当前状态以第1节摘要为准；本节记录更正依据，不新增学习或考核结果。

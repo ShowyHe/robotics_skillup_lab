@@ -382,6 +382,8 @@ Planning 不要求先学完整 Dynamics，因此放在 M12 前是合理的。
 - M08 SE(3) / optimization；
 - basic mechanics。
 
+以上描述正常课程依赖。当前 Navigation First 专项的前置适配以 [`04_MODULE_SPECS.md` 的 M12 规格](04_MODULE_SPECS.md)及 [M12 SE(3) Entry Bridge](modules/M12_kinematics_dynamics.md) 为准：Day71 前先完成契约要求的最小刚体变换入口桥，不新增 Day，也不视为 M08 Day46–48 已完成；M08 Day43–48 仍按 ACTIVE 路线正式回补。不得自行扩大入口桥的替代范围。
+
 核心链：
 
 ```text
@@ -406,6 +408,8 @@ M12 必须先于 M13 Control 和 M14 Manipulation。
 - M12 system dynamics；
 - M02 differential / matrix；
 - M08 optimization。
+
+当前 Navigation First 专项适配以 [`04_MODULE_SPECS.md` 的 M13 规格](04_MODULE_SPECS.md)、[M13 教学契约](modules/M13_control_optimal_control.md)和 ACTIVE 专项计划为准：复用 M08 Day40–42 的 probability/Gaussian 基础；Day82 的 linear observability 在 M13 自包含教学，不把尚未完成的 M09 当作前置；M08 Day43–48 的 estimation optimization / SE(3) 正式深化仍在 M11–M13 后回补。这里只链接已有适配，不另行增加跳过前置的例外。
 
 ```text
 Feedback / PID

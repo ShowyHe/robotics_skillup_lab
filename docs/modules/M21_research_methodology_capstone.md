@@ -5,7 +5,7 @@
 
 主线：`Problem → Scope → Baseline → Literature → Hypothesis → Experiment → Implementation → Evaluation → Ablation → Failure Analysis → Conclusion → Technical Communication`。
 
-本模块共 3 个理论 Day（Day127–Day129）。每个Day核心知识点≤20。
+本模块共 3 个理论 Day（Day127–Day129）。按 LEARNING_RULES，每个 Day 最多35个编号教学知识单元；只覆盖既定目标，不为凑数量新增内容，不删必学内容，不擅拆 Day。
 
 ---
 

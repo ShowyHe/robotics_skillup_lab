@@ -216,8 +216,8 @@ Day135  Dynamic Foundation Debt #6
 ## 6. 学习长度与跳级
 1. 普通Day默认2–3h；
 2. 理论、公式、算法、源码、案例为主；
-3. 每日核心知识点≤20；
-4. 已掌握内容可入口诊断后跳过/压缩；
+3. 每个 Day 最多35个编号教学知识单元；紧密相关概念可整合，不删必要 Foundation / 推导 / Hard Gate / Owner 连接，不擅拆 Day；
+4. 仅对本课程已正式学习并 PASS 的旧知识按复用规则简短 Review；尚未系统学过的基础不能因工程经验或入口诊断而删去，具体按 LEARNING_RULES；
 5. 核心前置不过关不机械推进；
 6. LAB独立安排；
 7. Day编号是逻辑位置，不等于必须消耗135个自然日。
@@ -255,4 +255,5 @@ M00–M22顺序、Day1–Day129固定主课程、M22动态槽位和3个正式LAB
 - Modern Robotics：已嵌入M08/M11/M12/M13/M14；
 - 正式LAB：3个；
 - Daily Lessons：按实际进度逐日生成；
-- 下一步：入口诊断 / Day1正式学习。
+- 实际学习位置、完成/暂缓状态与下一步：以 [`PROGRESS.md`](PROGRESS.md) 当前摘要为准；
+- 实际执行顺序：以状态为 ACTIVE 的专项计划为准，当前为 [`TEMP_POSITIONING_VISION_PLAN.md`](TEMP_POSITIONING_VISION_PLAN.md)；专项路线不自动修改本文件的 Day 编号与主题。
