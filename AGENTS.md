@@ -101,10 +101,10 @@ Commits should describe the actual change.
 Examples:
 
 Lesson:
-`docs: add M11 Day069 lesson`
+`docs: add <module/day> lesson`
 
 Progress:
-`docs: update M11 Day069 progress`
+`docs: update <module/day> progress`
 
 README synchronization:
 `docs: sync README completion markers`
@@ -168,3 +168,18 @@ Continue execution until:
 - completed;
 - blocked by missing information;
 - blocked by technical failure.
+
+---
+
+## 10. Learning Schedule Authority
+
+The official Day topic sequence is defined by README.md and docs/PROGRESS.md.
+
+When preparing a new lesson:
+
+- Always follow the repository schedule.
+- Do not replace the scheduled topic with a related but different topic.
+- Do not advance future topics because they are more related to current engineering work.
+- If a topic is technically related but belongs to a later Day, keep it for its assigned Day.
+
+The learning schedule has priority over the AI agent's own topic recommendation.
