@@ -183,3 +183,72 @@ When preparing a new lesson:
 - If a topic is technically related but belongs to a later Day, keep it for its assigned Day.
 
 The learning schedule has priority over the AI agent's own topic recommendation.
+
+---
+
+## 11. Lesson Generation Rules
+
+### Curriculum Authority
+
+The official curriculum sequence and learning objectives are defined by:
+
+- README.md
+- docs/PROGRESS.md
+- docs/03_MASTER_PLAN.md
+
+These files are the only source of truth.
+
+Before generating a new Day lesson:
+
+1. Read the official Day topic.
+2. Read previous completed Days.
+3. Read the following Day topic.
+4. Understand the role of this Day in the module.
+5. Generate the lesson based on its curriculum role.
+
+Do not replace the scheduled topic with a related topic.
+
+### Engineering Context Constraint
+
+Do not infer the next lesson from the user's current engineering work.
+
+Engineering experience is only used for:
+- examples;
+- source-code mapping;
+- real robot cases.
+
+It cannot override the curriculum.
+
+### Lesson Structure
+
+Each lesson should include:
+
+1. Role in curriculum.
+2. Prerequisites.
+3. Core theory.
+4. Algorithm mechanism.
+5. Engineering mapping.
+6. Relation to user's robot system.
+7. Quiz after the complete lesson.
+
+### Previous and Next Day Connection
+
+Every lesson must explain:
+
+Previous Day
+↓
+Current Day
+↓
+Next Day
+
+The AI must clarify why this topic is placed here.
+
+### Quality Check Before Sending
+
+Before sending a Day lesson, verify:
+
+- Correct Day number.
+- Correct official topic.
+- Previous and next Day consistency.
+- No future topic introduced early.
+- Quiz is not sent before the full lesson.
