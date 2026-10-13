@@ -215,8 +215,8 @@ M22  Day130–135（动态 Foundation Cleanup）
 | Day064 | ✅ | A* / Heuristic / Anytime Search |
 | Day065 | ✅ | Occupancy / Costmap / Footprint / Inflation |
 | Day066 | ✅ | Hybrid A* / Motion Primitive / Kinodynamic Boundary |
-| Day067 | 🟨 | Configuration Space / C-obstacle / RRT / RRT* / OMPL |
-| Day068 | ⬜ | HPA / Incremental Search / Dynamic Edge |
+| Day067 | ✅ | Configuration Space / C-obstacle / RRT / RRT* / OMPL |
+| Day068 | ✅ | HPA / Incremental Search / Dynamic Edge |
 | Day069 | ⬜ | Nav2 / BT / Replanning / Path Switching |
 | Day070 | ⬜ | Dynamic Navigation / Path Quality / Trajectory Bridge / Planning Owner |
 | Day071 | ⬜ | Configuration / Screw Axis / Twist / Wrench |
