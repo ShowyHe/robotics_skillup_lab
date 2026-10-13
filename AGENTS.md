@@ -175,7 +175,7 @@ Continue execution until:
 
 The official Day topic sequence is defined by README.md and docs/PROGRESS.md.
 
-When preparing a new lesson:
+When preparing a new Day lesson:
 
 - Always follow the repository schedule.
 - Do not replace the scheduled topic with a related but different topic.
@@ -188,60 +188,74 @@ The learning schedule has priority over the AI agent's own topic recommendation.
 
 ## 11. Lesson Generation Rules
 
+### Curriculum Reading Protocol
+
+Before generating any Skillup lesson, the AI must read:
+
+1. `docs/03_MASTER_PLAN.md`
+2. Corresponding `docs/modules/Mxx_*.md`
+3. `docs/PROGRESS.md`
+4. Previous completed lessons when needed
+
+The AI must understand:
+
+- Module capability goal.
+- Current Day objective.
+- Required knowledge scope.
+- Previous Day dependency.
+- Next Day connection.
+- Teaching boundary.
+
+Do not generate a lesson by only reading the Day title.
+
 ### Curriculum Authority
 
-The official curriculum sequence and learning objectives are defined by:
+Curriculum documents define:
 
-- README.md
-- docs/PROGRESS.md
-- docs/03_MASTER_PLAN.md
+- What should be learned.
+- Why it is learned at this position.
+- Required depth.
+- Topics belonging to later modules.
 
-These files are the only source of truth.
-
-Before generating a new Day lesson:
-
-1. Read the official Day topic.
-2. Read previous completed Days.
-3. Read the following Day topic.
-4. Understand the role of this Day in the module.
-5. Generate the lesson based on its curriculum role.
-
-Do not replace the scheduled topic with a related topic.
+The AI explains the curriculum but does not redesign it.
 
 ### Engineering Context Constraint
 
-Do not infer the next lesson from the user's current engineering work.
+User engineering projects are only used for:
 
-Engineering experience is only used for:
-- examples;
-- source-code mapping;
-- real robot cases.
+- Examples.
+- Source-code mapping.
+- Real robot cases.
 
-It cannot override the curriculum.
+Engineering context must not override the curriculum.
+
+Wrong:
+
+User uses MPPI
+→ Teach MPPI as the next lesson.
+
+Correct:
+
+Curriculum defines the topic.
+Engineering experience is used only to deepen understanding.
 
 ### Lesson Structure
 
-Each lesson should include:
+Lesson structure is flexible and must depend on the topic.
 
-1. Role in curriculum.
-2. Prerequisites.
-3. Core theory.
-4. Algorithm mechanism.
-5. Engineering mapping.
-6. Relation to user's robot system.
-7. Quiz after the complete lesson.
+Do not force every lesson to contain identical sections.
 
-### Previous and Next Day Connection
+A lesson may emphasize:
 
-Every lesson must explain:
+- Mathematical foundation.
+- Algorithm mechanism.
+- Software architecture.
+- Source-code understanding.
+- Engineering mapping.
+- Robot application.
+- System design.
 
-Previous Day
-↓
-Current Day
-↓
-Next Day
-
-The AI must clarify why this topic is placed here.
+The goal is mastering the defined capability, not completing a template.
 
 ### Quality Check Before Sending
 
@@ -249,6 +263,8 @@ Before sending a Day lesson, verify:
 
 - Correct Day number.
 - Correct official topic.
+- Module objective understood.
 - Previous and next Day consistency.
-- No future topic introduced early.
-- Quiz is not sent before the full lesson.
+- No future topic introduced as the main lesson.
+- Lesson scope matches the curriculum.
+- Quiz is sent only after the complete lesson.
