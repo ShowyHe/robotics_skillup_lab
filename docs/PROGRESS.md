@@ -52,7 +52,8 @@ M11 Day66 — Hybrid A* / Motion Primitive / Nonholonomic Planning：COMPLETED /
 M11 Day67 — Configuration Space / RRT / RRT* / Sampling / OMPL：COMPLETED / PASS（见 docs/lessons/day067.md）
 M11 Day68 — HPA / Incremental Search / Dynamic Edge：COMPLETED / PASS（见 docs/lessons/day068.md）
 M11 Day69 — Nav2 / BT / Replanning / Path Switching：COMPLETED / PASS（Quiz 9/10；见 docs/lessons/day069.md 与第39节）
-Current / Next：M11 Day70 — Dynamic Navigation / Path Quality / Trajectory Bridge / Planning Owner（按教学契约）
+M11 Day70 — Dynamic Navigation / Path Quality / Trajectory Bridge / Planning Owner：COMPLETED / PASS（Quiz：PASS，原 lesson 未记录分数；见 docs/lessons/day070.md 与第40节）
+Current / Next：M12 Day71 — Configuration Space / Joint / Screw Axis / Twist / Wrench（正式内容前先完成 SE(3) Entry Bridge，按教学契约）
 ```
 
 > 重要：M02 Day8–15 的每日课程已完成，但 **M02 模块毕业考试尚未完成，因此不宣告 M02 模块毕业**。用户选择先继续 M03，后续回补考试剩余题目与 Hard Gate 复测。
@@ -1403,7 +1404,7 @@ Preserved:
 
 ---
 
-## 37. Day66 Learning Record — COMPLETED / PASS；Day67 Next（历史记录；当前状态见第1节与第39节）
+## 37. Day66 Learning Record — COMPLETED / PASS；Day67 Next（历史记录；当前状态见第1节与第40节）
 
 Current Module / Day:
 - **M11 / Day66 — Hybrid A* / Motion Primitive / Nonholonomic Planning：COMPLETED / PASS**。
@@ -1479,3 +1480,24 @@ Weak / Corrected:
 Next:
 - **M11 / Day70 — Dynamic Navigation / Path Quality / Trajectory Bridge / Planning Owner**。
 - 主题依据：`docs/modules/M11_planning_navigation.md` 的 Day70 完整契约；与 `docs/lessons/day069.md` 的 Next 一致。
+
+---
+
+## 40. Day70 Learning Record — COMPLETED / PASS
+
+Current Module / Day:
+- **M11 / Day70 — Dynamic Navigation / Path Quality / Trajectory Bridge / Planning Owner：COMPLETED / PASS**。
+- Lesson：`docs/lessons/day070.md`；依据该文件的 Status，本次同步既有记录。
+
+Quiz Result:
+- **PASS**；`docs/lessons/day070.md` 的 Quiz Result 未记录题数或分数。
+
+Corrected:
+- Smoother 用于改善已有路径质量，不替代 Planner。
+- Planner 输出并非总要经过 Smoother；平滑处理属于可选步骤。
+- 依据：`docs/lessons/day070.md` 的 Quiz Result / Corrections。
+
+Next:
+- **M12 / Day71 — Configuration Space / Joint / Screw Axis / Twist / Wrench**。
+- Day71 正式内容前先完成模块要求的 **SE(3) Entry Bridge**；不新增 Day，不视为 M08 Day46–48 已完成。
+- 依据：`docs/lessons/day070.md` 的 Next 与 `docs/modules/M12_kinematics_dynamics.md` 的当前专项入口桥 / Day71 契约。
