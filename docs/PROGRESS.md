@@ -51,7 +51,8 @@ M11 Day65 — Occupancy / Costmap / Footprint / Collision / Inflation：COMPLETE
 M11 Day66 — Hybrid A* / Motion Primitive / Nonholonomic Planning：COMPLETED / PASS（见 docs/lessons/day066.md）
 M11 Day67 — Configuration Space / RRT / RRT* / Sampling / OMPL：COMPLETED / PASS（见 docs/lessons/day067.md）
 M11 Day68 — HPA / Incremental Search / Dynamic Edge：COMPLETED / PASS（见 docs/lessons/day068.md）
-Current / Next：M11 Day69 — Nav2 / BT / Replanning / Path Switching（按教学契约；旧主题误记已更正，见第38节）
+M11 Day69 — Nav2 / BT / Replanning / Path Switching：COMPLETED / PASS（Quiz 9/10；见 docs/lessons/day069.md 与第39节）
+Current / Next：M11 Day70 — Dynamic Navigation / Path Quality / Trajectory Bridge / Planning Owner（按教学契约）
 ```
 
 > 重要：M02 Day8–15 的每日课程已完成，但 **M02 模块毕业考试尚未完成，因此不宣告 M02 模块毕业**。用户选择先继续 M03，后续回补考试剩余题目与 Hard Gate 复测。
@@ -1402,7 +1403,7 @@ Preserved:
 
 ---
 
-## 37. Day66 Learning Record — COMPLETED / PASS；Day67 Next（历史记录；当前状态见第1节与第38节）
+## 37. Day66 Learning Record — COMPLETED / PASS；Day67 Next（历史记录；当前状态见第1节与第39节）
 
 Current Module / Day:
 - **M11 / Day66 — Hybrid A* / Motion Primitive / Nonholonomic Planning：COMPLETED / PASS**。
@@ -1448,6 +1449,8 @@ Next:
 
 ## 38. Day69 Next Correction — 进度主题更正（2026-10-14）
 
+> 本节保留主题更正时的历史状态；后续 Day69 学习结果与 Next 见第39节。
+
 用户明确确认“进度写错了”，Day69 按既有教学契约恢复；本次不修改课程主题、编号或执行顺序。
 
 - 正确 Current / Next：**M11 Day69 — Nav2 / BT / Replanning / Path Switching**。
@@ -1457,3 +1460,22 @@ Next:
 - Day67 / Day68 的既有 COMPLETED / PASS 保留；M08 Day43 的 PAUSED / NOT COMPLETED、其它 Deferred Exams 和 Foundation Debt 不因本次更正改变。
 
 当前状态以第1节摘要为准；本节记录更正依据，不新增学习或考核结果。
+
+---
+
+## 39. Day69 Learning Record — COMPLETED / PASS
+
+Current Module / Day:
+- **M11 / Day69 — Nav2 / BT / Replanning / Path Switching：COMPLETED / PASS**。
+- Lesson：`docs/lessons/day069.md`。
+
+Quiz Result:
+- **Score：9/10**（依据 `docs/lessons/day069.md` 的 Quiz Result）。
+
+Weak / Corrected:
+- 初次误认为 BackUp 是唯一 Recovery 行为。
+- 已纠正：Recovery 是恢复行为类别，包括 Spin / Clear Costmap / BackUp。
+
+Next:
+- **M11 / Day70 — Dynamic Navigation / Path Quality / Trajectory Bridge / Planning Owner**。
+- 主题依据：`docs/modules/M11_planning_navigation.md` 的 Day70 完整契约；与 `docs/lessons/day069.md` 的 Next 一致。
