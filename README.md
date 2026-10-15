@@ -124,6 +124,8 @@ M22  Day130–135（动态 Foundation Cleanup）
 当前学习位置、最新 Next、完成/暂缓状态和未完成考试统一见 [`docs/PROGRESS.md` 第1节](docs/PROGRESS.md)。下表仅为进度概览，不代替考核记录或每日教学契约。
 当前专项执行顺序见 [`docs/TEMP_POSITIONING_VISION_PLAN.md`](docs/TEMP_POSITIONING_VISION_PLAN.md)。专项路线只调整执行顺序；课程 Day 编号与主题须与总纲及模块教学契约一致。
 
+**当前进度：M12 Day71 — COMPLETED / PASS。下一课：M12 Day72 — Forward Kinematics / POE / DH。**
+
 ### M00–M02｜系统基础与数学基础 I
 
 | Day | 状态 | 主题 | 记录 |
@@ -220,7 +222,7 @@ M22  Day130–135（动态 Foundation Cleanup）
 | Day068 | ✅ | HPA / Incremental Search / Dynamic Edge |
 | Day069 | ✅ | Nav2 / BT / Replanning / Path Switching |
 | Day070 | ✅ | Dynamic Navigation / Path Quality / Trajectory Bridge / Planning Owner |
-| Day071 | ⬜ | Configuration / Screw Axis / Twist / Wrench |
+| Day071 | ✅ | Configuration / Screw Axis / Twist / Wrench | [学习记录](docs/lessons/day071.md) |
 | Day072 | ⬜ | Forward Kinematics / POE Mainline / DH |
 | Day073 | ⬜ | Space-Body Jacobian / Adjoint / Velocity Kinematics / Statics |
 | Day074 | ⬜ | Inverse Kinematics / Newton / DLS |
