@@ -53,7 +53,8 @@ M11 Day67 — Configuration Space / RRT / RRT* / Sampling / OMPL：COMPLETED / P
 M11 Day68 — HPA / Incremental Search / Dynamic Edge：COMPLETED / PASS（见 docs/lessons/day068.md）
 M11 Day69 — Nav2 / BT / Replanning / Path Switching：COMPLETED / PASS（Quiz 9/10；见 docs/lessons/day069.md 与第39节）
 M11 Day70 — Dynamic Navigation / Path Quality / Trajectory Bridge / Planning Owner：COMPLETED / PASS（Quiz：PASS，原 lesson 未记录分数；见 docs/lessons/day070.md 与第40节）
-Current / Next：M12 Day71 — Configuration Space / Joint / Screw Axis / Twist / Wrench（正式内容前先完成 SE(3) Entry Bridge，按教学契约）
+M12 Day71 — Configuration Space / Joint / Screw Axis / Twist / Wrench：COMPLETED / PASS（初测及多轮定向复测；见 docs/lessons/day071.md 与第41节）
+Current / Next：M12 Day72 — Forward Kinematics / POE Mainline / DH（按教学契约）
 ```
 
 > 重要：M02 Day8–15 的每日课程已完成，但 **M02 模块毕业考试尚未完成，因此不宣告 M02 模块毕业**。用户选择先继续 M03，后续回补考试剩余题目与 Hard Gate 复测。
@@ -1501,3 +1502,28 @@ Next:
 - **M12 / Day71 — Configuration Space / Joint / Screw Axis / Twist / Wrench**。
 - Day71 正式内容前先完成模块要求的 **SE(3) Entry Bridge**；不新增 Day，不视为 M08 Day46–48 已完成。
 - 依据：`docs/lessons/day070.md` 的 Next 与 `docs/modules/M12_kinematics_dynamics.md` 的当前专项入口桥 / Day71 契约。
+
+---
+
+## 41. Day71 Learning Record — COMPLETED / PASS
+
+Current Module / Day:
+- **M12 / Day71 — Configuration Space / Joint / Screw Axis / Twist / Wrench：COMPLETED / PASS**。
+- Lesson：`docs/lessons/day071.md`，记录教学内容、原始回答、针对性补讲及复测。
+- 课前已按 M12 契约完成最小 SE(3) Entry Bridge；**不视为 M08 Day46–48 已完成**。
+
+Quiz Result:
+- 原始 Quiz 9 题；有错项，不能按初测直接判 PASS；未计算和记录正式总分。
+- 随后对 Pose vs Configuration、SE(3)、Screw Axis 的叉乘顺序、Prismatic、Twist 速度场/具体点速度、Wrench 的力矩顺序、功率单位及 Frame 语义进行多轮定向补讲和复测。
+- 最终复测独立正确回答 `r=(2,0,0)m`、`f=(0,5,0)N` → `m=(0,0,10)N·m`，且先前 Twist、Prismatic、Pose 等错项已经复测；依据课堂最终裁定，**Day71 COMPLETED / PASS**。
+
+Weak / Corrected:
+- 不再把 Pose 仅当位置，不再把 Configuration 当运动速度状态。
+- `S=[ω;v]` 的线性部分不是任意末端点速度；点速度需 `ṗ=ω×p+v`。
+- Moment（力矩）为 `r×f`，不可交换顺序。
+- SO(3) 是旋转群，SE(3) 是旋转+平移的刚体变换群，4×4 是齐次表示。
+- Frame 变化需要对应坐标变换；W（功率）与 J（功）不同。
+
+Next:
+- **M12 / Day72 — Forward Kinematics / POE Mainline / DH**。
+- 本日 Daily PASS 不代表 M12 Module Graduation；历史 PAUSED/DEFERRED 与旧债务状态均保持不变。
