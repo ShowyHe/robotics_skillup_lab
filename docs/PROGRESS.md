@@ -1527,3 +1527,25 @@ Weak / Corrected:
 Next:
 - **M12 / Day72 — Forward Kinematics / POE Mainline / DH**。
 - 本日 Daily PASS 不代表 M12 Module Graduation；历史 PAUSED/DEFERRED 与旧债务状态均保持不变。
+
+## 42. Day72 Learning Record — COMPLETED / PASS
+
+Current Module / Day:
+- **M12 / Day72 — Forward Kinematics / POE / DH：COMPLETED / PASS**。
+- Lesson：`docs/lessons/day072.md`，记录教学内容、原始 Quiz、针对性补讲、复测及最终结果。
+
+Quiz Result:
+- 初始 Quiz 10 题，结果 **7/10**。
+- 错/部分正确集中在 `M=T_{sb}(0)` 的含义、Space-Form POE 的 Screw Axis Frame，以及 (q_2=\theta_2) 与第二连杆绝对朝向 (\theta_1+\theta_2) 的区别。
+- 针对性补讲后完成 4 题复测，**4/4 正确**。
+- 最终课堂裁定：**Day72 COMPLETED / PASS**。
+
+Weak / Corrected:
+- (M) 是零位时末端相对 Space/Base Frame 的完整 Pose，不是第一关节原点。
+- Space-Form POE 中所有 (S_i) 均在同一个 Space Frame 表达。
+- (q_2=\theta_2) 是第二关节自身变量；(\theta_1+\theta_2) 是二维双连杆中第二杆的最终绝对朝向。
+- Body-Form 使用 (B_i) 表达在 Body Frame；与 Space Form 是同一 FK 的不同 Frame 表达。
+
+Next:
+- **M12 / Day73 — Space/Body Jacobian / Adjoint / Velocity Kinematics / Statics**。
+- Day72 Daily PASS 不代表 M12 Module Graduation；历史 PAUSED/DEFERRED 与旧债务状态保持不变。
