@@ -54,7 +54,9 @@ M11 Day68 — HPA / Incremental Search / Dynamic Edge：COMPLETED / PASS（见 d
 M11 Day69 — Nav2 / BT / Replanning / Path Switching：COMPLETED / PASS（Quiz 9/10；见 docs/lessons/day069.md 与第39节）
 M11 Day70 — Dynamic Navigation / Path Quality / Trajectory Bridge / Planning Owner：COMPLETED / PASS（Quiz：PASS，原 lesson 未记录分数；见 docs/lessons/day070.md 与第40节）
 M12 Day71 — Configuration Space / Joint / Screw Axis / Twist / Wrench：COMPLETED / PASS（初测及多轮定向复测；见 docs/lessons/day071.md 与第41节）
-Current / Next：M12 Day72 — Forward Kinematics / POE Mainline / DH（按教学契约）
+M12 Day72 — Forward Kinematics / POE / DH：COMPLETED / PASS（见 docs/lessons/day072.md 与第42节）
+M12 Day73 — Space/Body Jacobian / Adjoint / Velocity Kinematics / Statics：COMPLETED / PASS（多轮定向纠错与复测；见 docs/lessons/day073.md 与第43节）
+Current / Next：M12 Day74 — Inverse Kinematics / Newton / DLS（按教学契约）
 ```
 
 > 重要：M02 Day8–15 的每日课程已完成，但 **M02 模块毕业考试尚未完成，因此不宣告 M02 模块毕业**。用户选择先继续 M03，后续回补考试剩余题目与 Hard Gate 复测。
@@ -1549,3 +1551,29 @@ Weak / Corrected:
 Next:
 - **M12 / Day73 — Space/Body Jacobian / Adjoint / Velocity Kinematics / Statics**。
 - Day72 Daily PASS 不代表 M12 Module Graduation；历史 PAUSED/DEFERRED 与旧债务状态保持不变。
+
+---
+
+## 43. Day73 Learning Record — COMPLETED / PASS
+
+Current Module / Day:
+- **M12 / Day73 — Space/Body Jacobian / Adjoint / Velocity Kinematics / Statics：COMPLETED / PASS**。
+- Lesson：\`docs/lessons/day073.md\`，记录实际初测、定向纠错、计算题、复测与最终裁定。
+
+Quiz / Retest Evidence:
+- 初测约 6/10（课堂中的近似评价，不作为正式精确总分）；初期问题集中在 \(V_s\) 的输出维度、Jacobian 列的物理意义、Space/Body Frame 区别及 Adjoint 的作用。
+- 定向复测正确算出平移 \(p=(1,0,0)^T\) 下 \(V_b=(0,0,1,0,0,0)^T\) 对应的 \(V_s=(0,0,1,0,-1,0)^T\)。
+- 正确算出双连杆几何 Jacobian：\(J_v=\begin{bmatrix}-1&-1\\2&0\end{bmatrix}\)。
+- 正确推导 \(\tau=J^TF\)，并最终写出逆速度解 \(\dot q=J^\dagger V_d\) 与 Wrench 对偶变换 \(F_b=\operatorname{Ad}_{T_{sb}}^TF_s\)。
+- 最终职责辨析：Adjoint 用于 Twist/Screw 的 Frame 表达转换；伪逆用于求解可能非方阵的 Jacobian 速度映射。依据以上课堂作答与纠正，**Day73 COMPLETED / PASS**。
+
+Weak / Corrected:
+- 对 \(n=7\) 自由度机械臂，\(J_s\in\mathbb R^{6\times7}\)、\(\dot q\in\mathbb R^{7\times1}\)、\(V_s\in\mathbb R^{6\times1}\)。
+- \(J_{si}\) 是第 \(i\) 个关节单位速度对末端 Twist 的贡献，不只是该关节自身角速度。
+- Space Jacobian 与 Body Jacobian 描述同一末端 Twist，分别在 Space Frame 与 Body Frame 表达。
+- Adjoint 不是将一个关节的速度传给另一个关节；它转换 Twist/Screw Axis 的坐标表达。
+- Wrench 的对偶变换必须与 Twist 的 Adjoint 变换方向、Frame 与参考点约定一致。
+
+Next:
+- **M12 / Day74 — Inverse Kinematics / Newton / DLS**。
+- Day73 Daily PASS 不代表 M12 Module Graduation；M08 Day43 PAUSED、Day44–48 DEFERRED 等历史状态保持不变。
