@@ -56,7 +56,11 @@ M11 Day70 — Dynamic Navigation / Path Quality / Trajectory Bridge / Planning O
 M12 Day71 — Configuration Space / Joint / Screw Axis / Twist / Wrench：COMPLETED / PASS（初测及多轮定向复测；见 docs/lessons/day071.md 与第41节）
 M12 Day72 — Forward Kinematics / POE / DH：COMPLETED / PASS（见 docs/lessons/day072.md 与第42节）
 M12 Day73 — Space/Body Jacobian / Adjoint / Velocity Kinematics / Statics：COMPLETED / PASS（多轮定向纠错与复测；见 docs/lessons/day073.md 与第43节）
-Current / Next：M12 Day74 — Inverse Kinematics / Newton / DLS（按教学契约）
+M12 Day74 — Inverse Kinematics / Newton / DLS：PAUSED / NOT COMPLETED（已发送完整课程，Quiz 尚未完成）
+M12 Day75：DEFERRED / NOT COMPLETED（按 ACTIVE 路线后置）
+M12 Day77–79：DEFERRED / NOT COMPLETED（完整 Day 后置；Bridge 不授予这些 Day PASS）
+Control Prerequisite Bridge：NOT STARTED / NOT PASSED（仅用于 M13 有限准入；需先 Day76 PASS）
+Current / Next：M12 Day76 — Wheeled Mobile Robot Kinematics / Nonholonomic Constraint（完整教学契约）
 ```
 
 > 重要：M02 Day8–15 的每日课程已完成，但 **M02 模块毕业考试尚未完成，因此不宣告 M02 模块毕业**。用户选择先继续 M03，后续回补考试剩余题目与 Hard Gate 复测。
@@ -72,16 +76,17 @@ M02 Day8–15
 → M07 Day34–39
 → M08 Day40–42
 
-当前主线：
-M11 Day63–70
-→ M12 Day71–79
-→ M13 Day80–89
-→ M08 Day43–48
-→ M09 Day49–54
-→ M10 Day55–62
+当前 ACTIVE 主线（2026-10-18 有限调整）：
+M11 Day63–70 / M12 Day71–73（已 PASS）
+→ M12 Day76（NEXT）
+→ Control Prerequisite Bridge（须教学、Quiz、Hard Gate 并记录证据）
+→ M13 Day80–89（仅在 Day76 与 Bridge 均 PASS 后）
+→ M08 Day43–48 → M09 Day49–54 → M10 Day55–62
+后续回补：M12 Day74–75、Day77–79 完整课程及 M12 模块毕业考试；
+并行实践：M01 ROS2/C++ 与 Day119–126 相关的日志、评测和安全，不自动算课程 PASS
 ```
 
-说明：只改变当前执行顺序，不改变 Curriculum v1.0 的 Module / Day 编号。Navigation 作为主攻强项目标 L4→L5；Localization / State Estimation / SLAM 作为最大能力门槛，在 M11–M13 后集中突破。
+说明：只改变当前执行顺序及经确认的 M13 有限前置准入；Curriculum v1.0 的 Day 编号、主题、教学契约、原 M12 毕业标准保持不变。Day76 和 Bridge 均尚未考核通过，必须完成 Gate 才允许进入 Day80；Localization / State Estimation / SLAM 在控制后集中突破。
 
 M04 Simulation 暂不作为当前专项前置主线。
 
@@ -1577,3 +1582,20 @@ Weak / Corrected:
 Next:
 - **M12 / Day74 — Inverse Kinematics / Newton / DLS**。
 - Day73 Daily PASS 不代表 M12 Module Graduation；M08 Day43 PAUSED、Day44–48 DEFERRED 等历史状态保持不变。
+
+---
+
+## 44. ACTIVE Route Adjustment — Mobile Control Priority（2026-10-18）
+
+依据：用户确认调整现有 `docs/TEMP_POSITIONING_VISION_PLAN.md`；仅更改执行顺序与 M13 的限定准入（见 `docs/02_DEPENDENCIES.md` 和 `docs/04_MODULE_SPECS.md`），保留既有 Day / Module 的内容和标准。
+
+- M11 Day63–70、M12 Day71–73：**保留既有 COMPLETED / PASS** 和历史 lesson、Quiz、复测记录。
+- Day74：**PAUSED / NOT COMPLETED**，课程已发、Quiz 未答；Day75：**DEFERRED / NOT COMPLETED**。
+- Day76：**NEXT / NOT COMPLETED**，需按其完整契约教学、答题并通过。
+- Day77–79：**DEFERRED / NOT COMPLETED**，完整课程后置，不因先修桥自动授予 PASS。
+- **Control Prerequisite Bridge：NOT STARTED / NOT PASSED**，需在 Day76 PASS 后补齐移动底盘运动约束、速度/执行器响应、力学基础、ODE→状态空间、线性化/离散化、控制命令与反馈边界；并经过独立 Quiz / Hard Gate，结果写入本文件。
+- **只有 Day76 PASS + Bridge Gate PASS 后，才允许进入 M13 Day80–89。** 桥不计作新 Day、不授予 M12 Day77–79 PASS 或 M12 Graduation；M14 的 M12 完整前置不受影响。
+- M13 完成后：M08 Day43–48 → M09 Day49–54 → M10 Day55–62。M12 Day74–75、Day77–79 与 M12 毕业考试后续完整回补。
+- M01 / Day119–126 中的 ROS2、日志/回归、急停/Watchdog、安全实践可以并行，但不等于正式课程完成。既有 M08 PAUSED / DEFERRED 与其他模块未完成考试全部保留。
+
+此节记录的是**执行路线变更**，不是新的学习考核或能力等级判定。
