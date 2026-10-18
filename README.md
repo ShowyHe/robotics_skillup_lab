@@ -124,7 +124,7 @@ M22  Day130–135（动态 Foundation Cleanup）
 当前学习位置、最新 Next、完成/暂缓状态和未完成考试统一见 [`docs/PROGRESS.md` 第1节](docs/PROGRESS.md)。下表仅为进度概览，不代替考核记录或每日教学契约。
 当前专项执行顺序见 [`docs/TEMP_POSITIONING_VISION_PLAN.md`](docs/TEMP_POSITIONING_VISION_PLAN.md)。专项路线只调整执行顺序；课程 Day 编号与主题须与总纲及模块教学契约一致。
 
-**当前进度：M12 Day73 — COMPLETED / PASS。下一课：M12 Day74 — Inverse Kinematics / Newton / DLS。**
+**当前进度：M12 Day73 — COMPLETED / PASS；Day74 PAUSED、Day75 与 Day77–79 完整课程后置。下一课：M12 Day76 — Wheeled Mobile Kinematics / Nonholonomic Constraint。Day76 PASS 且控制前置桥通过后进入 M13。**
 
 ### M00–M02｜系统基础与数学基础 I
 
@@ -225,12 +225,12 @@ M22  Day130–135（动态 Foundation Cleanup）
 | Day071 | ✅ | Configuration / Screw Axis / Twist / Wrench | [学习记录](docs/lessons/day071.md) |
 | Day072 | ✅ | Forward Kinematics / POE Mainline / DH | [学习记录](docs/lessons/day072.md) |
 | Day073 | ✅ | Space-Body Jacobian / Adjoint / Velocity Kinematics / Statics | [学习记录](docs/lessons/day073.md) |
-| Day074 | ⬜ | Inverse Kinematics / Newton / DLS |
-| Day075 | ⬜ | Singularity / SVD / Manipulability / Redundancy |
+| Day074 | ⏸️ | Inverse Kinematics / Newton / DLS（已教学，Quiz 未完成） |
+| Day075 | ⏸️ | Singularity / SVD / Manipulability / Redundancy（后置） |
 | Day076 | ⬜ | Wheeled Mobile Kinematics / Nonholonomic Constraint |
-| Day077 | ⬜ | Force / Wrench / Inertia / Newton-Euler |
-| Day078 | ⬜ | Lagrangian / Manipulator Dynamics / Forward-Inverse Dynamics |
-| Day079 | ⬜ | ODE / State-space / Linearization / Discretization / Action |
+| Day077 | ⏸️ | Force / Wrench / Inertia / Newton-Euler（完整课程后置） |
+| Day078 | ⏸️ | Lagrangian / Manipulator Dynamics / Forward-Inverse Dynamics（完整课程后置） |
+| Day079 | ⏸️ | ODE / State-space / Linearization / Discretization / Action（完整课程后置） |
 | Day080 | ⬜ | Trajectory / Trajectory Optimization / Time Scaling / Feedback / PID |
 | Day081 | ⬜ | Equilibrium / Stability / Eigenvalue |
 | Day082 | ⬜ | Controllability / Observability |
