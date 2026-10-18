@@ -4,7 +4,7 @@
 >
 > 目的：在**不修改 Curriculum v1.0 的 Module / Day 编号、不修改 03_MASTER_PLAN 总结构**的前提下，按当前能力收益重新安排实际学习顺序：
 >
-> **先把 Navigation / Planning → Kinematics / Dynamics → Control 做成主攻强项，再集中突破 Localization / State Estimation / SLAM 最大短板。**
+> **导航与规划主线已通过，当前优先移动机器人运动学与控制前置，再系统学习控制，之后集中定位 / 状态估计 / SLAM；机械臂专项知识后置但不豁免。**
 >
 > 本文件只负责当前阶段的执行顺序，不替代 03_MASTER_PLAN.md、04_MODULE_SPECS.md、modules/、LEARNING_RULES.md 和 PROGRESS.md。
 
@@ -90,7 +90,7 @@ M10 Day55–62  ICP / LIO / VIO / Factor Graph / Degeneracy
 
 ---
 
-## 4. Stage A1 — M11 Planning & Navigation（当前）
+## 4. Stage A1 — M11 Planning & Navigation（已完成，保留历史）
 
 **对应：Day63–Day70**
 
@@ -155,6 +155,16 @@ Configuration / Rigid Body
 - **不视为 M08 Day46–48 已完成**；
 - M08 后续仍正式教学 Rotation / Quaternion / SO(3) / SE(3) / Exp-Log / Pose Perturbation。
 
+### 当前路线与有限前置适配（2026-10-18 已确认）
+
+- Day71–73 维持 COMPLETED / PASS。
+- Day74 已正式教学、Quiz 未完成，标记 PAUSED；Day75 和 Day77–79 的完整课程标记 DEFERRED，不授予 PASS。
+- **Day76 为 NEXT**：完整学习移动机器人运动学，包含底盘构型与运动约束、非完整性、Frame、曲率、差速/独轮车模型、积分与 MPPI rollout 的连接；按原 Day76 契约考试。
+- **Control Prerequisite Bridge 是未编号的先修补充，不是新 Day**。仅在 Day76 PASS 后实施，覆盖：力、转矩、质量、惯量、摩擦与速度响应；命令与实测速度；ODE / 二阶转一阶 / 状态空间 / 局部线性化；采样周期与 Euler 离散、预测模型；state / reference / actuator input / feedback 的边界、延迟和限幅。
+- **Bridge Hard Gate**：独立完成底盘给定速度和 dt 的位姿积分；说明实际轮式底盘的约束与模型假设；建立并解释简化速度响应；由二阶方程建立一阶状态模型，说明 A/B 及离散更新；解释过期反馈、模型不匹配、执行器限制的影响。需完成教学、Quiz/复测并在 PROGRESS 保存证据。
+- 仅在 **Day76 PASS + Bridge Gate PASS** 后允许开始 M13 Day80–89，且不代表 Day77–79 PASS 或 M12 模块毕业。M13 所有正式 Day 内容及考试要求不变，M14 不适用此例外。
+- Day74–75、Day77–79 的完整教学与 M12 模块毕业考试在后续回补，既有未完成考试和数学欠账不自动关闭。
+
 ### 当前重点
 Day76 Mobile Robot Kinematics 必须达到 L4：
 - unicycle；
@@ -169,7 +179,7 @@ Day76 Mobile Robot Kinematics 必须达到 L4：
 
 ## 6. Stage A3 — M13 Control & Optimal Control
 
-**对应：Day80–Day89**
+**对应：Day80–Day89；只有 Day76 PASS 且 Control Prerequisite Bridge 正式考核通过，才能开 Day80。该 Bridge 当前尚未开始，不更改 M12 毕业标准。**
 
 ### 主线
 ~~~text
@@ -291,6 +301,15 @@ IMU
 - calibration / TF；
 - sensor dropout；
 - estimator vs downstream responsibility。
+
+---
+
+## 并行工程应用（不等于相应课程 PASS）
+
+- 即刻按研发风险需要实施 Day120–121 的 Rosbag/日志、基准评测与回归，以及 Day119 延迟定位。
+- 对伴人运行的轮式导盲犬，提前实施 Day123–124 涉及的失效安全、看门狗、急停和人工接管检查，必要时进一步应用 Day125–126 的可靠性分析；不能等正式课程排到此处才考虑人员安全。
+- ROS2 / C++ / 并发等 M01 内容按工程证据缺口补学。以上并行应用不授予 Day 或 Module PASS。
+- 如未核实公司源码、硬件和实验数据，不声称某一速度模型、安全机制已真实实现。
 
 ---
 
