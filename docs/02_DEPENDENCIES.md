@@ -397,7 +397,9 @@ Rigid Transform
 → State-space / Linearization
 ```
 
-M12 必须先于 M13 Control 和 M14 Manipulation。
+正常课程依赖：M12 完整完成先于 M13 Control 和 M14 Manipulation。
+
+**ACTIVE 移动机器人控制专项的有限例外（2026-10-18）**：仅允许提前进入 M13 Day80–89，不视为完成 M12。准入条件：已通过 Day71–73 的基础 + **Day76 完整教学/Quiz/PASS** + **Control Prerequisite Bridge 教学与独立考核通过**（轮式运动约束、基本速度/执行器动力学、ODE/state-space/线性化/离散化、控制命令与反馈语义）；详见 `TEMP_POSITIONING_VISION_PLAN.md`。Bridge 不是新 Day，不给予 Day77–79 PASS。Day74–75、Day77–79 的正式教学及 M12 Graduation Exam 全部保留。**M14 的完整 M12 前置不在例外范围内**。
 
 ---
 
@@ -409,7 +411,7 @@ M12 必须先于 M13 Control 和 M14 Manipulation。
 - M02 differential / matrix；
 - M08 optimization。
 
-当前 Navigation First 专项适配以 [`04_MODULE_SPECS.md` 的 M13 规格](04_MODULE_SPECS.md)、[M13 教学契约](modules/M13_control_optimal_control.md)和 ACTIVE 专项计划为准：复用 M08 Day40–42 的 probability/Gaussian 基础；Day82 的 linear observability 在 M13 自包含教学，不把尚未完成的 M09 当作前置；M08 Day43–48 的 estimation optimization / SE(3) 正式深化仍在 M11–M13 后回补。这里只链接已有适配，不另行增加跳过前置的例外。
+当前 ACTIVE 专项依照 [`04_MODULE_SPECS.md`](04_MODULE_SPECS.md)、[M13 教学契约](modules/M13_control_optimal_control.md)及 [`TEMP_POSITIONING_VISION_PLAN.md`](TEMP_POSITIONING_VISION_PLAN.md) 执行。复用 M08 Day40–42 已通过的概率/Gaussian，Day82 linear observability 自包含教学，不要求提前完成 M09；M08 Day43–48 后续正式回补。**除上一节明确列出的 Day76 PASS + Control Prerequisite Bridge Hard Gate 外，没有其他 M12 免修或提前进入 M13 的例外**。
 
 ```text
 Feedback / PID
