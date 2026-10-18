@@ -138,11 +138,15 @@
 
 **毕业标准：** 能推导简化机械臂 FK/Jacobian、解释 IK 和奇异性；能建立简化机器人 state-space；理解 joint/EEF/velocity/torque action 的物理含义。
 
+**专项顺序说明：** M12 Day71–73 已 PASS；Day74 教学未完成考核，Day75 与 Day77–79 完整课程后置，Day76 优先完整学习。后置不等于免修，原 Day 教学契约、Hard Gate、M12 毕业标准与 M14 对 M12 的完整前置均保持不变。
+
 ---
 
 ## M13 — Control & Optimal Control
 
-**前置：** M12 + M08 Day40–42 的 probability/Gaussian 基础；当前专项下 Day82 的 linear observability 在 M13 自包含教学，不要求先完成 M09。M08 Day43–48 的 estimation optimization / SE(3) 正式深化在 M11–M13 后回补。
+**正常前置：** M12 完整学习 + M08 Day40–42 的 probability/Gaussian 基础；Day82 linear observability 在 M13 自包含教学，不要求先完成 M09。M08 Day43–48 estimation optimization / SE(3) 在 M13 后回补。
+
+**当前 ACTIVE 轮式移动控制专项有限准入例外（仅 M13）：** 保留 M12 Day71–73 的 PASS 证据；**必须先完成 Day76 的完整教学与 PASS，再经过未编号 Control Prerequisite Bridge 的教学与独立 Hard Gate 考核**。Bridge 必须验证底盘运动模型/非完整约束、速度响应/执行器动力学、二阶转一阶状态空间、线性化/离散化及 state-command-feedback 边界。Gate 合格证据记录在 PROGRESS 后才可进入 Day80。Bridge 不代替 Day77–79 的完整课程、不补发 Day74–75/77–79 PASS、不授予 M12 模块毕业；M13 全部原课程内容及毕业标准保留。详见 `TEMP_POSITIONING_VISION_PLAN.md`。
 
 **必须掌握：** path / timed trajectory / reference、trajectory optimization基本 formulation、feedback、PID、error dynamics、state-space、equilibrium、eigenvalue/stability、controllability/observability、LQR、quadratic cost/Riccati思想、MPC、prediction horizon/objective/constraint/receding horizon、MPPI sampling/rollout/noise/cost/weighting/warm start、trajectory tracking、saturation/rate limit/collision constraint、latency/model mismatch/feedback semantics。
 
