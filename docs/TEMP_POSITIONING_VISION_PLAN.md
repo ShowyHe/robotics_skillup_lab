@@ -64,11 +64,14 @@ M08 Day40–42  Probability / Covariance / Likelihood / MLE / MAP
 ~~~text
 Stage A — Navigation / Motion / Control Strengthening
 
-M11 Day63–70  Planning & Navigation
-→
-M12 Day71–79  Robot Kinematics / Dynamics / System Dynamics
-→
-M13 Day80–89  Control & Optimal Control
+M11 Day63–70（已通过）
+→ M12 Day71–73（已通过）
+→ M12 Day76（下一课，完整学习及考核）
+→ Control Prerequisite Bridge（移动机器人控制前置：运动模型、执行器动力学、状态空间与离散化；需教学和考核）
+→ M13 Day80–89（仅在 Day76 与前置桥均通过后开始）
+
+后续回补：M12 Day74–75、Day77–79 及 M12 完整毕业考试。
+既有 Day 编号、课程内容和考核标准保持不变。
 
 Stage B — Localization Mathematical Foundation
 
