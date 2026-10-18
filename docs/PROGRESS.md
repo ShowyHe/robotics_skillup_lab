@@ -56,11 +56,12 @@ M11 Day70 — Dynamic Navigation / Path Quality / Trajectory Bridge / Planning O
 M12 Day71 — Configuration Space / Joint / Screw Axis / Twist / Wrench：COMPLETED / PASS（初测及多轮定向复测；见 docs/lessons/day071.md 与第41节）
 M12 Day72 — Forward Kinematics / POE / DH：COMPLETED / PASS（见 docs/lessons/day072.md 与第42节）
 M12 Day73 — Space/Body Jacobian / Adjoint / Velocity Kinematics / Statics：COMPLETED / PASS（多轮定向纠错与复测；见 docs/lessons/day073.md 与第43节）
+M12 Day76 — Wheeled Mobile Robot Kinematics / Nonholonomic Constraint：COMPLETED / PASS（初测约 7/10、定向复测、工程模型/排障讨论；见 docs/lessons/day076.md 与第45节）
 M12 Day74 — Inverse Kinematics / Newton / DLS：PAUSED / NOT COMPLETED（已发送完整课程，Quiz 尚未完成）
 M12 Day75：DEFERRED / NOT COMPLETED（按 ACTIVE 路线后置）
 M12 Day77–79：DEFERRED / NOT COMPLETED（完整 Day 后置；Bridge 不授予这些 Day PASS）
-Control Prerequisite Bridge：NOT STARTED / NOT PASSED（仅用于 M13 有限准入；需先 Day76 PASS）
-Current / Next：M12 Day76 — Wheeled Mobile Robot Kinematics / Nonholonomic Constraint（完整教学契约）
+Control Prerequisite Bridge：TAUGHT / QUIZ PENDING / NOT PASSED（已发出完整讲义与 Q1–Q10；只用于 M13 有限准入，不新增 Day）
+Current / Next：Control Prerequisite Bridge — 底盘速度响应 / 基础动力学 / ODE / State-space / Linearization / Discretization（Quiz 待完成）
 ```
 
 > 重要：M02 Day8–15 的每日课程已完成，但 **M02 模块毕业考试尚未完成，因此不宣告 M02 模块毕业**。用户选择先继续 M03，后续回补考试剩余题目与 Hard Gate 复测。
@@ -78,15 +79,15 @@ M02 Day8–15
 
 当前 ACTIVE 主线（2026-10-18 有限调整）：
 M11 Day63–70 / M12 Day71–73（已 PASS）
-→ M12 Day76（NEXT）
-→ Control Prerequisite Bridge（须教学、Quiz、Hard Gate 并记录证据）
-→ M13 Day80–89（仅在 Day76 与 Bridge 均 PASS 后）
+→ M12 Day76（COMPLETED / PASS）
+→ Control Prerequisite Bridge（CURRENT；TAUGHT / QUIZ PENDING；须经 Hard Gate 考核并记录证据）
+→ M13 Day80–89（只有 Bridge PASS 后才允许开课）
 → M08 Day43–48 → M09 Day49–54 → M10 Day55–62
 后续回补：M12 Day74–75、Day77–79 完整课程及 M12 模块毕业考试；
 并行实践：M01 ROS2/C++ 与 Day119–126 相关的日志、评测和安全，不自动算课程 PASS
 ```
 
-说明：只改变当前执行顺序及经确认的 M13 有限前置准入；Curriculum v1.0 的 Day 编号、主题、教学契约、原 M12 毕业标准保持不变。Day76 和 Bridge 均尚未考核通过，必须完成 Gate 才允许进入 Day80；Localization / State Estimation / SLAM 在控制后集中突破。
+说明：只改变当前执行顺序及经确认的 M13 有限前置准入；Curriculum v1.0 的 Day 编号、主题、教学契约、原 M12 毕业标准保持不变。Day76 已经通过课堂考核（见 Day76 lesson），但 Bridge 尚未通过 Hard Gate，因此暂不能进入 Day80；Localization / State Estimation / SLAM 在控制后集中突破。
 
 M04 Simulation 暂不作为当前专项前置主线。
 
@@ -1599,3 +1600,31 @@ Next:
 - M01 / Day119–126 中的 ROS2、日志/回归、急停/Watchdog、安全实践可以并行，但不等于正式课程完成。既有 M08 PAUSED / DEFERRED 与其他模块未完成考试全部保留。
 
 此节记录的是**执行路线变更**，不是新的学习考核或能力等级判定。
+
+
+---
+
+## 45. Day76 Learning Record — COMPLETED / PASS（2026-10-18）
+
+Current Module / Day:
+- **M12 / Day76 — Wheeled Mobile Robot Kinematics / Nonholonomic Constraint：COMPLETED / PASS**。
+- Lesson：docs/lessons/day076.md，保存课堂完整教学摘要、原始 10 题答案及针对性复测和纠错、真实工程诊断思路与 PASS 判定。
+- 这是用户在当前对话完成的 Daily Quiz / Retest，**不是模块毕业考试**。
+
+Quiz / Retest Evidence:
+- 初评约 **7/10**（课堂近似评价，不提供不存在的正式精确分数）；Q1 把位置/角度当速度，Q2 缺少 Body/World 理由，Q3 把差速角速度计算成 1.6 rad/s，Q10 工程责任归因存在边界不清。
+- Q5 Nonholonomic / 侧移受约束、Q6 Pfaffian、Q8 Euler 位姿积分、Q9 Hybrid A* / MPPI 运动模型连接均初次正确；Q7 曲率/半径的数值正确，但单位需更正为 m^-1 和 m。
+- 针对性复测：正确区分 `q=(x,y,\theta)` 和 `\dot q`（并经教师补充 Body Frame 前进不代表世界 Y 方向速度为零）；给定 `v_L=0.1 m/s`、`v_R=0.5 m/s`、`L=0.4 m`，独立正确算出 `v=0.3 m/s`、`\omega=1 rad/s`、左转。
+- 用户进一步解释了轮式导盲犬的工程故障优先级：速度指令/编码器推算与实测地速存在明显比例偏差，结合现场先验优先核对轮径、减速比、编码器换算；转弯异常优先核对有效轮距及左右轮速度响应；定位先用现场/RViz 位姿快速筛查，只有需要时深入日志。教师纠正“高优先级怀疑”和“已证实根因”须区别，但肯定该现场排查次序。
+- 教师在本次课堂明确判定 **Day76 PASS**。不声称已检查公司源码或实机数据，也不记录任何未发生的测试。
+
+Weak / Corrected:
+- Pose \(q\) 与 Pose Rate \(\dot q\)；本体横向速度为零不意味着世界 Y 方向速度为零。
+- Differential Drive 的 L 是**完整轮距**，不能重复使用 L/2；左右轮速度差除以 L 得角速度。
+- 轨迹曲率单位 m^-1、半径单位 m；原地旋转时不能直接计算 \(\omega/v\)。
+- 指令、轮速推算、实际地速相符与否需要结合模型假设和独立证据；现场排障应使用高概率优先与最小成本验证，而不是无区别地枚举可能性。
+
+Next:
+- **Control Prerequisite Bridge：TAUGHT / QUIZ PENDING / NOT PASSED**。完整桥课程及 Q1–Q10 已发出；下一步等待用户答题、针对性复测和 Hard Gate 判定。
+- 此 Bridge 不新增 Day 编号，也不等于 M12 Day77–79 PASS；M13 Day80 仍受 Bridge PASS Gate 限制。
+- 保留 Day74 PAUSED、Day75/Day77–79 DEFERRED、M08 Day43 PAUSED、M08 Day44–48 DEFERRED、其它未完成考试和 M12 Graduation 状态。
