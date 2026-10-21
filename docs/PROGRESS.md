@@ -57,11 +57,12 @@ M12 Day71 — Configuration Space / Joint / Screw Axis / Twist / Wrench：COMPLE
 M12 Day72 — Forward Kinematics / POE / DH：COMPLETED / PASS（见 docs/lessons/day072.md 与第42节）
 M12 Day73 — Space/Body Jacobian / Adjoint / Velocity Kinematics / Statics：COMPLETED / PASS（多轮定向纠错与复测；见 docs/lessons/day073.md 与第43节）
 M12 Day76 — Wheeled Mobile Robot Kinematics / Nonholonomic Constraint：COMPLETED / PASS（初测约 7/10、定向复测、工程模型/排障讨论；见 docs/lessons/day076.md 与第45节）
+M13 Day80 — Trajectory / Trajectory Optimization / Time Scaling / Feedback / PID：TAUGHT / QUIZ PENDING / NOT PASSED（见 docs/lessons/day080.md）
 M12 Day74 — Inverse Kinematics / Newton / DLS：PAUSED / NOT COMPLETED（已发送完整课程，Quiz 尚未完成）
 M12 Day75：DEFERRED / NOT COMPLETED（按 ACTIVE 路线后置）
 M12 Day77–79：DEFERRED / NOT COMPLETED（完整 Day 后置；Bridge 不授予这些 Day PASS）
-Control Prerequisite Bridge：TAUGHT / QUIZ PENDING / NOT PASSED（已发出完整讲义与 Q1–Q10；只用于 M13 有限准入，不新增 Day）
-Current / Next：Control Prerequisite Bridge — 底盘速度响应 / 基础动力学 / ODE / State-space / Linearization / Discretization（Quiz 待完成）
+Control Prerequisite Bridge：COMPLETED / PASS（Q1–Q10 已答；Q1/Q6 Hard Gate 定向复测通过；不新增 Day）
+Current / Next：M13 Day80 — Trajectory / Trajectory Optimization / Time Scaling / Feedback / PID（已教学，Quiz 待完成；见 docs/lessons/day080.md）
 ```
 
 > 重要：M02 Day8–15 的每日课程已完成，但 **M02 模块毕业考试尚未完成，因此不宣告 M02 模块毕业**。用户选择先继续 M03，后续回补考试剩余题目与 Hard Gate 复测。
@@ -80,14 +81,14 @@ M02 Day8–15
 当前 ACTIVE 主线（2026-10-18 有限调整）：
 M11 Day63–70 / M12 Day71–73（已 PASS）
 → M12 Day76（COMPLETED / PASS）
-→ Control Prerequisite Bridge（CURRENT；TAUGHT / QUIZ PENDING；须经 Hard Gate 考核并记录证据）
-→ M13 Day80–89（只有 Bridge PASS 后才允许开课）
+→ Control Prerequisite Bridge（COMPLETED / PASS，2026-10-22；见第46节）
+→ M13 Day80–89（CURRENT；Day80 已教学，Quiz 待完成）
 → M08 Day43–48 → M09 Day49–54 → M10 Day55–62
 后续回补：M12 Day74–75、Day77–79 完整课程及 M12 模块毕业考试；
 并行实践：M01 ROS2/C++ 与 Day119–126 相关的日志、评测和安全，不自动算课程 PASS
 ```
 
-说明：只改变当前执行顺序及经确认的 M13 有限前置准入；Curriculum v1.0 的 Day 编号、主题、教学契约、原 M12 毕业标准保持不变。Day76 已经通过课堂考核（见 Day76 lesson），但 Bridge 尚未通过 Hard Gate，因此暂不能进入 Day80；Localization / State Estimation / SLAM 在控制后集中突破。
+说明：只改变当前执行顺序及经确认的 M13 有限前置准入；Curriculum v1.0 的 Day 编号、主题、教学契约、原 M12 毕业标准保持不变。Day76 与 Control Prerequisite Bridge 均已通过课堂考核（见对应记录），Day80 已开始；Day77–79 仍后续回补。Localization / State Estimation / SLAM 在控制后集中突破。
 
 M04 Simulation 暂不作为当前专项前置主线。
 
@@ -1628,3 +1629,37 @@ Next:
 - **Control Prerequisite Bridge：TAUGHT / QUIZ PENDING / NOT PASSED**。完整桥课程及 Q1–Q10 已发出；下一步等待用户答题、针对性复测和 Hard Gate 判定。
 - 此 Bridge 不新增 Day 编号，也不等于 M12 Day77–79 PASS；M13 Day80 仍受 Bridge PASS Gate 限制。
 - 保留 Day74 PAUSED、Day75/Day77–79 DEFERRED、M08 Day43 PAUSED、M08 Day44–48 DEFERRED、其它未完成考试和 M12 Graduation 状态。
+
+
+---
+
+## 46. Control Prerequisite Bridge — COMPLETED / PASS（2026-10-22）
+
+Status:
+- **Control Prerequisite Bridge：COMPLETED / PASS**。这是未编号的 M13 有限准入桥，不是新 Day，不授予 M12 Day74–79 或 M12 Module Graduation PASS。
+- 本次依据：对话中已完成 Q1–Q10；Q1（转动动力学）与 Q6（线性化）经定向纠错后独立复测通过。教师明确裁定 Bridge PASS。
+- 前置：M12 Day76 已为 COMPLETED / PASS。当前准入条件已满足，进入 M13 Day80。
+- Day80 完整讲义已保存至 \`docs/lessons/day080.md\`；**Day80 当前为 TAUGHT / QUIZ PENDING / NOT PASSED**，等待用户作答及必要复测。
+
+Quiz / Retest Evidence:
+- Q1：初答把转动动力学写成“力矩 = 惯性半径 × 角速度”；经复测从 \`F=ma_t\`、\`a_t=\\alpha r\`、\`\\tau=Fr\` 推导 \`\\tau=I\\alpha\`，正确区分角速度与角加速度，PASS。
+- Q2：给定 \`r=0.1 m\`、\`G=10\`、\`\\omega_m=50 rad/s\`，答出 \`\\omega_w=5 rad/s\`、理想纯滚动 \`v=0.5 m/s\`，正确。
+- Q3：一阶速度响应给定 \`v=0.1\`、\`v_cmd=0.5\`、\`\\tau_v=0.5 s\`，答出 \`\\dot v=0.8 m/s^2\`、Euler 下一步 \`v=0.18 m/s\`，正确。
+- Q4：将 \`m\\ddot p+b\\dot p=F\` 写成状态 \`s=[p,v]^T\)，\`A=[[0,1],[0,-b/m]]\`、\`B=[[0],[1/m]]\`，输入 \`u=F\)，正确。
+- Q5：前向 Euler 离散化答出 \`A_d=[[1,0.2],[0,0.6]]\`、\`B_d=[[0],[0.02]]\`，正确。
+- Q6：初答误把线性化描述为可对偏导连续积分获得非线性变化；复测正确说明线性化是在当前工作点附近用一阶展开近似，角度变化较大时近似可能不准，PASS。
+- Q7：正确判断忽略执行器加速过程可能高估短时前进距离；教师指出这证明预测模型假设与真实响应不一致的可能性，不能仅据此认定优化算法代码本身错误。
+- Q8：正确计算 \`\\Delta v_{max}=0.02 m/s\`，并判断速度上限不等于一个周期内可达到的速度。
+- Q9：识别出 300 ms 状态延迟过大；教师说明 20 Hz 对应 50 ms 采样周期，但不等于端到端响应时间。该点在本轮未单独做定向复测，作为后续复习提示保留。
+- Q10：提出检查速度命令是否到达底盘、分析加速响应、核对预测模型是否考虑响应过程，并比较速度反馈积分位移与真实行程。方向合理；未声称已对真实公司系统执行该实验。
+
+Hard Gate:
+- 力矩—角加速度关系：通过定向推导复测。
+- 线性化是局部近似：通过定向概念复测。
+- 状态空间、Euler 离散化、命令/反馈与执行器响应的核心题目已作答。
+- 课堂最终判定：**Bridge COMPLETED / PASS**。上述未单独复测的边界点继续保留为提醒，不改变本次已作出的课堂 PASS，也不推断真实底盘符合教学模型。
+
+Next:
+- **M13 Day80 — Trajectory / Trajectory Optimization / Time Scaling / Feedback / PID：TAUGHT / QUIZ PENDING / NOT PASSED**。
+- Day80 的正式 Quiz 未作答；不能把讲义已发送等同于 Daily PASS。
+- Day74–75、Day77–79、M12 Graduation Exam、M08 Day43–48 等既有 PAUSED / DEFERRED 状态保持不变。
