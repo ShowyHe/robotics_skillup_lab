@@ -124,7 +124,7 @@ M22  Day130–135（动态 Foundation Cleanup）
 当前学习位置、最新 Next、完成/暂缓状态和未完成考试统一见 [`docs/PROGRESS.md` 第1节](docs/PROGRESS.md)。下表仅为进度概览，不代替考核记录或每日教学契约。
 当前专项执行顺序见 [`docs/TEMP_POSITIONING_VISION_PLAN.md`](docs/TEMP_POSITIONING_VISION_PLAN.md)。专项路线只调整执行顺序；课程 Day 编号与主题须与总纲及模块教学契约一致。
 
-**当前进度：M12 Day76 — COMPLETED / PASS。当前课程：Control Prerequisite Bridge（已教学，Quiz 待完成 / NOT PASSED）；只有该桥全部 Hard Gate 通过后，才允许进入 M13 Day80。Day74 PAUSED、Day75 与 Day77–79 完整课程后置。**
+**当前进度：M12 Day76 — COMPLETED / PASS；Control Prerequisite Bridge — COMPLETED / PASS。当前课程：M13 Day80 — Trajectory / Trajectory Optimization / Time Scaling / Feedback / PID（已教学，Quiz 待完成）。Day74 PAUSED、Day75 与 Day77–79 完整课程仍后置。**
 
 ### M00–M02｜系统基础与数学基础 I
 
@@ -231,7 +231,7 @@ M22  Day130–135（动态 Foundation Cleanup）
 | Day077 | ⏸️ | Force / Wrench / Inertia / Newton-Euler（完整课程后置） |
 | Day078 | ⏸️ | Lagrangian / Manipulator Dynamics / Forward-Inverse Dynamics（完整课程后置） |
 | Day079 | ⏸️ | ODE / State-space / Linearization / Discretization / Action（完整课程后置） |
-| Day080 | ⬜ | Trajectory / Trajectory Optimization / Time Scaling / Feedback / PID |
+| Day080 | 🟨 | Trajectory / Trajectory Optimization / Time Scaling / Feedback / PID | [学习记录](docs/lessons/day080.md) |
 | Day081 | ⬜ | Equilibrium / Stability / Eigenvalue |
 | Day082 | ⬜ | Controllability / Observability |
 | Day083 | ⬜ | Optimal Control / LQR |
