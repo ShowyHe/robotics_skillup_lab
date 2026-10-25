@@ -68,7 +68,7 @@ M11 Day63–70（已通过）
 → M12 Day71–73（已通过）
 → M12 Day76（COMPLETED / PASS）
 → Control Prerequisite Bridge（COMPLETED / PASS，2026-10-22；未编号，不授予 M12 Day77–79 PASS）
-→ M13 Day80–89（CURRENT；Day80 已教学，Quiz 待完成）
+→ M13 Day80–89（CURRENT；Day80 COMPLETED / PASS；Day81 已教学，Quiz 待完成）
 
 后续回补：M12 Day74–75、Day77–79 及 M12 完整毕业考试。
 既有 Day 编号、课程内容和考核标准保持不变。
@@ -162,7 +162,7 @@ Configuration / Rigid Body
 - **Day76：COMPLETED / PASS**。已覆盖底盘构型与运动约束、非完整性、Frame、曲率、差速/独轮车模型、积分及 MPPI rollout 的连接；课堂 Quiz 与定向复测通过，记录见 `docs/lessons/day076.md`。
 - **Control Prerequisite Bridge：COMPLETED / PASS（2026-10-22）**。该未编号先修补充覆盖力/转矩、质量/惯量、速度响应、命令与实测速度、ODE / 状态空间 / 局部线性化 / Euler 离散、预测模型及 state / reference / actuator input / feedback 的边界。
 - **Bridge Hard Gate 证据**：Q1 转动动力学与 Q6 线性化经定向复测通过；Q2–Q5、Q8 与 Q10 核心计算/工程题已作答。完整答题证据与保留的复习提示见 `docs/PROGRESS.md` 第46节。
-- **Day76 PASS + Bridge Gate PASS 条件已满足，当前 M13 Day80 已教学，Quiz 待完成**。此例外不代表 Day77–79 PASS 或 M12 模块毕业；M13 所有正式 Day 内容及考试要求不变，M14 不适用此例外。
+- **Day76 PASS + Bridge Gate PASS 条件已满足；M13 Day80 已完成并通过课堂考核，当前 Day81 已教学，Quiz 待完成**。Day80 记录见 `docs/lessons/day080.md` 和 `docs/PROGRESS.md` 第47节；本有限例外不代表 Day77–79 PASS 或 M12 模块毕业；M13 原课程内容及考核不变，M14 不适用此例外。
 - Day74–75、Day77–79 的完整教学与 M12 模块毕业考试在后续回补，既有未完成考试和数学欠账不自动关闭。
 
 ### Day76 已完成覆盖（COMPLETED / PASS）
@@ -179,7 +179,7 @@ Day76 Mobile Robot Kinematics 的目标深度为 L4：
 
 ## 6. Stage A3 — M13 Control & Optimal Control
 
-**对应：Day80–Day89。Day76 与 Control Prerequisite Bridge 已正式通过，当前 Day80 已教学、Quiz 待完成；本路线不更改 M12 毕业标准。**
+**对应：Day80–Day89。Day76 与 Control Prerequisite Bridge 已通过；Day80 COMPLETED / PASS，Day81 TAUGHT / QUIZ PENDING / NOT PASSED；本路线不更改 M12 毕业标准。**
 
 ### 主线
 ~~~text
