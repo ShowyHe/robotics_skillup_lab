@@ -57,12 +57,13 @@ M12 Day71 — Configuration Space / Joint / Screw Axis / Twist / Wrench：COMPLE
 M12 Day72 — Forward Kinematics / POE / DH：COMPLETED / PASS（见 docs/lessons/day072.md 与第42节）
 M12 Day73 — Space/Body Jacobian / Adjoint / Velocity Kinematics / Statics：COMPLETED / PASS（多轮定向纠错与复测；见 docs/lessons/day073.md 与第43节）
 M12 Day76 — Wheeled Mobile Robot Kinematics / Nonholonomic Constraint：COMPLETED / PASS（初测约 7/10、定向复测、工程模型/排障讨论；见 docs/lessons/day076.md 与第45节）
-M13 Day80 — Trajectory / Trajectory Optimization / Time Scaling / Feedback / PID：TAUGHT / QUIZ PENDING / NOT PASSED（见 docs/lessons/day080.md）
+M13 Day80 — Trajectory / Trajectory Optimization / Time Scaling / Feedback / PID：COMPLETED / PASS（初测与多轮定向复测；见 docs/lessons/day080.md 与第47节）
+M13 Day81 — Equilibrium / Stability / Eigenvalue / Closed-loop Response：TAUGHT / QUIZ PENDING / NOT PASSED（见 docs/lessons/day081.md）
 M12 Day74 — Inverse Kinematics / Newton / DLS：PAUSED / NOT COMPLETED（已发送完整课程，Quiz 尚未完成）
 M12 Day75：DEFERRED / NOT COMPLETED（按 ACTIVE 路线后置）
 M12 Day77–79：DEFERRED / NOT COMPLETED（完整 Day 后置；Bridge 不授予这些 Day PASS）
 Control Prerequisite Bridge：COMPLETED / PASS（Q1–Q10 已答；Q1/Q6 Hard Gate 定向复测通过；不新增 Day）
-Current / Next：M13 Day80 — Trajectory / Trajectory Optimization / Time Scaling / Feedback / PID（已教学，Quiz 待完成；见 docs/lessons/day080.md）
+Current / Next：M13 Day81 — Equilibrium / Stability / Eigenvalue / Closed-loop Response（已教学，Quiz 待完成；见 docs/lessons/day081.md）
 ```
 
 > 重要：M02 Day8–15 的每日课程已完成，但 **M02 模块毕业考试尚未完成，因此不宣告 M02 模块毕业**。用户选择先继续 M03，后续回补考试剩余题目与 Hard Gate 复测。
@@ -82,13 +83,13 @@ M02 Day8–15
 M11 Day63–70 / M12 Day71–73（已 PASS）
 → M12 Day76（COMPLETED / PASS）
 → Control Prerequisite Bridge（COMPLETED / PASS，2026-10-22；见第46节）
-→ M13 Day80–89（CURRENT；Day80 已教学，Quiz 待完成）
+→ M13 Day80–89（CURRENT；Day80 COMPLETED / PASS；Day81 已教学、Quiz 待完成）
 → M08 Day43–48 → M09 Day49–54 → M10 Day55–62
 后续回补：M12 Day74–75、Day77–79 完整课程及 M12 模块毕业考试；
 并行实践：M01 ROS2/C++ 与 Day119–126 相关的日志、评测和安全，不自动算课程 PASS
 ```
 
-说明：只改变当前执行顺序及经确认的 M13 有限前置准入；Curriculum v1.0 的 Day 编号、主题、教学契约、原 M12 毕业标准保持不变。Day76 与 Control Prerequisite Bridge 均已通过课堂考核（见对应记录），Day80 已开始；Day77–79 仍后续回补。Localization / State Estimation / SLAM 在控制后集中突破。
+说明：只改变当前执行顺序及经确认的 M13 有限前置准入；Curriculum v1.0 的 Day 编号、主题、教学契约、原 M12 毕业标准保持不变。Day76、Control Prerequisite Bridge 和 Day80 均已通过课堂考核（见对应记录），当前 Day81 已教学、Quiz 待完成；Day77–79 仍后续回补.Localization / State Estimation / SLAM 在控制后集中突破。
 
 M04 Simulation 暂不作为当前专项前置主线。
 
@@ -1663,3 +1664,45 @@ Next:
 - **M13 Day80 — Trajectory / Trajectory Optimization / Time Scaling / Feedback / PID：TAUGHT / QUIZ PENDING / NOT PASSED**。
 - Day80 的正式 Quiz 未作答；不能把讲义已发送等同于 Daily PASS。
 - Day74–75、Day77–79、M12 Graduation Exam、M08 Day43–48 等既有 PAUSED / DEFERRED 状态保持不变。
+
+
+---
+
+## 47. Day80 Learning Record — COMPLETED / PASS（2026-10-26）
+
+Current Module / Day:
+- **M13 / Day80 — Trajectory / Trajectory Optimization / Time Scaling / Feedback / PID：COMPLETED / PASS**（课堂最终判定）。
+- Lesson: \`docs/lessons/day080.md\`，含原始完整教学、Q1–Q10、用户实际初答、定向补讲/复测与历史保留。
+- 本次仅为 Day80 Daily PASS，不代表 M13 模块毕业，也不撤销未完成模块/数学欠账。
+
+Initial Quiz:
+- Q1：知道路径需要时间信息，但尚未区分路径自身可已确定距离与 \`s(t)\` 的完整时间规律；
+- Q2：初答时间加倍速度 25%、加速度 12.5%（错误）；
+- Q3：初答含“起点加速度=0”和“两端加速度不能保证为0”这两个互相冲突表述，教师承认后一判断已经出现；三次函数的二阶导端点值由教师更正；
+- Q4：目标函数、变量意义正确，但遗漏 dynamics/state/input constraints；
+- Q5：开环/闭环正确；
+- Q6：理解 P/I/D 名称、微分噪声，最初缺少三项作用量；
+- Q7：误差 0.08 m/s 正确，P 稳态误差原因初答部分正确；
+- Q8：提出积分钳位 anti-windup，尚需区分积分状态增长与实际误差增长；
+- Q9：数值 0.02 正确，最初单位误写 m/s²、将速度上限等同最大电机功率；
+- Q10：优先检查底盘实际速度能力与底层控制，是合理的现场诊断优先级，但须区分配置上限与硬件实际能力。
+
+Retest:
+- R1：正确给出 \`s=s(t)\`。
+- R3（Hard Gate）：完整写出有限时域目标、动力学 \`x_(k+1)=f(x_k,u_k)\`、状态 \`x_k∈X\`、输入 \`u_k∈U\` 和初末条件，说明无约束轨迹可能无法在真实机器人执行，PASS。
+- R4：正确解释 I 处理持续误差、D 根据误差变化率；起初误以 \`0.1/0.5\` 是 P 项，教师更正 \`e=0.5-0.4\`。
+- R5：正确给出速度变化量 \`0.02 m/s\` 与加速度上限原因。
+- 最终复测：用户回答 T 翻倍速度 50%、加速度 25%；\`K_P=2\`、\`v_d=0.5\`、\`v=0.4\` 时 \`u_P=0.2\`，均正确。
+- 用户把 windup 后果表述为“误差累计过大”；教师澄清是“积分状态累计过大”，解除限幅可能持续输出过大导致超调或慢恢复。该术语/后果辨析保留为复习提醒。
+- R2 的三次时间标定二阶端点数值未由用户再次独立计算；教师已展示 \`s''(0)=6,s''(1)=-6\`，未把该教学展示虚记为用户独立复测。课堂最终评为 PASS。
+
+Hard Gate / Contract:
+- Time scaling 与速度/加速度缩放：针对性复测通过。
+- Trajectory Optimization 的目标、动力学与约束：初测缺漏、针对性复测通过。
+- PID P 项、积分/微分、anti-windup、采样/限幅：针对性复测后课堂判定通过，保留 windup 细节复习提示。
+- Path/Trajectory/Reference 和 Open/Closed loop：教学与用户答题覆盖。
+- **Day80：COMPLETED / PASS**，有真实作答证据；其余课程未凭本次结果自动 PASS。
+
+Next:
+- **M13 Day81 — Equilibrium / Stability / Eigenvalue / Closed-loop Response：TAUGHT / QUIZ PENDING / NOT PASSED**；已保存完整讲义及 Q1–Q10 至 \`docs/lessons/day081.md\`，下一步用户独立完成考试。
+- Day74 PAUSED、Day75/Day77–79 DEFERRED、M12 Graduation、M08 Day43 PAUSED 及其他历史考试状态不变。
