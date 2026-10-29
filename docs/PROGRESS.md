@@ -58,12 +58,12 @@ M12 Day72 — Forward Kinematics / POE / DH：COMPLETED / PASS（见 docs/lesson
 M12 Day73 — Space/Body Jacobian / Adjoint / Velocity Kinematics / Statics：COMPLETED / PASS（多轮定向纠错与复测；见 docs/lessons/day073.md 与第43节）
 M12 Day76 — Wheeled Mobile Robot Kinematics / Nonholonomic Constraint：COMPLETED / PASS（初测约 7/10、定向复测、工程模型/排障讨论；见 docs/lessons/day076.md 与第45节）
 M13 Day80 — Trajectory / Trajectory Optimization / Time Scaling / Feedback / PID：COMPLETED / PASS（初测与多轮定向复测；见 docs/lessons/day080.md 与第47节）
-M13 Day81 — Equilibrium / Stability / Eigenvalue / Closed-loop Response：TAUGHT / QUIZ PENDING / NOT PASSED（见 docs/lessons/day081.md）
+M13 Day81 — Equilibrium / Stability / Eigenvalue / Closed-loop Response：COMPLETED / PASS（见 docs/lessons/day081.md 与第48节）
 M12 Day74 — Inverse Kinematics / Newton / DLS：PAUSED / NOT COMPLETED（已发送完整课程，Quiz 尚未完成）
 M12 Day75：DEFERRED / NOT COMPLETED（按 ACTIVE 路线后置）
 M12 Day77–79：DEFERRED / NOT COMPLETED（完整 Day 后置；Bridge 不授予这些 Day PASS）
 Control Prerequisite Bridge：COMPLETED / PASS（Q1–Q10 已答；Q1/Q6 Hard Gate 定向复测通过；不新增 Day）
-Current / Next：M13 Day81 — Equilibrium / Stability / Eigenvalue / Closed-loop Response（已教学，Quiz 待完成；见 docs/lessons/day081.md）
+Current / Next：M13 Day82 — Controllability / Observability / State Feedback（已教学，Quiz 待完成；见 docs/lessons/day082.md）
 ```
 
 > 重要：M02 Day8–15 的每日课程已完成，但 **M02 模块毕业考试尚未完成，因此不宣告 M02 模块毕业**。用户选择先继续 M03，后续回补考试剩余题目与 Hard Gate 复测。
@@ -83,13 +83,13 @@ M02 Day8–15
 M11 Day63–70 / M12 Day71–73（已 PASS）
 → M12 Day76（COMPLETED / PASS）
 → Control Prerequisite Bridge（COMPLETED / PASS，2026-10-22；见第46节）
-→ M13 Day80–89（CURRENT；Day80 COMPLETED / PASS；Day81 已教学、Quiz 待完成）
+→ M13 Day80–89（CURRENT；Day80、Day81 COMPLETED / PASS；Day82 已教学、Quiz 待完成）
 → M08 Day43–48 → M09 Day49–54 → M10 Day55–62
 后续回补：M12 Day74–75、Day77–79 完整课程及 M12 模块毕业考试；
 并行实践：M01 ROS2/C++ 与 Day119–126 相关的日志、评测和安全，不自动算课程 PASS
 ```
 
-说明：只改变当前执行顺序及经确认的 M13 有限前置准入；Curriculum v1.0 的 Day 编号、主题、教学契约、原 M12 毕业标准保持不变。Day76、Control Prerequisite Bridge 和 Day80 均已通过课堂考核（见对应记录），当前 Day81 已教学、Quiz 待完成；Day77–79 仍后续回补.Localization / State Estimation / SLAM 在控制后集中突破。
+说明：只改变当前执行顺序及经确认的 M13 有限前置准入；Curriculum v1.0 的 Day 编号、主题、教学契约、原 M12 毕业标准保持不变。Day76、Control Prerequisite Bridge、Day80 与 Day81 均已通过课堂考核（见对应记录），当前 Day82 已教学、Quiz 待完成；Day77–79 仍后续回补.Localization / State Estimation / SLAM 在控制后集中突破。
 
 M04 Simulation 暂不作为当前专项前置主线。
 
@@ -1706,3 +1706,30 @@ Hard Gate / Contract:
 Next:
 - **M13 Day81 — Equilibrium / Stability / Eigenvalue / Closed-loop Response：TAUGHT / QUIZ PENDING / NOT PASSED**；已保存完整讲义及 Q1–Q10 至 \`docs/lessons/day081.md\`，下一步用户独立完成考试。
 - Day74 PAUSED、Day75/Day77–79 DEFERRED、M12 Graduation、M08 Day43 PAUSED 及其他历史考试状态不变。
+
+
+---
+
+## 48. Day81 Learning Record — COMPLETED / PASS（2026-10-30）
+
+Current Module / Day:
+- **M13 / Day81 — Equilibrium / Stability / Eigenvalue / Closed-loop Response：COMPLETED / PASS**。
+- Lesson：\`docs/lessons/day081.md\`；原始讲义与考题保留，课堂答题摘要及最终判定追加于讲义末尾。
+- 本次为 Day81 Daily PASS，不代表 M13 Module Graduation，也不改变 M12 Day74–75、Day77–79 的既有状态。
+
+Quiz / Retest Evidence:
+- 正确区分 Lyapunov 稳定与渐近稳定；理解稳定不必然意味着误差收敛至零。
+- 对 \(\dot e=-3e,\ e(0)=0.2\)，正确给出 \(e(t)=0.2e^{-3t}\)，并判断其趋于零。
+- 正确指出连续系统 \(\operatorname{Re}(\lambda)=0\) 与离散系统 \(|\lambda|=1\) 属于边界情形，不能只靠这一条判据对所有系统一概而论。
+- 正确求得一阶速度响应的平衡速度 \(v^\star=0.4\,\mathrm{m/s}\)，并说明恒速时位置仍变化，因此包含位置的完整状态不处于静态平衡。
+- 课堂覆盖连续 / 离散系统的特征值判据、局部线性化边界，以及稳定性与实际响应性能的区别。
+
+Hard Gate / Status:
+- 平衡点与完整状态的区分：通过课堂问答。
+- 连续 / 离散特征值判据及边界条件：通过课堂问答。
+- 课堂最终判定：**Day81 COMPLETED / PASS**。
+- 本记录不宣称已检查真机、源码或 rosbag；未将数学课堂结论外推为真实机器人已稳定。
+
+Next:
+- **M13 Day82 — Controllability / Observability / State Feedback：TAUGHT / QUIZ PENDING / NOT PASSED**。完整讲义已写入 \`docs/lessons/day082.md\`，等待用户完成 Daily Quiz 与必要复测。
+- 继续保留 Day74 PAUSED、Day75 / Day77–79 DEFERRED、M12 Module Graduation 及其他历史未完成项。
