@@ -4,7 +4,7 @@
 >
 > 目的：在**不修改 Curriculum v1.0 的 Module / Day 编号、不修改 03_MASTER_PLAN 总结构**的前提下，按当前能力收益重新安排实际学习顺序：
 >
-> **导航与规划主线已通过；移动机器人运动学 Day76 与 Control Prerequisite Bridge 均已通过，当前进入 M13 Day80–89 控制主线，之后集中定位 / 状态估计 / SLAM；机械臂专项知识后置但不豁免。**
+> **导航与规划主线已通过；移动机器人运动学 Day76 与 Control Prerequisite Bridge 均已通过；M13 Day80、Day81 已通过课堂考核，当前为 Day82（Controllability / Observability，Quiz 待完成），之后集中定位 / 状态估计 / SLAM；机械臂专项知识后置但不豁免。**
 >
 > 本文件只负责当前阶段的执行顺序，不替代 03_MASTER_PLAN.md、04_MODULE_SPECS.md、modules/、LEARNING_RULES.md 和 PROGRESS.md。
 
@@ -68,7 +68,7 @@ M11 Day63–70（已通过）
 → M12 Day71–73（已通过）
 → M12 Day76（COMPLETED / PASS）
 → Control Prerequisite Bridge（COMPLETED / PASS，2026-10-22；未编号，不授予 M12 Day77–79 PASS）
-→ M13 Day80–89（CURRENT；Day80 COMPLETED / PASS；Day81 已教学，Quiz 待完成）
+→ M13 Day80–89（CURRENT；Day80、Day81 COMPLETED / PASS；Day82 已教学，Quiz 待完成）
 
 后续回补：M12 Day74–75、Day77–79 及 M12 完整毕业考试。
 既有 Day 编号、课程内容和考核标准保持不变。
@@ -162,7 +162,7 @@ Configuration / Rigid Body
 - **Day76：COMPLETED / PASS**。已覆盖底盘构型与运动约束、非完整性、Frame、曲率、差速/独轮车模型、积分及 MPPI rollout 的连接；课堂 Quiz 与定向复测通过，记录见 `docs/lessons/day076.md`。
 - **Control Prerequisite Bridge：COMPLETED / PASS（2026-10-22）**。该未编号先修补充覆盖力/转矩、质量/惯量、速度响应、命令与实测速度、ODE / 状态空间 / 局部线性化 / Euler 离散、预测模型及 state / reference / actuator input / feedback 的边界。
 - **Bridge Hard Gate 证据**：Q1 转动动力学与 Q6 线性化经定向复测通过；Q2–Q5、Q8 与 Q10 核心计算/工程题已作答。完整答题证据与保留的复习提示见 `docs/PROGRESS.md` 第46节。
-- **Day76 PASS + Bridge Gate PASS 条件已满足；M13 Day80 已完成并通过课堂考核，当前 Day81 已教学，Quiz 待完成**。Day80 记录见 `docs/lessons/day080.md` 和 `docs/PROGRESS.md` 第47节；本有限例外不代表 Day77–79 PASS 或 M12 模块毕业；M13 原课程内容及考核不变，M14 不适用此例外。
+- **Day76 PASS + Bridge Gate PASS 条件已满足；M13 Day80、Day81 均已完成并通过课堂考核，当前 Day82 已教学，Quiz 待完成**。Day80 记录见 `docs/lessons/day080.md` 和 `docs/PROGRESS.md` 第47节；Day81 记录见 `docs/lessons/day081.md` 和 `docs/PROGRESS.md` 第48节。本有限例外不代表 Day77–79 PASS 或 M12 模块毕业；M13 原课程内容及考核不变，M14 不适用此例外。
 - Day74–75、Day77–79 的完整教学与 M12 模块毕业考试在后续回补，既有未完成考试和数学欠账不自动关闭。
 
 ### Day76 已完成覆盖（COMPLETED / PASS）
@@ -179,7 +179,7 @@ Day76 Mobile Robot Kinematics 的目标深度为 L4：
 
 ## 6. Stage A3 — M13 Control & Optimal Control
 
-**对应：Day80–Day89。Day76 与 Control Prerequisite Bridge 已通过；Day80 COMPLETED / PASS，Day81 TAUGHT / QUIZ PENDING / NOT PASSED；本路线不更改 M12 毕业标准。**
+**对应：Day80–Day89。Day76 与 Control Prerequisite Bridge 已通过；Day80、Day81 COMPLETED / PASS，Day82 TAUGHT / QUIZ PENDING / NOT PASSED；本路线不更改 M12 毕业标准。**
 
 ### 主线
 ~~~text
