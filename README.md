@@ -124,7 +124,7 @@ M22  Day130–135（动态 Foundation Cleanup）
 当前学习位置、最新 Next、完成/暂缓状态和未完成考试统一见 [`docs/PROGRESS.md` 第1节](docs/PROGRESS.md)。下表仅为进度概览，不代替考核记录或每日教学契约。
 当前专项执行顺序见 [`docs/TEMP_POSITIONING_VISION_PLAN.md`](docs/TEMP_POSITIONING_VISION_PLAN.md)。专项路线只调整执行顺序；课程 Day 编号与主题须与总纲及模块教学契约一致。
 
-**当前进度：M12 Day76、Control Prerequisite Bridge、M13 Day80–Day81 均已 COMPLETED / PASS。当前课程：M13 Day82 — Controllability / Observability / State Feedback（已教学，Quiz 待完成）。Day74 PAUSED、Day75 与 Day77–79 仍后置。**
+**当前进度：M12 Day76、Control Prerequisite Bridge、M13 Day80–Day82 均已 COMPLETED / PASS。当前课程：M13 Day83 — Optimal Control / LQR（已教学，Quiz 待完成）。Day74 PAUSED、Day75 与 Day77–79 仍后置。**
 
 ### M00–M02｜系统基础与数学基础 I
 
@@ -233,8 +233,8 @@ M22  Day130–135（动态 Foundation Cleanup）
 | Day079 | ⏸️ | ODE / State-space / Linearization / Discretization / Action（完整课程后置） |
 | Day080 | ✅ | Trajectory / Trajectory Optimization / Time Scaling / Feedback / PID | [学习记录](docs/lessons/day080.md) |
 | Day081 | ✅ | Equilibrium / Stability / Eigenvalue / Closed-loop Response | [学习记录](docs/lessons/day081.md) |
-| Day082 | 🟨 | Controllability / Observability / State Feedback | [学习记录](docs/lessons/day082.md) |
-| Day083 | ⬜ | Optimal Control / LQR |
+| Day082 | ✅ | Controllability / Observability / State Feedback | [学习记录](docs/lessons/day082.md) |
+| Day083 | 🟨 | Optimal Control / LQR | [学习记录](docs/lessons/day083.md) |
 | Day084 | ⬜ | MPC / Horizon / Constraint / Receding Horizon |
 | Day085 | ⬜ | MPPI / Sampling / Rollout / Weight / Update |
 | Day086 | ⬜ | MPPI Noise / Temperature / Warm Start |
