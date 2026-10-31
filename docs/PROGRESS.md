@@ -59,11 +59,12 @@ M12 Day73 — Space/Body Jacobian / Adjoint / Velocity Kinematics / Statics：CO
 M12 Day76 — Wheeled Mobile Robot Kinematics / Nonholonomic Constraint：COMPLETED / PASS（初测约 7/10、定向复测、工程模型/排障讨论；见 docs/lessons/day076.md 与第45节）
 M13 Day80 — Trajectory / Trajectory Optimization / Time Scaling / Feedback / PID：COMPLETED / PASS（初测与多轮定向复测；见 docs/lessons/day080.md 与第47节）
 M13 Day81 — Equilibrium / Stability / Eigenvalue / Closed-loop Response：COMPLETED / PASS（见 docs/lessons/day081.md 与第48节）
+M13 Day82 — Controllability / Observability / State Feedback：COMPLETED / PASS（初测及两轮定向复测；见 docs/lessons/day082.md 与第49节）
 M12 Day74 — Inverse Kinematics / Newton / DLS：PAUSED / NOT COMPLETED（已发送完整课程，Quiz 尚未完成）
 M12 Day75：DEFERRED / NOT COMPLETED（按 ACTIVE 路线后置）
 M12 Day77–79：DEFERRED / NOT COMPLETED（完整 Day 后置；Bridge 不授予这些 Day PASS）
 Control Prerequisite Bridge：COMPLETED / PASS（Q1–Q10 已答；Q1/Q6 Hard Gate 定向复测通过；不新增 Day）
-Current / Next：M13 Day82 — Controllability / Observability / State Feedback（已教学，Quiz 待完成；见 docs/lessons/day082.md）
+Current / Next：M13 Day83 — Optimal Control / LQR（已教学，Quiz 待完成；见 docs/lessons/day083.md）
 ```
 
 > 重要：M02 Day8–15 的每日课程已完成，但 **M02 模块毕业考试尚未完成，因此不宣告 M02 模块毕业**。用户选择先继续 M03，后续回补考试剩余题目与 Hard Gate 复测。
@@ -83,13 +84,13 @@ M02 Day8–15
 M11 Day63–70 / M12 Day71–73（已 PASS）
 → M12 Day76（COMPLETED / PASS）
 → Control Prerequisite Bridge（COMPLETED / PASS，2026-10-22；见第46节）
-→ M13 Day80–89（CURRENT；Day80、Day81 COMPLETED / PASS；Day82 已教学、Quiz 待完成）
+→ M13 Day80–89（CURRENT；Day80–Day82 COMPLETED / PASS；Day83 已教学、Quiz 待完成）
 → M08 Day43–48 → M09 Day49–54 → M10 Day55–62
 后续回补：M12 Day74–75、Day77–79 完整课程及 M12 模块毕业考试；
 并行实践：M01 ROS2/C++ 与 Day119–126 相关的日志、评测和安全，不自动算课程 PASS
 ```
 
-说明：只改变当前执行顺序及经确认的 M13 有限前置准入；Curriculum v1.0 的 Day 编号、主题、教学契约、原 M12 毕业标准保持不变。Day76、Control Prerequisite Bridge、Day80 与 Day81 均已通过课堂考核（见对应记录），当前 Day82 已教学、Quiz 待完成；Day77–79 仍后续回补.Localization / State Estimation / SLAM 在控制后集中突破。
+说明：只改变当前执行顺序及经确认的 M13 有限前置准入；Curriculum v1.0 的 Day 编号、主题、教学契约、原 M12 毕业标准保持不变。Day76、Control Prerequisite Bridge、Day80、Day81 与 Day82 均已通过课堂考核（见对应记录），当前 Day83 已教学、Quiz 待完成；Day77–79 仍后续回补.Localization / State Estimation / SLAM 在控制后集中突破。
 
 M04 Simulation 暂不作为当前专项前置主线。
 
@@ -1733,3 +1734,36 @@ Hard Gate / Status:
 Next:
 - **M13 Day82 — Controllability / Observability / State Feedback：TAUGHT / QUIZ PENDING / NOT PASSED**。完整讲义已写入 \`docs/lessons/day082.md\`，等待用户完成 Daily Quiz 与必要复测。
 - 继续保留 Day74 PAUSED、Day75 / Day77–79 DEFERRED、M12 Module Graduation 及其他历史未完成项。
+
+
+---
+
+## 49. Day82 Learning Record — COMPLETED / PASS（2026-10-31）
+
+Status:
+- **M13 Day82 — Controllability / Observability / State Feedback：COMPLETED / PASS**（课堂最终判定）。
+- 详细初测、纠错及真实复测见 `docs/lessons/day082.md` 末尾的 Day82 Learning Record；这里只记录摘要。
+- 仅为本日 Daily PASS，不代表 M13 模块毕业，也不改变 M12 和 M08 未完成项目。
+
+Initial Quiz:
+- Q1：A/B/C/D 维度正确；Q3 可控性矩阵秩2、Q5 可观性矩阵秩2均独立算对。
+- Q4 不可控矩阵秩1判断正确，但输入/输出的解释不准确；Q6 可观性矩阵秩1正确，但未明确点名 \(x_2\)。
+- Q2 完全可控定义过简，“同时影响状态”不符合完整定义；Q7、Q8 核心物理概念和反馈限制基本正确。
+- Q9 输入/输出标注混淆，但命令不等于实测状态的工程理由正确；Q10 不贸然判不可观，但应优先检查测量链而非控制器是否使用该反馈。
+
+Retest:
+- R1 用户独立给出任意初始/目标状态、有限时间与存在输入的完全可控定义。
+- R2 正确指出 \(\dot x_2=x_2\) 不受 u 影响，K 只能经 u 作用，不可任意改变该不稳定模态。
+- R3 初次复测把可控性矩阵当作可观性矩阵；定向纠错后，用户独立计算 \(CA=[0,1],\mathcal O=I_2,\operatorname{rank}=2\)，并说明位置变化揭示速度。
+- R4 用户建议核对实际转动与 IMU 原始角速度、时间戳和坐标系，保留未确证的归因边界。
+
+Hard Gate / Final:
+- 可控性定义、\(\mathcal C\) 秩判据：PASS。
+- 不可控不稳定模态与反馈 K 的结构限制：PASS。
+- 可观性、\(\mathcal O\) 秩判据及速度由位置变化可推知的物理意义：PASS。
+- 工程映射按课堂证据通过，不声称查过公司源码或真机。
+- **Day82 COMPLETED / PASS（2026-10-31）**。
+
+Next:
+- **M13 Day83 — Optimal Control / LQR：TAUGHT / QUIZ PENDING / NOT PASSED**；讲义见 `docs/lessons/day083.md`，等待答题及可能的定向复测。
+- M12 Day74 PAUSED、Day75/77–79 DEFERRED、M08 Day43 PAUSED 等仍保持原状态。
