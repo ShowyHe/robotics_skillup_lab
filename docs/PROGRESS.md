@@ -60,11 +60,12 @@ M12 Day76 — Wheeled Mobile Robot Kinematics / Nonholonomic Constraint：COMPLE
 M13 Day80 — Trajectory / Trajectory Optimization / Time Scaling / Feedback / PID：COMPLETED / PASS（初测与多轮定向复测；见 docs/lessons/day080.md 与第47节）
 M13 Day81 — Equilibrium / Stability / Eigenvalue / Closed-loop Response：COMPLETED / PASS（见 docs/lessons/day081.md 与第48节）
 M13 Day82 — Controllability / Observability / State Feedback：COMPLETED / PASS（初测及两轮定向复测；见 docs/lessons/day082.md 与第49节）
+M13 Day83 — Optimal Control / LQR：COMPLETED / PASS（初测及定向复测；见 docs/lessons/day083.md 与第50节）
 M12 Day74 — Inverse Kinematics / Newton / DLS：PAUSED / NOT COMPLETED（已发送完整课程，Quiz 尚未完成）
 M12 Day75：DEFERRED / NOT COMPLETED（按 ACTIVE 路线后置）
 M12 Day77–79：DEFERRED / NOT COMPLETED（完整 Day 后置；Bridge 不授予这些 Day PASS）
 Control Prerequisite Bridge：COMPLETED / PASS（Q1–Q10 已答；Q1/Q6 Hard Gate 定向复测通过；不新增 Day）
-Current / Next：M13 Day83 — Optimal Control / LQR（已教学，Quiz 待完成；见 docs/lessons/day083.md）
+Current / Next：M13 Day84 — MPC / Horizon / Constraint / Receding Horizon（已教学，Quiz 待完成；见 docs/lessons/day084.md）
 ```
 
 > 重要：M02 Day8–15 的每日课程已完成，但 **M02 模块毕业考试尚未完成，因此不宣告 M02 模块毕业**。用户选择先继续 M03，后续回补考试剩余题目与 Hard Gate 复测。
@@ -84,13 +85,13 @@ M02 Day8–15
 M11 Day63–70 / M12 Day71–73（已 PASS）
 → M12 Day76（COMPLETED / PASS）
 → Control Prerequisite Bridge（COMPLETED / PASS，2026-10-22；见第46节）
-→ M13 Day80–89（CURRENT；Day80–Day82 COMPLETED / PASS；Day83 已教学、Quiz 待完成）
+→ M13 Day80–89（CURRENT；Day80–Day83 COMPLETED / PASS；Day84 已教学、Quiz 待完成）
 → M08 Day43–48 → M09 Day49–54 → M10 Day55–62
 后续回补：M12 Day74–75、Day77–79 完整课程及 M12 模块毕业考试；
 并行实践：M01 ROS2/C++ 与 Day119–126 相关的日志、评测和安全，不自动算课程 PASS
 ```
 
-说明：只改变当前执行顺序及经确认的 M13 有限前置准入；Curriculum v1.0 的 Day 编号、主题、教学契约、原 M12 毕业标准保持不变。Day76、Control Prerequisite Bridge、Day80、Day81 与 Day82 均已通过课堂考核（见对应记录），当前 Day83 已教学、Quiz 待完成；Day77–79 仍后续回补.Localization / State Estimation / SLAM 在控制后集中突破。
+说明：只改变当前执行顺序及经确认的 M13 有限前置准入；Curriculum v1.0 的 Day 编号、主题、教学契约、原 M12 毕业标准保持不变。Day76、Control Prerequisite Bridge、Day80–Day83 均已通过课堂考核（见对应记录），当前 Day84 已教学、Quiz 待完成；Day77–79 仍后续回补.Localization / State Estimation / SLAM 在控制后集中突破。
 
 M04 Simulation 暂不作为当前专项前置主线。
 
@@ -1767,3 +1768,27 @@ Hard Gate / Final:
 Next:
 - **M13 Day83 — Optimal Control / LQR：TAUGHT / QUIZ PENDING / NOT PASSED**；讲义见 `docs/lessons/day083.md`，等待答题及可能的定向复测。
 - M12 Day74 PAUSED、Day75/77–79 DEFERRED、M08 Day43 PAUSED 等仍保持原状态。
+
+
+---
+
+## 50. Day83 Learning Record — COMPLETED / PASS（2026-11-01）
+
+Status:
+- **M13 Day83 — Optimal Control / LQR：COMPLETED / PASS**（课堂最终判定）。
+- 详细初答、教学纠正、针对性复测证据保存在 docs/lessons/day083.md 的 Day83 Learning Record；这是 Daily PASS，不代表 Module Graduation。
+
+Initial Quiz:
+- Q1 维度正确，采样周期对离散矩阵的影响需要更正解释。Q2 完整 LQR 代价与 Q/R 条件正确。Q3 二次型数值代价14+16=30正确。
+- Q4 推导 \(J=5u^2+16u+16\)、\(J'=10u+16\) 正确；用户澄清负号属于 \(u=-4x_0/5\)，最终 \(K=+4/5\)、\(u^\star=-1.6\)。教师原先“计算错误”的定性应撤回；未进行新的 R1 系数练习。
+- Q5 Q/R 影响正确；Q6 初始混淆 P 和 Q/R；Q7 终端代价解释不完整；Q8 正确写出参考跟踪形式但遗漏前馈语义；Q9、Q10 通过。
+
+Targeted Retest / Hard Gate:
+- R2 用户最终正确说明 P 表示从当前状态出发的最优剩余总代价，经过提示明确有限时域终端惩罚与反向递推。
+- R3 初答只用 \(u=-K(x-x^\star)\)，经纠错后在 \(x^\star=2,u^\star=1\) 情况独立写出 \(u=1-K(x-2)\)，PASS。
+- Q/R/Cost/反馈增益计算、Riccati 直觉与非零参考跟踪、LQR/PID和硬约束边界均获课堂 PASS；没有实机或公司源码额外验证。
+- **Day83：COMPLETED / PASS**。
+
+Next:
+- **M13 Day84 — MPC / Horizon / Constraint / Receding Horizon：TAUGHT / QUIZ PENDING / NOT PASSED**，完整讲义与 Daily Quiz 见 docs/lessons/day084.md。
+- M12 Day74 PAUSED、Day75/Day77–79 DEFERRED、M08 Day43 PAUSED及其他历史状态不变。
