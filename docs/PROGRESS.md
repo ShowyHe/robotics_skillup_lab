@@ -61,11 +61,12 @@ M13 Day80 — Trajectory / Trajectory Optimization / Time Scaling / Feedback / P
 M13 Day81 — Equilibrium / Stability / Eigenvalue / Closed-loop Response：COMPLETED / PASS（见 docs/lessons/day081.md 与第48节）
 M13 Day82 — Controllability / Observability / State Feedback：COMPLETED / PASS（初测及两轮定向复测；见 docs/lessons/day082.md 与第49节）
 M13 Day83 — Optimal Control / LQR：COMPLETED / PASS（初测及定向复测；见 docs/lessons/day083.md 与第50节）
+M13 Day84 — MPC / Horizon / Constraint / Receding Horizon：COMPLETED / PASS（初测及三题定向复测；见 docs/lessons/day084.md 与第51节）
 M12 Day74 — Inverse Kinematics / Newton / DLS：PAUSED / NOT COMPLETED（已发送完整课程，Quiz 尚未完成）
 M12 Day75：DEFERRED / NOT COMPLETED（按 ACTIVE 路线后置）
 M12 Day77–79：DEFERRED / NOT COMPLETED（完整 Day 后置；Bridge 不授予这些 Day PASS）
 Control Prerequisite Bridge：COMPLETED / PASS（Q1–Q10 已答；Q1/Q6 Hard Gate 定向复测通过；不新增 Day）
-Current / Next：M13 Day84 — MPC / Horizon / Constraint / Receding Horizon（已教学，Quiz 待完成；见 docs/lessons/day084.md）
+Current / Next：M13 Day85 — MPPI / Sampling / Rollout / Weight / Update（已教学，Quiz 待完成；见 docs/lessons/day085.md）
 ```
 
 > 重要：M02 Day8–15 的每日课程已完成，但 **M02 模块毕业考试尚未完成，因此不宣告 M02 模块毕业**。用户选择先继续 M03，后续回补考试剩余题目与 Hard Gate 复测。
@@ -85,13 +86,13 @@ M02 Day8–15
 M11 Day63–70 / M12 Day71–73（已 PASS）
 → M12 Day76（COMPLETED / PASS）
 → Control Prerequisite Bridge（COMPLETED / PASS，2026-10-22；见第46节）
-→ M13 Day80–89（CURRENT；Day80–Day83 COMPLETED / PASS；Day84 已教学、Quiz 待完成）
+→ M13 Day80–89（CURRENT；Day80–Day84 COMPLETED / PASS；Day85 已教学、Quiz 待完成）
 → M08 Day43–48 → M09 Day49–54 → M10 Day55–62
 后续回补：M12 Day74–75、Day77–79 完整课程及 M12 模块毕业考试；
 并行实践：M01 ROS2/C++ 与 Day119–126 相关的日志、评测和安全，不自动算课程 PASS
 ```
 
-说明：只改变当前执行顺序及经确认的 M13 有限前置准入；Curriculum v1.0 的 Day 编号、主题、教学契约、原 M12 毕业标准保持不变。Day76、Control Prerequisite Bridge、Day80–Day83 均已通过课堂考核（见对应记录），当前 Day84 已教学、Quiz 待完成；Day77–79 仍后续回补.Localization / State Estimation / SLAM 在控制后集中突破。
+说明：只改变当前执行顺序及经确认的 M13 有限前置准入；Curriculum v1.0 的 Day 编号、主题、教学契约、原 M12 毕业标准保持不变。Day76、Control Prerequisite Bridge、Day80–Day84 均已通过课堂考核（见对应记录），当前 Day85 已教学、Quiz 待完成；Day77–79 仍后续回补.Localization / State Estimation / SLAM 在控制后集中突破。
 
 M04 Simulation 暂不作为当前专项前置主线。
 
@@ -1792,3 +1793,35 @@ Targeted Retest / Hard Gate:
 Next:
 - **M13 Day84 — MPC / Horizon / Constraint / Receding Horizon：TAUGHT / QUIZ PENDING / NOT PASSED**，完整讲义与 Daily Quiz 见 docs/lessons/day084.md。
 - M12 Day74 PAUSED、Day75/Day77–79 DEFERRED、M08 Day43 PAUSED及其他历史状态不变。
+
+
+---
+
+## 51. Day84 Learning Record — COMPLETED / PASS（2026-11-09）
+
+Status:
+- **M13 Day84 — MPC / Horizon / Constraint / Receding Horizon：COMPLETED / PASS**（课堂最终判定）。
+- 完整初测与 R1–R3 定向复测记录保存在 docs/lessons/day084.md；Daily PASS 不代表 M13 Module Graduation。
+
+Initial Quiz:
+- Q1 理解预测 N 步、执行一步、取得速度反馈后重新求解及复用剩余序列；教师补充区分 Receding Horizon 与 Warm Start。
+- Q2 正确计算 3s、6s；R3 补充预测步长与控制器反馈更新周期并非同一概念。
+- Q3 MPC 有限时域目标、动力学、初始状态、阶段/终端代价和状态/输入约束完整，PASS。
+- Q4 初答混淆 Reference Trajectory 与 Predicted Trajectory；R1 正确定义三种路径/轨迹并说明误差进入代价，PASS。
+- Q5 初答最大速度0.5m/s错误；R2 独立计算新参数下0.43m/s并说明命令/真实加速度差别，PASS。
+- Q6 硬终端不可行与软终端代价仍可行的区别正确，PASS。
+- Q7 滚动优化流程正确；教师补充输出的是控制输入而不是预测状态，PASS。
+- Q8 初答部分正确，教师补充时间分辨率、计算负担与误差边界；未另做独立复测。
+- Q9 LQR/MPC 对比及硬约束边界正确，PASS。
+- Q10 覆盖模型、反馈、时间戳和代价；教师补充约束可行性、求解状态及下游执行链；未另做独立复测。
+
+Targeted Retest:
+- R1 Reference：Geometry Path / Reference Trajectory / Predicted Trajectory 正确区分，PASS。
+- R2 Rate Limit：新参数下最大命令速度0.43m/s，计算与物理边界解释正确，PASS。
+- R3 Horizon：20Hz反馈周期仍50ms；N=60、dt=0.1s时T=6s，时间分辨率解释正确，PASS。
+
+Final:
+- Q4 / Q5 初答错误经定向复测纠正；Q8 / Q10 的不足经课堂补讲后接受。
+- **Day84：COMPLETED / PASS**。没有实机或公司源码额外验证。
+- **Next：M13 Day85 — MPPI / Sampling / Rollout / Weight / Update：TAUGHT / QUIZ PENDING / NOT PASSED**，见 docs/lessons/day085.md。
+- M12 Day74 PAUSED、Day75/Day77–79 DEFERRED、M08 Day43 PAUSED等历史状态不变。
