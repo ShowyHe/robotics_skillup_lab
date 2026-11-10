@@ -62,11 +62,12 @@ M13 Day81 — Equilibrium / Stability / Eigenvalue / Closed-loop Response：COMP
 M13 Day82 — Controllability / Observability / State Feedback：COMPLETED / PASS（初测及两轮定向复测；见 docs/lessons/day082.md 与第49节）
 M13 Day83 — Optimal Control / LQR：COMPLETED / PASS（初测及定向复测；见 docs/lessons/day083.md 与第50节）
 M13 Day84 — MPC / Horizon / Constraint / Receding Horizon：COMPLETED / PASS（初测及三题定向复测；见 docs/lessons/day084.md 与第51节）
+M13 Day85 — MPPI / Sampling / Rollout / Weight / Update：COMPLETED / PASS（初测及 R1–R5 定向复测；见 docs/lessons/day085.md）
 M12 Day74 — Inverse Kinematics / Newton / DLS：PAUSED / NOT COMPLETED（已发送完整课程，Quiz 尚未完成）
 M12 Day75：DEFERRED / NOT COMPLETED（按 ACTIVE 路线后置）
 M12 Day77–79：DEFERRED / NOT COMPLETED（完整 Day 后置；Bridge 不授予这些 Day PASS）
 Control Prerequisite Bridge：COMPLETED / PASS（Q1–Q10 已答；Q1/Q6 Hard Gate 定向复测通过；不新增 Day）
-Current / Next：M13 Day85 — MPPI / Sampling / Rollout / Weight / Update：COMPLETED / PASS（初测及 R1–R5 定向复测；见 docs/lessons/day085.md）
+Current / Next：M13 Day86 — MPPI Noise / Temperature / Warm Start / Feedback Base：TAUGHT / QUIZ PENDING / NOT PASSED（见 docs/lessons/day086.md）
 ```
 
 > 重要：M02 Day8–15 的每日课程已完成，但 **M02 模块毕业考试尚未完成，因此不宣告 M02 模块毕业**。用户选择先继续 M03，后续回补考试剩余题目与 Hard Gate 复测。
