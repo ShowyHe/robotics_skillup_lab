@@ -66,7 +66,7 @@ M12 Day74 — Inverse Kinematics / Newton / DLS：PAUSED / NOT COMPLETED（已�
 M12 Day75：DEFERRED / NOT COMPLETED（按 ACTIVE 路线后置）
 M12 Day77–79：DEFERRED / NOT COMPLETED（完整 Day 后置；Bridge 不授予这些 Day PASS）
 Control Prerequisite Bridge：COMPLETED / PASS（Q1–Q10 已答；Q1/Q6 Hard Gate 定向复测通过；不新增 Day）
-Current / Next：M13 Day85 — MPPI / Sampling / Rollout / Weight / Update（已教学，Quiz 待完成；见 docs/lessons/day085.md）
+Current / Next：M13 Day85 — MPPI / Sampling / Rollout / Weight / Update：COMPLETED / PASS（初测及 R1–R5 定向复测；见 docs/lessons/day085.md）
 ```
 
 > 重要：M02 Day8–15 的每日课程已完成，但 **M02 模块毕业考试尚未完成，因此不宣告 M02 模块毕业**。用户选择先继续 M03，后续回补考试剩余题目与 Hard Gate 复测。
@@ -86,13 +86,13 @@ M02 Day8–15
 M11 Day63–70 / M12 Day71–73（已 PASS）
 → M12 Day76（COMPLETED / PASS）
 → Control Prerequisite Bridge（COMPLETED / PASS，2026-10-22；见第46节）
-→ M13 Day80–89（CURRENT；Day80–Day84 COMPLETED / PASS；Day85 已教学、Quiz 待完成）
+→ M13 Day80–89（CURRENT；Day80–Day85 COMPLETED / PASS；Day86 已教学、Quiz 待完成）
 → M08 Day43–48 → M09 Day49–54 → M10 Day55–62
 后续回补：M12 Day74–75、Day77–79 完整课程及 M12 模块毕业考试；
 并行实践：M01 ROS2/C++ 与 Day119–126 相关的日志、评测和安全，不自动算课程 PASS
 ```
 
-说明：只改变当前执行顺序及经确认的 M13 有限前置准入；Curriculum v1.0 的 Day 编号、主题、教学契约、原 M12 毕业标准保持不变。Day76、Control Prerequisite Bridge、Day80–Day84 均已通过课堂考核（见对应记录），当前 Day85 已教学、Quiz 待完成；Day77–79 仍后续回补.Localization / State Estimation / SLAM 在控制后集中突破。
+说明：只改变当前执行顺序及经确认的 M13 有限前置准入；Curriculum v1.0 的 Day 编号、主题、教学契约、原 M12 毕业标准保持不变。Day76、Control Prerequisite Bridge、Day80–Day85 均已通过课堂考核（见对应记录），当前 Day86 已教学、Quiz 待完成；Day77–79 仍后续回补。Localization / State Estimation / SLAM 在控制后集中突破。
 
 M04 Simulation 暂不作为当前专项前置主线。
 
@@ -1823,5 +1823,42 @@ Targeted Retest:
 Final:
 - Q4 / Q5 初答错误经定向复测纠正；Q8 / Q10 的不足经课堂补讲后接受。
 - **Day84：COMPLETED / PASS**。没有实机或公司源码额外验证。
-- **Next：M13 Day85 — MPPI / Sampling / Rollout / Weight / Update：TAUGHT / QUIZ PENDING / NOT PASSED**，见 docs/lessons/day085.md。
+- **Next：M13 Day86 — MPPI Noise / Temperature / Warm Start / Feedback Base：TAUGHT / QUIZ PENDING / NOT PASSED**，见 docs/lessons/day086.md。
 - M12 Day74 PAUSED、Day75/Day77–79 DEFERRED、M08 Day43 PAUSED等历史状态不变。
+
+
+---
+
+## 52. Day85 Learning Record — COMPLETED / PASS（2026-11-10）
+
+Status:
+- **M13 Day85 — MPPI / Sampling / Rollout / Weight / Update：COMPLETED / PASS**（初测与 R1–R5 定向复测通过）。
+- 完整讲义、原始 Daily Quiz、定向复测与最终判定见 docs/lessons/day085.md。
+- 本次为课堂理论考核；没有实机验证，也没有额外核验公司源码。
+
+Mastered:
+- Nominal control sequence、Gaussian perturbation 与 candidate control 的关系。
+- K / N / dt / prediction horizon 的区分。
+- Rollout、阶段代价、终端代价与硬约束边界。
+- Minimum cost shift、importance weight、normalized weight 与 weighted update。
+- Best sample 与 weighted update 的区别。
+- Execute-first、receding horizon 与 shift。
+- Nav2 Humble 的 noise / rollout / critic / update / output / shift 源码映射。
+
+Corrected:
+- 预测时域 \(T=N\Delta t\) 不是控制器更新周期；20Hz 对应 0.05s 更新周期，N=40、dt=0.1s 对应 4s 预测时域。
+- Cost Evaluation 不等于硬约束；中途碰撞不能因终点代价低而视为安全。
+- 加权更新利用的是候选样本 Cost、Weight 与 Perturbation，不是真实机器人反馈。
+- 低代价样本权重更大；原地或低速候选若长期低代价，可能推动 nominal 速度下降。
+
+Targeted Retest:
+- R1 Gaussian Sampling：PASS。
+- R2 Prediction Horizon：PASS；澄清术语混淆，计算公式正确。
+- R3 Cost vs Constraint：PASS。
+- R4 Weighted Update：PASS。
+- R5 Owner Debug：PASS；识别低速候选高权重对 nominal 的影响，并完成数值判断。
+
+Final:
+- **Day85：COMPLETED / PASS**。
+- **Current / Next：M13 Day86 — MPPI Noise / Temperature / Warm Start / Feedback Base：TAUGHT / QUIZ PENDING / NOT PASSED**，见 docs/lessons/day086.md。
+- M12 Day74 PAUSED、Day75/Day77–79 DEFERRED、M08 Day43 PAUSED 等历史状态不变；Day85 Daily PASS 不代表 M13 Module Graduation。
