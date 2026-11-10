@@ -124,7 +124,7 @@ M22  Day130–135（动态 Foundation Cleanup）
 当前学习位置、最新 Next、完成/暂缓状态和未完成考试统一见 [`docs/PROGRESS.md` 第1节](docs/PROGRESS.md)。下表仅为进度概览，不代替考核记录或每日教学契约。
 当前专项执行顺序见 [`docs/TEMP_POSITIONING_VISION_PLAN.md`](docs/TEMP_POSITIONING_VISION_PLAN.md)。专项路线只调整执行顺序；课程 Day 编号与主题须与总纲及模块教学契约一致。
 
-**当前进度：M12 Day76、Control Prerequisite Bridge、M13 Day80–Day84 均已 COMPLETED / PASS。当前课程：M13 Day85 — MPPI / Sampling / Rollout / Weight / Update（已教学，Quiz 待完成）。Day74 PAUSED、Day75 与 Day77–79 仍后置。**
+**当前进度：M12 Day76、Control Prerequisite Bridge、M13 Day80–Day85 均已 COMPLETED / PASS。当前课程：M13 Day86 — MPPI Noise / Temperature / Warm Start / Feedback Base（已教学，Quiz 待完成）。Day74 PAUSED、Day75 与 Day77–79 仍后置。**
 
 ### M00–M02｜系统基础与数学基础 I
 
@@ -236,8 +236,8 @@ M22  Day130–135（动态 Foundation Cleanup）
 | Day082 | ✅ | Controllability / Observability / State Feedback | [学习记录](docs/lessons/day082.md) |
 | Day083 | ✅ | Optimal Control / LQR | [学习记录](docs/lessons/day083.md) |
 | Day084 | ✅ | MPC / Horizon / Constraint / Receding Horizon | [学习记录](docs/lessons/day084.md) |
-| Day085 | 🟨 | MPPI / Sampling / Rollout / Weight / Update | [学习记录](docs/lessons/day085.md) |
-| Day086 | ⬜ | MPPI Noise / Temperature / Warm Start |
+| Day085 | ✅ | MPPI / Sampling / Rollout / Weight / Update | [学习记录](docs/lessons/day085.md) |
+| Day086 | 🟨 | MPPI Noise / Temperature / Warm Start / Feedback Base | [学习记录](docs/lessons/day086.md) |
 | Day087 | ⬜ | Cost / Critic / Constraint / Behavior |
 | Day088 | ⬜ | Tracking / Latency / Saturation / Model Mismatch |
 | Day089 | ⬜ | Control Owner / MPPI Source |
