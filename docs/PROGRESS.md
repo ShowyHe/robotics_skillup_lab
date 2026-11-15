@@ -63,11 +63,12 @@ M13 Day82 — Controllability / Observability / State Feedback：COMPLETED / PAS
 M13 Day83 — Optimal Control / LQR：COMPLETED / PASS（初测及定向复测；见 docs/lessons/day083.md 与第50节）
 M13 Day84 — MPC / Horizon / Constraint / Receding Horizon：COMPLETED / PASS（初测及三题定向复测；见 docs/lessons/day084.md 与第51节）
 M13 Day85 — MPPI / Sampling / Rollout / Weight / Update：COMPLETED / PASS（初测及 R1–R5 定向复测；见 docs/lessons/day085.md）
+M13 Day86 — MPPI Noise / Temperature / Warm Start / Feedback Base：COMPLETED / PASS（初测及多轮定向复测；见 docs/lessons/day086.md 与第53节）
 M12 Day74 — Inverse Kinematics / Newton / DLS：PAUSED / NOT COMPLETED（已发送完整课程，Quiz 尚未完成）
 M12 Day75：DEFERRED / NOT COMPLETED（按 ACTIVE 路线后置）
 M12 Day77–79：DEFERRED / NOT COMPLETED（完整 Day 后置；Bridge 不授予这些 Day PASS）
 Control Prerequisite Bridge：COMPLETED / PASS（Q1–Q10 已答；Q1/Q6 Hard Gate 定向复测通过；不新增 Day）
-Current / Next：M13 Day86 — MPPI Noise / Temperature / Warm Start / Feedback Base：TAUGHT / QUIZ PENDING / NOT PASSED（见 docs/lessons/day086.md）
+Current / Next：M13 Day87 — Cost / Critic / Constraint / Robot Behavior：TAUGHT / QUIZ PENDING / NOT PASSED（见 docs/lessons/day087.md）
 ```
 
 > 重要：M02 Day8–15 的每日课程已完成，但 **M02 模块毕业考试尚未完成，因此不宣告 M02 模块毕业**。用户选择先继续 M03，后续回补考试剩余题目与 Hard Gate 复测。
@@ -87,7 +88,7 @@ M02 Day8–15
 M11 Day63–70 / M12 Day71–73（已 PASS）
 → M12 Day76（COMPLETED / PASS）
 → Control Prerequisite Bridge（COMPLETED / PASS，2026-10-22；见第46节）
-→ M13 Day80–89（CURRENT；Day80–Day85 COMPLETED / PASS；Day86 已教学、Quiz 待完成）
+→ M13 Day80–89（CURRENT；Day80–Day86 COMPLETED / PASS；Day87 已教学、Quiz 待完成）
 → M08 Day43–48 → M09 Day49–54 → M10 Day55–62
 后续回补：M12 Day74–75、Day77–79 完整课程及 M12 模块毕业考试；
 并行实践：M01 ROS2/C++ 与 Day119–126 相关的日志、评测和安全，不自动算课程 PASS
@@ -1863,3 +1864,44 @@ Final:
 - **Day85：COMPLETED / PASS**。
 - **Current / Next：M13 Day86 — MPPI Noise / Temperature / Warm Start / Feedback Base：TAUGHT / QUIZ PENDING / NOT PASSED**，见 docs/lessons/day086.md。
 - M12 Day74 PAUSED、Day75/Day77–79 DEFERRED、M08 Day43 PAUSED 等历史状态不变；Day85 Daily PASS 不代表 M13 Module Graduation。
+
+
+---
+
+## 53. Day86 Learning Record — COMPLETED / PASS（2026-11-15）
+
+### Status
+- **M13 Day86 — MPPI Noise / Temperature / Warm Start / Feedback Base：COMPLETED / PASS**。
+- 依据：Day86 Q1–Q10 作答及多轮定向复测；完整记录见 docs/lessons/day086.md。
+- 本次为课堂理论与工程推理考核；没有新的实机验证，也没有宣称 M13 模块毕业。
+
+### Mastered
+- 标准差、方差及 vx / wz 扰动的物理单位。
+- K 与 sigma 的职责区分；K 增加候选数量，不改变单样本分布宽度。
+- Temperature 对归一化权重集中程度的影响。
+- ESS 计算与权重集中度解释。
+- Control clipping 对原始高斯候选分布的改变。
+- Warm start / shift 与 model_dt、controller period 的时间对齐。
+- Old command、nominal sequence、actual state / feedback 的区别。
+- 急停恢复后的状态来源、时间戳、底盘使能、当前位姿和障碍环境核对。
+- 从高权重候选、nominal update、限幅前后数据反推异常转向的证据链。
+
+### Corrected / Clarified
+- K 增加意味着候选数量增加，不直接改变 sigma，也不能保证导航精度必然提高。
+- \([0.25,0.65]\) 是 \(\mu=0.45,\sigma=0.2\) 的均值左右一个标准差区间，约覆盖原始高斯样本的 68.3%，不是完整采样范围。
+- Gaussian 原始分布没有有限的完整支持区间；vmax clipping 会改变正向尾部样本分布，并可能在上限处形成堆积。
+- 旧 command 不能替代急停后的实际状态；编码器速度反馈也不能单独说明运动来自自主驱动还是外力推动，必须结合急停模式、反馈来源和 timestamp。
+- 仅看到少数高权重右转候选，不足以断言最终控制必然右转；需要检查全体候选的加权扰动、更新前 nominal、限幅和后续控制处理。
+- controller period 与 model_dt 不一致时，不能机械假设每周期只 shift 一个索引即可；Nav2 Humble 对 controller period 大于 model_dt 有明确异常处理。
+
+### Targeted Retest
+- K / sigma 区分：PASS。
+- model_dt / controller period 时间对齐：PASS。
+- old command 与 actual velocity 区分：PASS。
+- E-stop 后 timestamp、轮速反馈、nominal t0、候选权重及 clipping 前后证据：PASS。
+- 高权重候选与最终控制更新的关系：PASS。
+
+### Final
+- **Day86：COMPLETED / PASS**。
+- **Current / Next：M13 Day87 — Cost / Critic / Constraint / Robot Behavior：TAUGHT / QUIZ PENDING / NOT PASSED**，见 docs/lessons/day087.md。
+- M12 Day74 PAUSED、Day75 / Day77–79 DEFERRED、M08 Day43–48 后续回补等既有状态不变；Day86 Daily PASS 不代表 M13 Module Graduation。

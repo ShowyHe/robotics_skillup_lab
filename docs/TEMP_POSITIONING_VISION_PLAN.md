@@ -4,7 +4,7 @@
 >
 > 目的：在**不修改 Curriculum v1.0 的 Module / Day 编号、不修改 03_MASTER_PLAN 总结构**的前提下，按当前能力收益重新安排实际学习顺序：
 >
-> **导航与规划主线已通过；移动机器人运动学 Day76 与 Control Prerequisite Bridge 均已通过；M13 Day80–Day85 已通过课堂考核，当前为 Day86（MPPI Noise / Temperature / Warm Start / Feedback Base，Quiz 待完成），之后集中定位 / 状态估计 / SLAM；机械臂专项知识后置但不豁免。**
+> **导航与规划主线已通过；移动机器人运动学 Day76 与 Control Prerequisite Bridge 均已通过；M13 Day80–Day86 已通过课堂考核，当前为 Day87（Cost / Critic / Constraint / Robot Behavior，Quiz 待完成），之后集中定位 / 状态估计 / SLAM；机械臂专项知识后置但不豁免。**
 >
 > 本文件只负责当前阶段的执行顺序，不替代 03_MASTER_PLAN.md、04_MODULE_SPECS.md、modules/、LEARNING_RULES.md 和 PROGRESS.md。
 
@@ -68,7 +68,7 @@ M11 Day63–70（已通过）
 → M12 Day71–73（已通过）
 → M12 Day76（COMPLETED / PASS）
 → Control Prerequisite Bridge（COMPLETED / PASS，2026-10-22；未编号，不授予 M12 Day77–79 PASS）
-→ M13 Day80–89（CURRENT；Day80–Day85 COMPLETED / PASS；Day86 已教学，Quiz 待完成）
+→ M13 Day80–89（CURRENT；Day80–Day86 COMPLETED / PASS；Day87 已教学，Quiz 待完成）
 
 后续回补：M12 Day74–75、Day77–79 及 M12 完整毕业考试。
 既有 Day 编号、课程内容和考核标准保持不变。
@@ -179,7 +179,7 @@ Day76 Mobile Robot Kinematics 的目标深度为 L4：
 
 ## 6. Stage A3 — M13 Control & Optimal Control
 
-**对应：Day80–Day89。Day76 与 Control Prerequisite Bridge 已通过；Day80–Day85 COMPLETED / PASS，Day86 TAUGHT / QUIZ PENDING / NOT PASSED；本路线不更改 M12 毕业标准。**
+**对应：Day80–Day89。Day76 与 Control Prerequisite Bridge 已通过；Day80–Day86 COMPLETED / PASS，Day87 TAUGHT / QUIZ PENDING / NOT PASSED；本路线不更改 M12 毕业标准。**
 
 ### 主线
 ~~~text
