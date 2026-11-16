@@ -64,11 +64,12 @@ M13 Day83 — Optimal Control / LQR：COMPLETED / PASS（初测及定向复测�
 M13 Day84 — MPC / Horizon / Constraint / Receding Horizon：COMPLETED / PASS（初测及三题定向复测；见 docs/lessons/day084.md 与第51节）
 M13 Day85 — MPPI / Sampling / Rollout / Weight / Update：COMPLETED / PASS（初测及 R1–R5 定向复测；见 docs/lessons/day085.md）
 M13 Day86 — MPPI Noise / Temperature / Warm Start / Feedback Base：COMPLETED / PASS（初测及多轮定向复测；见 docs/lessons/day086.md 与第53节）
+M13 Day87 — Cost / Critic / Constraint / Robot Behavior：COMPLETED / PASS（Q1–Q6、Q9–Q10 初测通过；Q7/Q8 定向复测通过；见 docs/lessons/day087.md 与第54节）
 M12 Day74 — Inverse Kinematics / Newton / DLS：PAUSED / NOT COMPLETED（已发送完整课程，Quiz 尚未完成）
 M12 Day75：DEFERRED / NOT COMPLETED（按 ACTIVE 路线后置）
 M12 Day77–79：DEFERRED / NOT COMPLETED（完整 Day 后置；Bridge 不授予这些 Day PASS）
 Control Prerequisite Bridge：COMPLETED / PASS（Q1–Q10 已答；Q1/Q6 Hard Gate 定向复测通过；不新增 Day）
-Current / Next：M13 Day87 — Cost / Critic / Constraint / Robot Behavior：TAUGHT / QUIZ PENDING / NOT PASSED（见 docs/lessons/day087.md）
+Current / Next：M13 Day88 — Tracking / Latency / Saturation / Model Mismatch：TAUGHT / QUIZ PENDING / NOT PASSED（见 docs/lessons/day088.md）
 ```
 
 > 重要：M02 Day8–15 的每日课程已完成，但 **M02 模块毕业考试尚未完成，因此不宣告 M02 模块毕业**。用户选择先继续 M03，后续回补考试剩余题目与 Hard Gate 复测。
@@ -88,13 +89,13 @@ M02 Day8–15
 M11 Day63–70 / M12 Day71–73（已 PASS）
 → M12 Day76（COMPLETED / PASS）
 → Control Prerequisite Bridge（COMPLETED / PASS，2026-10-22；见第46节）
-→ M13 Day80–89（CURRENT；Day80–Day86 COMPLETED / PASS；Day87 已教学、Quiz 待完成）
+→ M13 Day80–89（CURRENT；Day80–Day87 COMPLETED / PASS；Day88 已教学、Quiz 待完成）
 → M08 Day43–48 → M09 Day49–54 → M10 Day55–62
 后续回补：M12 Day74–75、Day77–79 完整课程及 M12 模块毕业考试；
 并行实践：M01 ROS2/C++ 与 Day119–126 相关的日志、评测和安全，不自动算课程 PASS
 ```
 
-说明：只改变当前执行顺序及经确认的 M13 有限前置准入；Curriculum v1.0 的 Day 编号、主题、教学契约、原 M12 毕业标准保持不变。Day76、Control Prerequisite Bridge、Day80–Day85 均已通过课堂考核（见对应记录），当前 Day86 已教学、Quiz 待完成；Day77–79 仍后续回补。Localization / State Estimation / SLAM 在控制后集中突破。
+说明：只改变当前执行顺序及经确认的 M13 有限前置准入；Curriculum v1.0 的 Day 编号、主题、教学契约、原 M12 毕业标准保持不变。Day76、Control Prerequisite Bridge、Day80–Day87 均已通过课堂考核（见对应记录），当前 Day88 已教学、Quiz 待完成；Day77–79 仍后续回补。Localization / State Estimation / SLAM 在控制后集中突破。
 
 M04 Simulation 暂不作为当前专项前置主线。
 
@@ -1905,3 +1906,43 @@ Final:
 - **Day86：COMPLETED / PASS**。
 - **Current / Next：M13 Day87 — Cost / Critic / Constraint / Robot Behavior：TAUGHT / QUIZ PENDING / NOT PASSED**，见 docs/lessons/day087.md。
 - M12 Day74 PAUSED、Day75 / Day77–79 DEFERRED、M08 Day43–48 后续回补等既有状态不变；Day86 Daily PASS 不代表 M13 Module Graduation。
+
+
+---
+
+## 54. Day87 Learning Record — COMPLETED / PASS（2026-11-16）
+
+### Status
+- **M13 Day87 — Cost / Critic / Constraint / Robot Behavior：COMPLETED / PASS**。
+- 依据：Q1–Q6、Q9–Q10 初测通过；Q7、Q8 经用户独立定向复测通过。
+- 完整讲义、初测题及复测记录见 docs/lessons/day087.md。
+- 本次仅为 Day87 Daily PASS，不代表 M13 Module Graduation，也没有新的实机验证。
+
+### Mastered
+- 候选轨迹总 Cost 的 Critic 组成；
+- Raw Cost、Critic Weight、Weighted Contribution 的区分；
+- PathAlign、PathFollow、Obstacle 的职责差异；
+- Soft / Hard Constraint 与碰撞代价边界；
+- Safety Margin 的简化计算；
+- Nav2 Humble ConstraintCritic、控制序列限幅、碰撞 fail_flag / fallback 的机制区分；
+- 从 Candidate、Critic、Total Cost、Sample Weight、Nominal Update、Post Processing 到 Actual Motion 的诊断链。
+
+### Corrected / Retest
+- Q7：同一批候选轨迹比较 PathAlign、PathFollow、Obstacle 的 Raw Cost、Weight 和 Weighted Contribution；先排除感知、代价计算、预测范围和候选轨迹不足，再考虑调整 Weight。
+- Q8：绕行后分别检查 Obstacle 是否通过及代价是否下降、PathAlign 是否过度惩罚偏离、PathFollow 是否过度推动回归；明确 PathAlign 管对齐，PathFollow 管沿路径向前推进。
+- Q7 targeted retest：PASS。
+- Q8 targeted retest：PASS。
+
+### Final
+- **Day87：COMPLETED / PASS**。
+- **Current / Next：M13 Day88 — Tracking / Latency / Saturation / Model Mismatch：TAUGHT / QUIZ PENDING / NOT PASSED**，见 docs/lessons/day088.md。
+- M12 Day74 PAUSED、Day75 / Day77–79 DEFERRED、M08 Day43–48 后续回补等既有状态不变；Day87 Daily PASS 不代表 M13 Module Graduation。
+
+---
+
+## 55. Day88 Learning Record — TAUGHT / QUIZ PENDING / NOT PASSED（2026-11-16）
+
+### Status
+- **M13 Day88 — Tracking / Latency / Saturation / Model Mismatch：TAUGHT / QUIZ PENDING / NOT PASSED**。
+- 完整讲义与 Daily Quiz 已发送并保存于 docs/lessons/day088.md。
+- 等待用户独立完成 Q1–Q10；未记录任何 Day88 PASS。
