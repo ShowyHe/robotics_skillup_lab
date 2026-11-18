@@ -1836,7 +1836,7 @@ Final:
 
 Status:
 - **M13 Day85 — MPPI / Sampling / Rollout / Weight / Update：COMPLETED / PASS**（初测与 R1–R5 定向复测通过）。
-- 完整讲义、原始 Daily Quiz、定向复测与最终判定见 docs/lessons/day085.md。
+- 完整讲义、原始 Daily Quiz、定向复测与最终判定见 docs/lessons/day085.md 与本文件第52节。
 - 本次为课堂理论考核；没有实机验证，也没有额外核验公司源码。
 
 Mastered:
